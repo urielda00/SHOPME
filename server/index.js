@@ -6,16 +6,18 @@ import dotenv from 'dotenv';
 import helmet from 'helmet';
 import morgan from 'morgan';
 
+
+
 //Models imports:
-import User from './models/User';
-import Order from './models/Order';
-import Product from './models/Products';
-import Invoice from './models/Invoice';
-import Address from './models/Address';
+import User from './models/User.js';
+import Order from './models/Order.js';
+import Product from './models/Products.js';
+import Invoice from './models/Invoice.js';
+import Address from './models/Address.js';
 
 // //Routes imports:
-// import authRoute from './routes/auth.js';??
-
+import authRouter from './routes/auth.js';
+import productRouter from './routes/products.js';
 
 //Configuration:
 const port= process.env.PORT||5000;
@@ -29,13 +31,16 @@ app.use(cors());
 app.use(morgan("common")); //the common loger of morgan
 app.use(helmet());
 app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" })); //for XXS protection.
+app.use(bodyParser.urlencoded({extended:true }))
+
 
 
 //Routes:
-//app.use('/auth', authRoute);
-app.get('/', (req,res)=>{
-  res.send('hello')
-})
+app.use('/auth', authRouter);
+app.use('/product', productRouter);
+
+
+
 
 
 //Connect to the DB and then listen at the port:

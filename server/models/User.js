@@ -15,6 +15,11 @@ const UserSchema= new mongoose.Schema({
       min: 2,
       max: 50,
     },
+    userName: {
+      type: String,
+      required: true,
+      unique: true
+    },
     email: {
       type: String,
       required: true,
@@ -28,9 +33,7 @@ const UserSchema= new mongoose.Schema({
     },
     phoneNumber:{
       type: Number, //later, need to add the phone number validator.
-      required: true,
-      min: 8,
-      max: 10
+      required: true
     },
     invoices:{
       type:[String], //here we going to have the invoices _id's. and later to show all the invoices by map 
