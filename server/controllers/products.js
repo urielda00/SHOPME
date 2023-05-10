@@ -3,32 +3,41 @@ import Product from "../models/Products.js";
 
 
 // need to add some page where the admin can add new products to the website!
+
+
+//Create:
 export const createProduct=  async (req, res)=> {
   try {
   const imagePath= req.file.filename;
+  const {shortDescription, longDescription, price,quantity}= req.body;
   const saveProduct= new Product({
-    imageUrl: imagePath
+    productImage: imagePath,
+    shortDescription,
+    longDescription,
+    price,
+    quantity
   })
   await saveProduct.save();
- 
+  res.status(200).send();
   } catch (error) {
     console.log(error);
   }
- 
-  // req.file is the `avatar` file
-  // req.body will hold the text fields, if there were any
+  // req.file is the `productImage` file
+ }
+
+
+ //Read:
+ export const readProducts= async (req,res)=>{
+  try {
+    const products= await Product.find(); 
+    res.status(200).json(products);
+  } catch (error) {
+    console.log(error);
+  }
  }
 
 
 
-
-
-//test start
-
-
-
-
-//test end
 
 
 
