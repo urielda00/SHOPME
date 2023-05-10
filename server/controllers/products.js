@@ -3,23 +3,32 @@ import Product from "../models/Products.js";
 
 
 // need to add some page where the admin can add new products to the website!
-export const createProduct= async(req,res)=>{
-try{
-const { file, price, shortDescription, longDescription, quantity}= req.body;
-  const newProduct = new Product({
-    file, //later need to check about the image path, and add the added item to the map in the frontend
-    price,
-    shortDescription,
-    longDescription,
-    quantity
-  });
-  await newProduct.save();
-  // res.json(newProduct); 
-} catch (error) {
-  res.status(500).json(error);
-}
-}
+export const createProduct=  async (req, res)=> {
+  try {
+  const imagePath= req.file.filename;
+  const saveProduct= new Product({
+    imageUrl: imagePath
+  })
+  await saveProduct.save();
+ 
+  } catch (error) {
+    console.log(error);
+  }
+ 
+  // req.file is the `avatar` file
+  // req.body will hold the text fields, if there were any
+ }
 
+
+
+
+
+//test start
+
+
+
+
+//test end
 
 
 

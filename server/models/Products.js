@@ -19,12 +19,16 @@ const ProductSchema= new mongoose.Schema({
     // quantity:{
     //   type: Number, //later- redux actions will decrease || increase this number.
     // },
-    name: String,
-    img:
-    {
-        data: Buffer,
-        contentType: String
-    }
+    // filename : {
+    //     type : String,
+    //     unique : true,
+    //     required: true
+    // },
+    // contentType : {
+    //     type: String,
+    //     required : true
+    // },
+    imageUrl : String
 } ,
 { timestamps: true });
 
