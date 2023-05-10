@@ -23,7 +23,8 @@ const Some= ()=>{
       <ul>
         {
         data?.map(data=>(
-         <li key={data._id}><img src={`http://localhost:5000/uploads/${data.productImage}`} width={200}/></li>
+         <li key={data._id}><img src={`http://localhost:5000/uploads/${data.productImage}`} width={200}/>
+         <h1>{data.shortDescription}</h1> <h4>price:{data.price}</h4> </li>
         ))
         }
       </ul>

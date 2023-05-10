@@ -33,6 +33,7 @@ const Show= ()=>{
 };
 
 export default Show; 
+
 //     {
 //     <img src={`http://localhost:5000/uploads/${some}`} width={200}/>
 //     }
