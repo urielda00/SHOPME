@@ -3,7 +3,7 @@ import Product from "../models/Products.js";
 
 
 // need to add some page where the admin can add new products to the website!
-
+//meaning only the admin will have access to the following routes.
 
 //Create:
 export const createProduct=  async (req, res)=> {
@@ -37,39 +37,38 @@ export const createProduct=  async (req, res)=> {
  }
 
 
+ //need to make react router:  to send the update form to this path:
+ //here we updating only the necessary update ( with patch) of the product info:
 
 
-
-
-
-/*
-//later need to filter the next code for adding those funcunalities.
-const updateProduct = asyncHandler(async (req, res) => {
-  const id = req.params;
-  validateMongoDbId(id);
+ //Update:
+ export const updateProduct = async (req, res) => {
+  const id = req.params.id;
+  const updates= req.body;
+  const options= {new: true};
   try {
-    if (req.body.title) {
-      req.body.slug = slugify(req.body.title);
-    }
-    const updateProduct = await Product.findOneAndUpdate({ id }, req.body, {
-      new: true,
-    });
-    res.json(updateProduct);
+  
+    const updatedProduct = await Product.findOneAndUpdate(id, updates, options );
+    res.json(updatedProduct);
+    
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+
+
+
+//Delete:
+
+export const deleteProduct = async (req, res) => {
+  const id = req.params.id;
+
+  try {
+    const deletedProduct = await Product.findOneAndDelete(id);
+    res.send('The product has been successfully deleted!');
   } catch (error) {
     throw new Error(error);
   }
-});
+};
 
-const deleteProduct = asyncHandler(async (req, res) => {
-  const id = req.params;
-  validateMongoDbId(id);
-  try {
-    const deleteProduct = await Product.findOneAndDelete(id);
-    res.json(deleteProduct);
-  } catch (error) {
-    throw new Error(error);
-  }
-});
-
-
-*/

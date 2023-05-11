@@ -1,3 +1,5 @@
+//userAuth on this page
+
 import User from "../models/User.js";
 import bcrypt from 'bcrypt';
 
