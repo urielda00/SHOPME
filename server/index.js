@@ -15,7 +15,7 @@ import Invoice from './models/Invoice.js';
 import Address from './models/Address.js';
 
 // //Routes imports:
-import authRouter from './routes/auth.js';
+import userAuthRouter from './routes/userAuth.js';
 import productRouter from './routes/products.js';
 
 //Configuration:
@@ -35,7 +35,7 @@ app.use('/uploads',express.static('uploads'))//anything on this path is connecti
 
 
 //Routes:
-app.use('/auth', authRouter);
+app.use('/auth', userAuthRouter);
 app.use('/product', productRouter);
 
 

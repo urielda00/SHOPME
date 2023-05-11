@@ -1,5 +1,3 @@
-//userAuth on this page
-
 import User from "../models/User.js";
 import bcrypt from 'bcrypt';
 
@@ -74,3 +72,51 @@ export const login= async (req,res)=>{
    res.status(500).json(error)
   }
  };
+
+
+
+ //Update user info:
+ export const updateUserInfo = async (req, res) => {
+  const id = req.params.id;
+  const updates= req.body;
+  const options= {new: true};
+
+  try {
+    const updatedUser = await User.findOneAndUpdate(id, updates, options );
+    res.json(updatedUser);
+  
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+
+//Update Password:
+export const updateUserPass= async(req, res) => {
+  const id = req.params.id;
+  const user= await User.findById(id);
+  const options= {new: true};
+  const {password, verifyPass, insertPrePassword}=req.body; 
+  const salt = await bcrypt.genSalt();
+
+  //compare pre-password: 
+  const isMatchPrePass= bcrypt.compareSync(insertPrePassword, user.password);
+  try{
+    if(isMatchPrePass){
+      if(password === verifyPass){
+        const hashedPassword= await bcrypt.hash(password, salt); //hash the new pass
+        await User.findByIdAndUpdate(id, {password:hashedPassword}, options ); //send the hashed to: DB.
+        res.send('User passsword updated successfully!');
+      }else{
+        res.status(409).json('The passwords must match!!')  
+      }
+
+    }else{
+      res.status(409).json('Try Again, Wrong Password!') 
+    }
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+//Delete User:
