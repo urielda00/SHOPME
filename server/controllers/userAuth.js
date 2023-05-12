@@ -86,7 +86,7 @@ export const login= async (req,res)=>{
     res.json(updatedUser);
   
   } catch (error) {
-    console.log(error.message);
+    res.status(500).json(error)
   }
 };
 
@@ -115,8 +115,18 @@ export const updateUserPass= async(req, res) => {
       res.status(409).json('Try Again, Wrong Password!') 
     }
   } catch (error) {
-    console.log(error.message);
+    res.status(500).json(error)
   }
 };
 
 //Delete User:
+export const deleteUser = async(req, res) => {
+  const id = req.params.id;
+  try {
+    await User.findByIdAndDelete(id);
+    res.json('User deleted successfully!');
+
+  } catch (error) {
+    res.status(500).json(error)
+  }
+}

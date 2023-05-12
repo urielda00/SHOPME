@@ -20,7 +20,7 @@ export const createProduct=  async (req, res)=> {
   await saveProduct.save();
   res.status(200).send();
   } catch (error) {
-    console.log(error);
+    res.status(500).json(error)
   }
   // req.file is the `productImage` file
  }
@@ -52,7 +52,7 @@ export const createProduct=  async (req, res)=> {
     res.json(updatedProduct);
     
   } catch (error) {
-    console.log(error.message);
+    res.status(500).json(error)
   }
 };
 
@@ -68,7 +68,7 @@ export const deleteProduct = async (req, res) => {
     const deletedProduct = await Product.findOneAndDelete(id);
     res.send('The product has been successfully deleted!');
   } catch (error) {
-    throw new Error(error);
+    res.status(500).json(error)
   }
 };
 

@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const AddressSchema= new mongoose.Schema({
-
+  
     user: {
       type: String, //here will enter the user Id ||userName (because its unique).
       required: true,
