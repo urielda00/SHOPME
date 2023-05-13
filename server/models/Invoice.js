@@ -2,15 +2,15 @@ import mongoose from "mongoose";
 
 const InvoiceSchema= new mongoose.Schema({
 
-    order: {
-      type: [String], //array of orders Id from the Order schema
+    orders: {
+      type: [String], //array of orders Id from the Order schema, all the orders belong to the specific user.
       required: true,
     },
     date: {
       type: Date,
       required: true,
     },
-    user: {
+    userId: {
       type: String, //the userId here ||userName (because its unique).
     },
     totalPrice: {
