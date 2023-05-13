@@ -7,6 +7,7 @@ import helmet from 'helmet';
 import morgan from 'morgan';
 
 
+
 //Models imports:
 import User from './models/User.js';
 import Order from './models/Order.js';
@@ -17,6 +18,9 @@ import Address from './models/Address.js';
 // //Routes imports:
 import userAuthRouter from './routes/userAuth.js';
 import productRouter from './routes/products.js';
+import orderRouter from './routes/order.js';
+
+
 
 //Configuration:
 const port= process.env.PORT||5000;
@@ -34,10 +38,12 @@ app.use(bodyParser.urlencoded({extended:true }))
 app.use('/uploads',express.static('uploads'))//anything on this path is connecting to this folder- multer
 
 
+
+
 //Routes:
 app.use('/auth', userAuthRouter);
 app.use('/product', productRouter);
-
+app.use('/order', orderRouter);
 
 
 
