@@ -37,7 +37,7 @@ import bcrypt from 'bcrypt';
  }
   
   } catch (error) {
-   res.status(500).json(error)
+   res.status(500).json(error.message)
   }
  };
  
@@ -69,7 +69,7 @@ export const login= async (req,res)=>{
      res.status(409).json('Wrong User Name Or Password!')  
    }
   } catch (error) {
-   res.status(500).json(error)
+   res.status(500).json(error.message)
   }
  };
 
@@ -86,7 +86,7 @@ export const login= async (req,res)=>{
     res.json(updatedUser);
   
   } catch (error) {
-    res.status(500).json(error)
+    res.status(500).json(error.message)
   }
 };
 
@@ -115,7 +115,7 @@ export const updateUserPass= async(req, res) => {
       res.status(409).json('Try Again, Wrong Password!') 
     }
   } catch (error) {
-    res.status(500).json(error)
+    res.status(500).json(error.message)
   }
 };
 
@@ -128,6 +128,6 @@ export const deleteUser = async(req, res) => {
     res.json('User deleted successfully!');
 
   } catch (error) {
-    res.status(500).json(error)
+    res.status(500).json(error.message)
   }
 }

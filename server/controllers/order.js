@@ -14,20 +14,23 @@ import Product from "../models/Products.js";
 
 //Create
 export const createOrder = async(req,res)=>{
+
+  
   try {
-   const id = req.params.id;
-  //in the client- add autofill value for the totalPrice
-  const {address, productsId, totalPrice} = req.body; 
-  //add the current date of the order time
+
+  const id = req.params.id;
+  const {address, productsId, totalPrice} = req.body; //productsId should be an array of objects!!
   const dateis = currentDate.format('MM-DD-YYYY hh:mm A');
   const date = new Date(dateis)
+  
+  
   //Create new order:
   const saveOrder= new Order({
     address,
     date,
     userId: id,
     productsId,
-    totalPrice,
+    totalPrice
   })
   await saveOrder.save();
   
@@ -49,7 +52,6 @@ export const createOrder = async(req,res)=>{
     await createNewAddress.save();
   }  
 
-
   //Update Invoices:
   const searchInvoiceByUserId= await Invoice.findOne({userId:id}); //check if there is invoice relative to this user.
   const order= await Order.findOne({date, userId:id}); //check this syntex!!!!!
@@ -64,7 +66,6 @@ export const createOrder = async(req,res)=>{
         userId:id,
         totalPrice
       })
-      res.status(200).send("Your order has been successfully placed and the address updated and also invoice");
   }else{
     const createNewInvoice= new Invoice({
       orders: [orderId],
@@ -74,15 +75,20 @@ export const createOrder = async(req,res)=>{
     });
     
     await createNewInvoice.save();
-    res.status(200).send("Your order has been successfully placed and the new address created and also invoice");
+    
   }
-  
-  //
 
-
+  //Update products: 
+  for (const productId of productsId) {
+    let product = await Product.findById(productId.id);
+    let quantity =  Number(productId.quantity) ;
+    let result= product.quantity-quantity;
+    const updatedProduct= await Product.findByIdAndUpdate(productId.id,{quantity:result})
+  }   
+  res.status(200).send("Your order has been successfully placed and the new address created and also invoice and products!");
 
   } catch (error) {
-    res.status(500).json(error)
+    res.status(500).json(error.message)
   }
 }
 

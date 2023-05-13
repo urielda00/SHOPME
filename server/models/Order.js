@@ -16,12 +16,12 @@ const OrderSchema= new mongoose.Schema({
       required: true,
     },
     productsId: {
-      type: [String], //take the productsId from the products schema
+      type: [Object], //take the productsId from the products schema
       required: true,
     },
-    totalPrice:{
-      type: Number, //sum the total of products price
-    },
+    totalPrice: {
+      type: Number
+    }
 } ,
 { timestamps: true });
 
