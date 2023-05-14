@@ -95,18 +95,27 @@ export const createOrder = async(req,res)=>{
     });
     
     await createNewInvoice.save();
-    
   }
+  const invoiceId= await Invoice.findOne({userId:id, date});
+  const invoiceUserId= invoiceId.userId;
+  await User.findByIdAndUpdate(id, {
+    $push:{
+      invoices:invoiceUserId
+    }
+  }); //add here update to user
   res.status(200)
   .send("Your order has been successfully placed and the new address created and also invoice and products!");
-
+   
 
 
 
   } catch (error) {
     res.status(500).json(error.message);
   }
-}
+};
+
+
+
 
 
 //Read Orders Relative To A Specific User.
