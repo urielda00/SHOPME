@@ -11,26 +11,46 @@ import User from "../models/User.js";
 
  
 
-//later, need to add: 1) totalprice backend calc. 
+//later, need to add: 
+//1) totalprice backend calc. 
 //2) check if the quantity is not too much for what we have in the stock!
 //both need a loop.
+
 
 
 //Create
 export const createOrder = async(req,res)=>{
   try {
-
   const id = req.params.id;
-  const {address, productsId, totalPrice} = req.body; //productsId should be an array of objects!!
+  const {address, productsId} = req.body; //productsId should be an array of objects!!
   const dateis = currentDate.format('MM-DD-YYYY hh:mm A');
-  const date = new Date(dateis)
+  const date = new Date(dateis);
+  let totalPriceT=0;
+  
+
+
+  for await (const productId of productsId) {
+
+    const product = await Product.findById(productId.id); 
+    const reqQuantity =  Number(productId.quantity);
+    let calc = product.quantity-reqQuantity;
+    let priceTest = product.price;//  המחיר שקיים בפועל במסד נתונים
+    let totalPriceIs = priceTest * reqQuantity;
+    totalPriceT=totalPriceT+totalPriceIs;
+    if(calc < 0){
+     return res.status(400).json('Out of stock!'); //אם אין במלאי, זה מה שיוחזר
+    }else{
+    let result= calc; 
+    await Product.findByIdAndUpdate(productId.id,{quantity:result})
+    }
+  }//the end of the for loop
   //Create new order:
   const saveOrder= new Order({
     address,
     date,
     userId: id,
     productsId,
-    totalPrice
+    totalPrice:totalPriceT
   })
   await saveOrder.save();
   
@@ -64,34 +84,29 @@ export const createOrder = async(req,res)=>{
         },
         date,
         userId:id,
-        totalPrice
+        totalPrice:totalPriceT
       })
   }else{
     const createNewInvoice= new Invoice({
       orders: [orderId],
       date,
       userId:id,
-      totalPrice
+      totalPrice:totalPriceT
     });
     
     await createNewInvoice.save();
     
   }
-
-  //Update products: 
-  for (const productId of productsId) {
-    let product = await Product.findById(productId.id);
-    let quantity =  Number(productId.quantity) ;
-    let result= product.quantity-quantity;
-    const updatedProduct= await Product.findByIdAndUpdate(productId.id,{quantity:result})
-  }   
   res.status(200)
   .send("Your order has been successfully placed and the new address created and also invoice and products!");
+
+
+
+
   } catch (error) {
     res.status(500).json(error.message);
   }
-};
-
+}
 
 
 //Read Orders Relative To A Specific User.
