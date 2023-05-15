@@ -104,9 +104,9 @@ export const createOrder = async(req,res)=>{
       invoices:invoiceUserId
     }
   });
-
+   
   res.status(200)
-  .send("Your order has been successfully placed and the new address created and also invoice and products!");
+  .send("Your order has been successfully placed");
 
   } catch (error) {
     res.status(500).json(error.message);

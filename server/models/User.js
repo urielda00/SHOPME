@@ -38,9 +38,7 @@ const UserSchema= new mongoose.Schema({
     invoices:{
       type:[String], //here we going to have the invoices _id's. and later to show all the invoices by map 
       required: false,
-    }
-    //add address?
-   
+    }   
 } ,
 { timestamps: true });
 

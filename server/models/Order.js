@@ -3,8 +3,7 @@ import mongoose from "mongoose";
 const OrderSchema= new mongoose.Schema({
 
     address: {
-      type: String, //maby add option to choose 
-      //if user want existing address or add new one.
+      type: String, 
       required: true,
     },
     date: {
@@ -12,11 +11,11 @@ const OrderSchema= new mongoose.Schema({
       required: true,
     },
     userId: {
-      type: String, //takind the user name here ||userId
+      type: String, 
       required: true,
     },
     productsId: {
-      type: [Object], //take the productsId from the products schema
+      type: [Object], 
       required: true,
     },
     totalPrice: {

@@ -3,7 +3,7 @@ import Product from "../models/Products.js";
 
 
 // need to add some page where the admin can add new products to the website!
-//meaning only the admin will have access to the following routes.
+//meaning only the admin will have access to the following routes.- check that.
 
 //Create: 
 export const createProduct=  async (req, res)=> {
