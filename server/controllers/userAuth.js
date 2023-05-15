@@ -91,7 +91,7 @@ export const login= async (req,res)=>{
 };
 
 
-//Update Password:
+//Update User Password:
 export const updateUserPass= async(req, res) => {
   const id = req.params.id;
   const user= await User.findById(id);
@@ -130,4 +130,4 @@ export const deleteUser = async(req, res) => {
   } catch (error) {
     res.status(500).json(error.message)
   }
-}
+};
