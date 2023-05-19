@@ -15,10 +15,11 @@ export const createProduct=  async (req, res)=> {
     shortDescription,
     longDescription,
     price,
-    quantity
+    quantity,
+    status: 'available'
   })
   await saveProduct.save();
-  res.status(200).send();
+  res.status(200).json({message:'Product created successfully!'});
   } catch (error) {
     res.status(500).json(error.message)
   }
@@ -29,7 +30,7 @@ export const createProduct=  async (req, res)=> {
  //Read:
  export const readProducts= async (req,res)=>{
   try {
-    const products= await Product.find(); 
+    const products= await Product.find({status: 'available'}); 
     res.status(200).json(products);
   } catch (error) {
     console.log(error);
@@ -61,12 +62,12 @@ export const createProduct=  async (req, res)=> {
 
 //Delete:
 
-export const deleteProduct = async (req, res) => {
+export const deleteProduct = async (req, res) => { //only make the status unavailable!
   const id = req.params.id;
-
+  
   try {
-    const deletedProduct = await Product.findOneAndDelete(id);
-    res.send('The product has been successfully deleted!');
+    const deletedProduct = await Product.findByIdAndUpdate(id, {status:'unavailable'});
+    res.json({message:'The product has been successfully deleted!'});
   } catch (error) {
     res.status(500).json(error.message)
   }

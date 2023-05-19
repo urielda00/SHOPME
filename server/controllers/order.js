@@ -29,11 +29,11 @@ export const createOrder = async(req,res)=>{
     const product = await Product.findById(productId.id); 
     const reqQuantity =  Number(productId.quantity);
     let calc = product.quantity-reqQuantity;
-    let priceTest = product.price;//  המחיר שקיים בפועל במסד נתונים
+    let priceTest = product.price;
     let totalPriceIs = priceTest * reqQuantity;
     totalPriceT=totalPriceT+totalPriceIs;
     if(calc < 0){
-     return res.status(400).json('Out of stock!'); //אם אין במלאי, זה מה שיוחזר
+     return res.status(400).json({message:'Out of stock!'}); 
     }else{
     let result= calc; 
     await Product.findByIdAndUpdate(productId.id,{quantity:result})
@@ -95,7 +95,7 @@ export const createOrder = async(req,res)=>{
     
     await createNewInvoice.save();
   }
-
+  //how to make sum function?
   //Update User
   const invoiceId= await Invoice.findOne({userId:id, date});
   const invoiceUserId= invoiceId.userId;
@@ -106,7 +106,7 @@ export const createOrder = async(req,res)=>{
   });
    
   res.status(200)
-  .send("Your order has been successfully placed");
+  .json({message:"Your order has been successfully placed"}); //add later end()? d
 
   } catch (error) {
     res.status(500).json(error.message);

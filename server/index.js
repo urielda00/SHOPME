@@ -5,7 +5,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import helmet from 'helmet';
 import morgan from 'morgan';
-
+import cookieParser from 'cookie-parser';
 
 
 //Models imports:
@@ -14,6 +14,7 @@ import Order from './models/Order.js';
 import Product from './models/Products.js';
 import Invoice from './models/Invoice.js';
 import Address from './models/Address.js';
+import UsersArchives from './models/UsersArchives.js';
 
 // //Routes imports:
 import userAuthRouter from './routes/userAuth.js';
@@ -36,7 +37,7 @@ app.use(helmet());
 app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" })); //for XXS protection.
 app.use(bodyParser.urlencoded({extended:true }))
 app.use('/uploads',express.static('uploads'))//anything on this path is connecting to this folder- multer
-
+app.use(cookieParser());
 
 
 
