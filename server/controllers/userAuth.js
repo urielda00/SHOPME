@@ -7,8 +7,8 @@ import UsersArchives from "../models/UsersArchives.js";
  export const register = async (req,res)=>{
   try {
    const {firstName, lastName, userName, email, password ,verifyPass, phoneNumber}= req.body;
-   const isUserMail = await User.findOne({email, status: 'available'});
-   const isUserName = await User.findOne({userName, status: 'available'});
+   const isUserMail = await User.findOne({email});
+   const isUserName = await User.findOne({userName});
 
    if(password === verifyPass){
  
@@ -25,7 +25,6 @@ import UsersArchives from "../models/UsersArchives.js";
     password:passwordHash,
     email,
     phoneNumber,
-    status: 'available'
    });
    
     await saveUser.save();
@@ -53,7 +52,7 @@ import UsersArchives from "../models/UsersArchives.js";
 export const login= async (req,res)=>{
   try {
   const {userName, password}= req.body;
-  const user = await User.findOne({userName, status: 'available'}); 
+  const user = await User.findOne({userName}); 
 
    if(user){
 
@@ -92,7 +91,7 @@ export const login= async (req,res)=>{
   const options= {new: true};
 
   try {
-    const updatedUser = await User.findOneAndUpdate({id,status:'available'}, updates, options );
+    const updatedUser = await User.findOneAndUpdate(id, updates, options );
     res.json(updatedUser);
   
   } catch (error) {
