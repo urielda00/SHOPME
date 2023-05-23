@@ -8,6 +8,7 @@ import morgan from 'morgan';
 import cookieParser from 'cookie-parser';
 
 
+
 //Models imports:
 import User from './models/User.js';
 import Order from './models/Order.js';
@@ -21,7 +22,7 @@ import userAuthRouter from './routes/userAuth.js';
 import productRouter from './routes/products.js';
 import orderRouter from './routes/order.js';
 
-
+//handle the 304 status and make another file that recive and save all the logs in the DB
 
 //Configuration:
 const port= process.env.PORT||5000;
@@ -36,7 +37,7 @@ app.use(morgan("common")); //the common loger of morgan
 app.use(helmet());
 app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" })); //for XXS protection.
 app.use(bodyParser.urlencoded({extended:true }))
-app.use('/uploads',express.static('uploads'))//anything on this path is connecting to this folder- multer
+app.use('/product/readProducts',express.static('uploads'));
 app.use(cookieParser());
 
 
@@ -57,6 +58,7 @@ mongoose.connect(process.env.DB_URL,{
 .then(()=>{
   console.log('connected to db!')
   app.listen(port, ()=> console.log(`App is listening at port: ${port}!`))
+  
   })  
 .catch((error)=>console.log(error.message));
 

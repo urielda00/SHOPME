@@ -9,20 +9,19 @@ import Invoice from "../models/Invoice.js";
 import Product from "../models/Products.js";
 import User from "../models/User.js";
 
-
+//Logger:
+import {OrderErrorLogger, OrderInfoLogger} from '../middleware/winston.js';
 
 
 //Create
 export const createOrder = async(req,res)=>{
-  try {
+  try{
   const id = req.params.id;
   const {address, productsId} = req.body; //productsId should be an array of objects!!
   const dateis = currentDate.format('MMMM Do YYYY, h:mm:ss a');
   // const date = new Date(dateis);
   const date= dateis;
   let totalPriceT=0;
-  
-
 
   for await (const productId of productsId) {
 
@@ -33,6 +32,7 @@ export const createOrder = async(req,res)=>{
     let totalPriceIs = priceTest * reqQuantity;
     totalPriceT=totalPriceT+totalPriceIs;
     if(calc < 0){
+     OrderErrorLogger.log('error','Out of stock! status code: 409');
      return res.status(400).json({message:'Out of stock!'}); 
     }else{
     let result= calc; 
@@ -49,6 +49,9 @@ export const createOrder = async(req,res)=>{
     totalPrice:totalPriceT
   });
   await saveOrder.save();
+
+
+
   
   //Update Address-
   const searchAddressByUserId= await Address.findOne({userId:id}); 
@@ -74,7 +77,7 @@ export const createOrder = async(req,res)=>{
   const order= await Order.findOne({date, userId:id});
   const orderId= order.id;
   if(searchInvoiceByUserId){
-    let someObj= {date, orderId};
+    let someObj= {date, orderId, totalPriceT};
        await Invoice.findOneAndUpdate({userId:id},
       {
         $push:{
@@ -104,11 +107,12 @@ export const createOrder = async(req,res)=>{
       invoices:invoiceUserId
     }
   });
-   
-  res.status(200)
+  OrderInfoLogger.log('info','order has been successfully placed! status code: 201');
+  res.status(201)
   .json({message:"Your order has been successfully placed"}); //add later end()? d
 
   } catch (error) {
+    OrderErrorLogger.log('error',`${error.message}. status code: 500`);
     res.status(500).json(error.message);
   }
 };
@@ -122,8 +126,12 @@ export const readOrders = async(req,res)=>{
   try {
   const id= req.params.id;
   const orders= await Order.find({userId:id});
+
+  OrderInfoLogger.log('info','order has been successfully placed! status code: 200');
   res.status(200).json(orders);
   } catch (error) {
+
+    OrderErrorLogger.log('error', `${error.message}. status code: 201`);
     res.status(500).json(error.message);
   } 
 };

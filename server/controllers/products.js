@@ -1,5 +1,5 @@
 import Product from "../models/Products.js";
-
+import { ProductErrorLogger, ProductInfoLogger } from "../middleware/winston.js";
 
 
 // need to add some page where the admin can add new products to the website!
@@ -8,7 +8,7 @@ import Product from "../models/Products.js";
 //Create: 
 export const createProduct=  async (req, res)=> {
   try {
-  const imagePath= req.file.filename;
+  const imagePath= req.file.filename;  // req.file is the `productImage` file
   const {shortDescription, longDescription, price,quantity}= req.body;
   const saveProduct= new Product({
     productImage: imagePath,
@@ -17,25 +17,30 @@ export const createProduct=  async (req, res)=> {
     price,
     quantity,
     status: 'available'
-  })
+  });
   await saveProduct.save();
-  res.status(200).json({message:'Product created successfully!'});
+
+  ProductInfoLogger.log('info','Product created successfully status code: 201');
+  res.status(201).json({message:'Product created successfully!'});
+
   } catch (error) {
+    ProductErrorLogger.log('error',`${error.message} status code: 500`);
     res.status(500).json(error.message)
   }
-  // req.file is the `productImage` file
- }
+ };
 
 
  //Read:
  export const readProducts= async (req,res)=>{
   try {
     const products= await Product.find({status: 'available'}); 
+    ProductInfoLogger.log('info','get all the products. status code: 200');
     res.status(200).json(products);
   } catch (error) {
-    console.log(error);
+    ProductErrorLogger.log('error',`${error.message} status code: 500`);
+    res.status(500).json(error.message)
   }
- }
+ };
 
 
  //need to make react router:  to send the update form to this path:
@@ -50,10 +55,12 @@ export const createProduct=  async (req, res)=> {
   try {
   
     const updatedProduct = await Product.findOneAndUpdate(id, updates, options );
-    res.json(updatedProduct);
+    ProductInfoLogger.log('info','product updated. status code: 201');
+    res.status(201).json(updatedProduct);
     
   } catch (error) {
-    res.status(500).json(error.message)
+    ProductErrorLogger.log('error',`${error.message} status code: 500`);
+    res.status(500).json(error.message);
   }
 };
 
@@ -61,14 +68,15 @@ export const createProduct=  async (req, res)=> {
 
 
 //Delete:
-
 export const deleteProduct = async (req, res) => { //only make the status unavailable!
   const id = req.params.id;
   
   try {
     const deletedProduct = await Product.findByIdAndUpdate(id, {status:'unavailable'});
-    res.json({message:'The product has been successfully deleted!'});
+    ProductInfoLogger.log('info','product deleted. status code: 201');
+    res.status(201).json({message:'The product has been successfully deleted!'});
   } catch (error) {
+    ProductErrorLogger.log('error',`${error.message} status code: 500`);
     res.status(500).json(error.message)
   }
 };

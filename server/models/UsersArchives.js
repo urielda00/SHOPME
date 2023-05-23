@@ -28,7 +28,7 @@ const UsersArchivesSchema= new mongoose.Schema({
       required: true
     },
     invoices:{
-      type:[String], //here we going to have the invoices _id's. and later to show all the invoices by map 
+      type:[String],
       required: false,
     }, 
 } ,

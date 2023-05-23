@@ -3,6 +3,7 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import UsersArchives from "../models/UsersArchives.js";
 
+import {UserErrorLogger, UserInfoLogger} from "../middleware/winston.js";
  //Register:
  export const register = async (req,res)=>{
   try {
@@ -28,21 +29,21 @@ import UsersArchives from "../models/UsersArchives.js";
    });
    
     await saveUser.save();
-    res.status(200).json({message:'User created successfully!!'}).send()
-
+    UserInfoLogger.log('info','user created! status code: 201');
+    res.status(201).json({message:'User created successfully!!'}).send();
    }else{
-     res.status(409).json({message:'User not registered! (Already exist)'})
+    UserErrorLogger.log('error','User not registered! status code: 409');
+     res.status(409).json({message:'User not registered!'})
    }
  }else{
+    UserErrorLogger.log('error','The passwords must match! status code: 409');
     res.status(409).json({message: 'The passwords must match!!'}) 
  }
-  
   } catch (error) {
+   UserErrorLogger.log('error', `${error.message}. status code: 500`);
    res.status(500).json(error.message)
   }
  };
- 
-
  
 
 
@@ -67,17 +68,22 @@ export const login= async (req,res)=>{
      role: 'user'
     };
     const token= jwt.sign(tokenData, process.env.JWT_KEY, {expiresIn: 60*60*2* 1000});
+
+    UserInfoLogger.log('info','Login succeed! status code: 200');
     res.cookie('session-token', token, {maxAge: 60 * 60 * 2 * 1000}).json({message:'Login succeed!'});
     res.status(200).end();
 
     }else{
-    res.status(500).json({message:'Wrong User Name Or Password!'});
+    UserErrorLogger.log('error','Wrong User Name Or Password! status code: 409');
+    res.status(409).json({message:'Wrong User Name Or Password!'});
     }
 
    }else{
+     UserErrorLogger.log('error','Wrong User Name Or Password! status code: 409');
      res.status(409).json({message:'Wrong User Name Or Password!'})  
    }
   } catch (error) {
+   UserErrorLogger.log('error',`${error.message}. status code: 500`);
    res.status(500).json(error.message)
   }
  };
@@ -92,9 +98,11 @@ export const login= async (req,res)=>{
 
   try {
     const updatedUser = await User.findOneAndUpdate(id, updates, options );
-    res.json(updatedUser);
+    UserInfoLogger.log('info','user info updated! status code: 201');
+    res.status(201).json(updatedUser);
   
   } catch (error) {
+    UserErrorLogger.log('error',`${error.message}. status code: 500`);
     res.status(500).json(error.message)
   }
 };
@@ -115,15 +123,19 @@ export const updateUserPass= async(req, res) => {
       if(password === verifyPass){
         const hashedPassword= await bcrypt.hash(password, salt); //hash the new pass
         await User.findByIdAndUpdate(id, {password:hashedPassword}, options ); //send the hashed to: DB.
-        res.send('User passsword updated successfully!');
+        UserInfoLogger.log('info','User passsword updated successfully! status code: 201');
+        res.status(200).send('User passsword updated successfully!');
       }else{
+        UserErrorLogger.log('error','The passwords must match! status code: 409');
         res.status(409).json('The passwords must match!!')  
       }
 
     }else{
+      UserErrorLogger.log('error','Try Again, Wrong Password! status code: 409');
       res.status(409).json('Try Again, Wrong Password!') 
     }
   } catch (error) {
+    UserErrorLogger.log('error',`${error.message}. status code: 500`);
     res.status(500).json(error.message)
   }
 };
@@ -150,11 +162,14 @@ export const deleteUser = async(req, res) => {
     await saveUsersArchives.save();
     await User.findByIdAndDelete(id);
 
-    res.json('User deleted successfully!');
+    UserInfoLogger.log('info','User deleted successfully status code: 201');
+    res.status(201).json('User deleted successfully!');
     }else{
+      UserErrorLogger.log('error','Try Again, Wrong Password! status code: 409');
       res.status(409).json('Try Again, Wrong Password!')
     }
   } catch (error) {
+    UserErrorLogger.log('error',`${error.message}. status code: 500`);
     res.status(500).json(error.message)
   }
 }; 
@@ -162,7 +177,7 @@ export const deleteUser = async(req, res) => {
 
 
 
-
+//this is without logger.
 //Cookie-test
 export const checkCookie= async(req,res)=>{
    const {session_token}= req.cookies;
