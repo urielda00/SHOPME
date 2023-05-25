@@ -23,6 +23,7 @@ export const createOrder = async(req,res)=>{
   const date= dateis;
   let totalPriceT=0;
 
+
   for await (const productId of productsId) {
 
     const product = await Product.findById(productId.id); 
@@ -49,11 +50,12 @@ export const createOrder = async(req,res)=>{
     totalPrice:totalPriceT
   });
   await saveOrder.save();
-
-
-
+ 
   
-  //Update Address-
+
+   
+  //sum all array?
+  //Update Address
   const searchAddressByUserId= await Address.findOne({userId:id}); 
   const findAddress= await Address.findOne({userId:id, addresses:{$in:[address]}});
   if(searchAddressByUserId && !findAddress){ //if there is user and no matched  address:

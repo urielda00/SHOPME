@@ -2,8 +2,10 @@ import User from "../models/User.js";
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import UsersArchives from "../models/UsersArchives.js";
-
 import {UserErrorLogger, UserInfoLogger} from "../middleware/winston.js";
+
+
+
  //Register:
  export const register = async (req,res)=>{
   try {
@@ -63,14 +65,13 @@ export const login= async (req,res)=>{
   
 
     //JWT & SESSION:
-    const tokenData= {
-     id: user._id,
-     role: 'user'
-    };
-    const token= jwt.sign(tokenData, process.env.JWT_KEY, {expiresIn: 60*60*2* 1000});
+    const tokenData= {id: user._id};
+    const token= jwt.sign(tokenData, process.env.JWT_KEY);
 
     UserInfoLogger.log('info','Login succeed! status code: 200');
-    res.cookie('session-token', token, {maxAge: 60 * 60 * 2 * 1000}).json({message:'Login succeed!'});
+    res.cookie('session-token', token, 
+    { httpOnly: true, maxAge: 60 * 60 * 2 * 1000})
+    .json({message:'Login succeed!'});  
     res.status(200).end();
 
     }else{
@@ -89,7 +90,7 @@ export const login= async (req,res)=>{
  };
 
 
-
+//later- need to make this rout more specific about the req.body!
  //Update user info:
  export const updateUserInfo = async (req, res) => {
   const id = req.params.id;
@@ -173,6 +174,14 @@ export const deleteUser = async(req, res) => {
     res.status(500).json(error.message)
   }
 }; 
+
+
+
+//Sign- out:
+export const signOut= (req,res)=>{
+  res.clearCookie('session-token');
+  res.json('cookie has deleted');
+};
 
 
 
