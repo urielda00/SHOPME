@@ -1,4 +1,18 @@
 import jwt from 'jsonwebtoken'; 
-export const isAuthUser= (req,res,next)=>{
-  
-}
+import dotenv from 'dotenv';
+dotenv.config();
+
+
+
+export const checkJWT= async(req,res,next)=>{
+   const token= req.cookies.session_token;
+   if(!token){
+    return res.status(403).json('there is no authorization');
+   }try {
+    const data = jwt.verify(token, process.env.JWT_ACCESS_KEY);
+    console.log(process.env.JWT_ACCESS_KEY);
+    return next();
+   }catch (error) {
+    return res.status(403).json({message:'Bad login'})
+ }
+};

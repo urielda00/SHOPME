@@ -7,7 +7,7 @@ const UserSchema= new mongoose.Schema({
       required: true,
       min: 2,
       max: 50,
-      unique: true,//later,need add the corresponding error message for that. and the condition statement!
+      unique: true,
     },
     lastName: {
       type: String,
@@ -24,7 +24,7 @@ const UserSchema= new mongoose.Schema({
       type: String,
       required: true,
       max: 50,
-      unique: true,//later,need add the corresponding error message for that. and the condition statement!
+      unique: true,
     },
     password: {
       type: String,
@@ -32,7 +32,7 @@ const UserSchema= new mongoose.Schema({
       min: 5,
     },
     phoneNumber:{
-      type: Number, //later, need to add the phone number validator.
+      type: Number, //todo: add the phone number validator.
       required: true
     },
     invoices:{

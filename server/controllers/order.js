@@ -39,7 +39,8 @@ export const createOrder = async(req,res)=>{
     let result= calc; 
     await Product.findByIdAndUpdate(productId.id,{quantity:result})
     }
-  };//the end of the for loop
+  };//the end of the forEach loop
+
 
   //Create new order:
   const saveOrder= new Order({
@@ -54,7 +55,7 @@ export const createOrder = async(req,res)=>{
   
 
    
-  //sum all array?
+  
   //Update Address
   const searchAddressByUserId= await Address.findOne({userId:id}); 
   const findAddress= await Address.findOne({userId:id, addresses:{$in:[address]}});
@@ -100,7 +101,7 @@ export const createOrder = async(req,res)=>{
     
     await createNewInvoice.save();
   }
-  //how to make sum function?
+
   //Update User
   const invoiceId= await Invoice.findOne({userId:id, date});
   const invoiceUserId= invoiceId.userId;

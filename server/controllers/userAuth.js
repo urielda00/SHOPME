@@ -34,8 +34,8 @@ import {UserErrorLogger, UserInfoLogger} from "../middleware/winston.js";
     UserInfoLogger.log('info','user created! status code: 201');
     res.status(201).json({message:'User created successfully!!'}).send();
    }else{
-    UserErrorLogger.log('error','User not registered! status code: 409');
-     res.status(409).json({message:'User not registered!'})
+    UserErrorLogger.log('error','User already exist! status code: 409');
+     res.status(409).json({message:'User already exist!'})
    }
  }else{
     UserErrorLogger.log('error','The passwords must match! status code: 409');
@@ -66,13 +66,13 @@ export const login= async (req,res)=>{
 
     //JWT & SESSION:
     const tokenData= {id: user._id};
-    const token= jwt.sign(tokenData, process.env.JWT_KEY);
+    const token= jwt.sign(tokenData, process.env.JWT_ACCESS_KEY, {expiresIn:'1h'});
 
     UserInfoLogger.log('info','Login succeed! status code: 200');
     res.cookie('session-token', token, 
-    { httpOnly: true, maxAge: 60 * 60 * 2 * 1000})
-    .json({message:'Login succeed!'});  
-    res.status(200).end();
+    { httpOnly: true, maxAge:   60* 60 * 1 * 1000})
+    .json({message:'Login succeed!'}).status(200);  
+    
 
     }else{
     UserErrorLogger.log('error','Wrong UserName Or Pass! status code: 409');
@@ -164,7 +164,7 @@ export const deleteUser = async(req, res) => {
     await User.findByIdAndDelete(id);
 
     UserInfoLogger.log('info','User deleted successfully status code: 201');
-    res.status(201).json('User deleted successfully!');
+    res.status(201).json('User deleted successfully!').clearCookie('session-token');
     }else{
       UserErrorLogger.log('error','Try Again, Wrong Password! status code: 409');
       res.status(409).json('Try Again, Wrong Password!')
@@ -177,26 +177,8 @@ export const deleteUser = async(req, res) => {
 
 
 
-//Sign- out:
+//Sign- out: //later just make in the client deleting of this cookie.
 export const signOut= (req,res)=>{
   res.clearCookie('session-token');
   res.json('cookie has deleted');
 };
-
-
-
-
-//this is without logger.
-//Cookie-test
-export const checkCookie= async(req,res)=>{
-   const {session_token}= req.cookies;
-  try {
-    const userData= jwt.verify(session_token, process.env.JWT_KEY); 
-    const user= await User.findById(userData.id);
-    delete user.password;
-
-    console.log(user)
-  } catch (error) {
-    res.status(500).json({message:'Bad login'})
-  }
-}

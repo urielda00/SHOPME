@@ -2,7 +2,7 @@
 //form hook for form validation. lastly- after the input passed all the validations- he still
 //need to match the DB validation- user& email exists+ price check and quantity- on the product.
 
-import {body,check, validationResult} from 'express-validator';
+import {check, validationResult} from 'express-validator';
 
 export const ValidationResult= (req,res,next)=>{
   const result= validationResult(req);

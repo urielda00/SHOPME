@@ -1,12 +1,15 @@
 import winston from 'winston';
-  const { transports, format, createLogger } = winston;
-  const { combine, printf } = format;
+const { transports, format, createLogger } = winston;
+const { combine, printf } = format;
+
+//Date for for the format:
 import moment from 'moment/moment.js';
 const currentDate = moment();
 const dateis = currentDate.format('MMMM Do YYYY, h:mm:ss a');
 
 const customLog = printf(({ level, message }) => {
-  return `Level:[${ level }] LogTime: [${ dateis }] Message:-[${ message }]`});
+return `Level:[${ level }] LogTime: [${ dateis }] Message:-[${ message }]`
+});
 
 
 //User logs:

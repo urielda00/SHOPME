@@ -7,8 +7,8 @@ const AddressSchema= new mongoose.Schema({
       required: true,
     },
     addresses: {
-      type: [String] 
-    } //in the client later, add optional autofill for the  addresses represented here.
+      type: [String] //todo: add optional autofill for the  addresses represented here.
+    } 
 } ,
 { timestamps: true });
 
