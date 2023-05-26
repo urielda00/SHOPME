@@ -12,7 +12,6 @@ const upload = multer({
        extension == '.jpg' ||
        extension == '.jpeg' ||
        extension == '.png' ||
-       extension== '.pdf'||
        mimetyp == 'image/png' ||
        mimetyp == 'image/jpg' ||
        mimetyp == 'image/jpeg'

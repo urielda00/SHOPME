@@ -9,14 +9,16 @@ import { ProductErrorLogger, ProductInfoLogger } from "../middleware/winston.js"
 export const createProduct=  async (req, res)=> {
   try {
   const imagePath= req.file.filename;  // req.file is the `productImage` file
-  const {shortDescription, longDescription, price,quantity}= req.body;
+  const {shortDescription, longDescription, price,quantity, category, productName}= req.body;
   const saveProduct= new Product({
     productImage: imagePath,
+    productName,
     shortDescription,
     longDescription,
     price,
     quantity,
-    status: 'available'
+    status: 'available',
+    category
   });
   await saveProduct.save();
 
@@ -47,6 +49,8 @@ export const createProduct=  async (req, res)=> {
  //here we updating only the necessary update ( with patch) of the product info:
 
 
+
+ //later- need to specify the req.body- and use express-validator on that.
  //Update:
  export const updateProduct = async (req, res) => {
   const id = req.params.id;

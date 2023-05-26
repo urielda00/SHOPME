@@ -15,7 +15,9 @@ const ProductSchema= new mongoose.Schema({
       type: Number, //later- redux actions will decrease || increase this number.
     },
     productImage: String,
-    status: String
+    status: String,
+    category: String,
+    productName: String
 } ,
 { timestamps: true });
 

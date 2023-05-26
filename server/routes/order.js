@@ -3,8 +3,12 @@ const orderRouter = express.Router();
 import { createOrder, readOrders } from "../controllers/order.js";
 
 
+//Express- validator imports:
+import { createOrderValidation, ValidationResult } from "../middleware/express-validator.js";
 
-orderRouter.post('/createOrder/:id', createOrder);
+
+//Routes:
+orderRouter.post('/createOrder/:id',createOrderValidation,ValidationResult, createOrder);
 orderRouter.get('/readOrders/:id',readOrders);
 
 

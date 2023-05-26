@@ -75,13 +75,13 @@ export const login= async (req,res)=>{
     res.status(200).end();
 
     }else{
-    UserErrorLogger.log('error','Wrong User Name Or Password! status code: 409');
-    res.status(409).json({message:'Wrong User Name Or Password!'});
+    UserErrorLogger.log('error','Wrong UserName Or Pass! status code: 409');
+    res.status(409).json({message:'Wrong UserName Or Pass!'});
     }
 
    }else{
-     UserErrorLogger.log('error','Wrong User Name Or Password! status code: 409');
-     res.status(409).json({message:'Wrong User Name Or Password!'})  
+     UserErrorLogger.log('error','Wrong UserName Or Pass! status code: 409');
+     res.status(409).json({message:'Wrong UserName Or Pass!'})  
    }
   } catch (error) {
    UserErrorLogger.log('error',`${error.message}. status code: 500`);

@@ -95,5 +95,3 @@ export {
    ProductErrorLogger, ProductInfoLogger,
    OrderInfoLogger, OrderErrorLogger
   };
-
-
