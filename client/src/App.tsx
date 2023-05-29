@@ -1,15 +1,16 @@
-import React from 'react';
-import HomePage from './scenes/Home/HomePage';
-import Show from './scenes/Home/Show';
-import Some from './scenes/Home/Some';
+//External imports
+import './style.css';
 
-function App() {
+
+//Internal imports
+import NavBar from './components/NavBar';
+
+
+const App=()=> {
   return (
-    <div className="App">
-      <HomePage/>
-      <Show/>
-      <Some/>
-    </div>
+    <>
+      <NavBar/>
+    </>
   );
 }
 
