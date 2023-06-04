@@ -8,10 +8,13 @@ import { ProductErrorLogger, ProductInfoLogger } from "../middleware/winston.js"
 //Create: 
 export const createProduct=  async (req, res)=> {
   try {
-  const imagePath= req.file.filename;  // req.file is the `productImage` file
+   
+    const filesnames = req.files.map(function(file) {
+     return file.filename;// or file.originalname
+    });
   const {shortDescription, longDescription, price,quantity, category, productName}= req.body;
   const saveProduct= new Product({
-    productImage: imagePath,
+    productImages: filesnames,
     productName,
     shortDescription,
     longDescription,

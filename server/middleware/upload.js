@@ -27,4 +27,6 @@ const upload = multer({
  }
 });
 
+export const multipleUpload= multer({dest: './uploads'})
+
 export default upload;
