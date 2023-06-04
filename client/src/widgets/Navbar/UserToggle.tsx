@@ -1,16 +1,14 @@
 //Esternal imports:
-import React, {useEffect, useRef, useState} from 'react';
-import { Link, NavLink,  } from "react-router-dom";
-import {TextField, Stack,Button , InputAdornment, MenuItem ,MenuList ,Popper ,Paper, Grow ,ClickAwayListener ,Divider } from '@mui/material';
+import React, {useRef} from 'react';
+import {MenuItem ,MenuList ,Popper ,Paper,
+   Grow ,ClickAwayListener ,Divider } from '@mui/material';
 
 
 //Icons:
-import SearchIcon from '@mui/icons-material/Search';
 import PermIdentityOutlinedIcon from '@mui/icons-material/PermIdentityOutlined';
-import LocalMallOutlinedIcon from '@mui/icons-material/LocalMallOutlined';
-import StoreOutlinedIcon from '@mui/icons-material/StoreOutlined';
 // import Avatar from '@mui/material/Avatar/Avatar';
 // import MenuIcon from '@mui/icons-material/Menu'; //for small screens.
+import {IconButton} from '@mui/material';
 
 export const UserToggle = () => {
     const [open, setOpen] = React.useState(false);
@@ -47,17 +45,18 @@ export const UserToggle = () => {
      let userMenuRef = useRef<HTMLInputElement>(null);
   return (
     <>
-    <Button 
-           style={{marginLeft:'30px', color:'black'}}
+    <IconButton 
+           style={{marginLeft:'10px', color:'black'}}
           ref={anchorRef}
           id="composition-button"
           aria-controls={open ? 'composition-menu' : undefined}
           aria-expanded={open ? 'true' : undefined}
           aria-haspopup="true"
           onClick={handleToggle}
+          sx={{display:{xs:'none', md: 'flex'}}}
         >
           <PermIdentityOutlinedIcon />
-        </Button>
+        </IconButton>
         <Popper
           open={open}
           anchorEl={anchorRef.current}
@@ -74,7 +73,7 @@ export const UserToggle = () => {
                   placement === 'bottom-start' ? 'left top' : 'left bottom',
               }}
             >
-              <Paper style={{backgroundColor:'#FFE569'}}>
+              <Paper style={{backgroundColor:'#F9F5F6'}}>
                 <ClickAwayListener onClickAway={handleClose}>
                   <MenuList
                     autoFocusItem={open}

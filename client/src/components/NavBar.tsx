@@ -1,102 +1,85 @@
-//Esternal imports:
-import React, {useEffect, useRef, useState} from 'react';
-import { Link, NavLink,  } from "react-router-dom";
-import {TextField, Stack , InputAdornment} from '@mui/material';
-import ShoppingList from '../widgets/Navbar/ShoppingList';
+//Internals:
 import { UserToggle } from '../widgets/Navbar/UserToggle';
+import ShoppingList from '../widgets/Navbar/ShoppingList';
+import Search from '../widgets/Navbar/Search';
+import Open_Menu from '../widgets/Navbar/Open-Menu';
+
+//Externals:
+import {AppBar, Box,Toolbar,Container, IconButton} from '@mui/material';
+import { NavLink, Link } from 'react-router-dom';
+import * as React from 'react';
+
 //Icons:
-import SearchIcon from '@mui/icons-material/Search';
 import PermIdentityOutlinedIcon from '@mui/icons-material/PermIdentityOutlined';
-import LocalMallOutlinedIcon from '@mui/icons-material/LocalMallOutlined';
 import StoreOutlinedIcon from '@mui/icons-material/StoreOutlined';
 
-// import Avatar from '@mui/material/Avatar/Avatar';
-// import MenuIcon from '@mui/icons-material/Menu'; //for small screens.
+//Types:
+interface Props {isActive: boolean};
 
-
-
-
- interface Props {
-  isActive: boolean
-};
-
-
-//for the options on click/on small screen:
-const pages = ['Products', 'Pricing', 'Blog'];
-const settings = ['Profile', 'Dashboard', 'Logout'];
-
-
-
-
-
-const NavBar= ()=>{
-//for shopping list:
-
-  
-
-
-  // Navlink style (isActive):
+//Component Here:
+const NavBar=() =>{
   const navLinkStyle= ({isActive}:Props)=>{
     return {
       textDecoration:  'none',
       fontWeight: isActive? 'bold' :'normal',
       color:isActive?'black':'black',
       padding: isActive? '1rem' : '1rem'
-      }
-      
-  }
+      }  
+  };
+
+  return (
+   <AppBar position="static">
+    <Container maxWidth="xl" >
+     <Toolbar disableGutters style={StyledNavBar} sx={{display:{xs:'none', md: 'flex'}}}>
+
+      <Box  component='nav'  
+          style={{marginRight: '320px', display:'flex', 
+          justifyContent:'space-between', width:'100px'}}>
+         <NavLink style={navLinkStyle} to='/aaa'>SHOPME</NavLink>
+         <NavLink style={navLinkStyle} to='/'>EXPLORE</NavLink>
+      </Box>
+
+      <Box  component='nav'  style={{marginLeft:'-240px', flexWrap:'nowrap'}}>
+        <Link to='/' style={{textDecoration:'none', color:'black',letterSpacing: '8px', fontSize:'1.3rem'}}   ><StoreOutlinedIcon style={{marginBottom:'-5px', marginRight:'8px'}}/>SHOPME</Link>
+      </Box>
+
+      <Box  component='nav'  style={{marginRight: '10px',
+        display: 'flex', justifyContent:'space-between',  width:'220px'}}>
+          <Search/>
+          <UserToggle/>
+          <ShoppingList /> 
+      </Box>   
+     </Toolbar>
+
+  {/* for small screens: */}
+    <Toolbar disableGutters style={StyledNavBar} sx={{display:{xs:'flex', md: 'none'}}}>
+     <Box  component='nav'>
+       <Link to='/' style={{textDecoration:'none', color:'black',letterSpacing: '8px', fontSize:'1.3rem'}}><StoreOutlinedIcon style={{marginBottom:'-5px', marginRight:'8px'}}/>SHOPME </Link>
+     </Box>
+
+     <Box  component='nav'style={{marginRight: '20px',display:'flex'}}>
+       <IconButton style={{color:'black', marginRight:'5px'}}  size='large'>
+       <Link to='/login'></Link> <PermIdentityOutlinedIcon fontSize='large' sx={{color:'black', stroke: "#ffffff", strokeWidth: 1 }}/>
+       </IconButton>
+       <Open_Menu/>
+     </Box>
   
-
-
-  return(
-     <header style={StyledNavBar}>
-      <nav style={{marginRight: '80px', display:'flex', justifyContent:'space-between', width:'100px'}}>
-        <NavLink style={navLinkStyle} to='/aaa'>SHOPME</NavLink>
-        <NavLink style={navLinkStyle} to='/'>EXPLORE</NavLink>
-      </nav>
-      
-      <nav><Link to='/' style={{textDecoration:'none', color:'black',letterSpacing: '8px', fontSize:'1.3rem'}}><StoreOutlinedIcon style={{marginBottom:'-5px', marginRight:'8px'}}/>SHOPME</Link></nav> 
-
-      <nav style={{marginRight: '60px', display: 'flex', justifyContent:'space-between', width:'220px'}}>
-      <Stack width={'150px'} style={{marginLeft:'-40px'}}>
-        <TextField  variant="standard"  placeholder='Search here'
-          InputProps={{
-            startAdornment: <InputAdornment position='start'><SearchIcon/>
-            </InputAdornment>
-          }}
-         
-        /></Stack>
-         <UserToggle/>
-         <ShoppingList />
-
-         
-          
-          </nav>
-   
-      
-        
-        
-</header>
-  )
+    </Toolbar>
+  </Container>
+</AppBar>
+  );
 }
 export default NavBar;
-    
 
-//component's style here:
 const StyledNavBar:React.CSSProperties= {
   position: 'fixed',
   zIndex: '1000',
-   width: '100%',
-   background: '#fff',
-   display: 'flex',
-   alignItems: 'center',
-   padding: '16px 32px',
-   height: '50px',
-   justifyContent:'space-between',
-   boxShadow: '0 1px 2px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset'
-}
-
-const logoLink={
-  textDecoration:'none',
-  color:'rgb(66, 41, 100)'
-}
+  width: '100%',
+  background: '#fff',
+  alignItems: 'center',
+  padding: '16px 16px',
+  height: '50px',
+  marginLeft:'-25px',
+  justifyContent:'space-between',
+  boxShadow: '0 1px 2px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset'
+};

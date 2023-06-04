@@ -3,18 +3,21 @@ import {Box,Button,
   SwipeableDrawer
   ,List,ListItem
   ,ListItemText,
-  ListItemButton,Stack } from '@mui/material';
-
+  ListItemButton,Stack, IconButton,Grid } from '@mui/material';
+  
+import { Link } from 'react-router-dom';
 //Icons:
 import LocalMallOutlinedIcon from '@mui/icons-material/LocalMallOutlined'
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 
+//Types:
 type Anchor = 'left';
 
+//Component Here:
 const ShoppingList =()=> {
-  const [state, setState] = React.useState({
-    left: false,
-  });
+  const [state, setState] = React.useState({left: false,});
+  //shopping list hover:
+  const [hoveringItems, setHoveringItems] = React.useState(true);
 
   const toggleDrawer =
     (anchor: Anchor, open: boolean) =>
@@ -36,34 +39,54 @@ const ShoppingList =()=> {
       role="presentation"
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
-    >
-      <Stack component='h1' style={{marginLeft:'50px', marginTop:'20px'}}>
+      > 
+      <Link style={{textDecoration:'none',color:'black'}} to='/cart'>
+      <Grid spacing={0.5} container component='h1' direction="row" alignItems="center" style={{marginLeft:'40px', marginTop:'20px'}} sx={{'hover':{}}} onMouseEnter={() => setHoveringItems(false)}
+        onMouseLeave={() => setHoveringItems(true)}>
+         <Grid item >
+          {hoveringItems?
+          <LocalMallOutlinedIcon />:<CloseOutlinedIcon />
+         }
+        </Grid>
+        <Grid item fontSize='32px'>
         Shopping List
-      </Stack>
-      <List >
+        </Grid>
+       </Grid>
+      </Link>
+      <List>
         {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => ( //later,take the pruducts here
           <ListItemButton style={{display:'flex', justifyContent:'flex-end'}}>
           <ListItem key={text} >
           <ListItemText primary={text} />
           </ListItem>
           </ListItemButton>
-          
         ))}
       </List>
       <Stack>
-        <Button style={{color:'black'}} onClick={toggleDrawer('left', true)}>
-          <CloseOutlinedIcon />
-        </Button>
+    
+  <Button
+      style={{position:'relative', top:'30vh',borderRadius:'2px'}}
+      variant='contained'
+      sx={{
+        bgcolor:'black',
+        ":hover": {
+          bgcolor: "#AF5",
+          color: "black"
+        }
+      }}
+    >
+      <Link to='/cart' style={{textDecoration:'none',color:'white'}}>
+      See the full cart
+      </Link>
+  </Button>
       </Stack>
   </Box>
   );
-
-//need to add - see the full cart button.- link to the user cart.
   return (
-    <div style={{marginLeft:'-30px'}}>
+    <div style={{marginLeft:'-20px'}}>
       { 
         <React.Fragment >
-          <Button style={{color:'black'}} onClick={toggleDrawer('left', true)}><LocalMallOutlinedIcon/></Button>
+          <IconButton style={{color:'black',marginRight:'20px',marginLeft:'-1px'}} onClick={toggleDrawer('left', true)}><LocalMallOutlinedIcon/></IconButton>
           <SwipeableDrawer
             anchor='left'
             open={state['left']}
@@ -71,6 +94,7 @@ const ShoppingList =()=> {
             onOpen={toggleDrawer('left', false)}
           >
             {list('left')}
+
           </SwipeableDrawer>
         </React.Fragment>
       }

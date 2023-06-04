@@ -2,7 +2,7 @@
 
 import styled from "styled-components";
 // import backImg from '../image/back1.jpg';
-
+import backImg from '../assets/back1.jpg'
 
 
 const ThankYouPage= ()=>{

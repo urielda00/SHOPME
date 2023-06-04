@@ -1,15 +1,15 @@
 //External imports
 import './style.css';
 
-
 //Internal imports
 import NavBar from './components/NavBar';
 
 
-const App=()=> {
+
+const App=()=> {  
   return (
     <>
-      <NavBar/>
+     <NavBar/>
     </>
   );
 }
