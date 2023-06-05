@@ -1,6 +1,6 @@
 //this page is tamplate for styled-components., need to change later to ext tsx.
 
-import styled from "styled-components";
+import styled from 'styled-components';
 // import backImg from '../image/back1.jpg';
 import backImg from '../assets/back1.jpg'
 
@@ -8,6 +8,8 @@ import backImg from '../assets/back1.jpg'
 const ThankYouPage= ()=>{
   return(
     <Styledcontainer>
+      
+     <input/>
       <div className='under-nav-notHome'>
         <div style={styledPopup}>
           {/* <img src={checkImg} style={styledImg} alt='info-recived!'></img> */}
@@ -16,8 +18,11 @@ const ThankYouPage= ()=>{
           <form action="/">
            <button style={styledBtn}>Press here to return</button>
           </form>
+          {/* <input type="file" multiple/> */}
        </div>
+       
      </div>
+    
   </Styledcontainer>
   )
 }

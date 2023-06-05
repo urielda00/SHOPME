@@ -1,6 +1,9 @@
 import mongoose from "mongoose";
 
 const ProductSchema= new mongoose.Schema({
+    image: String,
+    category: String,
+    productName: String,
     shortDescription: {
       type: String,
     },
@@ -15,9 +18,7 @@ const ProductSchema= new mongoose.Schema({
       type: Number, //later- redux actions will decrease || increase this number.
     },
     productImages: [String],
-    status: String,
-    category: String,
-    productName: String
+    status: String
 } ,
 { timestamps: true });
 

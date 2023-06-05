@@ -30,6 +30,7 @@ app.use(helmet());
 app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" })); //for XXS protection.
 app.use(bodyParser.urlencoded({extended:true }))
 app.use('/product/readProducts',express.static('uploads'));
+app.use('/searchProduct',express.static('uploads'));
 app.use(cookieParser());
 
 
@@ -38,6 +39,86 @@ app.use(cookieParser());
 app.use('/auth', userAuthRouter);
 app.use('/product', productRouter);
 app.use('/order', orderRouter);
+
+
+
+
+//search try here:
+import {users} from './users.js';
+import Product from './models/Products.js';
+
+app.get("/", async(req, res) => {
+  const { q } = req.query;
+  const keys = ["first_name", "last_name", "email"];
+
+  const search = (data) => {
+    return data.filter((item) =>
+      keys.some((key) => item[key].toLowerCase().includes(q))
+    );
+  };
+
+  q ? res.json(search(users).slice(0, 10)) : res.json(users.slice(0, 10));
+});
+
+
+
+
+
+
+
+//search test:
+app.get('/searchProduct',async(req,res)=>{
+  try {
+    const { key } = req.query
+
+
+    // const search = (data) => {
+    //   return data.filter((item) =>
+    //     keys.some((key) => item[key].toLowerCase().includes(q))
+    //   );
+    // };
+
+
+		 const pipeline= [{
+      "$search":{
+      "index":"some1",
+      "text":{
+        "query":key,
+        "path":{
+          'wildcard':'*'
+        },
+        "fuzzy":{}
+       }
+      }
+    }] 
+    // const pipeline=[
+    //   {
+    //     '$search': {
+    //       'index': 'autoComplete_sesrch', 
+    //       'autocomplete': {
+    //         'query': key, 
+    //         'path':'category'
+    //       }
+    //     }
+    //   }
+    // ]
+		const response = await Product.aggregate(pipeline);
+    return res.json(response)
+
+  } catch (error) {
+    console.log(error)
+  return res.json([])
+  }
+})
+
+
+
+
+
+
+
+
+
 
 
 

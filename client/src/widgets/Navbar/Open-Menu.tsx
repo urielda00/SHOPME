@@ -39,21 +39,36 @@ const Open_Menu =()=> {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        {['Home', 'Shop ', 'Explore', 'Contact'].map((text, index) => ( 
           <ListItemButton style={{display:'flex', alignItems:'center',justifyContent:'center'}}>
-          <ListItem key={text} >
-            {/* style={{marginLeft:'35vw'}} */}
-          <ListItemText primary={text} />
+          <ListItem key={1} >
+          <ListItemText primary='Home'/>
           </ListItem>
           </ListItemButton>
-          
-        ))} <Stack>
+
+          <ListItemButton style={{display:'flex', alignItems:'center',justifyContent:'center'}}>
+          <ListItem key={2} >
+          <ListItemText primary='Shop'/>
+          </ListItem>
+          </ListItemButton>
+
+          <ListItemButton style={{display:'flex', alignItems:'center',justifyContent:'center'}}>
+          <ListItem key={3} >
+          <ListItemText primary='Explore'/>
+          </ListItem>
+          </ListItemButton>
+
+          <ListItemButton style={{display:'flex', alignItems:'center',justifyContent:'center'}}>
+          <ListItem key={4} >
+          <ListItemText primary='Contact'/>
+          </ListItem>
+          </ListItemButton>
+
+          <Stack>
         <Button style={{color:'black'}} onClick={toggleDrawer('left', true)}>
           <CloseOutlinedIcon />
         </Button>
       </Stack>
       </List>
-     
   </Box>
   );
 

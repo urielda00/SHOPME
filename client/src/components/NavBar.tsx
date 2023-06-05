@@ -26,7 +26,9 @@ const NavBar=() =>{
       padding: isActive? '1rem' : '1rem'
       }  
   };
-
+  const handleRefresh= ()=>{
+    window.location.reload();
+  }
   return (
    <AppBar position="static">
     <Container maxWidth="xl" >
@@ -39,7 +41,7 @@ const NavBar=() =>{
          <NavLink style={navLinkStyle} to='/'>EXPLORE</NavLink>
       </Box>
 
-      <Box  component='nav'  style={{marginLeft:'-240px', flexWrap:'nowrap'}}>
+      <Box  component='nav'  style={{marginLeft:'-240px', flexWrap:'nowrap'}} onClick={handleRefresh}>
         <Link to='/' style={{textDecoration:'none', color:'black',letterSpacing: '8px', fontSize:'1.3rem'}}   ><StoreOutlinedIcon style={{marginBottom:'-5px', marginRight:'8px'}}/>SHOPME</Link>
       </Box>
 
