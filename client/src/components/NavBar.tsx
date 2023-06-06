@@ -32,11 +32,12 @@ const NavBar=() =>{
   return (
    <AppBar position="static">
     <Container maxWidth="xl" >
-     <Toolbar disableGutters style={StyledNavBar} sx={{display:{xs:'none', md: 'flex'}}}>
 
+    {/* for large screens: */}
+     <Toolbar disableGutters style={StyledNavBar} sx={{display:{xs:'none',sm:'none', md: 'flex'}}}>
       <Box  component='nav'  
-          style={{marginRight: '320px', display:'flex', 
-          justifyContent:'space-between', width:'100px'}}>
+       style={{marginRight: '320px', display:'flex', 
+       justifyContent:'space-between', width:'100px'}}>
          <NavLink style={navLinkStyle} to='/aaa'>SHOPME</NavLink>
          <NavLink style={navLinkStyle} to='/'>EXPLORE</NavLink>
       </Box>
@@ -54,19 +55,43 @@ const NavBar=() =>{
      </Toolbar>
 
   {/* for small screens: */}
-    <Toolbar disableGutters style={StyledNavBar} sx={{display:{xs:'flex', md: 'none'}}}>
+    <Toolbar disableGutters style={StyledMiddleNavBar} sx={{display:{xs:'none',sm:'flex', md: 'none'}}}>
      <Box  component='nav'>
        <Link to='/' style={{textDecoration:'none', color:'black',letterSpacing: '8px', fontSize:'1.3rem'}}><StoreOutlinedIcon style={{marginBottom:'-5px', marginRight:'8px'}}/>SHOPME </Link>
      </Box>
-
+     <Box>
+       <Search/>
+     </Box>
      <Box  component='nav'style={{marginRight: '20px',display:'flex'}}>
-       <IconButton style={{color:'black', marginRight:'5px'}}  size='large'>
-       <Link to='/login'></Link> <PermIdentityOutlinedIcon fontSize='large' sx={{color:'black', stroke: "#ffffff", strokeWidth: 1 }}/>
-       </IconButton>
+       <Link to='/login'> <IconButton style={{color:'black', marginRight:'5px'}}  size='large'>
+         <PermIdentityOutlinedIcon fontSize='large' sx={{color:'black', stroke:"#ffffff",strokeWidth:1}}/>
+         </IconButton>
+       </Link>
        <Open_Menu/>
      </Box>
-  
     </Toolbar>
+
+    {/* for x-small screens: */}
+    <Toolbar disableGutters style={StyledXSmallNavBar} sx={{display:{xs:'flex',sm:'none', md: 'none'}}}>
+     <Box  component='nav'>
+       <Link to='/' style={{textDecoration:'none',color:'black',letterSpacing:'8px',fontSize:'1.3rem'}}>
+        <StoreOutlinedIcon style={{marginBottom:'-5px', marginRight:'8px'}}/>
+        SHOPME 
+        </Link>
+        <div style={{marginLeft:'35%', marginTop:'10%', marginBottom:'-7%'}}><Search/></div>
+     </Box>
+    
+     <Box  component='nav'style={{marginRight: '20px',display:'flex'}}>
+       <Link to='/login'> <IconButton style={{color:'black', marginRight:'5px'}}  size='large'>
+         <PermIdentityOutlinedIcon fontSize='large'
+          sx={{color:'black', stroke: "#ffffff", strokeWidth: 1 }}/>
+         </IconButton>
+       </Link>
+       <Open_Menu/>
+     </Box>
+    </Toolbar>
+
+
   </Container>
 </AppBar>
   );
@@ -81,6 +106,32 @@ const StyledNavBar:React.CSSProperties= {
   alignItems: 'center',
   padding: '16px 16px',
   height: '50px',
+  marginLeft:'-25px',
+  justifyContent:'space-between',
+  boxShadow: '0 1px 2px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset'
+};
+
+const StyledMiddleNavBar:React.CSSProperties= {
+  position: 'fixed',
+  zIndex: '1000',
+  width: '100%',
+  background: '#fff',
+  alignItems: 'center',
+  padding: '16px 16px',
+  height: '50px',
+  marginLeft:'-25px',
+  justifyContent:'space-between',
+  boxShadow: '0 1px 2px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset'
+};
+
+const StyledXSmallNavBar:React.CSSProperties= {
+  position: 'fixed',
+  zIndex: '1000',
+  width: '100%',
+  background: '#fff',
+  alignItems: 'center',
+  padding: '16px 16px',
+  height: '90px',
   marginLeft:'-25px',
   justifyContent:'space-between',
   boxShadow: '0 1px 2px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset'

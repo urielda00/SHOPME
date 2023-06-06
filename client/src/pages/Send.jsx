@@ -14,6 +14,7 @@ export const Send = () => {
        
        <button>send</button>
       </form>
+       
     </Styledcontainer>
   )
 }

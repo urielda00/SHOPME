@@ -34,7 +34,36 @@ const Search=()=>{
   }, [query]);
 
   return(
-    <Stack width={'150px'} style={{marginLeft:'-50px'}}>
+    <Stack width={'150px'} style={{marginLeft:'-50px'}} >
+        {/* for large screens */}
+      <Stack sx={{display:{xs:'none',sm:'none', md: 'flex'}}}>
+        <TextField autoComplete='' type='search' variant="standard" value={query}
+         onChange={e=>{setQuery(e.target.value)}} placeholder='Search here...'
+        InputProps={{
+         startAdornment: 
+         <InputAdornment position='start'><SearchIcon/></InputAdornment>
+         }}
+        />
+  
+      <ClickAwayListener onClickAway={handleClose}>
+        <List style={ListStyle}>
+          {
+          data?.map((product:any) => ( //later,take the pruducts here
+           <ListItemButton key={product._id} onClick={handleClose} style={ListItemButtonStyle}>
+             <ListItem   style={{display:'flex', justifyContent:'space-around'}}>
+               <img src={`http://localhost:5000/searchProduct/${product.image}`} style={imgStyle}/>
+               <ListItemText primary={product.shortDescription} secondary={`${product.price}$`} />
+               {/* <ListItemText primary={`${product.price}$`} style={SecondListItemTextStyle}/> */}
+            </ListItem>
+          </ListItemButton>
+          ))
+          }
+         </List>
+       </ClickAwayListener>  
+    </Stack>
+
+{/* for medium screens */}
+<Stack sx={{display:{xs:'none',sm:'flex', md: 'none'}}}>
       <TextField autoComplete='' type='search' variant="standard" value={query}
        onChange={e=>{setQuery(e.target.value)}} placeholder='Search here...'
        InputProps={{
@@ -44,20 +73,46 @@ const Search=()=>{
        />
   
       <ClickAwayListener onClickAway={handleClose}>
-        <List style={ListStyle}>
+        <List style={mediumListStyle}>
           {
           data?.map((product:any) => ( //later,take the pruducts here
            <ListItemButton key={product._id} onClick={handleClose} style={ListItemButtonStyle}>
-             <ListItem   style={{display:'flex', justifyContent:'space-around'}}>
+             <ListItem   style={{display:'flex', justifyContent:'space-around'}}><ListItemText primary={product.shortDescription} secondary={`${product.price}$`} />
                <img src={`http://localhost:5000/searchProduct/${product.image}`} style={imgStyle}/>
-               <ListItemText primary={product.productName} secondary={product.shortDescription} />
-               <ListItemText primary={`${product.price}$`} style={SecondListItemTextStyle}/>
+             </ListItem>
+          </ListItemButton>
+          ))
+          }
+         </List>
+       </ClickAwayListener>  
+</Stack>
+
+{/* for xs screens */}
+<Stack sx={{display:{xs:'flex',sm:'none', md: 'none'}}}>
+      <TextField autoComplete='' type='search' variant="standard" value={query}
+       onChange={e=>{setQuery(e.target.value)}} placeholder='Search here...'
+       InputProps={{
+        startAdornment: 
+        <InputAdornment position='start'><SearchIcon/></InputAdornment>
+        }}
+       />
+  
+      <ClickAwayListener onClickAway={handleClose}>
+        <List style={smallListStyle}>
+          {
+          data?.map((product:any) => ( //later,take the pruducts here
+           <ListItemButton key={product._id} onClick={handleClose} style={ListItemButtonStyle}>
+             <ListItem   style={{display:'flex', justifyContent:'space-around'}}><ListItemText primary={product.shortDescription} secondary={`${product.price}$`} />
+               <img src={`http://localhost:5000/searchProduct/${product.image}`} style={imgStyle}/>
+               
+               {/* <ListItemText primary={`${product.price}$`} style={SecondListItemTextStyle}/> */}
             </ListItem>
           </ListItemButton>
           ))
           }
          </List>
        </ClickAwayListener>  
+</Stack>
 </Stack>
   )
 };
@@ -78,4 +133,17 @@ const ListStyle:React.CSSProperties={
 position:'absolute', top:'65px',
 right:'120px',backgroundColor:'#F9F5F6',borderRadius:'5px',
 overflowY:'auto',maxHeight:'300px',
-boxShadow:'-12px 17px 27px -5px rgba(0,0,0,0.32)'};
+boxShadow:'-12px 17px 27px -5px rgba(0,0,0,0.32)', scrollbarColor:'red '};
+
+const smallListStyle:React.CSSProperties={
+position:'absolute', top:'130px',direction:'rtl',
+left:'20px',backgroundColor:'#F9F5F6',borderRadius:'5px',
+overflowY:'auto',maxHeight:'300px',
+boxShadow:'12px 17px 27px 5px rgba(0,0,0,0.32)', scrollbarColor:'red '};
+
+
+const mediumListStyle:React.CSSProperties={
+  position:'absolute', top:'90px',
+  left:'30%',backgroundColor:'#F9F5F6',borderRadius:'5px',
+  overflowY:'auto',maxHeight:'300px',
+  boxShadow:'-8px 17px 20px -5px rgba(0,0,0,0.32)', scrollbarColor:'red '};
