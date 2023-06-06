@@ -5,7 +5,7 @@ export const Send = () => {
     <Styledcontainer>
     <form action="http://localhost:5000/product/createProduct" method='post' encType="multipart/form-data">
        <input type="file" multiple name='productImages'/>
-       <input type='text' name='shortDescription' placeholder='shortDescription'/>
+       <input type='text' name='shortDescription' placeholder='shortDescription' minLength={20} maxLength={23}/>
        <input type='text' name='longDescription' placeholder='longDescription'/>
        <input type='number' name='price' placeholder='price'/>
        <input type='number' name='quantity' placeholder='quantity'/>

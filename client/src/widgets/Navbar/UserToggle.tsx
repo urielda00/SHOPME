@@ -1,8 +1,7 @@
 //Esternal imports:
-import React, {useRef} from 'react';
+import React from 'react';
 import {MenuItem ,MenuList ,Popper ,Paper,
    Grow ,ClickAwayListener ,Divider } from '@mui/material';
-
 
 //Icons:
 import PermIdentityOutlinedIcon from '@mui/icons-material/PermIdentityOutlined';
@@ -42,7 +41,6 @@ export const UserToggle = () => {
    
        prevOpen.current = open;
      }, [open])
-     let userMenuRef = useRef<HTMLInputElement>(null);
   return (
     <>
     <IconButton 

@@ -89,3 +89,29 @@ export const deleteProduct = async (req, res) => { //only make the status unavai
   }
 };
 
+
+//Search products:
+export const searchProduct= async(req,res)=>{
+  //later- make the search index only on the spceific fields inside the product  schema.
+  try {
+    const { key } = req.query
+		 const pipeline= [{
+      "$search":{
+      "index":"some1",
+      "text":{
+        "query":key,
+        "path":{
+          'wildcard':'*'
+        },
+        "fuzzy":{}
+       }
+      }
+    }] 
+		const response = await Product.aggregate(pipeline);
+    
+    return res.json(response)
+  } catch (error) {
+    ProductErrorLogger.log('error',`${error.message} status code: 500`);
+    res.status(500).json(error.message)
+  }
+}
