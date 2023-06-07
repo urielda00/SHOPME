@@ -12,7 +12,7 @@ const App=()=> {
   
     <>
     <Routes>
-      <Route path='/SHOPME/client/public' element={<NavBar/>}/> 
+      <Route path='/' element={<NavBar/>}/> 
     </Routes>  
        {/* <Routes>
          <Route path="/" element={<NavBar/>} />
