@@ -12,11 +12,11 @@ const App=()=> {
 
     
     <>
-       <Routes>
+       {/* <Routes>
          <Route path="/" element={<NavBar/>} />
-       </Routes>
-     {/* <NavBar/>
-     <Send/> */}
+       </Routes> */}
+     <NavBar/>
+     <Send/>
     </>
   );
 }
