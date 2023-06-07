@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/SHOPME/client/public/static/css/main.3190088a.css",
-    "main.js": "/SHOPME/client/public/static/js/main.2da52135.js",
+    "main.js": "/SHOPME/client/public/static/js/main.8edf8795.js",
     "index.html": "/SHOPME/client/public/index.html",
     "main.3190088a.css.map": "/SHOPME/client/public/static/css/main.3190088a.css.map",
-    "main.2da52135.js.map": "/SHOPME/client/public/static/js/main.2da52135.js.map"
+    "main.8edf8795.js.map": "/SHOPME/client/public/static/js/main.8edf8795.js.map"
   },
   "entrypoints": [
     "static/css/main.3190088a.css",
-    "static/js/main.2da52135.js"
+    "static/js/main.8edf8795.js"
   ]
 }
