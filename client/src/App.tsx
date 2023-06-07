@@ -9,14 +9,16 @@ import { Send } from './pages/Send';
 
 const App=()=> {  
   return (
-
-    
+  
     <>
+    <Routes>
+      <Route path='/SHOPME/client/public' element={<NavBar/>}/> 
+    </Routes>  
        {/* <Routes>
          <Route path="/" element={<NavBar/>} />
        </Routes> */}
-     <NavBar/>
-     <Send/>
+     {/* <NavBar/>
+     <Send/> */}
     </>
   );
 }
