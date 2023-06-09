@@ -27,11 +27,11 @@ const NavBar=() =>{
       }  
   };
   const handleRefresh= ()=>{
+    
     window.location.reload();
   }
   return (
-   <AppBar position="static">
-    <Container maxWidth="xl" >
+   <>
 
     {/* for large screens: */}
      <Toolbar disableGutters style={StyledNavBar} sx={{display:{xs:'none',sm:'none', md: 'flex'}}}>
@@ -43,7 +43,7 @@ const NavBar=() =>{
       </Box>
 
       <Box  component='nav'  style={{marginLeft:'-240px', flexWrap:'nowrap'}} onClick={handleRefresh}>
-        <Link to='/' style={{textDecoration:'none', color:'black',letterSpacing: '8px', fontSize:'1.3rem'}}   ><StoreOutlinedIcon style={{marginBottom:'-5px', marginRight:'8px'}}/>SHOPME</Link>
+        <Link to='/' style={{textDecoration:'none', color:'black',letterSpacing: '8px', fontSize:'1.3rem'}}><StoreOutlinedIcon style={{marginBottom:'-5px', marginRight:'8px'}}/>SHOPME</Link>
       </Box>
 
       <Box  component='nav'  style={{marginRight: '10px',
@@ -62,7 +62,7 @@ const NavBar=() =>{
      <Box>
        <Search/>
      </Box>
-     <Box  component='nav'style={{marginRight: '20px',display:'flex'}}>
+     <Box  component='nav'style={{display:'flex'}}>
        <Link to='/login'> <IconButton style={{color:'black', marginRight:'5px'}}  size='large'>
          <PermIdentityOutlinedIcon fontSize='large' sx={{color:'black', stroke:"#ffffff",strokeWidth:1}}/>
          </IconButton>
@@ -81,7 +81,7 @@ const NavBar=() =>{
         <div style={{marginLeft:'35%', marginTop:'10%', marginBottom:'-7%'}}><Search/></div>
      </Box>
     
-     <Box  component='nav'style={{marginRight: '20px',display:'flex'}}>
+     <Box  component='nav'style={{display:'flex'}}>
        <Link to='/login'> <IconButton style={{color:'black', marginRight:'5px'}}  size='large'>
          <PermIdentityOutlinedIcon fontSize='large'
           sx={{color:'black', stroke: "#ffffff", strokeWidth: 1 }}/>
@@ -90,49 +90,47 @@ const NavBar=() =>{
        <OpenMenu/>
      </Box>
     </Toolbar>
-
-
-  </Container>
-</AppBar>
+</>
   );
 }
 export default NavBar;
 
 const StyledNavBar:React.CSSProperties= {
-  position: 'fixed',
-  zIndex: '1000',
+  position: 'sticky',
+  top:'0',
+  zIndex: '9000',
   width: '100%',
+  marginBottom:'150px',
   background: '#fff',
   alignItems: 'center',
   padding: '16px 16px',
-  height: '50px',
-  marginLeft:'-25px',
+  height: '90px',
   justifyContent:'space-between',
   boxShadow: '0 1px 2px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset'
 };
 
 const StyledMiddleNavBar:React.CSSProperties= {
-  position: 'fixed',
-  zIndex: '1000',
-  width: '100%',
-  background: '#fff',
-  alignItems: 'center',
-  padding: '16px 16px',
-  height: '50px',
-  marginLeft:'-25px',
-  justifyContent:'space-between',
-  boxShadow: '0 1px 2px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset'
-};
-
-const StyledXSmallNavBar:React.CSSProperties= {
-  position: 'fixed',
+  position: 'sticky',
+  top:'0',
   zIndex: '1000',
   width: '100%',
   background: '#fff',
   alignItems: 'center',
   padding: '16px 16px',
   height: '90px',
-  marginLeft:'-25px',
+  justifyContent:'space-between',
+  boxShadow: '0 1px 2px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset'
+};
+
+const StyledXSmallNavBar:React.CSSProperties= {
+  position: 'sticky',
+  top:'0',
+  zIndex: '1000',
+  width: '100%',
+  background: '#fff',
+  alignItems: 'center',
+  padding: '16px 16px',
+  height: '90px',
   justifyContent:'space-between',
   boxShadow: '0 1px 2px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset'
 };

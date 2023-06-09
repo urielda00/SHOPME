@@ -34,7 +34,7 @@ const Search=()=>{
   }, [query]);
 
   return(
-    <Stack width={'150px'} style={{marginLeft:'-50px'}} >
+    <Stack width={'150px'} style={{marginLeft:'-50px'}} id='ScrollStyle'>
         {/* for large screens */}
       <Stack sx={{display:{xs:'none',sm:'none', md: 'flex'}}}>
         <TextField autoComplete='' type='search' variant="standard" value={query}

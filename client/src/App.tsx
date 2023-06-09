@@ -5,12 +5,14 @@ import { Route, Routes } from 'react-router-dom';
 import NavBar from './components/NavBar';
 import { Send } from './pages/Send';
 import NoMatch from './pages/Nomatch';
+import ContactNavbar from './components/ContactNavbar';
 
 
 const App=()=> {  
   return (
   
     <>
+    <ContactNavbar/>
     <NavBar/>
     <Routes>
       <Route path='/' element={<Send/>}/> 

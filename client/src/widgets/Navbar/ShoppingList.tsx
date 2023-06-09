@@ -7,10 +7,8 @@ import {Box,Button,
   
 import { Link } from 'react-router-dom';
 //Icons:
-import LocalMallOutlinedIcon from '@mui/icons-material/LocalMallOutlined'
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
-
-//Types:
+import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';//Types:
 type Anchor = 'left';
 
 //Component Here:
@@ -45,7 +43,7 @@ const ShoppingList =()=> {
         onMouseLeave={() => setHoveringItems(true)}>
          <Grid item >
           {hoveringItems?
-          <LocalMallOutlinedIcon />:<CloseOutlinedIcon />
+          <ShoppingCartOutlinedIcon />:<CloseOutlinedIcon />
          }
         </Grid>
         <Grid item fontSize='32px'>
@@ -87,7 +85,7 @@ const ShoppingList =()=> {
     <div style={{marginLeft:'-20px'}}>
       { 
         <React.Fragment >
-          <IconButton style={{color:'black',marginRight:'20px',marginLeft:'-1px'}} onClick={toggleDrawer('left', true)}><LocalMallOutlinedIcon/></IconButton>
+          <IconButton style={{color:'black',marginRight:'20px',marginLeft:'-1px'}} onClick={toggleDrawer('left', true)}><ShoppingCartOutlinedIcon/></IconButton>
           <SwipeableDrawer
             anchor='left'
             open={state['left']}
