@@ -2,7 +2,7 @@
 import { UserToggle } from '../widgets/Navbar/UserToggle';
 import ShoppingList from '../widgets/Navbar/ShoppingList';
 import Search from '../widgets/Navbar/Search';
-import Open_Menu from '../widgets/Navbar/Open-Menu';
+import OpenMenu from '../widgets/Navbar/Open-Menu';
 
 //Externals:
 import {AppBar, Box,Toolbar,Container, IconButton} from '@mui/material';
@@ -38,8 +38,8 @@ const NavBar=() =>{
       <Box  component='nav'  
        style={{marginRight: '320px', display:'flex', 
        justifyContent:'space-between', width:'100px'}}>
-         <NavLink style={navLinkStyle} to='/aaa'>SHOPME</NavLink>
-         <NavLink style={navLinkStyle} to='/'>EXPLORE</NavLink>
+         <NavLink style={navLinkStyle} to='/about'>ABOUT</NavLink>
+         <NavLink style={navLinkStyle} to='/contact'>CONTACT</NavLink>
       </Box>
 
       <Box  component='nav'  style={{marginLeft:'-240px', flexWrap:'nowrap'}} onClick={handleRefresh}>
@@ -67,7 +67,7 @@ const NavBar=() =>{
          <PermIdentityOutlinedIcon fontSize='large' sx={{color:'black', stroke:"#ffffff",strokeWidth:1}}/>
          </IconButton>
        </Link>
-       <Open_Menu/>
+       <OpenMenu/>
      </Box>
     </Toolbar>
 
@@ -87,7 +87,7 @@ const NavBar=() =>{
           sx={{color:'black', stroke: "#ffffff", strokeWidth: 1 }}/>
          </IconButton>
        </Link>
-       <Open_Menu/>
+       <OpenMenu/>
      </Box>
     </Toolbar>
 

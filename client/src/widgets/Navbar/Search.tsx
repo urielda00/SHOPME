@@ -51,9 +51,8 @@ const Search=()=>{
           data?.map((product:any) => ( //later,take the pruducts here
            <ListItemButton key={product._id} onClick={handleClose} style={ListItemButtonStyle}>
              <ListItem   style={{display:'flex', justifyContent:'space-around'}}>
-               <img src={`http://localhost:5000/searchProduct/${product.image}`} style={imgStyle}/>
+               <img alt='' src={`http://localhost:5000/searchProduct/${product.image}`} style={imgStyle}/>
                <ListItemText primary={product.shortDescription} secondary={`${product.price}$`} />
-               {/* <ListItemText primary={`${product.price}$`} style={SecondListItemTextStyle}/> */}
             </ListItem>
           </ListItemButton>
           ))
@@ -78,7 +77,7 @@ const Search=()=>{
           data?.map((product:any) => ( //later,take the pruducts here
            <ListItemButton key={product._id} onClick={handleClose} style={ListItemButtonStyle}>
              <ListItem   style={{display:'flex', justifyContent:'space-around'}}><ListItemText primary={product.shortDescription} secondary={`${product.price}$`} />
-               <img src={`http://localhost:5000/searchProduct/${product.image}`} style={imgStyle}/>
+               <img alt='' src={`http://localhost:5000/searchProduct/${product.image}`} style={imgStyle}/>
              </ListItem>
           </ListItemButton>
           ))
@@ -103,10 +102,8 @@ const Search=()=>{
           data?.map((product:any) => ( //later,take the pruducts here
            <ListItemButton key={product._id} onClick={handleClose} style={ListItemButtonStyle}>
              <ListItem   style={{display:'flex', justifyContent:'space-around'}}><ListItemText primary={product.shortDescription} secondary={`${product.price}$`} />
-               <img src={`http://localhost:5000/searchProduct/${product.image}`} style={imgStyle}/>
-               
-               {/* <ListItemText primary={`${product.price}$`} style={SecondListItemTextStyle}/> */}
-            </ListItem>
+               <img alt='searchPhoto' src={`http://localhost:5000/searchProduct/${product.image}`} style={imgStyle}/>
+              </ListItem>
           </ListItemButton>
           ))
           }
@@ -123,9 +120,6 @@ export default Search;
 const imgStyle:React.CSSProperties={
 marginRight:'15px', borderRadius:'5px',  marginLeft:'-15px',
   width:'50px', height:'50px'};
-
-const SecondListItemTextStyle:React.CSSProperties={
-marginLeft:'20px', position:'relative', right:'-20px'};
 
 const ListItemButtonStyle:React.CSSProperties={color:'black',borderBottom:'1px black outset'};
 

@@ -3,22 +3,19 @@ import './style.css';
 import { Route, Routes } from 'react-router-dom';
 //Internal imports
 import NavBar from './components/NavBar';
-import ThankYouPage from './pages/Home';
 import { Send } from './pages/Send';
+import NoMatch from './pages/Nomatch';
 
 
 const App=()=> {  
   return (
   
     <>
+    <NavBar/>
     <Routes>
-      <Route path='/' element={<NavBar/>}/> 
+      <Route path='/' element={<Send/>}/> 
+      <Route path='*' element={<NoMatch/>}/>
     </Routes>  
-       {/* <Routes>
-         <Route path="/" element={<NavBar/>} />
-       </Routes> */}
-     {/* <NavBar/>
-     <Send/> */}
     </>
   );
 }

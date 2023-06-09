@@ -12,7 +12,7 @@ import IconButton from '@mui/material/IconButton';
 
 type Anchor = 'left';
 
-const Open_Menu =()=> {
+const OpenMenu =()=> {
   const [state, setState] = React.useState({
     left: false,
   });
@@ -97,4 +97,4 @@ const Open_Menu =()=> {
   );
 }
 
-export default Open_Menu;
+export default OpenMenu;
