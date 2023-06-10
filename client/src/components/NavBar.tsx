@@ -5,7 +5,7 @@ import Search from '../widgets/Navbar/Search';
 import OpenMenu from '../widgets/Navbar/Open-Menu';
 
 //Externals:
-import {AppBar, Box,Toolbar,Container, IconButton} from '@mui/material';
+import {Box,Toolbar,IconButton} from '@mui/material';
 import { NavLink, Link } from 'react-router-dom';
 import * as React from 'react';
 
@@ -98,9 +98,7 @@ export default NavBar;
 const StyledNavBar:React.CSSProperties= {
   position: 'sticky',
   top:'0',
-  zIndex: '9000',
   width: '100%',
-  marginBottom:'150px',
   background: '#fff',
   alignItems: 'center',
   padding: '16px 16px',

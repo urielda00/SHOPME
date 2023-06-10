@@ -1,8 +1,7 @@
 import React from "react";
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
-import { Box, IconButton, Stack } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Box, IconButton} from "@mui/material";
 
 
  const ContactNavbar = () => {
@@ -12,21 +11,21 @@ import { Link } from "react-router-dom";
       
      <IconButton sx={{display:{xs:'none',sm:'flex', md: 'flex'}}}
         style={{borderRadius:'10px',fontSize:'1.3vw'}} size="small">
-        <Link style={{textDecoration:'none',color:'#27374D'}} to='mailto:urielda00@gmail.com'>
+        <a style={{textDecoration:'none',color:'#27374D'}} rel="noreferrer" target='_blank' href='mailto:urielda00@gmail.com'>
           <EmailOutlinedIcon 
            style={{fontSize:'1.3vw', marginRight:'2px', paddingTop:'4px',color:'black'}}/>
-            Urielda00@gmail.com
-        </Link>
+            ShopMe@gmail.com
+        </a>
      </IconButton>
 
 
      <IconButton sx={{display:{xs:'none',sm:'flex', md: 'flex'}}} 
         style={{borderRadius:'10px',fontSize:'1.3vw'}} size="small">
-       <Link style={{textDecoration:'none',color:'#27374D'}} to='https://wa.link/e4dvyv'>
+       <a style={{textDecoration:'none',color:'#27374D'}} rel="noreferrer" target='_blank' href='https://wa.link/e4dvyv'>
          <WhatsAppIcon fontSize="small" 
           style={{fontSize:'1.3vw', marginRight:'2px', paddingTop:'4px',color:'black'}}/>
             +972-00-0000-000
-       </Link>
+       </a>
      </IconButton>
     </Box>
   );
@@ -38,7 +37,7 @@ export default ContactNavbar;
 
 const StyledNavBar:React.CSSProperties= {
   position: 'relative',
-  opacity:0.85,
+  opacity:0.9,
   top:'0',
   width: '100%',
   background: '#9BABB8',

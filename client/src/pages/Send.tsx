@@ -1,5 +1,6 @@
 import * as React from 'react';
 export const Send = () => {
+
   return (
     <div style={Styledcontainer}> 
     <div style={{backgroundColor:'red', height:'50px', width:'40px'}}>aaa</div>
@@ -11,7 +12,7 @@ export const Send = () => {
        <input type='number' name='quantity' placeholder='quantity'/>
        <input type='text' name='category' placeholder='category'/>
        <input type='text' name='productName' placeholder='productName'/>
-       <a href='#some'>aaaa</a>
+
        <button>send</button>
        
       </form>

@@ -23,20 +23,17 @@ export default NoMatch;
 //component's style here:
 const Container:React.CSSProperties={
   width: '100%',
-  height: '100vh',
-  marginBottom: '-80px',
+  height: `83vh`,
   display: 'flex',
   alignItems: 'center',
   float:'none',
   justifyContent: 'center',
-  margin: '0',
-  padding: '0',
+  // marginTop:'-149px',
+  // marginBottom:'190px', 
   fontFamily: '"montserrat",sans-serif',
-  minHeight: '100vh',
-  backgroundImage: 'linear-gradient(125deg,#6a89cc,#b8e994)',
+  backgroundImage: 'linear-gradient(125deg,#6a89cc,#b8e994)'
 };
   
-
 const InsideDiv:React.CSSProperties= {
   width: '100%',
   position: 'absolute',
