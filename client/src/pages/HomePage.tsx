@@ -1,15 +1,18 @@
 import * as React from 'react';
 import back1 from '../assets/HomePage/back1.jpg';
 import { Link } from 'react-router-dom';
-import { Button, Box } from '@mui/material';
+import { Button, Box, Stack } from '@mui/material';
 import ProductsList from '../widgets/HomePage/ProductsList';
 
 const HomePage = () => {
   return (
     <>
     <Box sx={{display:{xs:'none',sm:'none', md: 'block'}}}>
-    <Box style={containerStyle} >
-     <Button variant='contained'  style={{position:'relative',left:'70%', top:'10%', width:'160px', height:'60px', backgroundColor:'#FC2947'}}>Buy Now</Button>
+    
+    <Box style={containerStyle}>
+      <Box style={{position:'relative',left:'68%', bottom:'25%', width:'260px', height:'60px'}} ><h1 style={{fontFamily: '"Indie Flower", cursive',}}>Feel The World Of A New Tech!</h1></Box>
+
+     <Button variant='contained'  style={{position:'relative',left:'55%', top:'5%', width:'160px', height:'60px', backgroundColor:'#FC2947'}}>Buy Now</Button>
     </Box>
     <ProductsList/>
     </Box>
@@ -42,7 +45,6 @@ const containerStyle: React.CSSProperties={
   height: '83vh',
   display: 'flex',
   alignItems: 'center',
-  justifyContent:'space-between',
-  float: 'none',
   
+  float: 'none',
 }

@@ -20,7 +20,7 @@ import KeyboardDoubleArrowUpOutlinedIcon from '@mui/icons-material/KeyboardDoubl
       <IconButton 
         style={{position:'fixed', bottom:'20px',color:'black' ,left:'30px'}}>
          <a href='#some'>
-           <KeyboardDoubleArrowUpOutlinedIcon fontSize='large'/>
+           <KeyboardDoubleArrowUpOutlinedIcon fontSize='large' />
          </a>
       </IconButton>
      )
