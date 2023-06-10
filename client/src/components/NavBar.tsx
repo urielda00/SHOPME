@@ -110,7 +110,6 @@ const StyledNavBar:React.CSSProperties= {
 const StyledMiddleNavBar:React.CSSProperties= {
   position: 'sticky',
   top:'0',
-  zIndex: '1000',
   width: '100%',
   background: '#fff',
   alignItems: 'center',
@@ -123,7 +122,6 @@ const StyledMiddleNavBar:React.CSSProperties= {
 const StyledXSmallNavBar:React.CSSProperties= {
   position: 'sticky',
   top:'0',
-  zIndex: '1000',
   width: '100%',
   background: '#fff',
   alignItems: 'center',
