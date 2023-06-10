@@ -97,6 +97,7 @@ export default NavBar;
 
 const StyledNavBar:React.CSSProperties= {
   position: 'sticky',
+  zIndex:10,
   top:'0',
   width: '100%',
   background: '#fff',
@@ -110,6 +111,7 @@ const StyledNavBar:React.CSSProperties= {
 const StyledMiddleNavBar:React.CSSProperties= {
   position: 'sticky',
   top:'0',
+  zIndex:10,
   width: '100%',
   background: '#fff',
   alignItems: 'center',
@@ -122,6 +124,7 @@ const StyledMiddleNavBar:React.CSSProperties= {
 const StyledXSmallNavBar:React.CSSProperties= {
   position: 'sticky',
   top:'0',
+  zIndex:10,
   width: '100%',
   background: '#fff',
   alignItems: 'center',

@@ -33,7 +33,7 @@ const ShoppingList =()=> {
 
   const list = (anchor: Anchor) => (
     <Box
-       sx={{width:'300px', zIndex:'1100'}}
+       sx={{width:'300px', zIndex:'10'}}
       role="presentation"
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
