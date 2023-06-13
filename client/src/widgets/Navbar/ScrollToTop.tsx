@@ -12,7 +12,7 @@ import KeyboardDoubleArrowUpOutlinedIcon from '@mui/icons-material/KeyboardDoubl
         setButton(false);
       }
     })
-  })
+  },[])
   return (
     <>
     {

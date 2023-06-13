@@ -21,12 +21,14 @@ const HomePage = () => {
     <Box  style={containerStyle}>
      <Button variant='contained'  style={{position:'relative',left:'65%', top:'25%', width:'160px', height:'60px', backgroundColor:'#FC2947'}}>Buy Now</Button>
     </Box>
+    <ProductsList/>
     </Box>
 
     <Box  sx={{display:{xs:'block',sm:'none', md: 'none'}}}>
     <Box  style={containerStyle}>
-     <Button variant='contained'  style={{position:'relative',left:'40%', top:'25%', width:'160px', height:'60px', backgroundColor:'#FC2947'}}>Buy Now</Button>
+     <Button variant='contained'  style={{position:'relative',left:'33%', top:'25%', width:'160px', height:'60px', backgroundColor:'#FC2947'}}>Buy Now</Button>
     </Box>
+    <ProductsList/>
     </Box>
     </>
   )
