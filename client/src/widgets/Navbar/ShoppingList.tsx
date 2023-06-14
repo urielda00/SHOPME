@@ -52,7 +52,9 @@ const ShoppingList =()=> {
        </Grid>
       </Link>
       <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text,index) => ( //later,take the pruducts here
+        {
+        
+        ['Inbox', 'Starred', 'Send email', 'Drafts'].map((text,index) => ( //later,take the pruducts here
           <ListItemButton style={{display:'flex', justifyContent:'flex-end'}}>
           <ListItem key={index} >
           <ListItemText primary={text}/>

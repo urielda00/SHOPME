@@ -33,7 +33,7 @@ app.use(bodyParser.urlencoded({extended:true }))
 app.use('/product/readProducts',express.static('uploads'));
 app.use('/searchProduct',express.static('uploads'));
 app.use(cookieParser());
-
+app.disable('etag');
 
 
 //Routers:
