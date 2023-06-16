@@ -14,7 +14,9 @@ const ProductsList = () => {
   //  }).catch(err=>{console.log(err);})
   // },[])
   // console.log(products);
-
+   const addToCart= ()=>{
+   
+   };
   return (
     // <div style={{width:'600px', height:'800px', backgroundColor:'red'}}>ProductsList</div>
     <>
@@ -189,7 +191,7 @@ const ProductsList = () => {
             <div style={{position:'absolute',left:'30px', top:'20px'}}>
               {/* Add To Cart<LocalMallOutlinedIcon/>*/}
               {/* <FavoriteIcon fontSize='large' sx={{ color: 'red', marginLeft:'10px',position:'absolute',left:'5px', bottom:'160px' }}/>  */}
-              <Button variant="outlined"  sx={{color:'black'}}>Add To Cart</Button>
+              <Button variant="outlined"  sx={{color:'black'}} onClick={addToCart}>Add To Cart</Button>
             </div>
 
             <div style={{position:'absolute',right:'30px', top:'20px'}}>

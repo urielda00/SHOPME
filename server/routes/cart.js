@@ -3,7 +3,7 @@ const cartRouter = express.Router();
 
 import { addToCart } from "../controllers/cart.js";
 
-cartRouter.post('/addTocart',addToCart);
+cartRouter.post('/addToCart',addToCart);
 
 
 

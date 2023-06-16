@@ -1,6 +1,6 @@
 //Internals:
 import { UserToggle } from '../widgets/Navbar/UserToggle';
-import ShoppingList from '../widgets/Navbar/ShoppingList';
+import ShoppingList from '../widgets/ShoppingList/ShoppingList';
 import Search from '../widgets/Navbar/Search';
 import OpenMenu from '../widgets/Navbar/Open-Menu';
 

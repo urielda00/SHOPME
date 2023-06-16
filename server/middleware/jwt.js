@@ -7,6 +7,7 @@ dotenv.config();
 export const checkJWT= async(req,res,next)=>{
    const token= req.cookies.session_token;
    if(!token){
+      console.log('bad authorization! (JWT-delete this message later)');
    return res.redirect('http://localhost:3000/login');
    }try {
     const data = jwt.verify(token, process.env.JWT_ACCESS_KEY);
