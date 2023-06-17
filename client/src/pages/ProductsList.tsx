@@ -2,33 +2,41 @@ import React, {ReactNode, useEffect,useState} from 'react'
 import axios from 'axios';
 import { Box, Grid,Button, IconButton } from '@mui/material';
 import photo from '../../assets/pocoF5.png';
-import logo from '../../assets/logo.png';
+import logo from '../assets/logo.png';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import LocalMallOutlinedIcon from '@mui/icons-material/LocalMallOutlined';
-import logo2 from '../../assets/logo2.png';
+import logo2 from '../assets/logo2.png';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { addToCart } from '../../features/cartSlice';
+import { addToCart } from '../features/cartSlice';
+const userName= window.sessionStorage.getItem('userNameHere');
 
-
-
-const Test = () => {
-  const cart= useSelector((state:any)=>state.allCart.cart);
+const ProductsList = () => {
+            const cart= useSelector((state:any)=>state.allCart.cart);
+            const totalPrice= useSelector((state:any)=>state.allCart.totalPrice);
+  const handlelogout= ()=>{
+           axios.post('http://localhost:5000/auth/signout',
+              {
+                cart: cart,
+                userName: userName,
+                totalPrice : totalPrice
+              }).then((res)=>{console.log(res);}).catch(error=>console.log(error))
+              window.sessionStorage.clear();
+  };
   const dispatch= useDispatch();
+
   
   const [products,setProducts]= useState([]);
-  const [cartItems,setCartItems]= useState([]);
   useEffect(()=>{
     axios.get('http://localhost:5000/product/readProducts')
    .then(res=>{
     setProducts(res.data);
    }).catch(err=>{console.log(err);})
   },[])
-  
 
   return (
     <div style={{height: '100vh',width:'100%'}}>
-
+      
      
       
       <ul>
@@ -40,15 +48,15 @@ const Test = () => {
             
             <li key={product._id} style={{listStyle:'none'}}>
              
-             <div style={{width:'350px',height:'650px',textAlign:'center',borderRadius:'15px',backgroundColor:'#FFF',marginTop:'10px',marginBottom:'10px',boxShadow:' -2px 2px 2px 1px rgba(0, 0, 0, 0.2)'}}>
+             <div style={{width:'350px',height:'630px',textAlign:'center',borderRadius:'15px',backgroundColor:'#FFF',marginTop:'10px',marginBottom:'10px',boxShadow:' -2px 2px 2px 1px rgba(0, 0, 0, 0.2)'}}>
             
             <div style={{position:'relative',marginBottom:'20px'}}>
-             <Link to={`http://localhost:5000/product/${product._id}`}> <div>
-            <img src={`http://localhost:5000/product/readProducts/${product.image}`} style={{width:'90%',objectFit:'cover',height:'300px', marginTop:'23px',borderRadius:'10px'}}/>
+             <Link to={`http://localhost:5000/product/${product._id}`}><div>
+            <img className='hover' src={`http://localhost:5000/product/readProducts/${product.image}`} style={{width:'90%',objectFit:'cover',height:'300px', marginTop:'15px',borderRadius:'10px'}}/>
             <img src={logo2} style={{width:'12%', marginTop:'20px'}}/>
             </div>
             </Link>
-            <h1 style={{fontFamily:'"Crimson Text", serif', marginTop:'10px'}}>{product.productName}</h1>
+            <h1 style={{marginTop:'10px'}}>{product.productName}</h1>
             <h3 style={{marginTop:'5px'}}>{product.shortDescription}</h3>
             <h2 style={{marginTop:'30px'}}>{product.price}$</h2>
             </div>
@@ -62,16 +70,21 @@ const Test = () => {
             <div style={{position:'absolute',left:'30px', top:'20px'}}>
         {/* <div style={{display:'none'}} id='productIdDiv'></div>    */}
         <Button variant="outlined"  sx={{color:'black', backgroundColor:'#4D96FF'}} onClick={()=>{
-          dispatch(addToCart(product))
-          console.log(cart);
+          dispatch(addToCart(product));
+
         }}>
          Add To Cart
         </Button>
-        <Link to='/cart'>aaaaaaaaa</Link>
+        {/* <Link to='/cart'>aaaaaaaaa</Link> */}
     </div>
 
     <div style={{position:'absolute',right:'30px', top:'20px'}}>
-      <Button variant="outlined" sx={{color:'black', backgroundColor:'#6BCB77'}}>Buy Now</Button>
+      <Link to='/cart'>
+        <Button variant="outlined" sx={{color:'black', backgroundColor:'#6BCB77'}}
+         onClick={()=>{dispatch(addToCart(product))}}>
+        Buy Now
+         </Button>
+        </Link>
     </div>
 
   </div>
@@ -85,13 +98,14 @@ const Test = () => {
         })}
         </div>
       </ul>
+      <button onClick={handlelogout}>signout</button>
      </div>
     
 
   )
 }
 
-export default Test;
+export default ProductsList;
 const containerStyle: React.CSSProperties={
   // marginBottom: '380px',
   // overflow: 'hidden',

@@ -3,21 +3,43 @@ import { UserToggle } from '../widgets/Navbar/UserToggle';
 import ShoppingList from '../widgets/ShoppingList/ShoppingList';
 import Search from '../widgets/Navbar/Search';
 import OpenMenu from '../widgets/Navbar/Open-Menu';
-
-//Externals:
-import {Box,Toolbar,IconButton} from '@mui/material';
-import { NavLink, Link } from 'react-router-dom';
-import * as React from 'react';
+import { incrementQuantity, decrementQuantity, removeItem } from '../features/cartSlice';
 
 //Icons:
 import PermIdentityOutlinedIcon from '@mui/icons-material/PermIdentityOutlined';
 import StoreOutlinedIcon from '@mui/icons-material/StoreOutlined';
+import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';//Types:
+
+//Externals:
+import { useSelector,useDispatch } from 'react-redux';
+import {Box,Toolbar,IconButton} from '@mui/material';
+import { NavLink, Link } from 'react-router-dom';
+import * as React from 'react';
+import axios from 'axios';
+const userName= window.sessionStorage.getItem('userNameHere');
+
+
 
 //Types:
 interface Props {isActive: boolean};
 
+
 //Component Here:
 const NavBar=() =>{
+  const {cart ,totalPrice}= useSelector((state:any)=>state.allCart)
+  const dispatch= useDispatch();
+
+  const handleLoadCart= ()=>{
+    axios.post('http://localhost:5000/auth/signout',
+       {
+         cart: cart,
+         userName: userName,
+         totalPrice : totalPrice
+       }).catch(error=>console.log(error))
+       window.location.reload();
+    };
+
+
   const navLinkStyle= ({isActive}:Props)=>{
     return {
       textDecoration:  'none',
@@ -26,10 +48,7 @@ const NavBar=() =>{
       padding: isActive? '1rem' : '1rem'
       }  
   };
-  const handleRefresh= ()=>{
-    
-    window.location.reload();
-  }
+ 
   return (
    <>
 
@@ -42,7 +61,7 @@ const NavBar=() =>{
          <NavLink style={navLinkStyle} to='/contact'>CONTACT</NavLink>
       </Box>
 
-      <Box  component='nav'  style={{marginLeft:'-240px', flexWrap:'nowrap'}} onClick={handleRefresh}>
+      <Box  component='nav'  style={{marginLeft:'-240px', flexWrap:'nowrap'}} onClick={handleLoadCart}>
         <Link to='/' style={{textDecoration:'none', color:'black',letterSpacing: '8px', fontSize:'1.3rem'}}><StoreOutlinedIcon style={{marginBottom:'-5px', marginRight:'8px'}}/>SHOPME</Link>
       </Box>
 
@@ -50,7 +69,7 @@ const NavBar=() =>{
         display: 'flex', justifyContent:'space-between',  width:'220px'}}>
           <Search/>
           <UserToggle/>
-          <ShoppingList /> 
+          <ShoppingList/> 
       </Box>   
      </Toolbar>
 
@@ -63,10 +82,16 @@ const NavBar=() =>{
        <Search/>
      </Box>
      <Box  component='nav'style={{display:'flex'}}>
+      <Link to='/cart'>
+         <IconButton style={{color:'black', marginRight:'-15px'}}  size='large'>
+           <ShoppingCartOutlinedIcon fontSize='large' sx={{color:'black', stroke:"#ffffff",strokeWidth:1}}/>
+         </IconButton>
+       </Link>
        <Link to='/login'> <IconButton style={{color:'black', marginRight:'5px'}}  size='large'>
          <PermIdentityOutlinedIcon fontSize='large' sx={{color:'black', stroke:"#ffffff",strokeWidth:1}}/>
          </IconButton>
        </Link>
+       
        <OpenMenu/>
      </Box>
     </Toolbar>
@@ -82,6 +107,11 @@ const NavBar=() =>{
      </Box>
     
      <Box  component='nav'style={{display:'flex'}}>
+     <Link to='/cart'>
+         <IconButton style={{color:'black', marginRight:'-15px'}}  size='large'>
+           <ShoppingCartOutlinedIcon fontSize='large' sx={{color:'black', stroke:"#ffffff",strokeWidth:1}}/>
+         </IconButton>
+       </Link>
        <Link to='/login'> <IconButton style={{color:'black', marginRight:'5px'}}  size='large'>
          <PermIdentityOutlinedIcon fontSize='large'
           sx={{color:'black', stroke: "#ffffff", strokeWidth: 1 }}/>

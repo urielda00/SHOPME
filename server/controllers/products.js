@@ -12,7 +12,7 @@ export const createProduct=  async (req, res)=> {
     const filesnames = req.files.map((file) =>{
      return file.filename;// or file.originalname
     });
-  const {shortDescription, longDescription, price,quantity, category, productName}= req.body;
+  const {shortDescription, longDescription, price,quantity, category, productName,company}= req.body;
   const saveProduct= new Product({
     productImages: filesnames,
     image: filesnames[0],
@@ -22,7 +22,8 @@ export const createProduct=  async (req, res)=> {
     price,
     quantity,
     status: 'available',
-    category
+    category,
+    company
   });
   await saveProduct.save();
 

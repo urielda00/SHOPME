@@ -2,8 +2,7 @@ import * as React from 'react';
 import back1 from '../assets/HomePage/back1.jpg';
 import { Link } from 'react-router-dom';
 import { Button, Box, Stack } from '@mui/material';
-import ProductsList from '../widgets/HomePage/ProductsList';
-import Test from '../widgets/HomePage/test';
+import ProductsList from './ProductsList';
 const HomePage = () => {
   return (
     <>
@@ -14,21 +13,18 @@ const HomePage = () => {
 
      <Button variant='contained'  style={{position:'relative',left:'55%', top:'5%', width:'160px', height:'60px', backgroundColor:'#FC2947'}}>Buy Now</Button>
     </Box>
-    <Test/>
     </Box>
 
     <Box  sx={{display:{xs:'none',sm:'block', md: 'none'}}}>
     <Box  style={containerStyle}>
      <Button variant='contained'  style={{position:'relative',left:'65%', top:'25%', width:'160px', height:'60px', backgroundColor:'#FC2947'}}>Buy Now</Button>
     </Box>
-    <Test/>
     </Box>
 
     <Box  sx={{display:{xs:'block',sm:'none', md: 'none'}}}>
     <Box  style={containerStyle}>
      <Button variant='contained'  style={{position:'relative',left:'33%', top:'25%', width:'160px', height:'60px', backgroundColor:'#FC2947'}}>Buy Now</Button>
     </Box>
-    <Test/>
     </Box>
     </>
   )

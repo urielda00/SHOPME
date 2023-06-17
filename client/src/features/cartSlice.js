@@ -1,12 +1,28 @@
 import { createSlice, current  } from "@reduxjs/toolkit";
-
+import { createAsyncThunk } from "@reduxjs/toolkit";
+import axios from 'axios';
 
 const initialState = {
   cart: [],
+  // userName:'',
   totalQuantity: 0,
   totalPrice:0,
+  
   warningMessage: null //make this array- and it will be looped in the map- make this as a different component!- widget one.
 };
+
+
+// export const updateSchema= createAsyncThunk('cart/updateSchema', async({getstate})=>{
+//   const state= getstate();
+//   axios.post('http://localhost:5000/cart/addToCart',
+//   {
+//     data: state.cart,
+//     userName: state.userName,
+//     totalPrice : state.totalPrice
+//   }).then(console.log('its done')).catch(error=>console.log(error))
+// })
+
+
 
 export const cartSlice= createSlice({
   name:'cart',
@@ -17,13 +33,17 @@ export const cartSlice= createSlice({
     const itemIndex = state.cart.findIndex((item)=>item._id === action.payload._id);
     if(itemIndex>=0){
       state.cart[itemIndex].itemQuantity +=1;
+      state.totalPrice+=action.payload.price;
     }else{
     //if not the item exist- push it to the cart.
+    // const userNameIs= window.sessionStorage.getItem('userNameHere');
     const tempProduct= {...action.payload,itemQuantity:1}
+    // state.userName = userNameIs
     state.cart.push(tempProduct);
     state.totalQuantity++;
-    }
     state.totalPrice+=action.payload.price;
+    }
+    
   }, 
   incrementQuantity: (state,action)=>{
     const itemIndex = state.cart.findIndex((item)=>item._id === action.payload._id);
@@ -53,9 +73,10 @@ export const cartSlice= createSlice({
     const totalPriceToRemove = itemLocation.itemQuantity * itemLocation.price;
     state.totalPrice -= totalPriceToRemove;
     state.totalQuantity -= 1;
+    state.warningMessage= null;
     state.cart.splice([itemIndex],1);
   }
-  }
+  },
 })
 
 export const {addToCart, incrementQuantity, decrementQuantity, removeItem}= cartSlice.actions;

@@ -10,10 +10,10 @@ import { Box, IconButton} from "@mui/material";
     <Box id='some' style={StyledNavBar} sx={{display:{xs:'none',sm:'flex', md: 'flex'}}}>
       
      <IconButton sx={{display:{xs:'none',sm:'flex', md: 'flex'}}}
-        style={{borderRadius:'10px',fontSize:'1.3vw'}} size="small">
+        style={{borderRadius:'10px',fontSize:'1.3vw'}} size="large">
         <a style={{textDecoration:'none',color:'#27374D'}} rel="noreferrer" target='_blank' href='mailto:urielda00@gmail.com'>
           <EmailOutlinedIcon 
-           style={{fontSize:'1.3vw', marginRight:'2px', paddingTop:'4px',color:'black'}}/>
+           style={{ marginRight:'2px', paddingTop:'4px',color:'grey'}}/>
             ShopMe@gmail.com
         </a>
      </IconButton>
@@ -22,7 +22,7 @@ import { Box, IconButton} from "@mui/material";
      <IconButton sx={{display:{xs:'none',sm:'flex', md: 'flex'}}} 
         style={{borderRadius:'10px',fontSize:'1.3vw'}} size="small">
        <a style={{textDecoration:'none',color:'#27374D'}} rel="noreferrer" target='_blank' href='https://wa.link/e4dvyv'>
-         <WhatsAppIcon fontSize="small" 
+         <WhatsAppIcon fontSize="large" 
           style={{fontSize:'1.3vw', marginRight:'2px', paddingTop:'4px',color:'black'}}/>
             +972-00-0000-000
        </a>

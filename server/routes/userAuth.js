@@ -47,6 +47,6 @@ userAuthRouter.patch('/updateUserInfo/:id',checkJWT,updateUserInfo);
 
 
 //later- delete this route, and make the logout from the client side.
-userAuthRouter.get('/signout',signOut);
+userAuthRouter.post('/signout',signOut);
 
 export default userAuthRouter;
