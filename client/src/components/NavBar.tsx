@@ -14,10 +14,9 @@ import { useSelector} from 'react-redux';
 import {Box,Toolbar,IconButton} from '@mui/material';
 import { NavLink, Link } from 'react-router-dom';
 import * as React from 'react';
-import axios from 'axios';
 
 // const userName= window.sessionStorage.getItem('userNameHere');
-const userName='user100';
+
 
 
 //Types:

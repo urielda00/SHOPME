@@ -16,7 +16,7 @@ const Cart = () => {
       </Box>
 
       {/* for small screens: */}
-      <Box sx={{display:{xs:'flex',sm:'none', md: 'none'},height:'100vh',backgroundColor:'#d2c9ff',alignItems:'center',justifyContent:'center',flex:'1'}}>
+      <Box sx={{display:{xs:'flex',sm:'none', md: 'none'},height:'100vh',backgroundColor:'#d2c9ff',justifyContent:'center',flex:'1'}}>
       <CartSScreen/>
       </Box>  
     </div>
