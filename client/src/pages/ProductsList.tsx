@@ -1,10 +1,6 @@
-import React, {ReactNode, useEffect,useState} from 'react'
+import React, {useEffect,useState} from 'react'
 import axios from 'axios';
-import { Box, Grid,Button, IconButton } from '@mui/material';
-import photo from '../../assets/pocoF5.png';
-import logo from '../assets/logo.png';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import LocalMallOutlinedIcon from '@mui/icons-material/LocalMallOutlined';
+import {Button} from '@mui/material';
 import logo2 from '../assets/logo2.png';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
@@ -40,20 +36,19 @@ const ProductsList = () => {
      
       
       <ul>
-        <div style={{display:'grid',justifyItems:'center',
+        <div style={{display:'grid',justifyItems:'center',gridGap:'5px',
         gridTemplateColumns:'repeat(auto-fit,minmax(23rem,1fr))',
         flex:'1',width:'100%',backgroundColor:'#F5EFE7', flexWrap:'wrap'}}>
         {products?.map((product:any)=>{
           return (
-            
-            <li key={product._id} style={{listStyle:'none'}}>
+            <li key={product._id} style={{listStyle:'none'}} >
              
-             <div style={{width:'350px',height:'630px',textAlign:'center',borderRadius:'15px',backgroundColor:'#FFF',marginTop:'10px',marginBottom:'10px',boxShadow:' -2px 2px 2px 1px rgba(0, 0, 0, 0.2)'}}>
+             <div style={{width:'350px',height:'630px',textAlign:'center',borderRadius:'15px',backgroundColor:'#FFF',marginTop:'10px',marginBottom:'5px',boxShadow:' -2px 2px 2px 1px rgba(0, 0, 0, 0.2)',paddingRight:'10px'}}>
             
             <div style={{position:'relative',marginBottom:'20px'}}>
              <Link to={`http://localhost:5000/product/${product._id}`}><div>
-            <img className='hover' src={`http://localhost:5000/product/readProducts/${product.image}`} style={{width:'90%',objectFit:'cover',height:'300px', marginTop:'15px',borderRadius:'10px'}}/>
-            <img src={logo2} style={{width:'12%', marginTop:'20px'}}/>
+            <img className='hover' src={`http://localhost:5000/product/readProducts/${product.image}`} style={{width:'90%',objectFit:'cover',height:'300px', marginTop:'15px',borderRadius:'10px'}} alt=''/>
+            <img src={logo2} style={{width:'12%', marginTop:'20px'}} alt=''/>
             </div>
             </Link>
             <h1 style={{marginTop:'10px'}}>{product.productName}</h1>
@@ -106,18 +101,18 @@ const ProductsList = () => {
 }
 
 export default ProductsList;
-const containerStyle: React.CSSProperties={
-  // marginBottom: '380px',
-  // overflow: 'hidden',
-  width: '100%',
-  height: '100vh',
-  // display: 'flex',
-  // alignItems: 'center',
-  // justifyContent:'space-between',
-  float: 'none',
-}
+// const containerStyle: React.CSSProperties={
+//   // marginBottom: '380px',
+//   // overflow: 'hidden',
+//   width: '100%',
+//   height: '100vh',
+//   // display: 'flex',
+//   // alignItems: 'center',
+//   // justifyContent:'space-between',
+//   float: 'none',
+// }
 
-const listContainerStyle:React.CSSProperties={
-  backgroundColor:'red',
-  marginTop:'10px'
-}
+// const listContainerStyle:React.CSSProperties={
+//   backgroundColor:'red',
+//   marginTop:'10px'
+// }

@@ -1,26 +1,13 @@
-import { createSlice, current  } from "@reduxjs/toolkit";
-import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from 'axios';
+import { createSlice} from "@reduxjs/toolkit";
 
 const initialState = {
   cart: [],
   // userName:'',
   totalQuantity: 0,
   totalPrice:0,
-  
   warningMessage: null //make this array- and it will be looped in the map- make this as a different component!- widget one.
 };
 
-
-// export const updateSchema= createAsyncThunk('cart/updateSchema', async({getstate})=>{
-//   const state= getstate();
-//   axios.post('http://localhost:5000/cart/addToCart',
-//   {
-//     data: state.cart,
-//     userName: state.userName,
-//     totalPrice : state.totalPrice
-//   }).then(console.log('its done')).catch(error=>console.log(error))
-// })
 
 
 
@@ -75,9 +62,14 @@ export const cartSlice= createSlice({
     state.totalQuantity -= 1;
     state.warningMessage= null;
     state.cart.splice([itemIndex],1);
+  },
+  deleteAllCart: (state)=>{
+    state.cart = [];
+    state.totalPrice = 0;
+    state.totalQuantity = 0;
   }
   },
 })
 
-export const {addToCart, incrementQuantity, decrementQuantity, removeItem}= cartSlice.actions;
+export const {addToCart, incrementQuantity, decrementQuantity, removeItem, deleteAllCart, setCart}= cartSlice.actions;
 export default cartSlice.reducer;
