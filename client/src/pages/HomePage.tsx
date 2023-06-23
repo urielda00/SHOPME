@@ -2,17 +2,24 @@ import * as React from 'react';
 import back1 from '../assets/HomePage/back1.jpg';
 import { Link } from 'react-router-dom';
 import { Button, Box, Stack } from '@mui/material';
-import ProductsList from './ProductsList';
+import Home2nd from '../widgets/HomePage/Home2nd';
+import Home3nd from '../widgets/HomePage/Home3nd';
+import Home5nd from '../widgets/HomePage/Home5nd';
+import Home1st from '../widgets/HomePage/Home1st';
+import Home4nd from '../widgets/HomePage/Home4nd';
+import Home6nd from '../widgets/HomePage/Home6nd';
 const HomePage = () => {
+ 
+    
   return (
     <>
     <Box sx={{display:{xs:'none',sm:'none', md: 'block'}}}>
-    
-    <Box style={containerStyle}>
-      <Box style={{position:'relative',left:'68%', bottom:'25%', width:'260px', height:'60px'}} ><h1 style={{fontFamily: '"Indie Flower", cursive',}}>Feel The World Of A New Tech!</h1></Box>
-
-     <Button variant='contained'  style={{position:'relative',left:'55%', top:'5%', width:'160px', height:'60px', backgroundColor:'#FC2947'}}>Buy Now</Button>
-    </Box>
+      <Home1st/>
+      <Home2nd/>
+      <Home3nd/>
+      <Home4nd/>
+      <Home5nd/>
+      {/* <Home6nd/> */}
     </Box>
 
     <Box  sx={{display:{xs:'none',sm:'block', md: 'none'}}}>
@@ -35,14 +42,15 @@ export default HomePage;
 const containerStyle: React.CSSProperties={
   backgroundImage: `url(${back1})`,
   // marginBottom: '-80px',
+  
   backgroundRepeat:' no-repeat',
   backgroundSize: 'cover',
   backgroundBlendMode: 'multiply',
   overflow: 'hidden',
   width: '100%',
-  height: '83vh',
+  height: '84vh',
   display: 'flex',
   alignItems: 'center',
-  
   float: 'none',
+  border:'none'
 }

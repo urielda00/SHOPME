@@ -10,10 +10,8 @@ import ScrollToTop from './widgets/Navbar/ScrollToTop';
 import HomePage from './pages/HomePage';
 import Cart from './pages/Cart';
 import ProductsList from './pages/ProductsList';
-
 // type Status = boolean;
 // let status: Status = true
-
 const App=()=> {  
   return (
   
