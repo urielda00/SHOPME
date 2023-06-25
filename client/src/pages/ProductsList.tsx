@@ -1,33 +1,38 @@
-import React, {useEffect,useState} from 'react'
+import  {useEffect,useState} from 'react'
 import axios from 'axios';
 import {Button} from '@mui/material';
 import logo2 from '../assets/logo2.png';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { addToCart } from '../features/cartSlice';
+import readProducts from '../services/ProuductList/readProducts';
+
 const userName= window.sessionStorage.getItem('userNameHere');
 
 const ProductsList = () => {
-            const cart= useSelector((state:any)=>state.allCart.cart);
-            const totalPrice= useSelector((state:any)=>state.allCart.totalPrice);
-  const handlelogout= ()=>{
-           axios.post('http://localhost:5000/auth/signout',
-              {
-                cart: cart,
-                userName: userName,
-                totalPrice : totalPrice
-              }).then((res)=>{console.log(res);}).catch(error=>console.log(error))
-              window.sessionStorage.clear();
-  };
+     const cart= useSelector((state:any)=>state.allCart.cart)
+     const totalPrice= useSelector((state:any)=>state.allCart.totalPrice);
+  // const handlelogout= ()=>{
+  //          axios.post('http://localhost:5000/auth/signout',
+  //             {
+  //               cart: cart,
+  //               userName: userName,
+  //               totalPrice : totalPrice
+  //             }).then((res)=>{console.log(res);}).catch(error=>console.log(error))
+  //             window.sessionStorage.clear();
+  // };
   const dispatch= useDispatch();
 
   
   const [products,setProducts]= useState([]);
   useEffect(()=>{
-    axios.get('http://localhost:5000/product/readProducts')
-   .then(res=>{
-    setProducts(res.data);
-   }).catch(err=>{console.log(err);})
+  readProducts(setProducts) 
+  //  const some:any = readProducts(setProducts); 
+  // setProducts(some);
+  //   axios.get('http://localhost:5000/product/readProducts')
+  //  .then(res=>{
+  //   setProducts(res.data);
+  //  }).catch(err=>{console.log(err);})
   },[])
 
   return (
@@ -93,7 +98,7 @@ const ProductsList = () => {
         })}
         </div>
       </ul>
-      <button onClick={handlelogout}>signout</button>
+      {/* <button onClick={handlelogout}>signout</button> */}
      </div>
     
 

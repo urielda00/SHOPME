@@ -31,8 +31,8 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
           whiteSpace: 'nowrap',
           transition: 'transform 1.3s',
           boxShadow: '0 5px 15px rgba(0, 0, 0, 0.05)',transform: `translate(-${activeIndex * 100}%)`}}>
-           {items.map((item) => {
-          return <CarouselItem item={item} width={"100%"}/>;
+           {items.map((item,index) => {
+            return <CarouselItem item={item} width={"100%"} key={index}/>;
             })
             }
          </div>
@@ -66,6 +66,7 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
              }}>
              <span className="material-symbols-outlined"><ChevronRightIcon fontSize='large'/></span>
            </Button>
+           
       </div>
       {/* the link to- buy now */}
        <Link to='/' style={{textDecoration:'none',fontSize:'20px',color:'white'}}>
@@ -76,7 +77,9 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
                <ChevronRightIcon/>
              </div>
          </Box>
+         
        </Link>
+       
     </Box>
   );
 };

@@ -1,4 +1,4 @@
-import back1 from '../../assets/HomePage/3nd/some.png';
+import back1 from '../../../assets/HomePage/3nd/some.png';
 import { Link } from 'react-router-dom';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { Box } from '@mui/material';

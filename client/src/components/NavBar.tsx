@@ -1,6 +1,6 @@
 //Internals:
 import { UserToggle } from '../widgets/Navbar/UserToggle';
-import ShoppingList from '../widgets/ShoppingList/ShoppingList';
+import ShoppingList from '../widgets/Navbar/ShoppingList';
 import Search from '../widgets/Navbar/Search';
 import OpenMenu from '../widgets/Navbar/Open-Menu';
 
@@ -43,10 +43,10 @@ const NavBar=() =>{
     {/* for large screens: */}
      <Toolbar disableGutters style={StyledNavBar} sx={{display:{xs:'none',sm:'none', md: 'flex'}}}>
       <Box  component='nav'  
-       style={{marginRight: '320px', display:'flex', 
-       justifyContent:'space-between', width:'100px'}}>
+       style={{marginRight: '230px', display:'flex', 
+       justifyContent:'space-between', width:'240px'}}>
          <NavLink style={navLinkStyle} to='/about'>ABOUT</NavLink>
-         <NavLink style={navLinkStyle} to='/contact'>CONTACT</NavLink>
+         <NavLink style={navLinkStyle} to='/contact'>CONTACT US</NavLink>
       </Box>
 
       <Box  component='nav'  style={{marginLeft:'-240px', flexWrap:'nowrap'}}>
