@@ -45,7 +45,7 @@ const NavBar=() =>{
       <Box  component='nav'  
        style={{marginRight: '230px', display:'flex', 
        justifyContent:'space-between', width:'240px'}}>
-         <NavLink style={navLinkStyle} to='/about'>ABOUT</NavLink>
+         <NavLink style={navLinkStyle} to='/infinity'>ABOUT</NavLink>
          <NavLink style={navLinkStyle} to='/contact'>CONTACT US</NavLink>
       </Box>
 

@@ -36,26 +36,37 @@ export const createProduct=  async (req, res)=> {
   }
  };
 
-
  //Read:
  export const readProducts= async (req,res)=>{
-  try {
-    const products= await Product.find({status: 'available'}); 
-    ProductInfoLogger.log('info','get all the products. status code: 200');
-    res.status(200).json(products);
-  } catch (error) {
-    ProductErrorLogger.log('error',`${error.message} status code: 500`);
-    res.status(500).json(error.message)
-  }
- };
+ try {
+    //Page, number items per page, and number of item to skip in mongo:
+    const page = Number(req.query.page) || 1 ; 
+    const per_page = Number(req.query.per_page); 
+    let itemToSkip = 0; 
+    let items = []; 
+
+    //repeat the Items and push the appropriate items to the result item array:
+    (await Product.find({status: 'available'}).skip(itemToSkip).limit(per_page * page))
+    .forEach((item)=>{items.push(item)})
+    itemToSkip = per_page * page;
+
+    ProductInfoLogger.log('info','get the products list. status code: 200');
+    res.status(200).json(items)
+ } catch (error) {
+  ProductErrorLogger.log('error',`${error.message} status code: 500`);
+  res.status(500).json(error.message)
+ }};
+
+ 
+
+
+
 
 
  //need to make react router:  to send the update form to this path:
  //here we updating only the necessary update ( with patch) of the product info:
-
-
-
  //later- need to specify the req.body- and use express-validator on that.
+ 
  //Update:
  export const updateProduct = async (req, res) => {
   const id = req.params.id;

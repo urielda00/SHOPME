@@ -19,8 +19,8 @@ import upload from "../middleware/upload.js";
 import { checkJWT } from "../middleware/jwt.js";
 
 //need to add the jwt later to the creare route!1
-//Routes:,
-productRouter.post('/createProduct',checkJWT,upload.array('productImages',4),createProduct);
+//Routes:,,checkJWT
+productRouter.post('/createProduct',upload.array('productImages',4),createProduct);
  //add later the express validator- after handle the multiform/data error (that express-valid dont have access to the req.body)
 
 productRouter.get('/readProducts',readProducts);

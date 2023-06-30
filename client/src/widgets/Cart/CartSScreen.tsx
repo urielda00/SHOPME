@@ -111,7 +111,7 @@ const CartSScreen = () => {
 export default CartSScreen;    
 
 const containerStyle:React.CSSProperties={
-  height:'85vh',
+  height:'88vh',
   width:'90%',
   backgroundColor:'#fff',
   borderRadius:'20px',

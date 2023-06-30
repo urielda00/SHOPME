@@ -179,56 +179,9 @@ export const deleteUser = async(req, res) => {
 //Sign- out: //later just make in the client deleting of this cookie.
 export const signOut= async(req,res)=>{
   try {
-  //save the cart for the next usage:
-  const {cart, userName, totalPrice} = req.body;
-  if(cart.length>0){
-  const findUser = await Cart.findOne({userName});
-  if(findUser){
-  const resultArray=[];
-
-  for(let i=0;i<cart.length;i++){
-   let productId= cart[i]._id;
-   let productName= cart[i].productName;
-   let itemQuantity= cart[i].itemQuantity;
-   let shortDescription= cart[i].shortDescription;
-   let price= cart[i].price;
-   let image= cart[i].image;
-   resultArray.push({productId, productName, itemQuantity,shortDescription, price, image}) 
-  };
-   await Cart.findOneAndUpdate({userName},
-    {
-      products:resultArray,
-      totalPrice
-    })
     res.clearCookie('session-token');
-    res.json('cookie has deleted,and  user cart updated successfully');
-  }else{
-    //if the user doesn't have a cart:
-    const resultArray=[];
-    for(let i=0;i<cart.length;i++){
-     let productId= cart[i]._id;
-     let productName= cart[i].productName;
-     let itemQuantity= cart[i].itemQuantity;
-     let shortDescription= cart[i].shortDescription;
-     let price= cart[i].price;
-     let image= cart[i].image;
-     resultArray.push({productId, productName, itemQuantity,shortDescription, price,image}) 
-  };
-    const createCart= new Cart({
-      userName,
-      products: resultArray,
-      totalPrice 
-    });
-    await createCart.save();
-    res.clearCookie('session-token');
-    res.json('cookie has deleted,and  user cart created successfully');
-  } }else{
-    res.clearCookie('session-token');
-    res.json('cookie has deleted,and  user cart created successfully');
-  }
-    
+    res.json('cookie has deleted successfully');  
   } catch (error) {
     res.status(500).json(error.message)
-  }
-   
+  }  
 };
