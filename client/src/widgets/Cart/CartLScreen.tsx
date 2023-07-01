@@ -9,6 +9,7 @@ import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import CloseIcon from '@mui/icons-material/Close';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
+import ErrorMessages from './ErrorMessages';
 // const userName= window.sessionStorage.getItem('userNameHere');
 
 const CartLScreen = () => {
@@ -95,10 +96,7 @@ const CartLScreen = () => {
 
         <Box sx={{textAlign:'left',width:'25%'}}>
           {
-            warningMessage && 
-            <div style={warningMessageStyle}>
-             {warningMessage}
-            </div>
+            warningMessage && <ErrorMessages/>
           }
          <div style={{display:'flex', alignItems:'end', justifyContent:'space-between'}}>
              <h1 style={{marginTop:'15px',color:'black',marginLeft:'-60px',fontFamily:'"Tilt Prism", cursive'}}>

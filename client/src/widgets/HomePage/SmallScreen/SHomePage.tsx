@@ -5,7 +5,7 @@ import { Box, Button } from '@mui/material';
  const SHomePage = () => {
   return (
     <Box  style={containerStyle}>
-     <Button variant='contained'  style={{position:'relative',left:'33%', top:'25%', width:'160px', height:'60px', backgroundColor:'#FC2947'}}>Buy Now</Button>
+     <Button variant='contained'  style={{position:'relative',left:'33%', top:'25%', width:'160px', height:'60px', backgroundColor:'#FC2947'}}>Shop Now</Button>
     </Box>
   )
 };

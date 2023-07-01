@@ -1,0 +1,103 @@
+import { Box } from "@mui/material";
+import React from "react";
+import { Link } from "react-router-dom";
+
+//The array to loop on:
+const categoriesList = ['Mobile','Laptops','Watches','Tablets','HPs','PC'];
+const shopList = ['Shop All','New In','Best Offers','2023 Items','2022 Items'];
+const supportList = ['My account','FAQ','Terms','Privacy Policy'];
+
+
+ const OpenCategories = ({hover}:any) => {
+  //Get the hover prop from the navbar, and apear if true.
+  const someStyle :any=(hover:any)=> {
+    return{width:'1000px',
+    height:'400px',
+    backgroundColor:'#FCE9F1',
+    top:'60px',
+    left:'20px',
+    position:'absolute',
+    display:hover?'flex':'none',
+    borderRadius:'10px',
+    padding:'20px',
+    justifyContent:'space-between',
+    boxShadow: '0 1px 2px  rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) '
+    }
+  };
+
+
+  return (
+    <Box style={someStyle(hover)}>
+       <Box sx={childContainerStyle}>
+         <h1 style={h1Style}>Categories</h1>
+         <ul style={{listStyle:'none'}}>
+            {
+              categoriesList.map((item:string,index:number)=>{
+                return(
+                  <Box sx={{":hover":{fontSize:'20px'}}} key={index}>
+                     <Link style={linkStyle} to='/'>
+                       <p style={{marginBottom:'20px'}}>{item}</p>
+                    </Link>
+                  </Box>
+                )
+              })
+            }
+         </ul>
+      </Box>
+
+      <Box sx={childContainerStyle}>
+         <h1 style={h1Style}>Shop</h1>
+         <ul style={{listStyle:'none'}}>
+            {
+              shopList.map((item:string,index:number)=>{
+                return(
+                  <Box sx={{":hover":{fontSize:'20px'}}} key={index}>
+                    <Link style={linkStyle} to='/'>
+                      <p style={{marginBottom:'20px'}}>{item}</p>
+                     </Link>
+                 </Box>
+               )
+              })
+            }
+         </ul>
+      </Box>
+
+      <Box sx={childContainerStyle}>
+         <h1 style={h1Style}>Support</h1>
+           <ul style={{listStyle:'none'}}>
+              {
+                supportList.map((item:string,index:number)=>{
+                  return(
+                    <Box sx={{":hover":{fontSize:'20px'}}} key={index}>
+                       <Link style={linkStyle} to='/'>
+                         <p style={{marginBottom:'20px'}} >{item}</p>
+                      </Link>
+                    </Box>
+                   )
+                })
+              }
+           </ul>
+      
+      </Box>
+    </Box>
+  )
+};
+export default OpenCategories;
+
+
+//Style here:
+const linkStyle:React.CSSProperties = {
+  textDecoration:'none',
+  color:'black'
+};
+const h1Style:React.CSSProperties = {
+  marginBottom:'25px',
+  textDecoration:'underline 1px',
+  textUnderlineOffset:'8px'
+};
+const childContainerStyle:React.CSSProperties = {
+  width:'32%',
+  textAlign:'center',
+  padding:'10px'
+};
+

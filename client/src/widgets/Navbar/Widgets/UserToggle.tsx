@@ -1,13 +1,14 @@
 //Esternal imports:
 import React from 'react';
-import {MenuItem ,MenuList ,Popper ,Paper,
-   Grow ,ClickAwayListener ,Divider } from '@mui/material';
+import {MenuItem ,MenuList ,Popper ,Paper,Grow ,ClickAwayListener ,Divider } from '@mui/material';
+import {IconButton} from '@mui/material';  
 
 //Icons:
 import PermIdentityOutlinedIcon from '@mui/icons-material/PermIdentityOutlined';
+import { Link } from 'react-router-dom';
 // import Avatar from '@mui/material/Avatar/Avatar';
 // import MenuIcon from '@mui/icons-material/Menu'; //for small screens.
-import {IconButton} from '@mui/material';
+
 
 export const UserToggle = () => {
     const [open, setOpen] = React.useState(false);
@@ -79,9 +80,13 @@ export const UserToggle = () => {
                     aria-labelledby="composition-button"
                     onKeyDown={handleListKeyDown}
                   >
-                    <MenuItem  onClick={handleClose}>Login</MenuItem>
+                    <Link style={linkStyle} to='/login'>
+                       <MenuItem  onClick={handleClose}>Login</MenuItem>
+                    </Link>
                     <Divider />
-                    <MenuItem onClick={handleClose}>Register</MenuItem>
+                    <Link style={linkStyle} to='/register'>
+                       <MenuItem onClick={handleClose}>Register</MenuItem>
+                    </Link>
                   </MenuList>
                 </ClickAwayListener>
               </Paper>
@@ -91,3 +96,8 @@ export const UserToggle = () => {
       </>
   )
 }
+
+const linkStyle = {
+  textDecoration:'none',
+  color:'black'
+};

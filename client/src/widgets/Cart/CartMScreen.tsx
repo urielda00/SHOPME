@@ -9,6 +9,7 @@ import RemoveIcon from '@mui/icons-material/Remove';
 import CloseIcon from '@mui/icons-material/Close';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 import React from 'react';
+import ErrorMessages from './ErrorMessages';
 // const userName= window.sessionStorage.getItem('userNameHere');
 
 const CartMScreen = () => {
@@ -19,10 +20,7 @@ const CartMScreen = () => {
         <Box sx={{display:'flex',alignItems:'end', justifyContent:'space-between'}}>
            {/* error messages:*/}
            {
-            warningMessage && 
-            <div style={warningMessageStyle}>
-             {warningMessage}
-            </div>
+            warningMessage && <ErrorMessages/>
           }
           <div>
            <h1 style={{color:'black',fontFamily:'"Tilt Prism", cursive'}}>SHOPPING CART</h1>
@@ -167,7 +165,8 @@ const listStyle:React.CSSProperties={
   justifyContent:'space-between',
   alignItems:'center',
   width:'100%',
-  marginTop:'7px'
+  marginTop:'7px',
+  marginBottom:'10px'
 };
 
 const textFieldStyle:React.CSSProperties={

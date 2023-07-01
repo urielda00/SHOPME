@@ -1,7 +1,7 @@
 import { useInfiniteQuery } from "react-query";
 
 const LIMIT = 2; //The limit items per page
-const fetchRepositories = async (page:any) => {
+const fetchItems = async (page:any) => {
   const response = 
   await fetch(`http://localhost:5000/product/readProducts?per_page=${LIMIT}&page=${page}`)
   return response.json()
@@ -10,8 +10,8 @@ const fetchRepositories = async (page:any) => {
 export const UseInfiniteData = () => {
  
   return useInfiniteQuery(
-    'repos', 
-    ({pageParam = 1}) => fetchRepositories(pageParam),
+    'items', 
+    ({pageParam = 1}) => fetchItems(pageParam),
     {
       getNextPageParam: (lastPage, allPages) => {
            const nextPage = allPages.length + 1

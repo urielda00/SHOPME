@@ -8,6 +8,7 @@ import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import CloseIcon from '@mui/icons-material/Close';
 import React from 'react';
+import ErrorMessages from './ErrorMessages';
 // const userName= window.sessionStorage.getItem('userNameHere');
 
 const CartSScreen = () => {
@@ -22,10 +23,7 @@ const CartSScreen = () => {
            </Box>
            {/* case of warning message */}
            {
-            warningMessage && 
-            <div style={warningMessageStyle}>
-             {warningMessage}
-            </div>
+            warningMessage && <ErrorMessages/>
            }
            <Box sx={{display:'flex', marginTop:'10px',justifyContent:'space-between'}}>
              <div><p style={{color:'grey'}}>Total Items: {totalQuantity}</p></div>

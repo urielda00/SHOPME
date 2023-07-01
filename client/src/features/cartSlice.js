@@ -1,11 +1,12 @@
 import { createSlice} from "@reduxjs/toolkit";
+import ErrorMessages from "../widgets/Cart/ErrorMessages";
 
 const initialState = {
   cart: [],
   // userName:'',
   totalQuantity: 0,
   totalPrice:0,
-  warningMessage: null //make this array- and it will be looped in the map- make this as a different component!- widget one.
+  warningMessage: null//make this array- and it will be looped in the map- make this as a different component!- widget one.
 };
 
 
@@ -19,7 +20,7 @@ export const cartSlice= createSlice({
     //check if the item already in the cart
     const itemIndex = state.cart.findIndex((item)=>item._id === action.payload._id);
     if(itemIndex>=0){
-      state.cart[itemIndex].itemQuantity +=1;
+      state.cart[itemIndex].itemQuantity++;
       state.totalPrice+=action.payload.price;
     }else{
     //if not the item exist- push it to the cart.
@@ -38,7 +39,7 @@ export const cartSlice= createSlice({
      state.cart[itemIndex].itemQuantity +=1; 
      state.totalPrice+=action.payload.price;
     }else{
-    state.warningMessage = `The  ${action.payload.productName} in the stock is ${action.payload.quantity} units!`
+    state.warningMessage = `${action.payload.productName} is out of stock. The max is ${action.payload.quantity}`
     }
   },
   decrementQuantity: (state, action)=>{
