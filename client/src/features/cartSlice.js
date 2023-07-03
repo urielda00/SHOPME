@@ -3,7 +3,7 @@ import ErrorMessages from "../widgets/Cart/ErrorMessages";
 
 const initialState = {
   cart: [],
-  // userName:'',
+  // userName:'', //orr add later the- isLogged of boolean type.
   totalQuantity: 0,
   totalPrice:0,
   warningMessage: null//make this array- and it will be looped in the map- make this as a different component!- widget one.

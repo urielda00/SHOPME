@@ -18,7 +18,9 @@ import Footer from './components/Footer';
 // let status: Status = true
 import InfiniteJune  from './pages/InfiniteJune';
 import ProductsList from './pages/ProductsList';
-
+import InfiniteDisplay from './pages/InfiniteDisplay';
+import UserPage from './pages/UserPage';
+import ProtectedRoute from './components/ProtectedRoutes';
 const App=()=> {  
  
   return (
@@ -37,6 +39,11 @@ const App=()=> {
       <Route path='*' element={<NoMatch/>}/>
       <Route path='/productsList' element={<ProductsList/>}/>
       <Route path='/infinity' element={<InfiniteJune/>}/>
+      <Route path='/user' element={
+         <ProtectedRoute>
+           <UserPage/>
+         </ProtectedRoute>
+        }/>
     </Routes>  
     
     <ScrollToTop/>

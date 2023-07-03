@@ -152,8 +152,9 @@ const container:React.CSSProperties={
 
 const childContainer1:React.CSSProperties={
   display:'flex',
- justifyContent:'space-between',
- width:'65%',overflowY:'scroll',
+  justifyContent:'space-between',
+  width:'65%',
+  overflowY:'scroll',
   overflowX:'hidden'
 };
 

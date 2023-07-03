@@ -1,17 +1,38 @@
 import { Box } from "@mui/material";
-import React from "react";
+import React,{useState} from "react";
 import { Link } from "react-router-dom";
+//neet to change the links on the categories.
 
-//The array to loop on:
-const categoriesList = ['Mobile','Laptops','Watches','Tablets','HPs','PC'];
-const shopList = ['Shop All','New In','Best Offers','2023 Items','2022 Items'];
-const supportList = ['My account','FAQ','Terms','Privacy Policy'];
+//The arrays to loop on:
+const categoriesList = [
+  {name:'Mobiles', category:'phones'},
+  {name:'Laptops', category:'laptops'},
+  {name:'Watches', category:'watches'},
+  {name:'Tablets', category:'tablets'},
+  {name:'HeadPhones', category:'headPhones'},
+  {name:'PC', category:'pc'},
+];
 
+const shopList = [
+  {name:'Shop All',link:'/infinity'},
+  {name:'New In',link:'/newItems'},
+  {name:'Best Offers',link:'/bestOffers'},
+  {name:'2023 Items',link:'/items/2023'},
+  {name:'2022 Items',link:'/items/2022'}
+];
+
+const supportList = [
+  {name:'My account',link:'/user/account'},
+  {name:'FAQ',link:'/faq'},
+  {name:'Terms',link:'/terms'},
+  {name:'Privacy Policy',link:'privacyPolicy'}
+];
 
  const OpenCategories = ({hover}:any) => {
   //Get the hover prop from the navbar, and apear if true.
-  const someStyle :any=(hover:any)=> {
-    return{width:'1000px',
+    const someStyle :any=(hover:any)=> {
+    return {
+    width:'1000px',
     height:'400px',
     backgroundColor:'#FCE9F1',
     top:'60px',
@@ -25,18 +46,17 @@ const supportList = ['My account','FAQ','Terms','Privacy Policy'];
     }
   };
 
-
   return (
     <Box style={someStyle(hover)}>
        <Box sx={childContainerStyle}>
          <h1 style={h1Style}>Categories</h1>
          <ul style={{listStyle:'none'}}>
             {
-              categoriesList.map((item:string,index:number)=>{
+              categoriesList.map((item:any,index:any)=>{
                 return(
-                  <Box sx={{":hover":{fontSize:'20px'}}} key={index}>
-                     <Link style={linkStyle} to='/'>
-                       <p style={{marginBottom:'20px'}}>{item}</p>
+                  <Box sx={{":hover":{fontSize:'20px'}}} key={index} >
+                     <Link style={linkStyle} to={`/infinity?toCategory=${item.category}`}>                
+                       <p style={{marginBottom:'20px'}}>{item.name}</p>
                     </Link>
                   </Box>
                 )
@@ -49,11 +69,11 @@ const supportList = ['My account','FAQ','Terms','Privacy Policy'];
          <h1 style={h1Style}>Shop</h1>
          <ul style={{listStyle:'none'}}>
             {
-              shopList.map((item:string,index:number)=>{
+              shopList.map((item:any,index:number)=>{
                 return(
                   <Box sx={{":hover":{fontSize:'20px'}}} key={index}>
-                    <Link style={linkStyle} to='/'>
-                      <p style={{marginBottom:'20px'}}>{item}</p>
+                    <Link style={linkStyle} to={item.link}>
+                      <p style={{marginBottom:'20px'}}>{item.name}</p>
                      </Link>
                  </Box>
                )
@@ -66,11 +86,11 @@ const supportList = ['My account','FAQ','Terms','Privacy Policy'];
          <h1 style={h1Style}>Support</h1>
            <ul style={{listStyle:'none'}}>
               {
-                supportList.map((item:string,index:number)=>{
+                supportList.map((item:any,index:number)=>{
                   return(
                     <Box sx={{":hover":{fontSize:'20px'}}} key={index}>
-                       <Link style={linkStyle} to='/'>
-                         <p style={{marginBottom:'20px'}} >{item}</p>
+                       <Link style={linkStyle} to={item.link}>
+                         <p style={{marginBottom:'20px'}} >{item.name}</p>
                       </Link>
                     </Box>
                    )

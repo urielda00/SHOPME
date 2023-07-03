@@ -9,15 +9,13 @@ import {Box,Button,
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import IconButton from '@mui/material/IconButton';
+import { Link } from 'react-router-dom';
 
 type Anchor = 'left';
 
 const OpenMenu =()=> {
-  const [state, setState] = React.useState({
-    left: false,
-  });
-
-  const toggleDrawer =
+  const [state, setState] = React.useState({left:false});
+    const toggleDrawer =
     (anchor: Anchor, open: boolean) =>
     (event: React.KeyboardEvent | React.MouseEvent) => {
       if (
@@ -39,35 +37,44 @@ const OpenMenu =()=> {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-          <ListItemButton style={{display:'flex', alignItems:'center',justifyContent:'center'}}>
-          <ListItem key={1} >
-          <ListItemText primary='Home'/>
-          </ListItem>
-          </ListItemButton>
+          <Link style={linkStyle} to='/'>
+             <ListItemButton style={{display:'flex', alignItems:'center',justifyContent:'center'}}>
+                <ListItem key={1} >
+                  <ListItemText primary='Home'/>
+                </ListItem>
+             </ListItemButton>
+          </Link>
+         
+          <Link style={linkStyle} to='/itemList'>
+            <ListItemButton style={{display:'flex', alignItems:'center',justifyContent:'center'}}>
+              <ListItem key={2} >
+                <ListItemText primary='Shop'/>
+              </ListItem>
+            </ListItemButton>
+          </Link>
 
-          <ListItemButton style={{display:'flex', alignItems:'center',justifyContent:'center'}}>
-          <ListItem key={2} >
-          <ListItemText primary='Shop'/>
-          </ListItem>
-          </ListItemButton>
+          <Link style={linkStyle} to='/a'>
+            <ListItemButton style={{display:'flex', alignItems:'center',justifyContent:'center'}}>
+              <ListItem key={3} >
+                <ListItemText primary='Explore'/>
+              </ListItem>
+            </ListItemButton>
+          </Link>
 
-          <ListItemButton style={{display:'flex', alignItems:'center',justifyContent:'center'}}>
-          <ListItem key={3} >
-          <ListItemText primary='Explore'/>
-          </ListItem>
-          </ListItemButton>
-
-          <ListItemButton style={{display:'flex', alignItems:'center',justifyContent:'center'}}>
-          <ListItem key={4} >
-          <ListItemText primary='Contact'/>
-          </ListItem>
-          </ListItemButton>
+          <Link style={linkStyle} to='/a'>
+             <ListItemButton style={{display:'flex', alignItems:'center',justifyContent:'center'}}>
+               <ListItem key={4} >
+                  <ListItemText primary='Contact'/>
+               </ListItem>
+             </ListItemButton>
+          </Link>
 
           <Stack>
-        <Button style={{color:'black'}} onClick={toggleDrawer('left', true)}>
-          <CloseOutlinedIcon />
-        </Button>
-      </Stack>
+            <Button style={{color:'black'}} onClick={toggleDrawer('left', true)}>
+               <CloseOutlinedIcon />
+            </Button>
+          </Stack>
+
       </List>
   </Box>
   );
@@ -77,11 +84,9 @@ const OpenMenu =()=> {
     <div style={{marginLeft:'-20px'}}>
       { 
         <React.Fragment >
-          {/* <Button style={{color:'black'}} onClick={toggleDrawer('left', true)}><MenuIcon/></Button> */}
-
           <IconButton style={{color:'black'}} onClick={toggleDrawer('left', true)} size='large'>
             <MenuIcon fontSize='large' sx={{ stroke: "#ffffff", strokeWidth: 1 }}/>
-            </IconButton>
+          </IconButton>
             
           <SwipeableDrawer
             anchor='left'
@@ -89,7 +94,7 @@ const OpenMenu =()=> {
             onClose={toggleDrawer('left', false)}
             onOpen={toggleDrawer('left', false)}
           >
-            {list('left')}
+           {list('left')}
           </SwipeableDrawer>
         </React.Fragment>
       }
@@ -98,3 +103,9 @@ const OpenMenu =()=> {
 }
 
 export default OpenMenu;
+
+//Style here:
+const linkStyle:React.CSSProperties = {
+  textDecoration:'none',
+  color:'black'
+};
