@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Button } from '@mui/material';
 
 
-const NoMatch= ()=>{
+const NomatchPage= ()=>{
   return(
     <div style={Container}>
     <div style={InsideDiv}>
@@ -18,7 +18,7 @@ const NoMatch= ()=>{
   )
 }
 
-export default NoMatch;
+export default NomatchPage;
 
 //component's style here:
 const Container:React.CSSProperties={

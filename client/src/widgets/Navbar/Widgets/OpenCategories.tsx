@@ -14,7 +14,7 @@ const categoriesList = [
 ];
 
 const shopList = [
-  {name:'Shop All',link:'/infinity'},
+  {name:'Shop All',link:'/productsList'},
   {name:'New In',link:'/newItems'},
   {name:'Best Offers',link:'/bestOffers'},
   {name:'2023 Items',link:'/items/2023'},
@@ -55,7 +55,7 @@ const supportList = [
               categoriesList.map((item:any,index:any)=>{
                 return(
                   <Box sx={{":hover":{fontSize:'20px'}}} key={index} >
-                     <Link style={linkStyle} to={`/infinity?toCategory=${item.category}`}>                
+                     <Link style={linkStyle} to={`/productsList?toCategory=${item.category}`}>                
                        <p style={{marginBottom:'20px'}}>{item.name}</p>
                     </Link>
                   </Box>

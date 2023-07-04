@@ -21,7 +21,7 @@ import OpenCategories from '../Widgets/OpenCategories';
            <div onMouseEnter={()=>{setHover(true)}} onMouseLeave={()=>{setHover(false)}} 
              style={{display:'flex', alignItems:'center'}}>
               <Box sx={{":hover":{opacity:'0.5',fontSize:'18px', borderRadius:'30px'}}}>
-               <NavLink style={navLinkStyle} to='/infinity'>SHOP</NavLink>
+               <NavLink style={navLinkStyle} to='/productsList'>SHOP</NavLink>
               </Box>
              <OpenCategories hover={hover}/>
              <ArrowDropDownIcon style={{marginLeft:'-10px',marginRight:'10px'}}/>

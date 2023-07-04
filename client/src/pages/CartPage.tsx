@@ -2,7 +2,8 @@ import { Box} from '@mui/material';
 import CartLScreen from '../widgets/Cart/CartLScreen';
 import CartMScreen from '../widgets/Cart/CartMScreen';
 import CartSScreen from '../widgets/Cart/CartSScreen';
-const Cart = () => {
+const CartPage = () => {
+  
   return (
     <div className='ScrollCartStyle'>
       {/* for big screens: */}
@@ -22,4 +23,4 @@ const Cart = () => {
     </div>
   )
 };
-export default Cart;
+export default CartPage;

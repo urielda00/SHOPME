@@ -4,7 +4,7 @@ import { Toolbar } from '@mui/material';
 import LargeScreen from '../widgets/Navbar/LARGE/LargeScreen';
 import MediumScreen from '../widgets/Navbar/MEDIUM/MediumScreen';
 import SmallScreen from '../widgets/Navbar/SMALL/SmallScreen';
-// const userName= window.sessionStorage.getItem('userNameHere');
+// const userName= window.sessionStorage.getItem('userNameHere'); //or use the redux for that?.
 
 //Types:
 interface Props {isActive: boolean};

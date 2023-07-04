@@ -8,7 +8,7 @@ import HeadphonesIcon from '@mui/icons-material/Headphones';
 import AnimationIcon from '@mui/icons-material/Animation';
 import AllInclusiveIcon from '@mui/icons-material/AllInclusive';
 
-
+//The data for the secondrary category filterBar
 export const categoryList = [
   {name:'See All',icon:<AllInclusiveIcon/>,category:false},
   {name:'SmartPhones',icon:<PhoneAndroidIcon/>,category:'phone'},

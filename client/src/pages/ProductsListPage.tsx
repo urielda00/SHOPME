@@ -2,13 +2,13 @@
 import { useEffect,useState } from 'react';
 import { UseInfiniteData } from "../services/ProuductList/UseInfiniteData";
 import { Box, Button } from '@mui/material';
-import Loading from '../widgets/InfiniteJune/Loading';
-import { categoryList } from './InfiniteJuneData';
-import InfiniteDisplay from './InfiniteDisplay';
+import Loading from '../widgets/ProductsList/Loading';
+import { categoryList } from '../widgets/ProductsList/ProductsListData';
+import ProductsListDisplay from '../widgets/ProductsList/ProductsListDisplay';
 import { useSearchParams } from 'react-router-dom'
 
 //The component:
-const InfiniteJune = (some:any) => {
+const ProductsListPage = (some:any) => {
   const [searchParams] = useSearchParams();
 
   //set the category state, then pass it to change the query unique key to refresh the query:
@@ -92,13 +92,12 @@ const InfiniteJune = (some:any) => {
           })
          }
        </Box>
-       {isSuccess && <InfiniteDisplay items={items} data={data} /> }
-       {isFetchingNextPage && hasNextPage ? <div style={{width:'100%', height:'30px', textAlign:'center'}}>'Loading...'</div> : <div style={{width:'100%', height:'30px', textAlign:'center'}}>'No search left'</div>}
+       {isSuccess && <ProductsListDisplay items={items} data={data} /> }
      </div>
   )
 }
 
-export default InfiniteJune;
+export default ProductsListPage;
 
 
 
