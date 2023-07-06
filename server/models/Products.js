@@ -20,6 +20,9 @@ const ProductSchema= new mongoose.Schema({
     productImages: [String],
     status: String,
     company: String,
+    releaseYear:Number,
+    os:String,
+    brand:String,
 } ,
 { timestamps: true });
 

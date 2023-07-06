@@ -33,14 +33,14 @@ const Home6nd = () => {
          <Box style={smallImagesStyle}
              sx={{ ":hover":{ transform: 'scale(1.1)'}}}>
               <Link to='/some'>
-              <img style={{width:'100%',height:'95%',borderRadius:'30px',objectFit:'cover'}} src={img1} /> 
+              <img alt='' style={{width:'100%',height:'95%',borderRadius:'30px',objectFit:'cover'}} src={img1} /> 
               </Link>
              </Box>
        
          <Box style={smallImagesStyle}
              sx={{ ":hover":{ transform: 'scale(1.1)'}}}>
               <Link to='/some'>
-              <img style={{width:'100%',height:'95%',borderRadius:'30px',objectFit:'cover'}} src={img2}/> 
+              <img alt='' style={{width:'100%',height:'95%',borderRadius:'30px',objectFit:'cover'}} src={img2}/> 
               </Link>
              </Box>
        </Box>
@@ -49,13 +49,13 @@ const Home6nd = () => {
         <Box style={smallImagesStyle}
              sx={{ ":hover":{ transform: 'scale(1.1)'}}}>
               <Link to='/some'>
-              <img style={{width:'100%',height:'95%',borderRadius:'30px',objectFit:'cover'}} src={img3}/> 
+              <img alt='' style={{width:'100%',height:'95%',borderRadius:'30px',objectFit:'cover'}} src={img3}/> 
               </Link>
               </Box> 
          <Box style={smallImagesStyle}
              sx={{":hover":{ transform: 'scale(1.1)'}}}>
               <Link to='/some'>
-              <img style={{width:'100%',height:'95%',borderRadius:'30px',objectFit:'cover'}} src={img4}/>
+              <img alt='' style={{width:'100%',height:'95%',borderRadius:'30px',objectFit:'cover'}} src={img4}/>
                </Link>
              </Box>
        </Box>
@@ -67,7 +67,7 @@ const Home6nd = () => {
      <Box style={bigImageStyle}
              sx={{ ":hover":{ transform: 'scale(1.07)'}}}>
               <Link to='/some'>
-                <img style={{width:'100%',height:'95%',borderRadius:'30px',objectFit:'cover'}} src={img5}/>
+                <img alt='' style={{width:'100%',height:'95%',borderRadius:'30px',objectFit:'cover'}} src={img5}/>
              </Link>
      </Box>
 

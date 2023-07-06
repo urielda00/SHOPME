@@ -1,34 +1,29 @@
 //this is the logic component!
-import { useEffect,useState } from 'react';
+import { useEffect } from 'react';
 import { UseInfiniteData } from "../services/ProuductList/UseInfiniteData";
 import { Box, Button } from '@mui/material';
 import Loading from '../widgets/ProductsList/Loading';
-import { categoryList } from '../widgets/ProductsList/ProductsListData';
+import { categoryList } from '../widgets/ProductsList/data/ProductsListPageData';
 import ProductsListDisplay from '../widgets/ProductsList/ProductsListDisplay';
 import { useSearchParams } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import AllInclusiveIcon from '@mui/icons-material/AllInclusive';
+
 
 //The component:
-const ProductsListPage = (some:any) => {
+const ProductsListPage = () => {
   const [searchParams] = useSearchParams();
 
   //set the category state, then pass it to change the query unique key to refresh the query:
-  const [category,setCategory] = useState<boolean|string>(false);
 
 
-  const toCategory = searchParams.get('toCategory')
-  console.log(toCategory);
-
-   
+  const toCategory = searchParams.get('toCategory');
+  const year = searchParams.get('year');
+  const os = searchParams.get('os');
+  const brand = searchParams.get('brand');
+    const {data, isSuccess, hasNextPage, fetchNextPage , isLoading}
+   = UseInfiniteData(toCategory,year,os,brand);
   
-  //  //Import the data result from the infinityQuery,with the category as an argument:
-  //  const {data, isSuccess, hasNextPage, fetchNextPage, isFetchingNextPage , isLoading}
-  //  = UseInfiniteData(toCategory);
-  
-    const {data, isSuccess, hasNextPage, fetchNextPage, isFetchingNextPage , isLoading}
-   = UseInfiniteData(category||toCategory);
-  
-  
-
   
 
   //mount the component everytime that the hasNextPage is checked:
@@ -36,7 +31,8 @@ const ProductsListPage = (some:any) => {
 
        //fetching the next page onScroll:
        let fetching :boolean = false;
-       const testscroll = document.getElementById('testscroll');
+      //  const testscroll = document.getElementById('testscroll');
+      
        const handleScroll = async (e:any) => {
          const {scrollHeight, scrollTop, clientHeight} = e.target.scrollingElement;
            if(!fetching && scrollHeight - scrollTop <= clientHeight * 1.2) {
@@ -44,17 +40,9 @@ const ProductsListPage = (some:any) => {
               if(hasNextPage) await fetchNextPage()
               fetching = false
               }
-          // const bottom = e.target.scrollHeight - e.target.scrollTop === e.target.clientHeight;
-          // if(bottom){
-          //   fetching = true
-          //   if(hasNextPage) await fetchNextPage()
-          //   fetching = false
-          // }
        };
-      //  testscroll?.addEventListener('scroll', handleScroll)
        document.addEventListener('scroll', handleScroll)
        return () => {
-        // testscroll?.removeEventListener('scroll', handleScroll)
          document.removeEventListener('scroll', handleScroll)
        } 
       }, [fetchNextPage, hasNextPage]);
@@ -76,18 +64,23 @@ const ProductsListPage = (some:any) => {
    return (
      <div>
       <Box sx={{ width:'100%', height:'90px',display:'flex',alignItems:'center',
-                  justifyContent:'center',backgroundColor:'#FFEADD'}}>
+                  justifyContent:'center',backgroundColor:'#ECE8DD',boxShadow: '0 1px 2px rgba(0, 0, 0, 0.3), 0 0 30px rgba(0, 0, 0, 0.1) inset',marginBottom:'2px'}}>
+                  <Link to='/productsList'>
+                    <Button sx={{color:'black',":hover":{color:'grey'}}}>
+                       <Box sx={{marginRight:'5px'}}>{'See All'}</Box>{<AllInclusiveIcon/>}
+                    </Button>
+                  </Link>
          {
-          categoryList.map((item:any,index:any)=>{
+          categoryList.slice(1).map((item:any,index:any)=>{
             return(
-              <Box sx={{marginLeft:'15px',marginRight:'15px'}} key={index}>
-                <Button  onClick={()=>{
-                  const itemCategory = item.category;
-                  setCategory(itemCategory)
-                  }} sx={{color:'black',":hover":{fontSize:'15px'}}}>
+              <Link to={`/productsList?toCategory=${item.category}`}>
+              <Button sx={{marginLeft:'15px',marginRight:'15px'}} key={index}>   
+                <Button  onClick={()=>{                  
+                  }}  sx={{color:'black',":hover":{color:'grey'}}}>
                    <Box sx={{marginRight:'5px'}}>{item.name}</Box>{item.icon}
                 </Button>
-              </Box>
+              </Button>
+              </Link>
             )
           })
          }
@@ -98,7 +91,3 @@ const ProductsListPage = (some:any) => {
 }
 
 export default ProductsListPage;
-
-
-
-  

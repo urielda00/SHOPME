@@ -9,7 +9,7 @@ import { Box } from '@mui/material';
         style={{display:'flex',width:'100%',height:'50vh',
         flexDirection:'column',justifyContent:'center',alignItems:'center',backgroundColor:'black'}}>
          <div>
-           <img src={back1} width={'100%'} height={'70%'}/>
+           <img alt='' src={back1} width={'100%'} height={'70%'}/>
          </div>
          <Link to='/' style={{textDecoration:'none',fontSize:'15px',color:'black'}}>
            <Box sx={{":hover":{opacity:'0.7'}}} style={{width:'120px',height:'40px',

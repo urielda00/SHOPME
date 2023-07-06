@@ -121,19 +121,19 @@ const containerStyle:React.CSSProperties={
   minWidth:'380px'
 };
 
-const warningMessageStyle:React.CSSProperties={
-  zIndex:2000,
-  position:'absolute',
-  backgroundColor:'red',         
-  top:'220px',
-  right:'55px',
-  opacity:'0.8',
-  color:'black',
-  borderRadius:'5px',
-  width:'300px',
-  textAlign:'center',
-  height:'30px'
-};
+// const warningMessageStyle:React.CSSProperties={
+//   zIndex:2000,
+//   position:'absolute',
+//   backgroundColor:'red',         
+//   top:'220px',
+//   right:'55px',
+//   opacity:'0.8',
+//   color:'black',
+//   borderRadius:'5px',
+//   width:'300px',
+//   textAlign:'center',
+//   height:'30px'
+// };
 
 const liStyle:React.CSSProperties={
   listStyle:'none',

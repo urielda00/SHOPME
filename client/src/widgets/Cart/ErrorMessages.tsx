@@ -28,7 +28,7 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
   }else{
     return setOpen(false)
   } 
-  },[])
+  },[warningMessage])
 
   return (
     <> 

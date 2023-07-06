@@ -1,7 +1,7 @@
 import React from "react";
-import WhatsAppIcon from '@mui/icons-material/WhatsApp';
-import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
-import { Box, IconButton} from "@mui/material";
+// import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+// import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
+import { Box} from "@mui/material";
 
 
  const ContactNavbar = () => {
@@ -35,16 +35,16 @@ import { Box, IconButton} from "@mui/material";
 export default ContactNavbar;
 
 
-const StyledNavBar:React.CSSProperties= {
-  position: 'relative',
-  opacity:0.9,
-  top:'0',
-  width: '100%',
-  background: '#9BABB8',
-  display:'flex',
-  alignItems: 'center',
-  justifyContent:"space-around",
-  padding: '16px 16px',
-  overflow:'hidden',
-  height: '10px'
-};
+// const StyledNavBar:React.CSSProperties= {
+//   position: 'relative',
+//   opacity:0.9,
+//   top:'0',
+//   width: '100%',
+//   background: '#9BABB8',
+//   display:'flex',
+//   alignItems: 'center',
+//   justifyContent:"space-around",
+//   padding: '16px 16px',
+//   overflow:'hidden',
+//   height: '10px'
+// };

@@ -41,14 +41,42 @@ export const createProduct=  async (req, res)=> {
  try {
     //Page, number items per page, and number of item to skip in mongo:
     const page = Number(req.query.page) || 1 ; 
-    const per_page = Number(req.query.per_page); 
+    const per_page = Number(req.query.per_page);
+    const category = req.query.category || false; 
+    const year = req.query.year || false; 
+    const os = req.query.os || false; 
+    const brand = req.query.brand || false; 
     let itemToSkip = 0; 
     let items = []; 
-
+    
     //repeat the Items and push the appropriate items to the result item array:
-    (await Product.find({status: 'available'}).skip(itemToSkip).limit(per_page * page))
-    .forEach((item)=>{items.push(item)})
-    itemToSkip = per_page * page;
+     if (category && brand && os && year ){
+      (await Product.find({$and:[{status: 'available'},{category},{releaseYear:year},{os},{brand}]})
+      .skip(itemToSkip).limit(per_page * page))
+      .forEach((item)=>{items.push(item)})
+      itemToSkip = per_page * page;
+     }else if(category && brand && os ){
+
+      (await Product.find({$and:[{status: 'available'},{category},{os},{brand}]})
+      .skip(itemToSkip).limit(per_page * page))
+      .forEach((item)=>{items.push(item)})
+      itemToSkip = per_page * page;
+     }else if(category && brand){
+
+      (await Product.find({$and:[{status: 'available'},{category},{brand}]})
+      .skip(itemToSkip).limit(per_page * page))
+      .forEach((item)=>{items.push(item)})
+      itemToSkip = per_page * page;
+     }else if(category){
+      (await Product.find({$and:[{status: 'available'},{category}]})
+      .skip(itemToSkip).limit(per_page * page))
+      .forEach((item)=>{items.push(item)})
+      itemToSkip = per_page * page;
+    }else{
+      (await Product.find({status: 'available'}).skip(itemToSkip).limit(per_page * page))
+      .forEach((item)=>{items.push(item)})
+      itemToSkip = per_page * page;
+    }
 
     ProductInfoLogger.log('info','get the products list. status code: 200');
     res.status(200).json(items)

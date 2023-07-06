@@ -86,19 +86,19 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 
 export default Home5nd;
 
-const carousel: React.CSSProperties= {
-    overflow: 'hidden',
-    width: '100%',
-    display: 'flex',
-    height: '100vh',
-    borderRadius:'20px',
-    border:'2px solid black',
-    flexDirection: 'column',
-    justifyContent: 'center',
-  };
+// const carousel: React.CSSProperties= {
+//     overflow: 'hidden',
+//     width: '100%',
+//     display: 'flex',
+//     height: '100vh',
+//     borderRadius:'20px',
+//     border:'2px solid black',
+//     flexDirection: 'column',
+//     justifyContent: 'center',
+//   };
 
-  const inner:React.CSSProperties= {
-    whiteSpace: 'nowrap',
-    transition: 'transform 0.3s',
-    boxShadow: '0 5px 15px rgba(0, 0, 0, 0.05)',
-  }
+  // const inner:React.CSSProperties= {
+  //   whiteSpace: 'nowrap',
+  //   transition: 'transform 0.3s',
+  //   boxShadow: '0 5px 15px rgba(0, 0, 0, 0.05)',
+  // }

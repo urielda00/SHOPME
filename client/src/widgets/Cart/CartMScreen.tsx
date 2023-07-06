@@ -145,19 +145,19 @@ const containerStyle: React.CSSProperties={
   flexDirection:'column'
 };
 
-const warningMessageStyle:React.CSSProperties={
-  zIndex:2000,
-  position:'absolute',
-  backgroundColor:'red',         
-  top:'200px',
-  right:'60px',
-  opacity:'0.8',
-  color:'black',
-  borderRadius:'5px',
-  width:'300px',
-  textAlign:'center',
-  height:'30px'
-};
+// const warningMessageStyle:React.CSSProperties={
+//   zIndex:2000,
+//   position:'absolute',
+//   backgroundColor:'red',         
+//   top:'200px',
+//   right:'60px',
+//   opacity:'0.8',
+//   color:'black',
+//   borderRadius:'5px',
+//   width:'300px',
+//   textAlign:'center',
+//   height:'30px'
+// };
 
 const listStyle:React.CSSProperties={
   listStyle:'none',

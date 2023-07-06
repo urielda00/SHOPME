@@ -1,6 +1,6 @@
 import { Box } from "@mui/material";
-import Filter from "./Filter";
-import SortBy from "./SortBy";
+import Filter from "./Filter/Filter";
+import SortBy from "./SortBy/SortBy";
 import ItemInList from "./ItemInList";
 
 //this is the presentation component:!
@@ -43,7 +43,7 @@ type InfiniteDisplayProps = {
             </div>     
          </Box>
         {/* the filter sidebar */}
-        <div  style={{backgroundColor:'yellow',width:'20%', height:'70vh'}}>
+        <div  style={{backgroundColor:'#ECE8DD',boxShadow:'0 1px 2px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 0, 0, 0.1) inset',width:'20%', height:'120vh'}}>
         <Filter/>
         </div>
       </Box>
@@ -58,22 +58,5 @@ const containerStyle: React.CSSProperties={
   height: '100vh',
   display: 'flex',
   float: 'none',
-  border:'none',
-  
+  border:'none', 
 };
-
-
-
-
-
-{/* {
-         items(data)?.map((item:any)=>{
-            return(
-             <div key={item._id} style={{height:'400px'}}>
-               <img src={`http://localhost:5000/product/readProducts/${item.image}`} 
-                width={'90px'} height={'40px'} />
-                <h2>{item.productName}</h2>
-            </div>
-            )
-          }
-         )} */}

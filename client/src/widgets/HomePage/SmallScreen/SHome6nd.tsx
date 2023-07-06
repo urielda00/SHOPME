@@ -20,25 +20,25 @@ const SHome6nd = () => {
 
       <Box>
         <Link to='/some'>
-           <img style={{width:'100%',height:'100%',borderRadius:'30px',objectFit:'cover'}} src={img1} /> 
+           <img alt='' style={{width:'100%',height:'100%',borderRadius:'30px',objectFit:'cover'}} src={img1} /> 
         </Link>
       </Box>
 
       <Box>
          <Link to='/some'>
-           <img style={{width:'100%',height:'100%',borderRadius:'30px',objectFit:'cover'}} src={img2}/> 
+           <img alt='' style={{width:'100%',height:'100%',borderRadius:'30px',objectFit:'cover'}} src={img2}/> 
          </Link>
       </Box>
       
       <Box>
          <Link to='/some'>
-           <img style={{width:'100%',height:'100%',borderRadius:'30px',objectFit:'cover'}} src={img3}/> 
+           <img alt='' style={{width:'100%',height:'100%',borderRadius:'30px',objectFit:'cover'}} src={img3}/> 
          </Link>
       </Box>
 
        <Box>
          <Link to='/some'>
-           <img style={{width:'100%',height:'100%',borderRadius:'30px',objectFit:'cover'}} src={img4}/>
+           <img alt='' style={{width:'100%',height:'100%',borderRadius:'30px',objectFit:'cover'}} src={img4}/>
          </Link>
        </Box> 
     </Box>

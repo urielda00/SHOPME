@@ -163,16 +163,16 @@ const liStyle:React.CSSProperties={
   display:'flex',
   justifyContent:'space-between'
 };
-const warningMessageStyle:React.CSSProperties={
-  zIndex:2000,
-  position:'absolute',
-  backgroundColor:'red',         
-  top:'190px',
-  right:'190px',
-  opacity:'0.8',
-  color:'black',
-  borderRadius:'5px',
-  width:'300px',
-  textAlign:'center',
-  height:'30px'
-};
+// const warningMessageStyle:React.CSSProperties={
+//   zIndex:2000,
+//   position:'absolute',
+//   backgroundColor:'red',         
+//   top:'190px',
+//   right:'190px',
+//   opacity:'0.8',
+//   color:'black',
+//   borderRadius:'5px',
+//   width:'300px',
+//   textAlign:'center',
+//   height:'30px'
+// };

@@ -18,13 +18,13 @@ import { addToCart } from "../../features/cartSlice";
   };
 
   return (
-    <div style={{height:'280px',width:'100%',backgroundColor:'#fff',marginBottom:'1px',display:'flex',justifyContent:'space-between',padding:'20px',borderBottom:'1px solid grey'}}>
+    <div style={{height:'280px',width:'100%',backgroundColor:'#fff',marginBottom:'1px',display:'flex',justifyContent:'space-between',padding:'20px',borderBottom:'1px solid grey',boxShadow:'1px 1px 1px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 0, 0, 0.1) inset'}}>
 
 
       <div style={{display:'flex'}}>
          <Box sx={{":hover":{opacity:'0.8' }}}>
           <Link to={`/product/:${item._id}`}>
-           <img src={`http://localhost:5000/product/readProducts/${item.image}`} 
+           <img alt='' src={`http://localhost:5000/product/readProducts/${item.image}`} 
            style={{height:'100%',width:'250px',objectFit:'cover',borderRadius:'10px'}} /></Link>
          </Box>
          <div style={{display:'flex',flexDirection:'column',alignContent:'space-around',marginLeft:'20px'}}>
@@ -50,13 +50,13 @@ import { addToCart } from "../../features/cartSlice";
          
       </div>
       
-       <div style={{display:'flex', flexDirection:'column',width:'20%',height:'80%', alignItems:'center',justifyContent:'space-evenly' }}>
-        <Button onClick={()=>{dispatch(addToCart(item))}} variant='contained' sx={{backgroundColor:'#47A992',width:'180px',height:'40px'}}>Add To Cart<AddShoppingCartIcon sx={{marginLeft:'10px'}}/>
+       <div style={{display:'flex', flexDirection:'column',width:'20%',height:'80%', alignItems:'center',justifyContent:'space-evenly',marginTop:'10px' }}>
+        <Button onClick={()=>{dispatch(addToCart(item))}} variant='contained' sx={{backgroundColor:'#47A992',width:'180px',marginLeft:'-20px',height:'40px',":hover":{backgroundColor:'#5D9C59'}}}>Add To Cart<AddShoppingCartIcon sx={{marginLeft:'10px'}}/>
          </Button>
           
           
         <Link to={`/product/:${item._id}`}>
-        <Button variant='contained' sx={{backgroundColor:'#30A2FF',width:'180px',height:'40px'}}> More Info <InfoIcon sx={{marginLeft:'10px'}}/></Button></Link>
+        <Button variant='contained' sx={{backgroundColor:'#30A2FF',marginLeft:'-20px',width:'180px',height:'40px'}}> More Info <InfoIcon sx={{marginLeft:'10px'}}/></Button></Link>
        </div>
        
     </div>
