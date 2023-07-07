@@ -32,7 +32,16 @@ export const Accordions = ()=>{
   const isos = searchParams.get('os');
 
   // Functions variables:
-  function hasQueryParams(url:string) { return url.includes('?') }
+  function hasQueryParams(url:string,brand:any,os:any,year:any){
+
+    if(year){
+      return url.includes('&os')
+    }else if(os){
+      return url.includes('&brand')
+     }else if(brand){
+      return url.includes('?') 
+     }
+    };
 
   const handleAddFilter = (passedCategory:any,brand?:any,os?:any,year?:any) =>{
     if(year){
@@ -87,7 +96,7 @@ export const Accordions = ()=>{
       <AccordionDetails>
         <FormGroup>
           {
-            hasQueryParams(currentUrl) ? <FilterBrands brand={isCategory}/> :
+            hasQueryParams(currentUrl,true,false,false) ? <FilterBrands brand={isCategory}/> :
             <div>choose category first</div>
           }
         </FormGroup>
@@ -103,8 +112,8 @@ export const Accordions = ()=>{
       <AccordionDetails>
        <FormGroup>
          {
-           hasQueryParams(currentUrl) ? <FilterOs brand={isCategory}/>
-           : <div>choose category first</div>
+           hasQueryParams(currentUrl,false,true,false) ? <FilterOs brand={isCategory}/>
+           : <div>choose Brand first</div>
 
          }
       </FormGroup>
@@ -123,7 +132,7 @@ export const Accordions = ()=>{
       <AccordionDetails>
         <FormGroup>
          {
-          hasQueryParams(currentUrl) ?yearsList.map((year)=>{
+          hasQueryParams(currentUrl,false,false,true) ?yearsList.map((year)=>{
            return(
              <FormControlLabel
               control={<Checkbox/>} label={year.year} 
@@ -131,7 +140,7 @@ export const Accordions = ()=>{
              onClick={()=>handleAddFilter(isCategory,isBrand,isos,year.year)} />
            )
           }):
-          <div>choose category first</div>
+          <div>choose OS first</div>
          }
         </FormGroup>
       </AccordionDetails>

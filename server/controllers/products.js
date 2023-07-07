@@ -12,7 +12,7 @@ export const createProduct=  async (req, res)=> {
     const filesnames = req.files.map((file) =>{
      return file.filename;// or file.originalname
     });
-  const {shortDescription, longDescription, price,quantity, category, productName,company}= req.body;
+  const {shortDescription, longDescription, price,quantity, category, productName,os,brand,company,releaseYear}= req.body;
   const saveProduct= new Product({
     productImages: filesnames,
     image: filesnames[0],
@@ -23,10 +23,12 @@ export const createProduct=  async (req, res)=> {
     quantity,
     status: 'available',
     category,
-    company
+    company,
+    releaseYear,
+    os,
+    brand
   });
   await saveProduct.save();
-
   ProductInfoLogger.log('info','Product created successfully status code: 201');
   res.status(201).json({message:'Product created successfully!'});
 

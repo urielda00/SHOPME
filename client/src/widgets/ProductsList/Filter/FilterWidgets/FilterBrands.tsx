@@ -28,7 +28,7 @@ const FilterBrands = ({brand}:any) => {
     case 'watches':
       return <div style={{display:'grid'}}>
       {
-      brandsList.whatches.map((index:any)=>{
+      brandsList.watches.map((index:any)=>{
       return(<FormControlLabel control={<Checkbox/>} label={index} checked={searchParams.get('brand') === `${index}`} onClick={()=>handleAddFilter(isCategory,index)}/>)
       })
       }

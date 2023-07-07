@@ -41,10 +41,10 @@ export const osCaseList = {
   };
 
 export const brandsList = {
-  phones:['Google','SAMSUNG','Apple','OnePlus','Xiaomi','LG','Nokia','Nothing'],
-  whatches:['Fitbit','Garmin','SAMSUNG','Apple'],
-  tablets:['SAMSUNG','Lenovo','Amazon','Apple','Microsoft','Dell','Asus'],
-  laptops:['HP','Lenovo','Dell','ASUS','SAMSUNG','MSI','Microsoft','Apple'],
-  headphones:['JBL','Sennheiser','Sony','Bose','SAMSUNG','Apple','Jabra']
+  phones:['Google','Samsung','Apple','OnePlus','Xiaomi','LG','Nokia','Nothing'],
+  watches:['Fitbit','Garmin','Samsung','Apple'],
+  tablets:['Samsung','Lenovo','Amazon','Apple','Microsoft','Dell','Asus'],
+  laptops:['HP','Lenovo','Dell','ASUS','Samsung','MSI','Microsoft','Apple'],
+  headphones:['JBL','Sennheiser','Sony','Bose','Samsung','Apple','Jabra']
 };
 

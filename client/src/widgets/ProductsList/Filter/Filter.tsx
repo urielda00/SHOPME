@@ -3,7 +3,9 @@ import { Accordions } from './FilterWidgets/FilterAccordions';
 
  const Filter = () => {
   return (
-    <Box sx={{display:'flex',flexDirection:'column', alignItems:'center',height:'auto',width:'100%'}}>
+    <Box>
+      {/* Large screens: */}
+    <Box sx={containerLSStyle}>
       <Box style={{textAlign:'center'}}>
         <p style={{fontSize:'18px',marginBottom:'10px'}}>Filter by</p>
       </Box>
@@ -21,6 +23,41 @@ import { Accordions } from './FilterWidgets/FilterAccordions';
         <Accordions/>
       </Box>
     </Box>
+
+    {/* Medium screens: */}
+    <Box sx={containerMStyle}>medium screen</Box>
+
+    {/* Small screens: */}
+    <Box sx={containerSStyle}></Box>
+
+
+    </Box>
   )
 }
 export default Filter;
+
+const containerLSStyle = {
+  display:{xs:'none',sm:'none', md: 'flex'},
+  flexDirection:'column',
+  alignItems:'center',
+  height:'auto',
+  width:'100%'
+};
+
+
+const containerMStyle = {
+  display:{xs:'none',sm:'flex', md: 'none'},
+  flexDirection:'column',
+  alignItems:'center',
+  height:'auto',
+  width:'100%'
+};
+
+const containerSStyle = {
+  display:{xs:'flex',sm:'none', md:'none' },
+  flexDirection:'column',
+  alignItems:'center',
+  height:'auto',
+  width:'100%'
+};
+

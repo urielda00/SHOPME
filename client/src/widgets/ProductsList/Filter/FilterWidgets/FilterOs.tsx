@@ -14,7 +14,8 @@ const FilterOs = ({brand}:any) => {
 
     // URL Query variables:
     const isCategory = searchParams.get('toCategory');
-    const isBrand = searchParams.get('os');
+    const isOs = searchParams.get('os');
+    const isBrand = searchParams.get('brand');
   
     const handleAddFilter = (passedCategory:any,brand:any,os:any) =>{
         navigate(`/productsList?toCategory=${passedCategory}&brand=${brand}&os=${os}`)

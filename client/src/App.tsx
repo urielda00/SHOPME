@@ -20,7 +20,7 @@ import CartPage from './pages/CartPage';
 import SingleItemPage from './pages/SingleItemPage';
 import ProductsListPage  from './pages/ProductsListPage';
 import UserPage from './pages/UserPage';
-
+import { Create } from './pages/Create';
 // type Status = boolean;
 // let status: Status = true
 
@@ -39,6 +39,7 @@ const App = () => {
          <Route path='/cart' element={<CartPage/>}/>
          <Route path='*' element={<NomatchPage/>}/>
          <Route path='/productsList' element={<ProductsListPage/>}/>
+         <Route path='/create' element={<Create/>}/>
          <Route path='/user' element={
          <ProtectedRoute>
            <UserPage/>
