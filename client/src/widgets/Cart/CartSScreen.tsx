@@ -11,6 +11,9 @@ import React from 'react';
 import ErrorMessages from './ErrorMessages';
 // const userName= window.sessionStorage.getItem('userNameHere');
 
+// Style import:
+import { liStyle,containerStyle } from '../../styles/CartPage/CartSScreen';
+
 const CartSScreen = () => {
    const {cart, totalQuantity,totalPrice, warningMessage}= useSelector((state:any)=>state.allCart)
    const dispatch= useDispatch();
@@ -108,40 +111,3 @@ const CartSScreen = () => {
 )}
 export default CartSScreen;    
 
-const containerStyle:React.CSSProperties={
-  height:'88vh',
-  width:'90%',
-  backgroundColor:'#fff',
-  borderRadius:'20px',
-  padding:'20px',
-  marginTop:'30px',
-  display:'flex',
-  flexDirection:'column',
-  overflow:'hidden',
-  minWidth:'380px'
-};
-
-// const warningMessageStyle:React.CSSProperties={
-//   zIndex:2000,
-//   position:'absolute',
-//   backgroundColor:'red',         
-//   top:'220px',
-//   right:'55px',
-//   opacity:'0.8',
-//   color:'black',
-//   borderRadius:'5px',
-//   width:'300px',
-//   textAlign:'center',
-//   height:'30px'
-// };
-
-const liStyle:React.CSSProperties={
-  listStyle:'none',
-  display:'flex',
-  justifyContent:'space-between',
-  alignItems:'center',
-  width:'100%',
-  marginTop:'4px',
-  height:'120px',
-  boxShadow:'0 1px 2px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) '
-};

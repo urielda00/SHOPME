@@ -25,12 +25,25 @@ import { Accordions } from './FilterWidgets/FilterAccordions';
     </Box>
 
     {/* Medium screens: */}
-    <Box sx={containerMStyle}>medium screen</Box>
-
-    {/* Small screens: */}
-    <Box sx={containerSStyle}></Box>
-
-
+    <Box sx={containerMStyle}>
+    <Box style={{textAlign:'center'}}>
+        <p style={{fontSize:'14px',marginBottom:'10px'}}>Filter by</p>
+      </Box>
+      
+      <Box sx={{width:'95%'}}>
+         <h5>Price:</h5>
+         <Box sx={{display:'flex', marginTop:'10px', marginBottom:'10px'}}>
+           <TextField label='From' size='small'
+            InputProps={{endAdornment: <InputAdornment position='end'>$</InputAdornment> }}/>
+    
+           <TextField
+            size='small'
+            label='To'
+            InputProps={{endAdornment: <InputAdornment position='end'>$</InputAdornment>}}/>
+        </Box>
+        <Accordions/>
+      </Box>
+    </Box>
     </Box>
   )
 }
@@ -53,11 +66,4 @@ const containerMStyle = {
   width:'100%'
 };
 
-const containerSStyle = {
-  display:{xs:'flex',sm:'none', md:'none' },
-  flexDirection:'column',
-  alignItems:'center',
-  height:'auto',
-  width:'100%'
-};
 

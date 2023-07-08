@@ -12,6 +12,9 @@ import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined
 import ErrorMessages from './ErrorMessages';
 // const userName= window.sessionStorage.getItem('userNameHere');
 
+// Styles import:
+import { container,childContainer1,liStyle, } from '../../styles/CartPage/CartLScreen';
+
 const CartLScreen = () => {
   const {cart, totalQuantity,totalPrice, warningMessage}= useSelector((state:any)=>state.allCart)
   const dispatch= useDispatch();
@@ -137,42 +140,3 @@ const CartLScreen = () => {
        </Box>
 )}
 export default CartLScreen;
-
-const container:React.CSSProperties={
-  height:'70vh',
-  width:'85%',
-  backgroundColor:'#fff',
-  borderRadius:'20px', 
-  display:'flex',
-  justifyContent:'space-between',
-  padding:'40px',
-  minWidth:'900px',
-  overflow:'hidden'
-};
-
-const childContainer1:React.CSSProperties={
-  display:'flex',
-  justifyContent:'space-between',
-  width:'65%',
-  overflowY:'scroll',
-  overflowX:'hidden'
-};
-
-const liStyle:React.CSSProperties={
-  listStyle:'none',
-  display:'flex',
-  justifyContent:'space-between'
-};
-// const warningMessageStyle:React.CSSProperties={
-//   zIndex:2000,
-//   position:'absolute',
-//   backgroundColor:'red',         
-//   top:'190px',
-//   right:'190px',
-//   opacity:'0.8',
-//   color:'black',
-//   borderRadius:'5px',
-//   width:'300px',
-//   textAlign:'center',
-//   height:'30px'
-// };

@@ -20,48 +20,48 @@ const FilterBrands = ({brand}:any) => {
     case 'phone':
       return <div style={{display:'grid'}}>
         {
-        brandsList.phones.map((index:any)=>{
-        return(<FormControlLabel  control={<Checkbox/>} label={index} checked={searchParams.get('brand') === `${index}`} onClick={()=>handleAddFilter(isCategory,index)}/>)
+        brandsList.phones.map((item:any,index)=>{
+        return(<FormControlLabel key={index}  control={<Checkbox/>} label={item} checked={searchParams.get('brand') === `${item}`} onClick={()=>handleAddFilter(isCategory,item)}/>)
         })
         }
       </div>
     case 'watches':
       return <div style={{display:'grid'}}>
       {
-      brandsList.watches.map((index:any)=>{
-      return(<FormControlLabel control={<Checkbox/>} label={index} checked={searchParams.get('brand') === `${index}`} onClick={()=>handleAddFilter(isCategory,index)}/>)
+      brandsList.watches.map((item:any,index)=>{
+      return(<FormControlLabel key={index} control={<Checkbox/>} label={item} checked={searchParams.get('brand') === `${item}`} onClick={()=>handleAddFilter(isCategory,item)}/>)
       })
       }
     </div>
     case 'tablets':
       return <div style={{display:'grid'}}>
       {
-      brandsList.tablets.map((index:any)=>{
-      return(<FormControlLabel control={<Checkbox/>} label={index} checked={searchParams.get('brand') === `${index}`} onClick={()=>handleAddFilter(isCategory,index)}/>)
+      brandsList.tablets.map((item:any,index)=>{
+      return(<FormControlLabel key={index} control={<Checkbox/>} label={item} checked={searchParams.get('brand') === `${item}`} onClick={()=>handleAddFilter(isCategory,item)}/>)
       })
       }
     </div>
     case 'laptops':
       return <div style={{display:'grid'}}>
       {
-      brandsList.laptops.map((index:any)=>{
-      return(<FormControlLabel control={<Checkbox/>} label={index} checked={searchParams.get('brand') === `${index}`} onClick={()=>handleAddFilter(isCategory,index)}/>)
+      brandsList.laptops.map((item:any,index)=>{
+      return(<FormControlLabel key={index} control={<Checkbox/>} label={item} checked={searchParams.get('brand') === `${item}`} onClick={()=>handleAddFilter(isCategory,item)}/>)
       })
       }
     </div>
     case 'pc':
       return <div style={{display:'grid'}}>
       {
-      brandsList.laptops.map((index:any)=>{
-      return(<FormControlLabel control={<Checkbox/>} label={index} checked={searchParams.get('brand') === `${index}`} onClick={()=>handleAddFilter(isCategory,index)}/>)
+      brandsList.laptops.map((item:any,index)=>{
+      return(<FormControlLabel key={index} control={<Checkbox/>} label={item} checked={searchParams.get('brand') === `${item}`} onClick={()=>handleAddFilter(isCategory,item)}/>)
       })
       }
     </div>
     case 'headphones':
       return <div style={{display:'grid'}}>
       {
-      brandsList.headphones.map((index:any)=>{
-      return(<FormControlLabel control={<Checkbox/>} label={index} checked={searchParams.get('brand') === `${index}`} onClick={()=>handleAddFilter(isCategory,index)}/>)
+      brandsList.headphones.map((item:any,index)=>{
+      return(<FormControlLabel key={index} control={<Checkbox/>} label={item} checked={searchParams.get('brand') === `${item}`} onClick={()=>handleAddFilter(isCategory,item)}/>)
       })
       }
     </div>

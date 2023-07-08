@@ -14,16 +14,11 @@ const FilterOs = ({brand}:any) => {
 
     // URL Query variables:
     const isCategory = searchParams.get('toCategory');
-    const isOs = searchParams.get('os');
     const isBrand = searchParams.get('brand');
   
     const handleAddFilter = (passedCategory:any,brand:any,os:any) =>{
         navigate(`/productsList?toCategory=${passedCategory}&brand=${brand}&os=${os}`)
     };
-
-  // const handleAddFilter = (isCategory:any,isBrand?:any) =>{
-  //   navigate(`/productsList?toCategory=${isCategory}&brand=${isBrand}`)
-  // };
 
   const handleTest = (brand:any)=>{
     switch (brand) {

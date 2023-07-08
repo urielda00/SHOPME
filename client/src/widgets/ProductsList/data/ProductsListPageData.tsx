@@ -11,7 +11,7 @@ import AllInclusiveIcon from '@mui/icons-material/AllInclusive';
 //The data for the secondrary category filterBar
 export const categoryList = [
   {name:'See All',icon:<AllInclusiveIcon/>,category:false},
-  {name:'SmartPhones',icon:<PhoneAndroidIcon/>,category:'phone'},
+  {name:'Phones',icon:<PhoneAndroidIcon/>,category:'phone'},
   {name:'Whatches',icon:<WatchIcon/>,category:'watches'},
   {name:'Tablets',icon:<TabletIcon/>,category:'tablets'},
   {name:'Laptops',icon:<LaptopIcon/>,category:'laptops'},

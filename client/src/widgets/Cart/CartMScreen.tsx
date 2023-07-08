@@ -8,9 +8,11 @@ import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import CloseIcon from '@mui/icons-material/Close';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
-import React from 'react';
 import ErrorMessages from './ErrorMessages';
 // const userName= window.sessionStorage.getItem('userNameHere');
+
+// Style import:
+import { containerStyle,listStyle,textFieldStyle } from '../../styles/CartPage/CartMScreen';
 
 const CartMScreen = () => {
     const {cart, totalQuantity,totalPrice, warningMessage}= useSelector((state:any)=>state.allCart)
@@ -132,46 +134,3 @@ const CartMScreen = () => {
     </Box> 
 )}
 export default CartMScreen;
-
-const containerStyle: React.CSSProperties={
-  height:'70vh',
-  width:'90%',
-  backgroundColor:'#fff',
-  borderRadius:'20px',
-  padding:'30px',
-  minWidth:'650px',
-  overflow:'hidden',
-  display:'flex',
-  flexDirection:'column'
-};
-
-// const warningMessageStyle:React.CSSProperties={
-//   zIndex:2000,
-//   position:'absolute',
-//   backgroundColor:'red',         
-//   top:'200px',
-//   right:'60px',
-//   opacity:'0.8',
-//   color:'black',
-//   borderRadius:'5px',
-//   width:'300px',
-//   textAlign:'center',
-//   height:'30px'
-// };
-
-const listStyle:React.CSSProperties={
-  listStyle:'none',
-  display:'flex',
-  justifyContent:'space-between',
-  alignItems:'center',
-  width:'100%',
-  marginTop:'7px',
-  marginBottom:'10px'
-};
-
-const textFieldStyle:React.CSSProperties={
-  width:'96%',
-  marginTop:'5px',
-  backgroundColor:'#EDC6B1',
-  color:'black'
-};

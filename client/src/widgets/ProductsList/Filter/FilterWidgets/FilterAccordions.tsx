@@ -3,7 +3,8 @@ import { categoryList, yearsList } from '../../data/ProductsListPageData';
 import { FormGroup,FormControlLabel,
   Checkbox ,AccordionSummary,
   Accordion, AccordionDetails,
-  Button } from '@mui/material';
+  Button, 
+  Box} from '@mui/material';
 
 
 // Icons & Hooks Imports:
@@ -63,7 +64,8 @@ export const Accordions = ()=>{
   // JSX:
   return (
     <>
-    {/* Filter By Category */}
+    {/* Filter By Category-Large Screen */}
+    <Box sx={{display:{xs:'none',sm:'none', md: 'block'}}}>
     <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
       <AccordionSummary expandIcon={<ExpandMoreIcon />}>
         <h4>Categories:
@@ -75,9 +77,9 @@ export const Accordions = ()=>{
       <AccordionDetails>
         <FormGroup>
          {
-           categoryList.slice(1).map((category:any)=>{
+           categoryList.slice(1).map((category:any,index)=>{
            return(
-           <FormControlLabel control={<Checkbox/>} label={category.name} 
+           <FormControlLabel key={index} control={<Checkbox/>} label={category.name} 
             checked={searchParams.get('toCategory') === `${category.category}`} 
             onClick={()=>handleAddFilter(category.category)} />
             )
@@ -121,9 +123,6 @@ export const Accordions = ()=>{
     </Accordion>
 
 
-
-
-
     {/* Filter By Year */}
     <Accordion sx={{marginTop:'15px'}} expanded={expanded === 'panel2'} onChange={handleChange('panel2')}>
       <AccordionSummary expandIcon={<ExpandMoreIcon />}>
@@ -132,9 +131,10 @@ export const Accordions = ()=>{
       <AccordionDetails>
         <FormGroup>
          {
-          hasQueryParams(currentUrl,false,false,true) ?yearsList.map((year)=>{
+          hasQueryParams(currentUrl,false,false,true) ?yearsList.map((year,index)=>{
            return(
              <FormControlLabel
+              key={index}
               control={<Checkbox/>} label={year.year} 
               checked={searchParams.get('year') === `${year.year}`}
              onClick={()=>handleAddFilter(isCategory,isBrand,isos,year.year)} />
@@ -152,6 +152,103 @@ export const Accordions = ()=>{
           Clear Filters
       </Button>
     </div>
+   </Box>
+
+
+
+     {/* Filter By Medium Screen :*/}
+    <Box sx={{display:{xs:'none',sm:'block', md: 'none'}}}>
+    <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
+      <AccordionSummary expandIcon={<ExpandMoreIcon fontSize='small'/>}>
+        <h5>Categories:
+          <span style={{fontSize:'10px',fontWeight:'lighter', marginLeft:'5px'}}>
+            (choose 1)
+          </span>
+        </h5>
+      </AccordionSummary>
+      <AccordionDetails>
+        <FormGroup>
+         {
+        //  category.name
+           categoryList.slice(1).map((category:any,index)=>{
+           return(
+           <FormControlLabel key={index} control={<Checkbox size='small'/>} 
+           label={category.name}
+            checked={searchParams.get('toCategory') === `${category.category}`} 
+            onClick={()=>handleAddFilter(category.category)} />
+            )
+           })
+         }
+       </FormGroup>
+     </AccordionDetails>
+    </Accordion>
+
+    
+    {/*Filter By Brands */}
+    <Accordion sx={{marginTop:'15px'}} expanded={expanded === 'panel4'} onChange={handleChange('panel4')}>
+      <AccordionSummary expandIcon={<ExpandMoreIcon fontSize='small'/>}>
+        <h5>Brands:</h5>
+      </AccordionSummary>
+      <AccordionDetails>
+        <FormGroup>
+          {
+            hasQueryParams(currentUrl,true,false,false) ? <FilterBrands brand={isCategory}/> :
+            <div>choose category first</div>
+          }
+        </FormGroup>
+      </AccordionDetails>
+    </Accordion>
+
+
+    {/* Filter By OS */}
+    <Accordion sx={{marginTop:'15px'}} expanded={expanded === 'panel3'} onChange={handleChange('panel3')}>
+      <AccordionSummary expandIcon={<ExpandMoreIcon fontSize='small'/>}>
+        <h5>OS:</h5>
+      </AccordionSummary>
+      <AccordionDetails>
+       <FormGroup>
+         {
+           hasQueryParams(currentUrl,false,true,false) ? <FilterOs brand={isCategory}/>
+           : <div>choose Brand first</div>
+
+         }
+      </FormGroup>
+     </AccordionDetails>
+    </Accordion>
+
+
+
+    {/* Filter By Year */}
+    <Accordion sx={{marginTop:'15px'}} expanded={expanded === 'panel2'} onChange={handleChange('panel2')}>
+      <AccordionSummary expandIcon={<ExpandMoreIcon fontSize='small'/>}>
+       <h5>Year:</h5>
+      </AccordionSummary>
+      <AccordionDetails>
+        <FormGroup>
+         {
+          hasQueryParams(currentUrl,false,false,true) ?yearsList.map((year,index)=>{
+           return(
+             <FormControlLabel
+              key={index}
+              control={<Checkbox size='small'/>} 
+              label={year.year} 
+              checked={searchParams.get('year') === `${year.year}`}
+             onClick={()=>handleAddFilter(isCategory,isBrand,isos,year.year)} />
+           )
+          }):
+          <div>choose OS first</div>
+         }
+        </FormGroup>
+      </AccordionDetails>
+    </Accordion>
+
+    <div style={{display:'flex', justifyContent:'center',width:'100%',marginTop:'20px'}}>
+      <Button size='small' sx={{backgroundColor:'#FFA41B',color:'black',":hover":{backgroundColor:'#F86F03'}}}
+        href='/productsList' variant='contained'>
+          Clear Filters
+      </Button>
+    </div>
+    </Box>
     </>
   )
 };
