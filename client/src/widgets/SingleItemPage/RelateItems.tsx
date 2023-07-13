@@ -27,7 +27,7 @@ const responsive = {
 
 
 
- const RelateItems = () => {
+ const RelateItems = ({handleState}:any) => {
   const [searchParams] = useSearchParams();
   const category = searchParams.get('category');
   const {isLoading ,data, error, isError} = UseRelateItemsData(category)
@@ -47,7 +47,8 @@ const responsive = {
             data?.map((item:any)=>{
               return(
                   <Box key={item._id} sx={{height:'270px',width:'170px',textAlign:'center', display:'flex', flexDirection:'column', alignItems:'center', padding:'5px',position:'relative'}}>
-                    <Link to={`/product/${item._id}?category=${item.category}`} style={{textDecoration:'none',color:'black'}}>
+                    <Link to={`/product/${item._id}?category=${item.category}`} style={{textDecoration:'none',color:'black'}} 
+                    onClick={()=>{handleState(item.productImages[1])}}>
                     <img style={{width:'160px', height:'150px',objectFit:'cover',borderRadius:'10px'}} 
                     src={`http://localhost:5000/product/readProducts/${item.image}`}/>
                     </Link>

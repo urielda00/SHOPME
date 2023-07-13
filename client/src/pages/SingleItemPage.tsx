@@ -20,7 +20,7 @@ const SingleItemPage = () => {
   return(
      <Box>
       <SingleItemContainer imgSrc={imgSrc} data={data} handleState={handleState}/>
-      <RelateItems/>
+      <RelateItems handleState={handleState}/>
     </Box>  
      
  );
