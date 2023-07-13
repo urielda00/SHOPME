@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 //The arrays to loop on:
 const categoriesList = [
-  {name:'Mobiles', category:'phones'},
+  {name:'Mobiles', category:'phone'},
   {name:'Laptops', category:'laptops'},
   {name:'Watches', category:'watches'},
   {name:'Tablets', category:'tablets'},

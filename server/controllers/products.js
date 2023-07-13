@@ -38,7 +38,9 @@ export const createProduct=  async (req, res)=> {
   }
  };
 
- //Read:
+
+
+ //Read many:
  export const readProducts= async (req,res)=>{
  try {
     //Page, number items per page, and number of item to skip in mongo:
@@ -81,14 +83,43 @@ export const createProduct=  async (req, res)=> {
     }
 
     ProductInfoLogger.log('info','get the products list. status code: 200');
-    res.status(200).json(items)
+    res.status(302 ).json(items)
  } catch (error) {
   ProductErrorLogger.log('error',`${error.message} status code: 500`);
   res.status(500).json(error.message)
  }};
 
- 
 
+
+ //Read single 
+ export const readSingleProduct = async(req,res) => {
+  const productId = req.params.productId;
+  
+  try {
+  const item = await Product.findById(productId);
+  ProductInfoLogger.log('info','get the single product. status code: 200');
+  res.status(200).json(item);
+  } catch (error) {
+   ProductErrorLogger.log('error',`${error.message} status code: 500`);
+   res.status(500).json(error.message)
+  }};
+
+
+  // Read Relate items:
+  export const readRelatedItemsByCategory = async(req,res)=> {
+  const category = req.query.category || false; 
+  try {
+    if(category){
+    const items = await Product.find({$and:[{status: 'available'},{category}]}).limit(8);
+    res.status(200).json(items)
+    }else{
+      res.status(404).json({message:'Not found'})
+    } 
+  } catch (error) {
+    ProductErrorLogger.log('error',`${error.message} status code: 500`);
+    res.status(500).json(error.message)
+  }
+  }
 
 
 

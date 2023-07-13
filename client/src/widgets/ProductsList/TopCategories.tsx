@@ -77,7 +77,7 @@ const TopCategories = () => {
                   <Button sx={buttonStyle} 
                    onClick={()=>{navigate(`/productsList?toCategory`);setExpanded('false')}}>
                      <Box sx={{marginRight:'5px'}}>
-                      'See All'
+                      See All
                      </Box>
                      {<AllInclusiveIcon/>}
                   </Button>

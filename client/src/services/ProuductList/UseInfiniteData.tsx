@@ -1,7 +1,5 @@
 import { useInfiniteQuery } from "react-query";
 
-//this is done.
-
 const LIMIT = 2; //The limit items per page
 const fetchItems = async (page:any,category:any,year:any=false,os:any=false,brand:any=false) => {
   

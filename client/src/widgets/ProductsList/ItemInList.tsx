@@ -26,7 +26,7 @@ import {containerLStyle,containerMStyle,containerSStyle} from '../../styles/Prod
       {/* The left side of the item box: */}
       <div style={{display:'flex'}}>
          <Box sx={{":hover":{opacity:'0.8' }}}>
-           <Link to={`/product/:${item._id}`}>
+           <Link to={`/product/${item._id}?category=${item.category}`}>
              <img alt='' src={`http://localhost:5000/product/readProducts/${item.image}`} 
               style={{height:'100%',width:'250px',objectFit:'cover',borderRadius:'10px'}}/>
             </Link>
@@ -57,7 +57,7 @@ import {containerLStyle,containerMStyle,containerSStyle} from '../../styles/Prod
            sx={{backgroundColor:'#47A992',width:'180px',marginLeft:'-20px',height:'40px',":hover": {backgroundColor:'#5D9C59'}}}>Add To Cart<AddShoppingCartIcon sx={{marginLeft:'10px'}}/>
          </Button>
           
-        <Link to={`/product/:${item._id}`}>
+        <Link to={`/product/${item._id}`}>
           <Button variant='contained'
             sx={{backgroundColor:'#30A2FF',marginLeft:'-20px',width:'180px',height:'40px'}}> 
             More Info 
@@ -73,7 +73,7 @@ import {containerLStyle,containerMStyle,containerSStyle} from '../../styles/Prod
       {/* The left side of the item box: */}
       <div style={{display:'flex',width:'70%'}}>
          <Box sx={{":hover":{opacity:'0.8' }}}>
-           <Link to={`/product/:${item._id}`}>
+           <Link to={`/product/${item._id}`}>
              <img alt='' src={`http://localhost:5000/product/readProducts/${item.image}`} 
               style={{height:'90%',width:'200px',objectFit:'cover',borderRadius:'10px'}}/>
             </Link>
@@ -103,7 +103,7 @@ import {containerLStyle,containerMStyle,containerSStyle} from '../../styles/Prod
            sx={{backgroundColor:'#47A992',width:'130px',marginLeft:'-20px',height:'60px',":hover": {backgroundColor:'#5D9C59'}}}>Add To Cart<AddShoppingCartIcon sx={{marginLeft:'10px'}}/>
          </Button>
           
-        <Link to={`/product/:${item._id}`}>
+        <Link to={`/product/${item._id}`}>
           <Button variant='contained' size="small"
             sx={{backgroundColor:'#30A2FF',marginLeft:'-20px',width:'130px',height:'60px'}}> 
             More Info 
@@ -117,7 +117,7 @@ import {containerLStyle,containerMStyle,containerSStyle} from '../../styles/Prod
     <Box sx={containerSStyle}>
     <div style={{display:'flex',width:'550px'}}>
          <Box sx={{":hover":{opacity:'0.8' }}}>
-           <Link to={`/product/:${item._id}`}>
+           <Link to={`/product/${item._id}`}>
              <img alt='' src={`http://localhost:5000/product/readProducts/${item.image}`} 
               style={{height:'140px',width:'150px',objectFit:'cover',borderRadius:'10px'}}/>
             </Link>
@@ -151,7 +151,7 @@ import {containerLStyle,containerMStyle,containerSStyle} from '../../styles/Prod
            sx={{backgroundColor:'#47A992',width:'60px',marginLeft:'-20px',height:'50px',":hover": {backgroundColor:'#5D9C59'}}}><AddShoppingCartIcon/>
          </Button>
           
-        <Link to={`/product/:${item._id}`}>
+        <Link to={`/product/${item._id}`}>
           <Button variant='contained' size="small"
             sx={{backgroundColor:'#30A2FF',marginLeft:'-20px',width:'60px',height:'50px'}}> 
             
