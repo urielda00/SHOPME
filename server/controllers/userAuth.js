@@ -9,7 +9,7 @@ import Cart from "../models/Cart.js";
  //Register:
  export const register = async (req,res)=>{
   try {
-   const {firstName, lastName, userName, email, password ,verifyPass, phoneNumber}= req.body;
+   const {firstName, lastName, userName, email, password ,verifyPass, phoneNumber, avatar}= req.body;
    const isUserMail = await User.findOne({email});
    const isUserName = await User.findOne({userName});
 
@@ -28,6 +28,7 @@ import Cart from "../models/Cart.js";
     password:passwordHash,
     email,
     phoneNumber,
+    avatar
    });
    
     await saveUser.save();
@@ -39,7 +40,7 @@ import Cart from "../models/Cart.js";
    }
  }else{
     UserErrorLogger.log('error','The passwords must match! status code: 409');
-    res.status(409).json({message: 'The passwords must match!!'}) 
+    res.status(409).json({message: 'The passwords must match!!'});
  }
   } catch (error) {
    UserErrorLogger.log('error', `${error.message}. status code: 500`);
@@ -48,7 +49,23 @@ import Cart from "../models/Cart.js";
  };
  
 
+//Register middle-form test (is exist):
+export const checkIfExist = async (req,res) => {
+try {
+  const {data} = req.params;
+  const checkEmail = await User.findOne({email:data})
+  const checkUser = await User.findOne({userName:data})
 
+  if(checkEmail || checkUser){
+    res.status(200).send(['1'])
+  }else{{
+    res.send([]);
+  }}
+} catch (error) {
+  UserErrorLogger.log('error', `${error.message}. status code: 500`);
+  res.status(500).json(error.message)
+}
+}
 
 
  //Login:

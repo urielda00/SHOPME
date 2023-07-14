@@ -7,7 +7,8 @@ import { login,
          updateUserInfo,
          updateUserPass,
          deleteUser,
-         signOut
+         signOut,
+         checkIfExist
        } 
 from "../controllers/userAuth.js"; 
 
@@ -28,6 +29,8 @@ import { checkJWT } from "../middleware/jwt.js";
 
 //Routes:
 userAuthRouter.post('/register',registerValidation,ValidationResult,register);
+
+userAuthRouter.get('/checkIfExist/:data',checkIfExist); //לבדוק אם יש צורך להוסיף חיטוי קלט?
 
 userAuthRouter.post('/login',loginValidation,ValidationResult, login);
 

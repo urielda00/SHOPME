@@ -21,6 +21,8 @@ import SingleItemPage from './pages/SingleItemPage';
 import ProductsListPage  from './pages/ProductsListPage';
 import UserPage from './pages/UserPage';
 import { Create } from './pages/Create';
+import LoginPage from './pages/LoginPage';
+import RegisterPage from './pages/RegisterPage';
 // type Status = boolean;
 // let status: Status = true
 
@@ -40,6 +42,8 @@ const App = () => {
          <Route path='*' element={<NomatchPage/>}/>
          <Route path='/productsList' element={<ProductsListPage/>}/>
          <Route path='/create' element={<Create/>}/>
+         <Route path='/login' element={<LoginPage/>}/>
+         <Route path='/register' element={<RegisterPage/>}/>
          <Route path='/user' element={
          <ProtectedRoute>
            <UserPage/>

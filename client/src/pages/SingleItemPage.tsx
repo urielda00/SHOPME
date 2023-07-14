@@ -13,7 +13,7 @@ const SingleItemPage = () => {
     
   useEffect(()=>{
     data && setImgSrc(data.productImages[1]) 
-  },[])
+  },[data])
 
   if(isLoading){return <h1>Loading...</h1>}
 

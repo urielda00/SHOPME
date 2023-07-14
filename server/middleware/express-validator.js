@@ -36,7 +36,6 @@ export const ValidationResult= (req,res,next)=>{
 ];
 
 
-
 export const loginValidation=[
 check('userName').trim().notEmpty().withMessage('Please enter user name'),
 check('password').trim().notEmpty().withMessage('Please enter password')

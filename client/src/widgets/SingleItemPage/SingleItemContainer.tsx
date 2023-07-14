@@ -21,7 +21,7 @@ import { Link } from "react-router-dom";
              data.productImages.slice(1).map((img:string,index:number)=>{
                return(
                 <Box sx={{":hover":{opacity:'0.7'}}} key={index}>
-                 <img src={`http://localhost:5000/product/readProducts/${img}`} 
+                 <img alt='' src={`http://localhost:5000/product/readProducts/${img}`} 
                 style={{width:'50px',height:'70px',objectFit:'cover',borderRadius:'15px',marginBottom:'15px',border:'0.5px solid grey'}}
                  onMouseEnter={()=>{handleState(img)}}
                  />

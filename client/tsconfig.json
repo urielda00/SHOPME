@@ -22,5 +22,5 @@
   },
   "include": [
     "src/**/*"
-  ]
+, "src/widgets/RegisterPage/LargeMediumRegister.tsx"  ]
 }
