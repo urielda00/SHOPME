@@ -25,7 +25,7 @@ const SITE_KEY = '6Le6bSMnAAAAAFsg4MZvHcr9FTA5r82NKIsvPjGm';
 
 
 // The component:
-const LargeMediumRegister = () => {
+const RegisterForm = () => {
   const onCaptchaChange = () =>{ setCaptchaVerified(true) };
   const [passwordEye, setPasswordEye] = useState(false);
   const [passwordEyeVerify, setPasswordEyeVerify] = useState(false);
@@ -248,14 +248,15 @@ const LargeMediumRegister = () => {
   );
 }
 
-export default LargeMediumRegister;
+export default RegisterForm;
 
 
 // Styles here:
-const containerStyle:React.CSSProperties ={
+const containerStyle ={
   backgroundColor:'#fff',
   borderRadius:'10px',
-  height:'620px',
+  height:{md:'620px',sm:'620px',xs:'900px'},
+  boxShadow: '-11px 6px 26px -14px rgba(0,0,0,0.52)',
 };
 
 const insideContainerStyle:React.CSSProperties = {

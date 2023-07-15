@@ -180,7 +180,7 @@ export const searchProduct= async(req,res)=>{
        }
       }
     }] 
-		const response = await Product.aggregate(pipeline);
+		const response = await Product.aggregate(pipeline).limit(8);
     
     return res.json(response)
   } catch (error) {

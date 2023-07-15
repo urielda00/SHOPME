@@ -1,18 +1,18 @@
 import { Box } from '@mui/material';
-import LoginForm from '../widgets/LoginPage/LoginForm';
+import Forget from '../widgets/AllResetPass/Forget';
+import Reset from '../widgets/AllResetPass/Reset';
 
- const LoginPage = () => {
+
+ const ResetPassPage = () => {
   return (
     <Box sx={backgroundStyle}>
         <Box sx={{display:{xs:'flex',sm:'flex', md: 'flex'}}}>
-         <LoginForm/>
+         <Reset/>
         </Box>
     </Box>
   )
 }
-
-export default LoginPage;
-
+export default ResetPassPage;
 
 const backgroundStyle = {
   width:'100%',
@@ -22,3 +22,5 @@ const backgroundStyle = {
   alignItems:'center',
   justifyContent:'center'
 };
+
+

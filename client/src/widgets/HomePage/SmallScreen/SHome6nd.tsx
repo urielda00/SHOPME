@@ -12,10 +12,10 @@ const SHome6nd = () => {
      <h1 style={{marginBottom:'30px', fontFamily:'Georgia, sans-serif	', borderBottom:'1px solid black'}}>Offers</h1>
      <Box 
      sx={{width:'100%',height:'10vh',marginBottom:'-40px', display:'flex', justifyContent:'center'}}>
-      <Link to='/mobiles' style={linkStyle}><h3 >Mobile</h3></Link>
-      <Link to='/watches' style={linkStyle}><h3 >Watches</h3></Link>
-      <Link to='/headPhones' style={linkStyle}><h3 >HeadPhones</h3></Link>
-      <Link to='/productsList' style={linkStyle}><h3 >See All</h3></Link>
+      <Link to='//productsList?toCategory=phone' style={linkStyle}><h3 >Mobile</h3></Link>
+      <Link to='/productsList?toCategory=watches' style={linkStyle}><h3 >Watches</h3></Link>
+      <Link to='/productsList?toCategory=headphons' style={linkStyle}><h3 >HeadPhones</h3></Link>
+      <Link to='/productsList?toCategory' style={linkStyle}><h3 >See All</h3></Link>
       </Box>    
 
       <Box>

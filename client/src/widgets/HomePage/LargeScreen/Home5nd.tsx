@@ -69,7 +69,7 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
            
       </div>
       {/* the link to- buy now */}
-       <Link to='/' style={{textDecoration:'none',fontSize:'20px',color:'white'}}>
+       <Link to='/productsList?toCategory' style={{textDecoration:'none',fontSize:'20px',color:'white'}}>
          <Box sx={{":hover":{opacity:'0.7'}}} style={{width:'200px',height:'60px',
               display:'flex', alignItems:'center',justifyContent:'center',marginTop:'-100px', borderRadius:'50px', backgroundColor:'black', position:'absolute',top:'91vh',left:'42vw'}}>
               <div style={{display:'flex',alignItems:'center',justifyContent:'center'}}>

@@ -12,6 +12,8 @@ import cookieParser from 'cookie-parser';
 import userAuthRouter from './routes/userAuth.js';
 import productRouter from './routes/products.js';
 import orderRouter from './routes/order.js';
+import resetPassRouter from './routes/resetPass.js';
+
 
 //need to handle the 304 status and make another file that recive and save all the logs in the DB
 //need to add multer multi-image upload functionality.
@@ -39,7 +41,8 @@ app.disable('etag');
 app.use('/auth', userAuthRouter);
 app.use('/product', productRouter);
 app.use('/order', orderRouter);
-
+app.use('/resetPass', resetPassRouter);
+ 
 
 //Connect to the DB and then listen at the port:
 mongoose.connect(process.env.DB_URL,{
