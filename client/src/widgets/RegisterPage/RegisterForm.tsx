@@ -1,14 +1,19 @@
-import {Avatar, Button, TextField,Grid,Box,Typography, Container,InputAdornment,IconButton} 
-from '@mui/material';
+import {Avatar, Button, TextField,Grid,Box,Typography, Container,
+        InputAdornment,IconButton,Tooltip } from '@mui/material';
 import { Link } from 'react-router-dom';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import ReCAPTCHA from 'react-google-recaptcha';
+import ErrorMessages from './ErrorMessages';
+
+
 
 // ReactHook:
 import { useForm,FieldErrors } from 'react-hook-form';
 import React, {useState, useEffect} from 'react';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
+import DialogIs from './Dialog';
 
 type FormValues = {
   firstName : string
@@ -21,21 +26,23 @@ type FormValues = {
 };
 
 const SITE_KEY = '6Le6bSMnAAAAAFsg4MZvHcr9FTA5r82NKIsvPjGm';
-// need to create anothe view for phones screens.
 
 
 // The component:
 const RegisterForm = () => {
+  
   const onCaptchaChange = () =>{ setCaptchaVerified(true) };
   const [passwordEye, setPasswordEye] = useState(false);
   const [passwordEyeVerify, setPasswordEyeVerify] = useState(false);
   const [captchaVerified, setCaptchaVerified] = useState(false);
+  const [openPassHelp, setOpenPassHelp] = useState(false);
 
   const form = useForm<FormValues>({mode:'onChange'});
   const {register, control, handleSubmit, formState, watch,getValues, reset} = form;
   const password = watch('password');
   const {errors, isDirty, isValid, isSubmitSuccessful} = formState;
 
+  
   const handleChangeEyePassword = () => {setPasswordEye(!passwordEye)};
   const handleChangeEyeVerify = () => {setPasswordEyeVerify(!passwordEyeVerify)};
 
@@ -47,6 +54,19 @@ const RegisterForm = () => {
       reset()
     } 
   },[isSubmitSuccessful,reset]);
+  let testArr = [];
+  if(errors.password){
+    testArr.push(errors.password.message)
+  }else{
+    testArr = []
+  }
+
+  // Rejex for password validation:
+  const upperCaseRjx = /(?=.*?[A-Z])/;
+  const lowerCaseRjx = /(?=.*?[a-z])/;
+  const digitRjx = /(?=.*?[0-9])/;
+  const min4Rjx = /.{4,}/;
+
 
   return (
        <Container sx={containerStyle} maxWidth='sm' component="main" >
@@ -130,7 +150,9 @@ const RegisterForm = () => {
                          const data = await res.json(); 
                          return data.length == 0 ||'User Name Already Exist'
                         } 
-                      }
+                      },
+                      has6Characters: (value) => min4Rjx.test(value) || 'Must have at least 4 Characters',
+                      
                     }
                   })}
                   error={!!errors.userName}
@@ -145,12 +167,26 @@ const RegisterForm = () => {
                   InputProps={{ // <-- This is where the toggle button is added.
                     endAdornment: (
                       <InputAdornment position="end">
+                        <Tooltip title='More Info'>
+                          <IconButton
+                            aria-label="toggle password visibility"
+                            onClick={()=>{
+                              setOpenPassHelp(true);
+                              setTimeout(() => {
+                              setOpenPassHelp(false)
+                              }, 1000);
+                              }}>
+                            <HelpOutlineIcon/>
+                          </IconButton>
+                        </Tooltip>
+                        <Tooltip title='Show Password'>
                         <IconButton
                           aria-label="toggle password visibility"
                           onClick={handleChangeEyePassword}
                         >
                           {passwordEye ? <VisibilityIcon /> : <VisibilityOffIcon />}
                         </IconButton>
+                        </Tooltip>
                       </InputAdornment>
                     )
                   }}
@@ -158,12 +194,18 @@ const RegisterForm = () => {
                   {
                     ...register('password',
                    {
-                    required : 'Password Is Required'
+                    required : 'Password Is Required',
+                    validate : {
+                    hasUpperCase: (value) => upperCaseRjx.test(value) || 'Password Must have at least 1 UpperCase',
+                    hasLowerCase: (value) => lowerCaseRjx.test(value) || 'Password Must have at least 1 LowerCase',
+                    hasDigitCase: (value) => digitRjx.test(value) || 'Password Must have at least 1 Digit',
+                    has6Characters: (value) => min4Rjx.test(value) || 'Password Must have at least 4 Characters',
+                    },
                    })
                   }
                   error={!!errors.password}
-                  helperText={errors.password?.message}/>
-                          
+                  />
+                   <DialogIs open={openPassHelp}/>              
               </Grid>
               <Grid item xs={12} sm={6}>
                 <TextField
@@ -173,12 +215,14 @@ const RegisterForm = () => {
                   InputProps={{ // <-- This is where the toggle button is added.
                     endAdornment: (
                       <InputAdornment position="end">
+                         <Tooltip title='More Info'>
                         <IconButton
                           aria-label="toggle password visibility"
                           onClick={handleChangeEyeVerify}
                         >
                           {passwordEyeVerify ? <VisibilityIcon /> : <VisibilityOffIcon />}
                         </IconButton>
+                        </Tooltip>
                       </InputAdornment>
                     )
                   }}
@@ -242,8 +286,9 @@ const RegisterForm = () => {
                 </Link>
               </Grid>
             </Grid>
-          </Box>
-        </Box>   
+          </Box> 
+          <ErrorMessages errors={testArr}/>      
+        </Box>  
       </Container>
   );
 }

@@ -57,7 +57,7 @@ type FormValues = {
       </Avatar>
 
       <Typography sx={{mb:-2}} component="h1" variant="h5">
-        Reset Password
+        Set New Password
       </Typography>
       
       
@@ -69,6 +69,18 @@ type FormValues = {
              fullWidth
              label="New Password"
              type={passwordEye? 'text':'password'}
+                  InputProps={{ // <-- This is where the toggle button is added.
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <IconButton
+                          aria-label="toggle password visibility"
+                          onClick={handleChangeEyePassword}
+                        >
+                          {passwordEyeVerify ? <VisibilityIcon /> : <VisibilityOffIcon />}
+                        </IconButton>
+                      </InputAdornment>
+                    )
+                  }}
              {...register('password',
               {
                 required: 'Password Is Required',
