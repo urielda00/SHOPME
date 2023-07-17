@@ -15,7 +15,6 @@ import TopCategories from '../widgets/ProductsList/TopCategories';
 //The component:
 const ProductsListPage = () => {
   const [searchParams] = useSearchParams();
-
   //set the category state, then pass it to change the query unique key to refresh the query:
   const toCategory = searchParams.get('toCategory');
   const year = searchParams.get('year');
@@ -44,7 +43,6 @@ const ProductsListPage = () => {
        } 
       }, [fetchNextPage, hasNextPage]);
 
-
    //The actual data to display- filtered by the laast 2 items to display.
     const items = (data:any)=>{
      const updated =data.pages.length-1
@@ -57,7 +55,7 @@ const ProductsListPage = () => {
     };
       
    return (
-     <Box>
+     <Box sx={{height:'100vh'}}>
        <TopCategories/>
        {isSuccess && <ProductsListDisplay items={items} data={data} /> }
      </Box>

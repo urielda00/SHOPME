@@ -1,8 +1,8 @@
 //External imports
 import './style.css';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import { ReactQueryDevtools } from 'react-query/devtools'
-
+import { useState } from 'react';
 
 //Reuseable components imports:
 import NavBar from './components/NavBar';
@@ -25,10 +25,14 @@ import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import ForgetPassPage from './pages/ForgetPassPage';
 import ResetPassPage from './pages/ResetPassPage';
+import ContactPage from './pages/ContactPage';
+import ThankYouPage from './pages/ThankYouPage';
+import Footer from './components/Footer';
 // type Status = boolean;
 // let status: Status = true
 
 const App = () => {
+  const { pathname } = useLocation();
   return (
      <>
        <ContactNavbar/>
@@ -47,6 +51,8 @@ const App = () => {
          <Route path='/forgetPass' element={<ForgetPassPage/>}/>
          <Route path='/resetPass/:id/:token' element={<ResetPassPage/>}/>
          <Route path='/register' element={<RegisterPage/>}/>
+         <Route path='/contact' element={<ContactPage/>}/>
+         <Route path='/thankYou' element={<ThankYouPage/>}/>
          <Route path='/user' element={
          <ProtectedRoute>
            <UserPage/>
@@ -54,9 +60,12 @@ const App = () => {
         }/>
         <Route path='*' element={<NomatchPage/>}/>
        </Routes>  
-
+    
        <ScrollToTop/>
        <ReactQueryDevtools initialIsOpen={false} position='bottom-right' />
+       {
+        pathname !== '/productsList'?<Footer/>:<div hidden></div>
+       }
     </>
   );
 }
