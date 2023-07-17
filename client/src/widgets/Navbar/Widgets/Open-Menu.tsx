@@ -4,6 +4,8 @@ import {Box,Button,
   ,List,ListItem
   ,ListItemText,
   ListItemButton,Stack } from '@mui/material';
+  import { useDispatch } from 'react-redux';
+  import {loggedOut} from '../../../features/userSlice';
 
 //Icons:
 import MenuIcon from '@mui/icons-material/Menu';
@@ -14,6 +16,10 @@ import { Link } from 'react-router-dom';
 type Anchor = 'left';
 
 const OpenMenu =()=> {
+  const dispatch = useDispatch();
+  const handleLogout = ()=>{
+    dispatch(loggedOut())
+  };
   const [state, setState] = React.useState({left:false});
     const toggleDrawer =
     (anchor: Anchor, open: boolean) =>
@@ -45,7 +51,7 @@ const OpenMenu =()=> {
              </ListItemButton>
           </Link>
          
-          <Link style={linkStyle} to='/itemList'>
+          <Link style={linkStyle} to='/productsList'>
             <ListItemButton style={{display:'flex', alignItems:'center',justifyContent:'center'}}>
               <ListItem key={2} >
                 <ListItemText primary='Shop'/>
@@ -53,15 +59,15 @@ const OpenMenu =()=> {
             </ListItemButton>
           </Link>
 
-          <Link style={linkStyle} to='/a'>
+          <Link style={linkStyle} to='/' onClick={handleLogout}>
             <ListItemButton style={{display:'flex', alignItems:'center',justifyContent:'center'}}>
               <ListItem key={3} >
-                <ListItemText primary='Explore'/>
+                <ListItemText primary='Log Out'/>
               </ListItem>
             </ListItemButton>
           </Link>
 
-          <Link style={linkStyle} to='/a'>
+          <Link style={linkStyle} to='/contact'>
              <ListItemButton style={{display:'flex', alignItems:'center',justifyContent:'center'}}>
                <ListItem key={4} >
                   <ListItemText primary='Contact'/>

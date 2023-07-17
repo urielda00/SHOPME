@@ -2,7 +2,8 @@
 import React from 'react';
 import {MenuItem ,MenuList ,Popper ,Paper,Grow ,ClickAwayListener ,Divider } from '@mui/material';
 import {IconButton} from '@mui/material';  
-
+import { useSelector } from 'react-redux';
+import DisplayAvatar from './DisplayAvatar';
 //Icons:
 import PermIdentityOutlinedIcon from '@mui/icons-material/PermIdentityOutlined';
 import { Link } from 'react-router-dom';
@@ -10,10 +11,15 @@ import { Link } from 'react-router-dom';
 // import MenuIcon from '@mui/icons-material/Menu'; //for small screens.
 
 
+
 export const UserToggle = () => {
+    const {user} = useSelector((state:any) => state.user);
     const [open, setOpen] = React.useState(false);
     const anchorRef = React.useRef<HTMLButtonElement>(null);
-  
+    const handleLogOut = () => {
+      window.sessionStorage.removeItem('logoutIndicator');
+      window.location.reload();
+    }
     const handleToggle = () => {setOpen((prevOpen) => !prevOpen);};
     const handleClose = (event: Event | React.SyntheticEvent) => {
       if (
@@ -54,7 +60,7 @@ export const UserToggle = () => {
           onClick={handleToggle}
           sx={{display:{xs:'none', md: 'flex'}}}
         >
-          <PermIdentityOutlinedIcon />
+            {user?<DisplayAvatar/>:<PermIdentityOutlinedIcon />}
         </IconButton>
         <Popper
           open={open}
@@ -72,7 +78,22 @@ export const UserToggle = () => {
                   placement === 'bottom-start' ? 'left top' : 'left bottom',
               }}
             >
-              <Paper style={{backgroundColor:'#F9F5F6'}}>
+              {
+                user? 
+                <Paper style={{backgroundColor:'#F9F5F6'}}>
+                <ClickAwayListener onClickAway={handleClose}>
+                  <MenuList
+                    autoFocusItem={open}
+                    id="composition-menu"
+                    aria-labelledby="composition-button"
+                    onKeyDown={handleListKeyDown}
+                  >                 
+                  <MenuItem  onClick={handleLogOut}>Logout</MenuItem>
+                  </MenuList>
+                </ClickAwayListener>
+              </Paper>
+                
+                :<Paper style={{backgroundColor:'#F9F5F6'}}>
                 <ClickAwayListener onClickAway={handleClose}>
                   <MenuList
                     autoFocusItem={open}
@@ -90,6 +111,8 @@ export const UserToggle = () => {
                   </MenuList>
                 </ClickAwayListener>
               </Paper>
+              }
+              
             </Grow>
           )}
         </Popper>

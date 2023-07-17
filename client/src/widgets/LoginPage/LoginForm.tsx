@@ -3,7 +3,10 @@ from '@mui/material';
 import { Link } from 'react-router-dom';
 import PersonIcon from '@mui/icons-material/Person';
 import ReCAPTCHA from 'react-google-recaptcha';
-
+import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import {logged, errorLogged, loggedOut} from '../../features/userSlice';
+import ErrorMessages from './ErrorMessages';
 // ReactHook:
 import { useForm,FieldErrors } from 'react-hook-form';
 import React, {useState, useEffect} from 'react';
@@ -28,7 +31,24 @@ const LoginForm = () => {
   const {register, handleSubmit, formState, reset} = form;
   const {errors, isDirty, isValid, isSubmitSuccessful} = formState;
   const handleChangeEyePassword = () => {setPasswordEye(!passwordEye)};
-  const onSubmit = (data : FormValues)=>{console.log('submited!',data);};
+  const dispatch = useDispatch<any>();
+
+
+  const onSubmit = (data : FormValues)=>{
+    // later, import to here the function from services that handle the axios:
+    axios.post('http://localhost:5000/auth/login',data)
+    .then(response => {
+      setTimeout(()=>{
+        window.location.replace('/')
+      },1000);
+      alert(response.data.message)
+      window.sessionStorage.setItem('logoutIndicator','true')
+      dispatch(logged())
+    })
+    .catch(error => {
+      dispatch(errorLogged(error.response.data.message))
+     });
+  };
 
   useEffect(()=>{
     if(isSubmitSuccessful){
@@ -38,35 +58,37 @@ const LoginForm = () => {
 
   return (
        <Container sx={containerStyle} maxWidth='sm' component="main" >
-         <Box sx={insideContainerStyle}>
-
-           <Avatar sx={{ m: 2, bgcolor: 'success.main' }}>
-              <PersonIcon />
-           </Avatar>
-
-           <Typography sx={{mb:-2}} component="h1" variant="h5">
-             Sign In
-           </Typography>
-
-           <Box component="form" noValidate sx={{ mt: 3 }} onSubmit={handleSubmit(onSubmit)}>
-              <Grid container spacing={2}>
-              <Grid item xs={12} sm={12}>
-                <TextField
+         <ErrorMessages/>  
+           <Box sx={insideContainerStyle}>
+             <Avatar sx={{ m: 2, bgcolor: 'success.main' }}>
+               <PersonIcon />
+            </Avatar>
+            <Typography sx={{mb:-2}} component="h1" variant="h5">
+               Sign In
+            </Typography>
+            <Box component="form" noValidate sx={{ mt: 3 }} onSubmit={handleSubmit(onSubmit)}>
+               <Grid container spacing={2}>
+               <Grid item xs={12} sm={12}>
+                 <TextField
                   fullWidth
+                  id='userName'
                   label="User Name"
                   type='text'
+                  autoComplete= 'username'
                   {...register('userName',
                   {
                     required : 'User Name Is Required',
                   })}
                   error={!!errors.userName}
                   helperText={errors.userName?.message}/>
-              </Grid>
+               </Grid>
 
               <Grid item xs={12} sm={12}>
                 <TextField
                   fullWidth
                   label="Password"
+                  id='password'
+                  autoComplete="new-password"
                   type={passwordEye? 'text':'password'}
                   InputProps={{ // <-- This is where the toggle button is added.
                     endAdornment: (
@@ -80,7 +102,6 @@ const LoginForm = () => {
                       </InputAdornment>
                     )
                   }}
-                  autoComplete="new-password"
                   {
                     ...register('password',
                    {
@@ -93,6 +114,7 @@ const LoginForm = () => {
               
               <Grid  item xs={12} sm={12}>
                <ReCAPTCHA
+                  id='recaptcha'
                   sitekey={SITE_KEY}
                   onChange={onCaptchaChange}
                   // style={{transform:'scale(0.75)', transformOrigin:'0 0'}}
@@ -104,13 +126,14 @@ const LoginForm = () => {
               type="submit"
               fullWidth
               variant="contained"
+              id='submitBtn'
               disabled={!isDirty || !isValid || !captchaVerified }
               sx={{ mt: 3, bgcolor:'success.main',":hover":{backgroundColor:'#5F8D4E'}}}
             >
               Sign In
             </Button>
             <Grid container justifyContent="flex-end">
-            <Grid sx={{mt:7}} item xs={12} sm={6}>
+            <Grid  sx={{mt:7}} item xs={12} sm={6}>
                 <Link to='/forgetPass'>
                   Forgot password?
                 </Link>
@@ -122,7 +145,7 @@ const LoginForm = () => {
               </Grid>
             </Grid>
           </Box>
-        </Box>   
+        </Box> 
       </Container>
       
   );

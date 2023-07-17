@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import ReCAPTCHA from 'react-google-recaptcha';
 import ErrorMessages from './ErrorMessages';
-
+import axios from 'axios';
 
 
 // ReactHook:
@@ -47,7 +47,10 @@ const RegisterForm = () => {
   const handleChangeEyeVerify = () => {setPasswordEyeVerify(!passwordEyeVerify)};
 
   const onSubmit = (data : FormValues)=>{
-    console.log('submited!',data);
+    // later, import to here the function from services that handle the axios:
+    axios.post('http://localhost:5000/auth/register',data)
+    .then(response => {console.log(response.data)})
+    .catch(error => {console.log(error.data)});
   };
   useEffect(()=>{
     if(isSubmitSuccessful){

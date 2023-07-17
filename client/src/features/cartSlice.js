@@ -1,6 +1,5 @@
 import { createSlice} from "@reduxjs/toolkit";
 // import ErrorMessages from "../widgets/Cart/ErrorMessages";
-
 const initialState = {
   cart: [],
   // userName:'', //orr add later the- isLogged of boolean type.

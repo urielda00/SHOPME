@@ -2,7 +2,9 @@
 import './style.css';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import { ReactQueryDevtools } from 'react-query/devtools'
-import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { loggedOut} from './features/userSlice';
+
 
 //Reuseable components imports:
 import NavBar from './components/NavBar';
@@ -33,6 +35,11 @@ import Footer from './components/Footer';
 
 const App = () => {
   const { pathname } = useLocation();
+  const dispatch = useDispatch();
+  const logoutIndicator = window.sessionStorage.getItem('logoutIndicator')
+  if(logoutIndicator!=='true'){
+    dispatch(loggedOut()) 
+  };
   return (
      <>
        <ContactNavbar/>

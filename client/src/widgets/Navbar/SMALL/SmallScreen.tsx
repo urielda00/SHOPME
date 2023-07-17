@@ -5,6 +5,7 @@ import PermIdentityOutlinedIcon from '@mui/icons-material/PermIdentityOutlined';
 import StoreOutlinedIcon from '@mui/icons-material/StoreOutlined';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import Search from '../Widgets/Search';
+import { useSelector } from 'react-redux';
 
 //Types:
 type SmallScreenProps = {
@@ -12,6 +13,7 @@ type SmallScreenProps = {
 };
 
  const SmallScreen = ({totalQuantity}:SmallScreenProps) => {
+  const {user} = useSelector((state:any) => state.user);
   return (
     <>
      <Box  component='nav'>
@@ -21,9 +23,23 @@ type SmallScreenProps = {
         </Link>
         <div style={{marginLeft:'35%', marginTop:'10%', marginBottom:'-7%'}}><Search/></div>
      </Box>
+    {
+        user? 
+        <Box  component='nav'style={{display:'flex'}}>
+       
+        <Link to='/cart'>
+         <IconButton style={{color:'black', marginRight:'5px'}}  size='large'>
+           <ShoppingCartOutlinedIcon fontSize='large' sx={{color:'black', stroke:"#ffffff",strokeWidth:1}}/>
+         </IconButton>
+       </Link>
+      <span style={{width:'20px', height:'20px', borderRadius:'50px', backgroundColor:'#E7CEA6', position:'absolute', textAlign:'center', top:'20px', right:'68px'}}>{totalQuantity}</span>
+       <OpenMenu/>
     
+      </Box>
+       :
      <Box  component='nav'style={{display:'flex'}}>
-       <Link to='/cart'>
+       
+        <Link to='/cart'>
          <IconButton style={{color:'black', marginRight:'-15px'}}  size='large'>
            <ShoppingCartOutlinedIcon fontSize='large' sx={{color:'black', stroke:"#ffffff",strokeWidth:1}}/>
          </IconButton>
@@ -35,7 +51,9 @@ type SmallScreenProps = {
          <span style={{width:'20px', height:'20px', borderRadius:'50px', backgroundColor:'#E7CEA6', position:'absolute', textAlign:'center', top:'20px', right:'108px'}}>{totalQuantity}</span>
        </Link>
        <OpenMenu/>
+    
      </Box>
+     }
     </>
   )
 }

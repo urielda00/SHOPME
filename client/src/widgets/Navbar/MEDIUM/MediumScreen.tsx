@@ -2,7 +2,7 @@ import { Box , IconButton } from '@mui/material';
 import { Link } from 'react-router-dom';
 import Search from '../Widgets/Search';
 import OpenMenu from '../Widgets/Open-Menu';
-
+import { useSelector } from 'react-redux';
 //Icons:
 import PermIdentityOutlinedIcon from '@mui/icons-material/PermIdentityOutlined';
 import StoreOutlinedIcon from '@mui/icons-material/StoreOutlined';
@@ -14,6 +14,8 @@ type MediumScreenProps = {
 };
 
  const MediumScreen = ({totalQuantity}:MediumScreenProps) => {
+  const {user} = useSelector((state:any) => state.user);
+
    return (
      <>
       <Box  component='nav'>
@@ -31,16 +33,22 @@ type MediumScreenProps = {
             <ShoppingCartOutlinedIcon fontSize='large'sx={{color:'black',stroke:"#ffffff",strokeWidth:1}}/>
            </IconButton>
            <span style={{width:'20px', height:'20px', borderRadius:'50px', backgroundColor:'#E7CEA6',
-              position:'absolute', textAlign:'center', top:'20px', right:'108px'}}>
+              position:'absolute', textAlign:'center', top:'20px', right:'77px'}}>
               {totalQuantity}
            </span>
          </Link>
-         <Link to='/login'> 
-           <IconButton style={{color:'black', marginRight:'5px'}}  size='large'>
-             <PermIdentityOutlinedIcon fontSize='large' 
-               sx={{color:'black', stroke:"#ffffff",strokeWidth:1}}/>
+         
+           <IconButton style={{color:'black', marginRight:'6px'}}  size='large'>
+           {
+            user?
+            <div hidden></div>
+            :<Link to='/login'>    
+                <PermIdentityOutlinedIcon fontSize='large'
+                 sx={{color:'black', stroke:"#ffffff",strokeWidth:1}}/>
+              </Link>
+           }
            </IconButton>
-         </Link>
+         
          <OpenMenu/>
      </Box>
     </>
