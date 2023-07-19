@@ -32,10 +32,18 @@ type MediumScreenProps = {
            <IconButton style={{color:'black', marginRight:'-15px'}}  size='large'>
             <ShoppingCartOutlinedIcon fontSize='large'sx={{color:'black',stroke:"#ffffff",strokeWidth:1}}/>
            </IconButton>
-           <span style={{width:'20px', height:'20px', borderRadius:'50px', backgroundColor:'#E7CEA6',
+           {
+            user?
+            <span style={{width:'20px', height:'20px', borderRadius:'50px', backgroundColor:'#E7CEA6',
               position:'absolute', textAlign:'center', top:'20px', right:'77px'}}>
               {totalQuantity}
            </span>
+            :
+            <span style={{width:'20px', height:'20px', borderRadius:'50px', backgroundColor:'#E7CEA6',
+              position:'absolute', textAlign:'center', top:'20px', right:'110px'}}>
+              {totalQuantity}
+           </span>
+           }
          </Link>
          
            <IconButton style={{color:'black', marginRight:'6px'}}  size='large'>

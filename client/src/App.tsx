@@ -4,7 +4,7 @@ import { Route, Routes, useLocation } from 'react-router-dom';
 import { ReactQueryDevtools } from 'react-query/devtools'
 import { useDispatch } from 'react-redux';
 import { loggedOut} from './features/userSlice';
-
+import { deleteAllCart } from './features/cartSlice';
 
 //Reuseable components imports:
 import NavBar from './components/NavBar';
@@ -36,10 +36,11 @@ import Footer from './components/Footer';
 const App = () => {
   const { pathname } = useLocation();
   const dispatch = useDispatch();
-  const logoutIndicator = window.sessionStorage.getItem('logoutIndicator')
-  if(logoutIndicator!=='true'){
-    dispatch(loggedOut()) 
-  };
+  // const logoutIndicator = window.sessionStorage.getItem('logoutIndicator')
+  // if(logoutIndicator!=='true'){
+  //   dispatch(loggedOut());
+  //   dispatch(deleteAllCart());
+  // };
   return (
      <>
        <ContactNavbar/>

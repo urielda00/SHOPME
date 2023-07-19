@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const CartSchema= new mongoose.Schema({
-    userName: {
+    userId: {
      type: String,
      unique: true 
     },
@@ -10,6 +10,10 @@ const CartSchema= new mongoose.Schema({
     },
     totalPrice:{ //every change of the amount will affect this field.
       //go to the product schema and check the price. then- loop over products obj and sum the prices
+      type: Number,
+      required: true,
+      },
+     totalQuantity:{ 
       type: Number,
       required: true,
       },

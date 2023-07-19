@@ -4,7 +4,6 @@ import InfoIcon from '@mui/icons-material/Info';
 import { Link } from "react-router-dom";
 import {  useDispatch } from 'react-redux';
 import { addToCart } from "../../features/cartSlice";
-
 // Style import:
 import {containerLStyle,containerMStyle,containerSStyle} from '../../styles/ProductsListPage/ItemInList';
 
@@ -18,6 +17,7 @@ import {containerLStyle,containerMStyle,containerSStyle} from '../../styles/Prod
   const randomShippingPrice = (min:number, max:number)=>{
     return Math.floor(min + Math.random()*(max - min + 1));
   };
+  
 
   return (
     <Box>
@@ -98,7 +98,7 @@ import {containerLStyle,containerMStyle,containerSStyle} from '../../styles/Prod
         height:'80%', alignItems:'center',justifyContent:'space-evenly',marginTop:'10px',marginRight:'-10px' }}>
          <Button 
            size="small"
-           onClick={()=>{dispatch(addToCart(item))}} 
+           onClick={()=>dispatch(addToCart(item))} 
            variant='contained' 
            sx={{backgroundColor:'#47A992',width:'130px',marginLeft:'-20px',height:'60px',":hover": {backgroundColor:'#5D9C59'}}}>Add To Cart<AddShoppingCartIcon sx={{marginLeft:'10px'}}/>
          </Button>
@@ -146,7 +146,7 @@ import {containerLStyle,containerMStyle,containerSStyle} from '../../styles/Prod
           
          <Button 
            size="small"
-           onClick={()=>{dispatch(addToCart(item))}} 
+           onClick={()=>dispatch(addToCart(item))} 
            variant='contained' 
            sx={{backgroundColor:'#47A992',width:'60px',marginLeft:'-20px',height:'50px',":hover": {backgroundColor:'#5D9C59'}}}><AddShoppingCartIcon/>
          </Button>
@@ -166,3 +166,39 @@ import {containerLStyle,containerMStyle,containerSStyle} from '../../styles/Prod
   )
 }
 export default ItemInList;
+
+  // useEffect(() => {
+  //   axios.post('http://localhost:5000/cart/addToCart',{product: cart,userId,totalPrice,totalQuantity})
+  // }, [cart])
+
+
+
+// const handleAddToCart  = async(item:any)=>{
+  //     const isItem =  dispatch(addToCart(item));
+  //   // setTimeout(
+  //   //   ()=>{
+  //   //    axios.post('http://localhost:5000/cart/addToCart',{product: item})
+  //   //   },2000)
+  //   //    if(!warningMessage){
+  //   //  }else{
+  //   //   console.log('the item is out of the stock- the itemInListPage');
+  //   //  }
+    
+  //   // if(userId){
+  //   //   // if the item exist on the cart:
+
+  //   //   const finalProduct= {...item,itemQuantity:1}
+  //   //   axios.post('http://localhost:5000/cart/addToCart',{product: finalProduct,userId, totalQuantity})
+  //   //   .then(res => {
+  //   //     dispatch(addToCart(item))
+  //   //   })
+  //   //   .catch(error=>{
+  //   //     console.log('error in add to cart- item in list page',error);
+  //   //   })
+  //   // }else{
+  //   //  dispatch(addToCart(item)) 
+  //   // }
+    
+  //   // להוסיף תנאי- שאם המזהה של המשתנה בסטייט קיים- זה ייצור בקשת אקיוס. אחרת, פשוט יוסיף מקומית
+  //   // axios.post()
+  // }

@@ -5,15 +5,16 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import ReCAPTCHA from 'react-google-recaptcha';
 import ErrorMessages from './ErrorMessages';
 import axios from 'axios';
-
+import DialogIs from './Dialog';
+import SuccessMessage from './SuccessMessage';
 
 // ReactHook:
-import { useForm,FieldErrors } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import React, {useState, useEffect} from 'react';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
-import DialogIs from './Dialog';
+
 
 type FormValues = {
   firstName : string
@@ -36,27 +37,38 @@ const RegisterForm = () => {
   const [passwordEyeVerify, setPasswordEyeVerify] = useState(false);
   const [captchaVerified, setCaptchaVerified] = useState(false);
   const [openPassHelp, setOpenPassHelp] = useState(false);
+  const [fetchErrors, setFetchErrors] = useState(false);
+  const [successFetch, setSuccessFetch] = useState(false);
 
   const form = useForm<FormValues>({mode:'onChange'});
-  const {register, control, handleSubmit, formState, watch,getValues, reset} = form;
+  const {register, handleSubmit, formState, watch, reset} = form;
   const password = watch('password');
   const {errors, isDirty, isValid, isSubmitSuccessful} = formState;
-
-  
   const handleChangeEyePassword = () => {setPasswordEye(!passwordEye)};
   const handleChangeEyeVerify = () => {setPasswordEyeVerify(!passwordEyeVerify)};
-
+  
   const onSubmit = (data : FormValues)=>{
     // later, import to here the function from services that handle the axios:
     axios.post('http://localhost:5000/auth/register',data)
-    .then(response => {console.log(response.data)})
-    .catch(error => {console.log(error.data)});
+    .then(response => {
+      setFetchErrors(false);
+      setSuccessFetch(true);
+      setTimeout(() => {
+        window.location.replace('/login')
+      }, 2000);
+      })
+    .catch(error => {setFetchErrors(true)});
   };
+
   useEffect(()=>{
     if(isSubmitSuccessful){
-      reset()
+      reset();
+      setTimeout(() => {
+        setFetchErrors(false)
+       }, 4000);
     } 
-  },[isSubmitSuccessful,reset]);
+  },[isSubmitSuccessful,reset,fetchErrors]);
+
   let testArr = [];
   if(errors.password){
     testArr.push(errors.password.message)
@@ -70,9 +82,12 @@ const RegisterForm = () => {
   const digitRjx = /(?=.*?[0-9])/;
   const min4Rjx = /.{4,}/;
 
-
   return (
        <Container sx={containerStyle} maxWidth='sm' component="main" >
+        {
+          successFetch? <SuccessMessage/>:
+          <div hidden></div>
+        }
          <Box sx={insideContainerStyle}>
 
            <Avatar sx={{ m: 0.5, bgcolor: 'secondary.main' }}>
@@ -129,7 +144,7 @@ const RegisterForm = () => {
                          while(fieldValue.length>=3 && fieldValue.includes('@')){
                            const res = await fetch(`http://localhost:5000/auth/checkIfExist/${fieldValue}`);
                            const data = await res.json();
-                           return data.length == 0 ||'Email Already Exist'
+                           return data.length === 0 ||'Email Already Exist'
                          }    
                       }
                      },
@@ -151,7 +166,7 @@ const RegisterForm = () => {
                         while(fieldValue.length>=4){
                          const res = await fetch(`http://localhost:5000/auth/checkIfExist/${fieldValue}`);
                          const data = await res.json(); 
-                         return data.length == 0 ||'User Name Already Exist'
+                         return data.length === 0 ||'User Name Already Exist'
                         } 
                       },
                       has6Characters: (value) => min4Rjx.test(value) || 'Must have at least 4 Characters',
@@ -290,7 +305,11 @@ const RegisterForm = () => {
               </Grid>
             </Grid>
           </Box> 
-          <ErrorMessages errors={testArr}/>      
+          {
+            fetchErrors? <ErrorMessages errors={'Internal Server Error, please try again later'}/>:
+            <ErrorMessages errors={testArr}/>  
+          }
+              
         </Box>  
       </Container>
   );

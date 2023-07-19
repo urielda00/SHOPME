@@ -6,6 +6,7 @@ import {Box,Button,
   ListItemButton,Stack } from '@mui/material';
   import { useDispatch } from 'react-redux';
   import {loggedOut} from '../../../features/userSlice';
+  import { useSelector } from 'react-redux';
 
 //Icons:
 import MenuIcon from '@mui/icons-material/Menu';
@@ -17,6 +18,7 @@ type Anchor = 'left';
 
 const OpenMenu =()=> {
   const dispatch = useDispatch();
+  const {user} = useSelector((state:any) => state.user);
   const handleLogout = ()=>{
     dispatch(loggedOut())
   };
@@ -58,14 +60,18 @@ const OpenMenu =()=> {
               </ListItem>
             </ListItemButton>
           </Link>
-
-          <Link style={linkStyle} to='/' onClick={handleLogout}>
+          {
+            user? 
+            <Link style={linkStyle} to='/' onClick={handleLogout}>
             <ListItemButton style={{display:'flex', alignItems:'center',justifyContent:'center'}}>
-              <ListItem key={3} >
+              <ListItem key={3}>
                 <ListItemText primary='Log Out'/>
               </ListItem>
             </ListItemButton>
-          </Link>
+          </Link> :
+           <div hidden></div>
+          }
+          
 
           <Link style={linkStyle} to='/contact'>
              <ListItemButton style={{display:'flex', alignItems:'center',justifyContent:'center'}}>

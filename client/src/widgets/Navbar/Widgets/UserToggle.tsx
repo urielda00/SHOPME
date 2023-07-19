@@ -30,7 +30,9 @@ export const UserToggle = () => {
       }
       setOpen(false);
     };
-    
+    React.useEffect(()=>{
+    console.log('userlogged');
+    },[user])
     function handleListKeyDown(event: React.KeyboardEvent) {
       if (event.key === 'Tab') {
         event.preventDefault();

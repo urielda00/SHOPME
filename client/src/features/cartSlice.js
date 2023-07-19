@@ -1,13 +1,13 @@
 import { createSlice} from "@reduxjs/toolkit";
-// import ErrorMessages from "../widgets/Cart/ErrorMessages";
+
+
 const initialState = {
   cart: [],
-  // userName:'', //orr add later the- isLogged of boolean type.
+  userId:null, //orr add later the- isLogged of boolean type.
   totalQuantity: 0,
   totalPrice:0,
-  warningMessage: null//make this array- and it will be looped in the map- make this as a different component!- widget one.
+  warningMessage: null//make this array- and it will be looped in the map- make this as a different component!- widget one. and change the name to- login warning messages.
 };
-
 
 
 
@@ -18,7 +18,7 @@ export const cartSlice= createSlice({
   addToCart: (state,action)=>{
     //check if the item already in the cart
     const itemIndex = state.cart.findIndex((item)=>item._id === action.payload._id);
-    if(itemIndex>=0){
+    if(itemIndex >= 0){
       state.cart[itemIndex].itemQuantity++;
       state.totalPrice+=action.payload.price;
     }else{
@@ -71,5 +71,23 @@ export const cartSlice= createSlice({
   },
 })
 
-export const {addToCart, incrementQuantity, decrementQuantity, removeItem, deleteAllCart, setCart}= cartSlice.actions;
+export const {addToCart, incrementQuantity, decrementQuantity, removeItem, deleteAllCart}= cartSlice.actions;
 export default cartSlice.reducer;
+
+
+
+// pullCartOnLogin : (state, action)=>{
+//   // Check if there is cart:
+//   if(Array.isArray(action.payload)){
+//    state.cart = [];
+//    state.userId= action.payload[1];
+//    state.totalQuantity=0;
+//    state.totalPrice=0;
+//    state.warningMessage=null;
+//   }else{
+//    state.cart = action.payload.products;
+//    state.userId = action.payload.userId;
+//    state.totalQuantity = action.payload.totalQuantity;
+//    state.totalPrice = action.payload.totalPrice;
+//   }
+//   }

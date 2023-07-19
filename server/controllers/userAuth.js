@@ -3,7 +3,7 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import UsersArchives from "../models/UsersArchives.js";
 import {UserErrorLogger, UserInfoLogger} from "../middleware/winston.js";
-
+import Cart from "../models/Cart.js";
 
  //Register:
  export const register = async (req,res)=>{
@@ -30,6 +30,7 @@ import {UserErrorLogger, UserInfoLogger} from "../middleware/winston.js";
     avatar
    });
    
+
     await saveUser.save();
     UserInfoLogger.log('info','user created! status code: 201');
     res.status(201).json({message:'User created successfully!!'}).send();
@@ -72,31 +73,38 @@ export const login= async (req,res)=>{
   try {
   const {userName, password}= req.body;
   const user = await User.findOne({userName}); 
+  const hasCart = await Cart.findOne({userId:user._id}); 
 
    if(user){
-
     const isMatchPass=  bcrypt.compareSync(password, user.password);
 
     if(isMatchPass){
   
 
-    //JWT & SESSION:
+    //JWT & SESSION: 
     const tokenData= {id: user._id};
     const token= jwt.sign(tokenData, process.env.JWT_ACCESS_KEY, {expiresIn:'1h'});
+    
 
-    UserInfoLogger.log('info','Login succeed! status code: 200');
-    res.cookie('session-token', token, { httpOnly:true ,maxAge:   60* 60 * 1 * 1000})
-    .json({message:'Login succeed!'}).status(200);  
+    if(hasCart){
+      UserInfoLogger.log('info','Login succeed, with cart! status code: 200');
+      res.cookie('session-token', token, { httpOnly:true ,maxAge:   60* 60 * 1 * 1000})
+      .json({message:'Login succeed!',cart:{products:hasCart.products, totalPrice:hasCart.totalPrice, userId:hasCart.userId, totalQuantity:hasCart.totalQuantity}}).status(200);  
+    }else{
+      UserInfoLogger.log('info','Login succeed, with cart! status code: 200');
+      res.cookie('session-token', token, { httpOnly:true ,maxAge:   60* 60 * 1 * 1000})
+      .json({message:'Login succeed!',cart:['empty',user._id]}).status(200); 
+    }
     
 
     }else{
     UserErrorLogger.log('error','Wrong UserName Or Pass! status code: 409');
-    res.status(409).json({message:'Wrong UserName Or Pass!'});
+     res.status(409).json({message:'Wrong UserName Or Pass!'});
     }
 
    }else{
      UserErrorLogger.log('error','Wrong UserName Or Pass! status code: 409');
-     res.status(409).json({message:'Wrong UserName Or Pass!'})  
+      res.status(409).json({message:'Wrong UserName Or Pass!'})  
    }
   } catch (error) {
    UserErrorLogger.log('error',`${error.message}. status code: 500`);

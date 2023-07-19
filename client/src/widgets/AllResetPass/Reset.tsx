@@ -5,11 +5,14 @@ import {Avatar, Button, TextField,Grid,Box,Typography, Container,IconButton, Inp
 import { useForm } from 'react-hook-form';
 import LockResetIcon from '@mui/icons-material/LockReset';import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
-
+import DialogIs from "../RegisterPage/Dialog";
+import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
+import ErrorMessages from "./ErrorMessages";
 type FormValues = {
   password : string
   verifyPass : string
 };
+
 
  const Reset = () => {
   const form = useForm<FormValues>({mode:'onChange'});
@@ -23,6 +26,7 @@ type FormValues = {
   const [validUrl, setValidUrl] = useState(false);
 	const param = useParams();
   const url = `http://localhost:5000/resetPass/reset/${param.id}/${param.token}`;
+  const [openPassHelp, setOpenPassHelp] = useState(false);
 
   const onSubmit = async(datais : FormValues)=>{
 
@@ -48,6 +52,24 @@ type FormValues = {
 		verifyUrl();
 	}, [param, url]);
 
+
+  useEffect(()=>{
+    if(isSubmitSuccessful){
+      reset()
+    } 
+  },[isSubmitSuccessful,reset]);
+  let testArr = [];
+  if(errors.password){
+    testArr.push(errors.password.message)
+  }else{
+    testArr = []
+  }
+
+  // Rejex for password validation:
+  const upperCaseRjx = /(?=.*?[A-Z])/;
+  const lowerCaseRjx = /(?=.*?[a-z])/;
+  const digitRjx = /(?=.*?[0-9])/;
+  const min4Rjx = /.{4,}/;
   return (
     <Container sx={containerStyle} maxWidth='sm' component="main" >
     <Box sx={insideContainerStyle}>
@@ -73,6 +95,16 @@ type FormValues = {
                     endAdornment: (
                       <InputAdornment position="end">
                         <IconButton
+                            aria-label="toggle password visibility"
+                            onClick={()=>{
+                              setOpenPassHelp(true);
+                              setTimeout(() => {
+                              setOpenPassHelp(false)
+                              }, 1000);
+                              }}>
+                            <HelpOutlineIcon/>
+                          </IconButton>
+                        <IconButton
                           aria-label="toggle password visibility"
                           onClick={handleChangeEyePassword}
                         >
@@ -84,10 +116,16 @@ type FormValues = {
              {...register('password',
               {
                 required: 'Password Is Required',
+                validate : {
+                  hasUpperCase: (value) => upperCaseRjx.test(value) || 'Password Must have at least 1 UpperCase',
+                  hasLowerCase: (value) => lowerCaseRjx.test(value) || 'Password Must have at least 1 LowerCase',
+                  hasDigitCase: (value) => digitRjx.test(value) || 'Password Must have at least 1 Digit',
+                  has6Characters: (value) => min4Rjx.test(value) || 'Password Must have at least 4 Characters',
+                  },
               })}
              error={!!errors.password}
              helperText={errors.password?.message}/>
-
+             <DialogIs open={openPassHelp}/>
          </Grid>
           
          <Grid item xs={12} sm={12}>
@@ -135,8 +173,9 @@ type FormValues = {
           
        </Grid>
        </Grid>
-     </Box>
-   </Box>   
+     </Box>  
+   </Box>    
+   <ErrorMessages errors={testArr}/>
  </Container>
   )
 }

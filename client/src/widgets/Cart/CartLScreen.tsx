@@ -1,23 +1,23 @@
-import * as React from 'react';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 import { incrementQuantity, decrementQuantity, removeItem, deleteAllCart } from '../../features/cartSlice';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Box, Button, IconButton, ListItemText ,TextField} from '@mui/material';
+import ErrorMessages from './ErrorMessages';
+
+// Icons import:
 import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import CloseIcon from '@mui/icons-material/Close';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
-import ErrorMessages from './ErrorMessages';
-// const userName= window.sessionStorage.getItem('userNameHere');
 
 // Styles import:
-import { container,childContainer1,liStyle, } from '../../styles/CartPage/CartLScreen';
+import { container,childContainer1,liStyle} from '../../styles/CartPage/CartLScreen';
+
 
 const CartLScreen = () => {
-  const {cart, totalQuantity,totalPrice, warningMessage}= useSelector((state:any)=>state.allCart)
-  const dispatch= useDispatch();
+  const {cart, totalQuantity,totalPrice, warningMessage, userId}= useSelector((state:any)=>state.allCart)
+  const dispatch= useDispatch();  
   return (
        <Box sx={container} >
          <Box  sx={childContainer1}>
@@ -82,7 +82,7 @@ const CartLScreen = () => {
                        <div style={{marginLeft:'-10px'}} >
                           {product.price}$
                        </div>
-                       <div onClick={()=>{ dispatch(removeItem(product))}}>
+                       <div onClick={()=>{dispatch(removeItem(product))}}>
                          <Button style={{color:'black'}}>
                            <CloseIcon style={{marginLeft:'-30px'}}/>
                          </Button>

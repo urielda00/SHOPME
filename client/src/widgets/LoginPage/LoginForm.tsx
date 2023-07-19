@@ -3,15 +3,16 @@ from '@mui/material';
 import { Link } from 'react-router-dom';
 import PersonIcon from '@mui/icons-material/Person';
 import ReCAPTCHA from 'react-google-recaptcha';
-import axios from 'axios';
-import { useDispatch } from 'react-redux';
-import {logged, errorLogged, loggedOut} from '../../features/userSlice';
 import ErrorMessages from './ErrorMessages';
+import { useDispatch } from 'react-redux';
+import { logged } from '../../features/userSlice';
+
 // ReactHook:
-import { useForm,FieldErrors } from 'react-hook-form';
+import { useForm} from 'react-hook-form';
 import React, {useState, useEffect} from 'react';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+
 
 type FormValues = {
   userName : string
@@ -22,8 +23,11 @@ const SITE_KEY = '6Le6bSMnAAAAAFsg4MZvHcr9FTA5r82NKIsvPjGm';
 // need to create anothe view for phones screens.
 
 
+
+
 // The component:
 const LoginForm = () => {
+  const dispatch = useDispatch();
   const onCaptchaChange = () =>{ setCaptchaVerified(true) };
   const [passwordEye, setPasswordEye] = useState(false);
   const [captchaVerified, setCaptchaVerified] = useState(false);
@@ -31,23 +35,11 @@ const LoginForm = () => {
   const {register, handleSubmit, formState, reset} = form;
   const {errors, isDirty, isValid, isSubmitSuccessful} = formState;
   const handleChangeEyePassword = () => {setPasswordEye(!passwordEye)};
-  const dispatch = useDispatch<any>();
 
 
   const onSubmit = (data : FormValues)=>{
-    // later, import to here the function from services that handle the axios:
-    axios.post('http://localhost:5000/auth/login',data)
-    .then(response => {
-      setTimeout(()=>{
-        window.location.replace('/')
-      },1000);
-      alert(response.data.message)
-      window.sessionStorage.setItem('logoutIndicator','true')
-      dispatch(logged())
-    })
-    .catch(error => {
-      dispatch(errorLogged(error.response.data.message))
-     });
+   dispatch(logged())
+   console.log('logged in from the log in form');
   };
 
   useEffect(()=>{
@@ -74,7 +66,6 @@ const LoginForm = () => {
                   id='userName'
                   label="User Name"
                   type='text'
-                  autoComplete= 'username'
                   {...register('userName',
                   {
                     required : 'User Name Is Required',
@@ -168,3 +159,24 @@ const insideContainerStyle:React.CSSProperties = {
   flexDirection: 'column',
   alignItems: 'center',
 };
+
+
+ // later, import to here the function from services that handle the axios:
+    // axios.post('http://localhost:5000/auth/login',data)
+    // console.log('aaa');
+    // .then(response => {
+    //   console.log('respomse data test:',response.data.cart);
+    //   dispatch(pullCartOnLogin(response.data.cart))
+    //    console.log('cart',cart);
+    // //   setTimeout(()=>{
+    // //     window.location.replace('/')
+    // //   },1000);
+    // //   console.log('respomse data test:',response);
+    // //   alert(response.data.message)
+    // //   window.sessionStorage.setItem('logoutIndicator','true')
+    // //   dispatch(logged())
+    // })
+    // .catch(error => {
+    //   // dispatch(errorLogged(error.response.data.message))
+    //   console.log('error in the login page:',error.message);
+    //  });
