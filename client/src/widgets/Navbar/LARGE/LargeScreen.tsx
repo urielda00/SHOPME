@@ -50,7 +50,8 @@ export default LargeScreen;
 
 const firstBoxStyle: React.CSSProperties = {
   marginRight: '230px',
-   display:'flex',  
+   display:'flex', 
+   zIndex:70, 
   justifyContent:'space-between',
    width:'250px'
 };

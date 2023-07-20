@@ -12,7 +12,7 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
   const {loginError} = useSelector((state:any) => state.user);
 
   return (
-     <Stack spacing={2} sx={{ width: '10%', position:'absolute',top:'120px', left:'20px'}}>
+     <Stack spacing={2} sx={{ zIndex:20,width: '10%', position:'absolute',top:'120px', left:'20px'}}>
         {
          loginError?
          <Alert  severity="error" sx={{ width: '350px' }}>

@@ -2,7 +2,8 @@
 import React from 'react';
 import {MenuItem ,MenuList ,Popper ,Paper,Grow ,ClickAwayListener ,Divider } from '@mui/material';
 import {IconButton} from '@mui/material';  
-import { useSelector } from 'react-redux';
+import { useSelector ,useDispatch} from 'react-redux';
+import { loggedOut } from '../../../features/userSlice';
 import DisplayAvatar from './DisplayAvatar';
 //Icons:
 import PermIdentityOutlinedIcon from '@mui/icons-material/PermIdentityOutlined';
@@ -14,11 +15,12 @@ import { Link } from 'react-router-dom';
 
 export const UserToggle = () => {
     const {user} = useSelector((state:any) => state.user);
+    const dispatch = useDispatch();
     const [open, setOpen] = React.useState(false);
     const anchorRef = React.useRef<HTMLButtonElement>(null);
     const handleLogOut = () => {
       window.sessionStorage.removeItem('logoutIndicator');
-      window.location.reload();
+      dispatch(loggedOut());
     }
     const handleToggle = () => {setOpen((prevOpen) => !prevOpen);};
     const handleClose = (event: Event | React.SyntheticEvent) => {
@@ -30,9 +32,7 @@ export const UserToggle = () => {
       }
       setOpen(false);
     };
-    React.useEffect(()=>{
-    console.log('userlogged');
-    },[user])
+    
     function handleListKeyDown(event: React.KeyboardEvent) {
       if (event.key === 'Tab') {
         event.preventDefault();

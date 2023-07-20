@@ -92,6 +92,7 @@ const CartSScreen = () => {
          </Box>
          <Box sx={{display:'flex',flexDirection:'column',alignItems:'center'}}>
            <input type='text' style={{width:'80%',height:'35px',marginTop:'20px',color:'#fff',backgroundColor:'#332D2D',border:'none',borderRadius:'5px',textIndent:'10px'}} placeholder='Enter Your Coupon'/>
+           <Link to='/checkout'>
            <Button style={{textAlign:'center',width:'80%',
              height:'35px',marginTop:'10px'}} sx={{color:'#fff',bgcolor:'#332D2D', ":hover": {
               color:'black',
@@ -99,6 +100,7 @@ const CartSScreen = () => {
              }}}>
                Checkout
             </Button>
+            </Link>
             <Button style={{textAlign:'center',width:'80%', height:'35px',marginTop:'10px'}} 
              sx={{ color:'#fff',bgcolor:'#332D2D',":hover": {
               color:'black',

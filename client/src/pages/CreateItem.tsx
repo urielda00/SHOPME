@@ -1,7 +1,7 @@
 import React,{useState} from 'react'
 import axios from 'axios'
 // shortDescription, longDescription, price,quantity, category, productName,company
-export const Create = () => {
+export const CreateItem = () => {
 
   const [shortDescription, setShortDescription]= useState('');
   const [longDescription,setLongDescription]= useState('');

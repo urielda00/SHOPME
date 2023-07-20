@@ -11,7 +11,6 @@ import Cart from "../models/Cart.js";
    const {firstName, lastName, userName, email, password ,verifyPass, phoneNumber, avatar}= req.body;
    const isUserMail = await User.findOne({email});
    const isUserName = await User.findOne({userName});
-
    if(password === verifyPass){
  
    if(!isUserMail && !isUserName){ //if the user and the mail dont exists in the DB...
@@ -73,29 +72,25 @@ export const login= async (req,res)=>{
   try {
   const {userName, password}= req.body;
   const user = await User.findOne({userName}); 
-  const hasCart = await Cart.findOne({userId:user._id}); 
+  const isAdmin = await User.findOne({$and:[{userName},{admin:'true'}]});
 
    if(user){
     const isMatchPass=  bcrypt.compareSync(password, user.password);
-
+    
     if(isMatchPass){
-  
-
     //JWT & SESSION: 
     const tokenData= {id: user._id};
     const token= jwt.sign(tokenData, process.env.JWT_ACCESS_KEY, {expiresIn:'1h'});
     
-
-    if(hasCart){
+    if(isAdmin){
       UserInfoLogger.log('info','Login succeed, with cart! status code: 200');
-      res.cookie('session-token', token, { httpOnly:true ,maxAge:   60* 60 * 1 * 1000})
-      .json({message:'Login succeed!',cart:{products:hasCart.products, totalPrice:hasCart.totalPrice, userId:hasCart.userId, totalQuantity:hasCart.totalQuantity}}).status(200);  
+      res.cookie('session-token', token, { httpOnly:true ,maxAge:   30* 60 * 1 * 1000})
+      .json({message:'Login succeed!',cart:['empty',user._id],admin:true}).status(200);  
     }else{
-      UserInfoLogger.log('info','Login succeed, with cart! status code: 200');
-      res.cookie('session-token', token, { httpOnly:true ,maxAge:   60* 60 * 1 * 1000})
-      .json({message:'Login succeed!',cart:['empty',user._id]}).status(200); 
+    UserInfoLogger.log('info','Login succeed, with cart! status code: 200');
+    res.cookie('session-token', token, { httpOnly:true ,maxAge:   60* 60 * 1 * 1000})
+    .json({message:'Login succeed!',cart:['empty',user._id],admin:false}).status(200); 
     }
-    
 
     }else{
     UserErrorLogger.log('error','Wrong UserName Or Pass! status code: 409');

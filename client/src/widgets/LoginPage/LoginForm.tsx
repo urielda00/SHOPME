@@ -1,17 +1,21 @@
 import {Avatar, Button, TextField,Grid,Box,Typography, Container,InputAdornment,IconButton} 
 from '@mui/material';
 import { Link } from 'react-router-dom';
-import PersonIcon from '@mui/icons-material/Person';
 import ReCAPTCHA from 'react-google-recaptcha';
-import ErrorMessages from './ErrorMessages';
-import { useDispatch } from 'react-redux';
-import { logged } from '../../features/userSlice';
+import axios from 'axios';
 
-// ReactHook:
+// Local Imports:
+import { logged, errorLogged ,isAdmin} from '../../features/userSlice';
+import ErrorMessages from './ErrorMessages';
+
+
+// Hooks and Icons:
+import { useDispatch } from 'react-redux';
 import { useForm} from 'react-hook-form';
 import React, {useState, useEffect} from 'react';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import PersonIcon from '@mui/icons-material/Person';
 
 
 type FormValues = {
@@ -20,12 +24,8 @@ type FormValues = {
 };
 
 const SITE_KEY = '6Le6bSMnAAAAAFsg4MZvHcr9FTA5r82NKIsvPjGm';
-// need to create anothe view for phones screens.
 
-
-
-
-// The component:
+// The Component:
 const LoginForm = () => {
   const dispatch = useDispatch();
   const onCaptchaChange = () =>{ setCaptchaVerified(true) };
@@ -38,8 +38,22 @@ const LoginForm = () => {
 
 
   const onSubmit = (data : FormValues)=>{
-   dispatch(logged())
-   console.log('logged in from the log in form');
+    
+   axios.post('http://localhost:5000/auth/login',data)
+    .then(response => {
+      if(response.data.admin){
+        alert('logged Successfully');
+        window.location.replace('/')
+        dispatch(isAdmin());
+      }else{
+        alert('logged Successfully');
+        window.location.replace('/')
+        dispatch(logged())
+      }   
+    })
+    .catch(error => {
+      dispatch(errorLogged(error.response.data.message))
+     });
   };
 
   useEffect(()=>{
@@ -159,24 +173,3 @@ const insideContainerStyle:React.CSSProperties = {
   flexDirection: 'column',
   alignItems: 'center',
 };
-
-
- // later, import to here the function from services that handle the axios:
-    // axios.post('http://localhost:5000/auth/login',data)
-    // console.log('aaa');
-    // .then(response => {
-    //   console.log('respomse data test:',response.data.cart);
-    //   dispatch(pullCartOnLogin(response.data.cart))
-    //    console.log('cart',cart);
-    // //   setTimeout(()=>{
-    // //     window.location.replace('/')
-    // //   },1000);
-    // //   console.log('respomse data test:',response);
-    // //   alert(response.data.message)
-    // //   window.sessionStorage.setItem('logoutIndicator','true')
-    // //   dispatch(logged())
-    // })
-    // .catch(error => {
-    //   // dispatch(errorLogged(error.response.data.message))
-    //   console.log('error in the login page:',error.message);
-    //  });

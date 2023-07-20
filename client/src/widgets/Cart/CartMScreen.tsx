@@ -119,11 +119,13 @@ const CartMScreen = () => {
                   </TextField>
               </div>
               <div style={{marginTop:'5px'}}>
+               <Link to='/checkout'>
                  <Button style={{textAlign:'center',width:'96%',
                    height:'35px',marginTop:'10px'}} sx={{color:'#fff',bgcolor:'#332D2D',
                    ":hover": {color:'black',bgcolor: "#AF5",}}}>
                    Checkout
                  </Button>
+                </Link>
                  <Button style={{textAlign:'center',width:'96%', height:'35px',marginTop:'10px'}} 
                   sx={{ color:'#fff',bgcolor:'#332D2D',":hover": {color:'black',bgcolor: "#AF5"}}}>        
                    Register

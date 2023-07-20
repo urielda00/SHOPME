@@ -125,11 +125,12 @@ const CartLScreen = () => {
              </h3>
            </div>
           <div>
-
+           <Link to='/checkout'>
            <Button style={{textAlign:'center',width:'96%', height:'50px',marginTop:'10px'}}
              sx={{color:'#fff',bgcolor:'#332D2D', ":hover": {color:'black',bgcolor: "#AF5",}}}>
                Checkout
            </Button>
+           </Link>
            <Button style={{textAlign:'center',width:'96%', height:'50px',marginTop:'10px'}} 
              sx={{ color:'#fff',bgcolor:'#332D2D',":hover": {color:'black',bgcolor: "#AF5"}}}>   
              Register

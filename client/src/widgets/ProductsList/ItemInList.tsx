@@ -52,7 +52,7 @@ import {containerLStyle,containerMStyle,containerSStyle} from '../../styles/Prod
        <div style={{display:'flex', flexDirection:'column',width:'20%',
         height:'80%', alignItems:'center',justifyContent:'space-evenly',marginTop:'10px' }}>
          <Button 
-           onClick={()=>{dispatch(addToCart(item))}} 
+           onClick={()=>{dispatch(addToCart(item)); console.log(item)}}  
            variant='contained' 
            sx={{backgroundColor:'#47A992',width:'180px',marginLeft:'-20px',height:'40px',":hover": {backgroundColor:'#5D9C59'}}}>Add To Cart<AddShoppingCartIcon sx={{marginLeft:'10px'}}/>
          </Button>
