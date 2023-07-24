@@ -31,7 +31,9 @@ import AdminPanel from './components/AdminPanel';
 import UpdateItem from './pages/UpdateItem';
 import DeleteItem from './pages/DeleteItem';
 import AdminProtectedRoutes from './components/AdminProtectedRoutes';
-
+import { Test } from './widgets/AllAdmin/CreateItemForm/Test';
+import { Test2 } from './widgets/AllAdmin/CreateItemForm/Test2';
+import { Test3 } from './widgets/AllAdmin/CreateItemForm/Test3';
 const App = () => {
   const { pathname } = useLocation();
   return (
@@ -54,6 +56,9 @@ const App = () => {
          <Route path='/contact' element={<ContactPage/>}/>
          <Route path='/thankYou' element={<ThankYouPage/>}/>
          <Route path='/checkout' element={<CheckOut/>}/>
+         <Route path='/test' element={<Test/>}/>
+         <Route path='/test2' element={<Test2/>}/>
+         <Route path='/test3' element={<Test3/>}/>
          <Route path='/user' element={
          <ProtectedRoute>
            <UserPage/>
@@ -62,7 +67,7 @@ const App = () => {
         <Route path='/createItem' element={<AdminProtectedRoutes><CreateItem/></AdminProtectedRoutes>}/>
         <Route path='/updateItem' element={<AdminProtectedRoutes><UpdateItem/></AdminProtectedRoutes>}/>
         <Route path='/deleteItem' element={<AdminProtectedRoutes><DeleteItem/></AdminProtectedRoutes>}/>
-
+        
         <Route path='*' element={<NomatchPage/>}/>
        </Routes>  
        <ScrollToTop/>

@@ -1,6 +1,10 @@
 import Product from "../models/Products.js";
 import { ProductErrorLogger, ProductInfoLogger } from "../middleware/winston.js";
-
+import path from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+// const __dirname = path.dirname(__filename);
+const __dirname = path.resolve(path.dirname(__filename), "../");
 
 // need to add some page where the admin can add new products to the website!
 //meaning only the admin will have access to the following routes.- check that.
@@ -8,29 +12,53 @@ import { ProductErrorLogger, ProductInfoLogger } from "../middleware/winston.js"
 //Create: 
 export const createProduct=  async (req, res)=> {
   try {
-   
-    const filesnames = req.files.map((file) =>{
-     return file.filename;// or file.originalname
+    let trys = [];
+    const file = req.files.screenshot;
+    const file2 = req.files.screenshot2;
+    trys.push(file,file2)
+    
+    const filename = Date.now() + "_" + file.name;
+    const filename2 = Date.now() + "_" + file2.name;
+    
+    let uploadPath = __dirname + "/uploadtests/" + filename;
+    let uploadPath2 = __dirname + "/uploadtests/" + filename2;
+    console.log(uploadPath);
+    file.mv(uploadPath, (err) => {
+      if (err) {
+        return res.send(err);
+      }
     });
-  const {shortDescription, longDescription, price,quantity, category, productName,os,brand,company,releaseYear}= req.body;
-  const saveProduct= new Product({
-    productImages: filesnames,
-    image: filesnames[0],
-    productName,
-    shortDescription,
-    longDescription,
-    price,
-    quantity,
-    status: 'available',
-    category,
-    company,
-    releaseYear,
-    os,
-    brand
-  });
-  await saveProduct.save();
-  ProductInfoLogger.log('info','Product created successfully status code: 201');
-  res.status(201).json({message:'Product created successfully!'});
+  
+    file2.mv(uploadPath2, (err) => {
+      if (err) {
+        return res.send(err);
+      }
+    });
+  
+    res.status(200).send();
+    // const filesnames = req.files.map((file) =>{
+    //  return file.filename;// or file.originalname
+    // });
+   
+  // const {shortDescription, longDescription, price,quantity, category, productName,os,brand,company,releaseYear}= req.body;
+  // const saveProduct= new Product({
+  //   productImages: filesnames,
+  //   image: filesnames[0],
+  //   productName,
+  //   shortDescription,
+  //   longDescription,
+  //   price,
+  //   quantity,
+  //   status: 'available',
+  //   category,
+  //   company,
+  //   releaseYear,
+  //   os,
+  //   brand
+  // });
+  // await saveProduct.save();
+  // ProductInfoLogger.log('info','Product created successfully status code: 201');
+  // res.status(201).json({message:'Product created successfully!'});
 
   } catch (error) {
     ProductErrorLogger.log('error',`${error.message} status code: 500`);
@@ -147,7 +175,6 @@ export const createProduct=  async (req, res)=> {
 
 
 
-
 //Delete:
 export const deleteProduct = async (req, res) => { //only make the status unavailable!
   const id = req.params.id;
@@ -187,4 +214,4 @@ export const searchProduct= async(req,res)=>{
     ProductErrorLogger.log('error',`${error.message} status code: 500`);
     res.status(500).json(error.message)
   }
-}
+};

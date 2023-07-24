@@ -6,7 +6,7 @@ import dotenv from 'dotenv';
 import helmet from 'helmet';
 import morgan from 'morgan';
 import cookieParser from 'cookie-parser';
-
+import fileupload from "express-fileupload";
 
 // //Routers imports:
 import userAuthRouter from './routes/userAuth.js';
@@ -14,6 +14,7 @@ import productRouter from './routes/products.js';
 import orderRouter from './routes/order.js';
 import resetPassRouter from './routes/resetPass.js';
 import cartRouter from './routes/cart.js';
+
 
 //need to handle the 304 status and make another file that recive and save all the logs in the DB
 //need to add multer multi-image upload functionality.
@@ -29,6 +30,7 @@ app.use(express.urlencoded({limit:'30mb',extended:false}));
 app.use(cors());
 app.use(morgan("common")); //the common loger of morgan
 app.use(helmet());
+app.use(fileupload());
 app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" })); //for XXS protection.
 app.use(bodyParser.urlencoded({extended:true }))
 app.use('/product/readProducts',express.static('uploads'));
@@ -43,6 +45,7 @@ app.use('/product', productRouter);
 app.use('/order', orderRouter);
 app.use('/resetPass', resetPassRouter);
 app.use('/cart',cartRouter);
+
 
 //Connect to the DB and then listen at the port:
 mongoose.connect(process.env.DB_URL,{
