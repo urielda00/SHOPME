@@ -62,6 +62,7 @@ export const createProduct=  async (req, res)=> {
 
   } catch (error) {
     ProductErrorLogger.log('error',`${error.message} status code: 500`);
+    console.log('error',error);
     res.status(500).json(error.message)
   }
  };

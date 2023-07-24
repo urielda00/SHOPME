@@ -2,6 +2,9 @@ import {Avatar, Button, TextField,Grid,Box,Typography,
   Container,IconButton} from '@mui/material';
 import axios from 'axios';
 import {containerStyle,insideContainerStyle,stepsP,stepIconButton} from '../../../styles/CreateItemForm/CreateItemForm';
+import SubmitFunc from './SubmitFunc';
+
+
 // Local Imports:
 import { validateImagesObj, validateShortObj, validateProductNameObj, validateLongObj,
  companyObj,brandObj,categoryObj, osObj, priceInputProps, required } from './ValidateObjects';
@@ -19,13 +22,12 @@ import AddIcon from '@mui/icons-material/Add';
 import CheckIcon from '@mui/icons-material/Check';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
-type FormValues = {
+export type FormValues = {
   productName : string
   shortDescription : string
   longDescription : string
   price : number
   quantity : string
-  productImages : [string]
   company : string
   releaseYear : number
   os : string
@@ -36,62 +38,31 @@ type FormValues = {
 
 // The Component:
 const CreateForm = () => {
-  // Steps inside the form:
+  const formats = ["image/jpeg", "image/png", "image/jpg"];
+
+  // Form State- Steps & Images:
   const [step, setStep] = useState(1);
+  const [image1, setImage1] = useState<any>(null);
+  const [image2, setImage2] = useState<any>(null);
   const nextStep = () => {setStep( prev => prev + 1);}; 
   const prevStep = () => {setStep( prev => prev - 1);}; 
-  const [file, setFile] = useState<any>(null);
-  const [file2, setFile2] = useState<any>(null);
+
+// {mode:'onChange'}
   // Useform Hook:
-  const form = useForm<FormValues>({mode:'onChange'});
+  const form = useForm<FormValues>();
   const {register, handleSubmit, formState, reset, watch} = form;
   const {errors, isDirty, isValid, isSubmitSuccessful} = formState;
+
 
   const images = watch('screenshot');
   const imagesLength = images?.length;
   const dispatch = useDispatch();
-  const [multipleImages, setMultipleImages] = useState<any>([]);
-   
+
+  // local functions:
   const onSubmit = async (data : any)=>{
-    let formData = new FormData();
-    formData.append("screenshot", file);
-    formData.append("screenshot2", file2);
-    axios.post("http://localhost:5000/product/createProduct", formData, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    }).then((res:any) => {
-      console.log("Success ", res);
-    });
-    // const res = await fetch('http://localhost:5000/product/istest', {
-    //     method: "POST",
-    //     body: formData,
-    // }).then((res) => res.json());
+    SubmitFunc(image1,image2,data);
+    //send also the data.
   };
-
-  // test start here
-
-  let fileReader:any;
-  
-  const handleFileRead = (e:any) => {
-    const content = fileReader.result;
-    console.log(content)
-    axios.post('http://localhost:5000/product/istest',content)
-    // … do something with the 'content' …
-  };
-  
-  const handleFileChosen = (file:any) => {
-    fileReader = new FileReader();
-    fileReader.onloadend = handleFileRead;
-    fileReader.readAsText(file);
-  };
-  
-
-
-
-  //test end here
-  
-
   return (
        <Container sx={containerStyle} maxWidth='sm' component="main" >  
            <Box sx={insideContainerStyle}>
@@ -204,7 +175,15 @@ const CreateForm = () => {
                             label="screenshot"
                             id='screenshot'
                             type='file'
-                            {...register('screenshot',validateImagesObj)}  
+                            
+                            {...register('screenshot',{
+                              required : 'Images Required',
+                              validate:{
+                                acceptedFormatsf: (file:any) => formats.includes(file[0]?.type) ||
+                                 "Each image type must be Only PNG, JPEG, JPG",
+                              },
+                              onChange : (e) =>{setImage1(e.target.files[0])}
+                            })} 
                             helperText={errors.screenshot?.message}
                           />
   
@@ -251,7 +230,7 @@ const CreateForm = () => {
         type="file"
         name="screenshot2"
         onChange={(e:any) => {
-          setFile2(e.target.files[0]);
+          setImage2(e.target.files[0]);
         }}
       />
       
@@ -328,3 +307,10 @@ export default CreateForm;
 //     reset()
 //   } 
 // },[isSubmitSuccessful,reset]);
+
+
+
+    // const res = await fetch('http://localhost:5000/product/istest', {
+    //     method: "POST",
+    //     body: formData,
+    // }).then((res) => res.json());

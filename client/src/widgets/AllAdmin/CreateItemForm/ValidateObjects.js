@@ -13,6 +13,7 @@ export const validateImagesObj =
   //   thirdlessThan3MB: (files) => files[2]?.size < 1024*1024*5 || "Each image size must be Max 5MB",
   //   fourthlessThan3MB: (files) => files[3]?.size < 1024*1024*5 || "Each image size must be Max 5MB",
     acceptedFormatsf: (file) => formats.includes(file[0]?.type) || "Each image type must be Only PNG, JPEG, JPG", 
+    // onChange : (e) =>{setImage1(e.target.files[0])},
   //   acceptedFormatss: (files) => formats.includes(files[1]?.type) || "Each image type must be Only PNG, JPEG, JPG",
   //   acceptedFormatst: (files) => formats.includes(files[2]?.type) || "Each image type must be Only PNG, JPEG, JPG",
   //   acceptedFormatsfo: (files) => formats.includes(files[3]?.type) || "Each image type must be Only PNG, JPEG, JPG",
