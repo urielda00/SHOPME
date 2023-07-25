@@ -1,25 +1,23 @@
-import {Avatar, Button, TextField,Grid,Box,Typography, 
-  Container,IconButton} from '@mui/material';
-import axios from 'axios';
-import {containerStyle,insideContainerStyle,stepsP,stepIconButton} from '../../../styles/CreateItemForm/CreateItemForm';
-import SubmitFunc from './SubmitFunc';
-import Images from './Images';
+import {Avatar, TextField,Grid,Box,Typography,Container,IconButton} from '@mui/material';
+  
 
 // Local Imports:
-import { validateImagesObj, validateShortObj, validateProductNameObj, validateLongObj,
- companyObj,brandObj,categoryObj, osObj, priceInputProps, required } from './ValidateObjects';
-import { logged, errorLogged ,isAdmin} from '../../../features/userSlice';
-import ErrorMessages from './ErrorMessages';
+import SubmitFunc from './SubmitFunc';
+import Images from './Images';
+import {
+  containerStyle,insideContainerStyle,
+  stepsP,stepIconButton} from '../../../styles/CreateItemForm/CreateItemForm';
+
+import {  
+  validateShortObj, validateProductNameObj,
+   validateLongObj,companyObj,brandObj,categoryObj,
+   osObj, priceInputProps, required } from './ValidateObjects';
 import renderButton from './RenderButton';
-import { toggleUpload } from './Functions';
-import ItemSaved from './ItemSaved';
 
 // Hooks and Icons:
-import { useDispatch } from 'react-redux';
 import { useForm} from 'react-hook-form';
-import React, {useState, useEffect} from 'react';
+import {useState} from 'react';
 import AddIcon from '@mui/icons-material/Add';
-import CheckIcon from '@mui/icons-material/Check';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
 export type FormValues = {
@@ -55,7 +53,7 @@ const CreateForm = () => {
 // 
   // Useform Hook:
   const form = useForm<FormValues>({mode:'onChange'});
-  const {register, handleSubmit, formState, reset, watch} = form;
+  const {register, handleSubmit, formState, reset, watch,control} = form;
   const {errors, isDirty, isValid, isSubmitSuccessful} = formState;
 
   
@@ -67,15 +65,13 @@ const CreateForm = () => {
   const image2Length = isimage2?.length;
   const image3Length = isimage3?.length;
   const image4Length = isimage4?.length;
-  const dispatch = useDispatch();
 
   // local functions:
   const onSubmit = async (data : any)=>{
-    SubmitFunc(image1,image2,data);
+    SubmitFunc(image1,image2,image3,image4,data); //need to add image 3 and image 4
     //send also the data.
-
-   
-  };
+};
+  
    function changeState(newValue:any,image:any):void{
     switch (image) {
       case 'image1':
@@ -91,6 +87,7 @@ const CreateForm = () => {
         setImage4(newValue)
     }
     };
+     
   return (
        <Container sx={containerStyle} maxWidth='sm' component="main" >  
            <Box sx={insideContainerStyle}>
@@ -119,11 +116,15 @@ const CreateForm = () => {
                   step <= 4 ? 'Create Item' : 'Item Created Successfully'
                 }              
              </Typography>
-             <form  encType='multipart/form-data' noValidate 
-                   onSubmit={handleSubmit(onSubmit)}>
+             <form  encType='multipart/form-data' noValidate onSubmit={handleSubmit(onSubmit)}>
                 { 
                  step === 1 && (
                   <Grid container spacing={2}>
+
+                    {/* <AllTextFields id='productName' label="Product Name" type='text'
+                    validationObj={validateProductNameObj}
+                    register={register} nameErrors={errors.productName}/> */}
+
                     <Grid item xs={12} sm={12}>
                       <TextField
                         fullWidth
@@ -199,25 +200,6 @@ const CreateForm = () => {
                             helperText={errors.price?.message}
                           />       
                        </Grid>
-{/*  */}
-                       
-                       
-                       {/* <input
-        type="file"
-        name="screenshot"
-        onChange={(e:any) => {
-          setFile(e.target.files[0]);
-        }}
-      /> */}
-
-        <input
-        type="file"
-        name="screenshot2"
-        onChange={(e:any) => {
-          setImage2(e.target.files[0]);
-        }}
-      />
-      
 
                     </Grid>
                    )} 
@@ -276,31 +258,30 @@ const CreateForm = () => {
                      </Grid>
                     )}
 
-
                     {
                      step == 4 && (
                       <Grid container spacing={2}>
                         
                         <Grid item xs={12} sm={12}>
-                          <Images id='image1' register={register} image='image1' errors={errors} 
+                          <Images id='image1' register={register} image='image1'  
                           buttonId='uploadbtn1' imageLength={image1Length} changeState={changeState} 
                           imageNumber={1} errorsperImage={errors.image1}/>
                         </Grid>
 
                         <Grid item xs={12} sm={12}>
-                          <Images id='image2' register={register} image='image2' errors={errors} 
+                          <Images id='image2' register={register} image='image2' 
                           buttonId='uploadbtn2' imageLength={image2Length} changeState={changeState}
                           imageNumber={2} errorsperImage={errors.image2}/>
                         </Grid>
 
                         <Grid item xs={12} sm={12}>
-                          <Images id='image3' register={register} image='image3' errors={errors} 
+                          <Images id='image3' register={register} image='image3' 
                           buttonId='uploadbtn3' imageLength={image3Length} changeState={changeState} 
                           imageNumber={3} errorsperImage={errors.image3}/>
                         </Grid>
 
                         <Grid item xs={12} sm={12}>
-                          <Images id='image4' register={register} image='image4' errors={errors} 
+                          <Images id='image4' register={register} image='image4'
                           buttonId='uploadbtn4' imageLength={image4Length} changeState={changeState} 
                           imageNumber={4} errorsperImage={errors.image4}/>
                         </Grid>
@@ -309,7 +290,7 @@ const CreateForm = () => {
                     {
                      step == 5 && (
                       <Grid container spacing={2}>
-                        <ItemSaved/>
+                        the item saved (later need to add here component.)
                       </Grid>
                      )}                   
                     {renderButton(step,nextStep,isValid,isDirty)}       
@@ -319,163 +300,3 @@ const CreateForm = () => {
   );
 };
 export default CreateForm;
-
-// useEffect(()=>{
-//   if(isSubmitSuccessful){
-//     reset()
-//   } 
-// },[isSubmitSuccessful,reset]);
-
-
-
-    // const res = await fetch('http://localhost:5000/product/istest', {
-    //     method: "POST",
-    //     body: formData,
-    // }).then((res) => res.json());
-
-
-
-    {/* <Grid item xs={12} sm={12}> 
-                          <TextField
-                            fullWidth
-                            sx={{display:'none'}}
-                            id='image1'
-                            type='file'
-                            
-                            {...register('image1',{
-                              required : 'Images Required',
-                              validate:{
-                                acceptedFormatsf: (file:any) => formats.includes(file[0]?.type) ||
-                                 "Each image type must be Only PNG, JPEG, JPG",
-                              },
-                              onChange : (e) =>{setImage1(e.target.files[0])}
-                            })} 
-                            error={!!errors.image1}
-                            helperText={errors.image1?.message}
-                          />
-  
-                         <Button sx={{height:'100%',color:'black'}} type='button' 
-                            id='uploadbtn1' onClick={()=>toggleUpload('image1')}>
-                            {
-                               image1Length > 0 && !errors.image1?.message?
-                               <CheckIcon sx={{marginRight:'4px', color:'green'}}/>:
-                               <AddIcon sx={{marginRight:'4px'}}/>
-                            } 
-                            Upload Image 1
-                          </Button> 
-                          {
-                           errors.image1?.message?
-                            <ErrorMessages error={ errors.image1?.message}/> :
-                            <div hidden></div>
-                          }
-                       </Grid> */}
-
-
-
-                       
-                    //    <Grid item xs={12} sm={12}> 
-                    //    <TextField
-                    //      fullWidth
-                    //      sx={{display:'none'}}
-                    //      id='image2'
-                    //      type='file'
-                         
-                    //      {...register('image2',{
-                    //        required : 'Images Required',
-                    //        validate:{
-                    //          acceptedFormatsf: (file:any) => formats.includes(file[0]?.type) ||
-                    //           "Each image type must be Only PNG, JPEG, JPG",
-                    //        },
-                    //        onChange : (e) =>{setImage2(e.target.files[0])}
-                    //      })} 
-                    //      error={!!errors.image2}
-                    //      helperText={errors.image2?.message}
-                    //    />
-
-                    //   <Button sx={{height:'100%',color:'black'}} type='button' 
-                    //      id='uploadbtn2' onClick={()=>toggleUpload('image2')}>
-                    //      {
-                    //         image2Length > 0 && !errors.image2?.message?
-                    //         <CheckIcon sx={{marginRight:'4px', color:'green'}}/>:
-                    //         <AddIcon sx={{marginRight:'4px'}}/>
-                    //      } 
-                    //      Upload Image 2
-                    //    </Button> 
-                    //    {
-                    //     errors.image2?.message?
-                    //      <ErrorMessages error={ errors.image2?.message}/> :
-                    //      <div hidden></div>
-                    //    }
-                    // </Grid>
-
-
-                    // <Grid item xs={12} sm={12}> 
-                    //    <TextField
-                    //      fullWidth
-                    //      sx={{display:'none'}}
-                    //      id='image3'
-                    //      type='file'
-                         
-                    //      {...register('image3',{
-                    //        required : 'Images Required',
-                    //        validate:{
-                    //          acceptedFormatsf: (file:any) => formats.includes(file[0]?.type) ||
-                    //           "Each image type must be Only PNG, JPEG, JPG",
-                    //        },
-                    //        onChange : (e) =>{setImage3(e.target.files[0])}
-                    //      })} 
-                    //      error={!!errors.image3}
-                    //      helperText={errors.image3?.message}
-                    //    />
-
-                    //   <Button sx={{height:'100%',color:'black'}} type='button' 
-                    //      id='uploadbtn3' onClick={()=>toggleUpload('image3')}>
-                    //      {
-                    //         image3Length > 0 && !errors.image3?.message?
-                    //         <CheckIcon sx={{marginRight:'4px', color:'green'}}/>:
-                    //         <AddIcon sx={{marginRight:'4px'}}/>
-                    //      } 
-                    //      Upload Image 3
-                    //    </Button> 
-                    //    {
-                    //     errors.image3?.message?
-                    //      <ErrorMessages error={ errors.image3?.message}/> :
-                    //      <div hidden></div>
-                    //    }
-                    // </Grid>
-
-
-                    // <Grid item xs={12} sm={12}> 
-                    //    <TextField
-                    //      fullWidth
-                    //      sx={{display:'none'}}
-                    //      id='image4'
-                    //      type='file'
-                         
-                    //      {...register('image4',{
-                    //        required : 'Images Required',
-                    //        validate:{
-                    //          acceptedFormatsf: (file:any) => formats.includes(file[0]?.type) ||
-                    //           "Each image type must be Only PNG, JPEG, JPG",
-                    //        },
-                    //        onChange : (e) =>{setImage4(e.target.files[0])}
-                    //      })} 
-                    //      error={!!errors.image4}
-                    //      helperText={errors.image4?.message}
-                    //    />
-
-                    //   <Button sx={{height:'100%',color:'black'}} type='button' 
-                    //      id='uploadbtn4' onClick={()=>toggleUpload('image4')}>
-                    //      {
-                    //         image4Length > 0 && !errors.image4?.message?
-                    //         <CheckIcon sx={{marginRight:'4px', color:'green'}}/>:
-                    //         <AddIcon sx={{marginRight:'4px'}}/>
-                    //      } 
-                    //      Upload Image 4
-                    //    </Button> 
-                    //    {
-                    //     errors.image4?.message?
-                    //      <ErrorMessages error={ errors.image4?.message}/> :
-                    //      <div hidden></div>
-                    //    }
-                    // </Grid>

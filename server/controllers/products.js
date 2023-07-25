@@ -12,53 +12,54 @@ const __dirname = path.resolve(path.dirname(__filename), "../");
 //Create: 
 export const createProduct=  async (req, res)=> {
   try {
-    let trys = [];
+    let imagesNames=[];  
+    const {productName,shortDescription,longDescription,quantity,
+      releaseYear,brand,category,company,os,price} = req.body;
+
+  // Handle the images upload:
     const file = req.files.screenshot;
     const file2 = req.files.screenshot2;
-    trys.push(file,file2)
+    const file3 = req.files.screenshot3;
+    const file4 = req.files.screenshot4;
     
+  
     const filename = Date.now() + "_" + file.name;
     const filename2 = Date.now() + "_" + file2.name;
-    
-    let uploadPath = __dirname + "/uploadtests/" + filename;
-    let uploadPath2 = __dirname + "/uploadtests/" + filename2;
-    console.log(uploadPath);
-    file.mv(uploadPath, (err) => {
-      if (err) {
-        return res.send(err);
-      }
-    });
-  
-    file2.mv(uploadPath2, (err) => {
-      if (err) {
-        return res.send(err);
-      }
-    });
-  
-    res.status(200).send();
-    // const filesnames = req.files.map((file) =>{
-    //  return file.filename;// or file.originalname
-    // });
-   
-  // const {shortDescription, longDescription, price,quantity, category, productName,os,brand,company,releaseYear}= req.body;
-  // const saveProduct= new Product({
-  //   productImages: filesnames,
-  //   image: filesnames[0],
-  //   productName,
-  //   shortDescription,
-  //   longDescription,
-  //   price,
-  //   quantity,
-  //   status: 'available',
-  //   category,
-  //   company,
-  //   releaseYear,
-  //   os,
-  //   brand
-  // });
-  // await saveProduct.save();
-  // ProductInfoLogger.log('info','Product created successfully status code: 201');
-  // res.status(201).json({message:'Product created successfully!'});
+    const filename3 = Date.now() + "_" + file3.name;
+    const filename4 = Date.now() + "_" + file4.name;
+
+
+    imagesNames.push(filename,filename2,filename3,filename4)
+
+
+    let uploadPath = __dirname + "/uploads/" + filename;
+    let uploadPath2 = __dirname + "/uploads/" + filename2;
+    let uploadPath3 = __dirname + "/uploads/" + filename3;
+    let uploadPath4 = __dirname + "/uploads/" + filename4;
+
+    file.mv(uploadPath, (err) => {if (err) {return res.send(err)}});
+    file2.mv(uploadPath2, (err) => {if (err) {return res.send(err)}});
+    file2.mv(uploadPath3, (err) => {if (err) {return res.send(err)}});
+    file2.mv(uploadPath4, (err) => {if (err) {return res.send(err)}});
+      
+  const saveProduct= new Product({
+    productImages: imagesNames,
+    image: imagesNames[0],
+    productName,
+    shortDescription,
+    longDescription,
+    price,
+    quantity,
+    status: 'available',
+    category,
+    company,
+    releaseYear,
+    os,
+    brand
+  });
+  await saveProduct.save();
+  ProductInfoLogger.log('info','Product created successfully status code: 201');
+  res.status(201).json({message:'Product created successfully!'});
 
   } catch (error) {
     ProductErrorLogger.log('error',`${error.message} status code: 500`);
@@ -216,3 +217,9 @@ export const searchProduct= async(req,res)=>{
     res.status(500).json(error.message)
   }
 };
+
+
+
+    // const filesnames = req.files.map((file) =>{
+    //  return file.filename;// or file.originalname
+    // });
