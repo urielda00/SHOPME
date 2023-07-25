@@ -1,4 +1,4 @@
-export  function toggleUpload(){
-  const uploadInput = document.getElementById('screenshot') as HTMLInputElement;
+export  function toggleUpload(id:string){
+  const uploadInput = document.getElementById(id) as HTMLInputElement;
   uploadInput?.click();
 };
