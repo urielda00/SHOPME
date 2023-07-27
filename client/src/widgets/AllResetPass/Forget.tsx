@@ -38,7 +38,7 @@ const Forget = () => {
     };
 
   useEffect(()=>{
-    const onCaptchaChange = () =>{ setCaptchaVerified(true) };
+    const captchaVerified = () =>{ setCaptchaVerified(true) };
     if(isSubmitSuccessful){reset()}
     
   },[isSubmitSuccessful,reset]);
@@ -57,8 +57,6 @@ const Forget = () => {
              Forgot Password
            </Typography>
            
-           
-
            <Box component="form" noValidate sx={{ mt: 3 }} onSubmit={handleSubmit(onSubmit)}>
               <Grid container spacing={2}>
               <Grid sx={{position:'relative'}} item xs={12} sm={12}>

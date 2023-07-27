@@ -84,11 +84,12 @@ export const login= async (req,res)=>{
     
     if(isAdmin){
       UserInfoLogger.log('info','Login succeed, with cart! status code: 200');
-      res.cookie('session-token', token, { httpOnly:true ,maxAge:   30* 60 * 1 * 1000})
-      .json({message:'Login succeed!',cart:['empty',user._id],admin:true}).status(200);  
+      res.cookie('session-token', token, { httpOnly:false ,maxAge:   30* 60 * 1 * 1000});
+      res.json({message:'Login succeed!',cart:['empty',user._id],admin:true}).status(200).send();
+  
     }else{
     UserInfoLogger.log('info','Login succeed, with cart! status code: 200');
-    res.cookie('session-token', token, { httpOnly:true ,maxAge:   60* 60 * 1 * 1000})
+    res.cookie('session-token', token, { httpOnly:false ,maxAge:   60* 60 * 1 * 1000})
     .json({message:'Login succeed!',cart:['empty',user._id],admin:false}).status(200); 
     }
 
@@ -204,3 +205,5 @@ export const signOut= async(req,res)=>{
     res.status(500).json(error.message)
   }  
 };
+
+

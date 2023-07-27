@@ -8,7 +8,6 @@ import axios from 'axios';
 import { logged, errorLogged ,isAdmin} from '../../features/userSlice';
 import ErrorMessages from './ErrorMessages';
 
-
 // Hooks and Icons:
 import { useDispatch } from 'react-redux';
 import { useForm} from 'react-hook-form';
@@ -18,12 +17,12 @@ import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import PersonIcon from '@mui/icons-material/Person';
 
 
-type FormValues = {
+export type FormValues = {
   userName : string
   password : string
 };
 
-const SITE_KEY = '6Le6bSMnAAAAAFsg4MZvHcr9FTA5r82NKIsvPjGm';
+const SITE_KEY = '6Le6bSMnAAAAAFsg4MZvHcr9FTA5r82NKIsvPjGm'; //later- add this to the env.
 
 // The Component:
 const LoginForm = () => {
@@ -35,25 +34,28 @@ const LoginForm = () => {
   const {register, handleSubmit, formState, reset} = form;
   const {errors, isDirty, isValid, isSubmitSuccessful} = formState;
   const handleChangeEyePassword = () => {setPasswordEye(!passwordEye)};
+  
 
-
+  
   const onSubmit = (data : FormValues)=>{
-    
-   axios.post('http://localhost:5000/auth/login',data)
-    .then(response => {
-      if(response.data.admin){
-        alert('logged Successfully');
-        window.location.replace('/')
-        dispatch(isAdmin());
-      }else{
-        alert('logged Successfully');
-        window.location.replace('/')
-        dispatch(logged())
-      }   
-    })
-    .catch(error => {
-      dispatch(errorLogged(error.response.data.message))
-     });
+  // need to add that: {withCredentials:true}
+  axios.post('http://localhost:5000/auth/login',data)
+  .then(response => {
+    if(response.data.admin){
+      alert('logged Successfully');
+      window.location.replace('/');
+      window.sessionStorage.setItem('isLogged','true');
+      dispatch(isAdmin());
+    }else{
+      alert('logged Successfully');
+      window.sessionStorage.setItem('isLogged','true');
+      window.location.replace('/');    
+      dispatch(logged())
+    }   
+  })
+  .catch(error => {
+    dispatch(errorLogged(error.response.data.message))
+   });
   };
 
   useEffect(()=>{
@@ -122,7 +124,6 @@ const LoginForm = () => {
                   id='recaptcha'
                   sitekey={SITE_KEY}
                   onChange={onCaptchaChange}
-                  // style={{transform:'scale(0.75)', transformOrigin:'0 0'}}
                  />
                 </Grid> 
             </Grid>
@@ -154,7 +155,7 @@ const LoginForm = () => {
       </Container>
       
   );
-}
+};
 
 export default LoginForm;
 

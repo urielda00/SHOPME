@@ -15,10 +15,11 @@ const actions = [
 
  const AdminPanel = ({children}:any) => {
   const {isAdmin}= useSelector((state:any)=>state.user)
+  const isLogged = window.sessionStorage.getItem('isLogged');
   return (
     <>
     {
-     isAdmin? <Box>
+     isAdmin && isLogged === 'true'? <Box>
      <SpeedDial
        ariaLabel="SpeedDial basic example"
        sx={{ position: 'fixed', bottom: 16, right: 16 ,zIndex:1}}

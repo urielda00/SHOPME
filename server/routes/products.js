@@ -1,9 +1,6 @@
 import express from "express";
 const productRouter = express.Router();
 
-
-
-
 //Controllers:
 import {createProduct,
          readProducts,
@@ -17,11 +14,11 @@ import {createProduct,
 
 
 //Middlewares:
-import { createProductValidation, ValidationResult } from "../middleware/express-validator.js";
-import upload from "../middleware/upload.js";
+// import { createProductValidation, ValidationResult } from "../middleware/express-validator.js";
+// import upload from "../middleware/upload.js";
 import { checkJWT } from "../middleware/jwt.js";
 
-//Routes:,,checkJWT
+//Routes:,,checkJWTcheckJWT
 productRouter.post('/createProduct',createProduct);
 productRouter.get('/readSingleProduct/:productId',readSingleProduct);
 productRouter.get('/readRelateProducts',readRelatedItemsByCategory);

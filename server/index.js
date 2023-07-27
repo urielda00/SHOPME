@@ -30,6 +30,7 @@ app.use(express.urlencoded({limit:'30mb',extended:false}));
 app.use(cors());
 app.use(morgan("common")); //the common loger of morgan
 app.use(helmet());
+app.use(cookieParser());
 app.use(fileupload());
 app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" })); //for XXS protection.
 app.use(bodyParser.urlencoded({extended:true }))
@@ -46,6 +47,10 @@ app.use('/order', orderRouter);
 app.use('/resetPass', resetPassRouter);
 app.use('/cart',cartRouter);
 
+app.post('/testcookie',(req,res)=>{
+  const sessionToken = req.cookies.testCookie
+  console.log('session cookies:',sessionToken);
+})
 
 //Connect to the DB and then listen at the port:
 mongoose.connect(process.env.DB_URL,{

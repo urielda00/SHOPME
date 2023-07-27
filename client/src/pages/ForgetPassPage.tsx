@@ -1,5 +1,7 @@
 import { Box } from '@mui/material';
 import Forget from '../widgets/AllResetPass/Forget';
+
+
  const ForgetPassPage = () => {
   return (
     <Box sx={backgroundStyle}>

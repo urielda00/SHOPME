@@ -7,7 +7,7 @@ import RelateItems from "../widgets/SingleItemPage/RelateItems";
 
 const SingleItemPage = () => {
   const {productId} = useParams();
-  const {isLoading ,data, error, isError} = UseSingleItemData(productId)
+  const {isLoading ,data} = UseSingleItemData(productId)
   const [imgSrc, setImgSrc] = useState<any>();
   const handleState = (img:string) => {setImgSrc(img)};
     
@@ -24,9 +24,6 @@ const SingleItemPage = () => {
     </Box>  
      
  );
-}
+};
 
-export default SingleItemPage;
-
-// data?.data.productName
-   
+export default SingleItemPage;   

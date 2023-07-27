@@ -3,16 +3,13 @@ import { ProductErrorLogger, ProductInfoLogger } from "../middleware/winston.js"
 import path from 'path';
 import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
-// const __dirname = path.dirname(__filename);
 const __dirname = path.resolve(path.dirname(__filename), "../");
 
-// need to add some page where the admin can add new products to the website!
-//meaning only the admin will have access to the following routes.- check that.
 
 //Create: 
 export const createProduct=  async (req, res)=> {
   try {
-    let imagesNames=[];  
+    const imagesNames=[];  
     const {productName,shortDescription,longDescription,quantity,
       releaseYear,brand,category,company,os,price} = req.body;
 
@@ -39,8 +36,8 @@ export const createProduct=  async (req, res)=> {
 
     file.mv(uploadPath, (err) => {if (err) {return res.send(err)}});
     file2.mv(uploadPath2, (err) => {if (err) {return res.send(err)}});
-    file2.mv(uploadPath3, (err) => {if (err) {return res.send(err)}});
-    file2.mv(uploadPath4, (err) => {if (err) {return res.send(err)}});
+    file3.mv(uploadPath3, (err) => {if (err) {return res.send(err)}});
+    file4.mv(uploadPath4, (err) => {if (err) {return res.send(err)}});
       
   const saveProduct= new Product({
     productImages: imagesNames,

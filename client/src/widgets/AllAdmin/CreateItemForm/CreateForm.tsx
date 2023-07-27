@@ -1,9 +1,9 @@
 import {Avatar, TextField,Grid,Box,Typography,Container,IconButton} from '@mui/material';
   
-
 // Local Imports:
 import SubmitFunc from './SubmitFunc';
 import Images from './Images';
+
 import {
   containerStyle,insideContainerStyle,
   stepsP,stepIconButton} from '../../../styles/CreateItemForm/CreateItemForm';
@@ -12,6 +12,7 @@ import {
   validateShortObj, validateProductNameObj,
    validateLongObj,companyObj,brandObj,categoryObj,
    osObj, priceInputProps, required } from './ValidateObjects';
+
 import renderButton from './RenderButton';
 
 // Hooks and Icons:
@@ -39,7 +40,6 @@ export type FormValues = {
 
 // The Component:
 const CreateForm = () => {
-  const formats = ["image/jpeg", "image/png", "image/jpg"];
 
   // Form State- Steps & Images:
   const [step, setStep] = useState(1);
@@ -50,13 +50,11 @@ const CreateForm = () => {
   const nextStep = () => {setStep( prev => prev + 1);}; 
   const prevStep = () => {setStep( prev => prev - 1);}; 
 
-// 
   // Useform Hook:
   const form = useForm<FormValues>({mode:'onChange'});
-  const {register, handleSubmit, formState, reset, watch,control} = form;
-  const {errors, isDirty, isValid, isSubmitSuccessful} = formState;
+  const {register, handleSubmit, formState, reset, watch} = form;
+  const {errors, isDirty, isValid} = formState;
 
-  
   const isimage1 = watch('image1');
   const isimage2 = watch('image2');
   const isimage3 = watch('image3');
@@ -67,10 +65,9 @@ const CreateForm = () => {
   const image4Length = isimage4?.length;
 
   // local functions:
-  const onSubmit = async (data : any)=>{
-    SubmitFunc(image1,image2,image3,image4,data); //need to add image 3 and image 4
-    //send also the data.
-};
+  const onSubmit = async (data : FormValues)=>{
+    SubmitFunc(image1,image2,image3,image4,data); 
+  };
   
    function changeState(newValue:any,image:any):void{
     switch (image) {
@@ -120,11 +117,7 @@ const CreateForm = () => {
                 { 
                  step === 1 && (
                   <Grid container spacing={2}>
-
-                    {/* <AllTextFields id='productName' label="Product Name" type='text'
-                    validationObj={validateProductNameObj}
-                    register={register} nameErrors={errors.productName}/> */}
-
+                    
                     <Grid item xs={12} sm={12}>
                       <TextField
                         fullWidth

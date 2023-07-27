@@ -1,5 +1,4 @@
 import { Box } from '@mui/material';
-import Forget from '../widgets/AllResetPass/Forget';
 import Reset from '../widgets/AllResetPass/Reset';
 
 

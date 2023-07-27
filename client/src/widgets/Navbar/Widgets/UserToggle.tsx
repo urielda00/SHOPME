@@ -15,6 +15,7 @@ import { Link } from 'react-router-dom';
 
 export const UserToggle = () => {
     const {user} = useSelector((state:any) => state.user);
+    const isLogged = window.sessionStorage.getItem('isLogged');
     const dispatch = useDispatch();
     const [open, setOpen] = React.useState(false);
     const anchorRef = React.useRef<HTMLButtonElement>(null);
@@ -62,7 +63,7 @@ export const UserToggle = () => {
           onClick={handleToggle}
           sx={{display:{xs:'none', md: 'flex'}}}
         >
-            {user?<DisplayAvatar/>:<PermIdentityOutlinedIcon />}
+            {user && isLogged === 'true'?<DisplayAvatar/>:<PermIdentityOutlinedIcon />}
         </IconButton>
         <Popper
           open={open}
@@ -81,7 +82,7 @@ export const UserToggle = () => {
               }}
             >
               {
-                user? 
+                user && isLogged === 'true'?
                 <Paper style={{backgroundColor:'#F9F5F6'}}>
                 <ClickAwayListener onClickAway={handleClose}>
                   <MenuList

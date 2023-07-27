@@ -1,11 +1,10 @@
-import React from 'react'
 import { Box } from "@mui/material"
 import Contact from '../widgets/Contact/Contact';
 
 const ContactPage = () => {
   return (
     <Box>
-          <Contact/>
+      <Contact/>
     </Box>
   )
 };

@@ -8,8 +8,6 @@ import NavBar from './components/NavBar';
 import ContactNavbar from './components/ContactNavbar';
 import ScrollToTop from './components/ScrollToTop';
 import ProtectedRoute from './components/ProtectedRoutes';
-// import Footer from './components/Footer';
-
 
 //Pages imports:
 import NomatchPage from './pages/NomatchPage';
@@ -18,7 +16,7 @@ import CartPage from './pages/CartPage';
 import SingleItemPage from './pages/SingleItemPage';
 import ProductsListPage  from './pages/ProductsListPage';
 import UserPage from './pages/UserPage';
-import { CreateItem } from './pages/CreateItem';
+import CreateItem  from './pages/CreateItem';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import ForgetPassPage from './pages/ForgetPassPage';
@@ -32,8 +30,10 @@ import UpdateItem from './pages/UpdateItem';
 import DeleteItem from './pages/DeleteItem';
 import AdminProtectedRoutes from './components/AdminProtectedRoutes';
 
+
 const App = () => {
   const { pathname } = useLocation();
+  
   return (
      <>
        <ContactNavbar/>

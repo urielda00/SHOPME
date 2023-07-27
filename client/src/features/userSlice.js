@@ -15,7 +15,7 @@ const userSlice = createSlice({
       state.user = true;
       state.loginError = null;
       state.isAdmin = null;
-      window.localStorage.clear();
+      // window.localStorage.clear();  -to delete the local cart
     },
     errorLogged : (state,action)=>{
       state.user = null;
@@ -33,7 +33,7 @@ const userSlice = createSlice({
       state.user = true;
       state.isAdmin = true;
       state.loginError = null;
-      window.localStorage.clear();
+      // window.localStorage.clear();
     },
   }
 });
