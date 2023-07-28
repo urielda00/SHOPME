@@ -2,7 +2,7 @@ import * as React from 'react';
 
 
 const containerStyle:React.CSSProperties={
-  height:'88vh',
+  height:'90vh',
   width:'90%',
   backgroundColor:'#fff',
   borderRadius:'20px',

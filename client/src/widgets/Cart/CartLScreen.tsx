@@ -125,16 +125,18 @@ const CartLScreen = () => {
              </h3>
            </div>
           <div>
-           <Link to='/checkout'>
+           <Link to={cart.length > 0 ? '/checkout' : '/cart'}>
            <Button style={{textAlign:'center',width:'96%', height:'50px',marginTop:'10px'}}
              sx={{color:'#fff',bgcolor:'#332D2D', ":hover": {color:'black',bgcolor: "#AF5",}}}>
                Checkout
            </Button>
            </Link>
+           <Link to='/register'>
            <Button style={{textAlign:'center',width:'96%', height:'50px',marginTop:'10px'}} 
              sx={{ color:'#fff',bgcolor:'#332D2D',":hover": {color:'black',bgcolor: "#AF5"}}}>   
              Register
            </Button>
+           </Link>
            </div>
            </div>
           </Box>
