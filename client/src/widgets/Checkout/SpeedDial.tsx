@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {Box,Stepper,Step,StepButton,Button,Typography} from '@mui/material';
-
+import { useSelector } from 'react-redux';
 // Local:
 import CartDisplay from './CartDisplay';
 import Delivery from './Delivery';
@@ -34,6 +34,9 @@ export default function SpeedDialCheckout() {
     handleNext();
   };
 
+  const {totalPrice}= useSelector((state:any)=>state.allCart)
+
+
   return (
     <Box sx={containerStyle}>
       <Box sx={{ width: '100%' }}>
@@ -52,7 +55,7 @@ export default function SpeedDialCheckout() {
               allStepsCompleted() ? <OrderCompleted/> :    
               (
                 <Box>
-                  <Box sx={{ mt: 2, mb: 1, py: 1, height:'400px',borderRadius:'10px', padding:'10px',overflow:'hidden',minWidth:'450px'}}>
+                  <Box sx={stepsContainerStyle}>
                      {
                        activeStep === 0 && <CartDisplay/>
                      }
@@ -63,6 +66,9 @@ export default function SpeedDialCheckout() {
                        activeStep === 2 && <Purchase/>
                      }
                   </Box>
+                  {
+                       activeStep === 0 && <Box>Total Price: {totalPrice}$</Box>
+                  }
                   <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
                     <Button
                       color="inherit"
@@ -94,9 +100,18 @@ const containerStyle ={
   backgroundColor:'#fff',
   borderRadius:'10px',
   padding: '20px',
-  height:{md:'550px',sm:'550px',xs:'600px'},
-  width:'75%',
+  height:{md:'550px',sm:'550px',xs:'650px'},
+  width:{md:'75%',sm:'75%',xs:'90%'},
   boxShadow: '-11px 6px 26px -14px rgba(0,0,0,0.52)',
-  minWidth:'450px'
 };
 
+const stepsContainerStyle = { 
+  mt: 2,
+  mb: 1,
+  py: 1, 
+  height:{md:'400px',sm:'400px',xs:'500px'},
+  borderRadius:'10px',
+  padding:'10px',
+  overflow:'hidden',
+  // minWidth:'450px'
+};
