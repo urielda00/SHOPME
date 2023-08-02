@@ -7,6 +7,7 @@ import helmet from 'helmet';
 import morgan from 'morgan';
 import cookieParser from 'cookie-parser';
 import fileupload from "express-fileupload";
+import path from 'path';
 
 // //Routers imports:
 import userAuthRouter from './routes/userAuth.js';
@@ -38,6 +39,12 @@ app.use('/product/readProducts',express.static('uploads'));
 app.use('/searchProduct',express.static('uploads'));
 app.use(cookieParser());
 app.disable('etag');
+
+//Server production assets:
+if(process.env.NODE_ENV === 'production'){
+  app.use(express.static(path.join('client/build')));
+  app.get('*',(req,res)=>res.sendFile(path.resolve(__dirname,'client','build','index.html')))
+}
 
 
 //Routers:

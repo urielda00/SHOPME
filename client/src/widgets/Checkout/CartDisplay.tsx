@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { incrementQuantity, decrementQuantity, removeItem} from '../../features/cartSlice';
 import ErrorMessages from '../Cart/ErrorMessages';
-import { Box, Button, ListItemText,Grid} from '@mui/material';
+import { Box, Button, ListItemText} from '@mui/material';
 
 // Icons import:
 import AddIcon from '@mui/icons-material/Add';

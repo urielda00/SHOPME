@@ -1,4 +1,3 @@
-import e from "express";
 import Cart from "../models/Cart.js";
 // להוסיף לוגר אחכ
 
@@ -91,3 +90,43 @@ export const removeItem = async (req,res) =>{
       //   {"existingCartToUser.products.productId":product.id},
       //   {"$inc":{isItemQuantity:2}}
       //  ) 
+
+
+export const testAdd = async(req,res)=>{
+  try {
+  //  Cart.updateOne({totalPrice:80},{$set: {addedtest:'someValue'}},{new: true})
+  // const result = await Cart.updateOne({totalPrice:80},
+  //    {
+  //     $set: {
+  //       someFiels: 'is this a test' ,
+  //     }
+  //    }  
+  //  )
+  const { itemId, quantity } = req.body;
+  const result = await Cart.findOneAndUpdate(
+    // The filter to find the document with the matching "name" in the array
+    { "products.id": itemId },
+
+    // The update operation
+    {
+      $set: {
+        "products.$[elem].quantity": { $cond: [{ $gt: [{ $size: "$matchedObjects" }, 0] }, { $subtract: ["$matchedObjects.quantity", 1] }, quantity] }
+      },
+      $addToSet: {
+        products: { $cond: [{ $gt: [{ $size: "$matchedObjects" }, 0] }, null, { itemId, quantity }] }
+      }
+    },
+
+    // The options for findOneAndUpdate
+    {
+      arrayFilters: [{ "elem.id": itemId }],
+      upsert: true, // Create the document if it doesn't exist
+      returnOriginal: false // Return the updated document
+    },
+  );
+  const shoe = await Cart.find({});
+  res.status(200).json({shoe})
+  } catch (error) {
+    res.status(500).json(error.message);
+  }
+}
