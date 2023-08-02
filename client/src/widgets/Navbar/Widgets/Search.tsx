@@ -3,6 +3,7 @@ import { ClickAwayListener,Stack, TextField, InputAdornment,
   List, ListItem, ListItemButton,ListItemText} from "@mui/material"
 import * as React from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 
 
@@ -49,12 +50,14 @@ const Search=()=>{
         <List style={ListStyle}>
           {
           data?.map((product:any) => ( //later,take the pruducts here
+          <Link to={`/product/${product._id}`} style={{textDecoration:'none',color:'black'}}>
            <ListItemButton key={product._id} onClick={handleClose} style={ListItemButtonStyle}>
              <ListItem   style={{display:'flex', justifyContent:'space-around'}}>
+              
                <img alt='' src={`https://deployment-shopme.onrender.com/searchProduct/${product.image}`} style={imgStyle}/>
                <ListItemText primary={product.shortDescription} secondary={`${product.price}$`} />
             </ListItem>
-          </ListItemButton>
+          </ListItemButton></Link>
           ))
           }
          </List>
@@ -75,11 +78,13 @@ const Search=()=>{
         <List style={mediumListStyle}>
           {
           data?.map((product:any) => ( //later,take the pruducts here
+          <Link to={`/product/${product._id}`} style={{textDecoration:'none',color:'black'}}>
            <ListItemButton key={product._id} onClick={handleClose} style={ListItemButtonStyle}>
              <ListItem   style={{display:'flex', justifyContent:'space-around'}}><ListItemText primary={product.shortDescription} secondary={`${product.price}$`} />
                <img alt='' src={`https://deployment-shopme.onrender.com/searchProduct/${product.image}`} style={imgStyle}/>
              </ListItem>
           </ListItemButton>
+          </Link>
           ))
           }
          </List>
@@ -100,11 +105,12 @@ const Search=()=>{
         <List style={smallListStyle}>
           {
           data?.map((product:any) => ( //later,take the pruducts here
+          <Link to={`/product/${product._id}`} style={{textDecoration:'none',color:'black'}}>
            <ListItemButton key={product._id} onClick={handleClose} style={ListItemButtonStyle}>
              <ListItem   style={{display:'flex', justifyContent:'space-around'}}><ListItemText primary={product.shortDescription} secondary={`${product.price}$`} />
                <img alt='searchPhoto' src={`https://deployment-shopme.onrender.com/searchProduct/${product.image}`} style={imgStyle}/>
               </ListItem>
-          </ListItemButton>
+          </ListItemButton></Link>
           ))
           }
          </List>
