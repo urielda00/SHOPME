@@ -35,15 +35,15 @@ userAuthRouter.get('/checkIfExist/:data',checkIfExist); //לבדוק אם יש �
 userAuthRouter.post('/login',loginValidation,ValidationResult, login);
 
 userAuthRouter.patch('/updateUserPass/:id',
-updateUserPassValidation,ValidationResult,checkJWT,updateUserPass);
+updateUserPassValidation,ValidationResult,updateUserPass);
 
-userAuthRouter.delete('/deleteUser/:id',deleteUserValidation,ValidationResult,checkJWT, deleteUser);
+userAuthRouter.delete('/deleteUser/:id',deleteUserValidation,ValidationResult, deleteUser);
 
 
 
 
 //later add express-validation to this path:
-userAuthRouter.patch('/updateUserInfo/:id',checkJWT,updateUserInfo);
+userAuthRouter.patch('/updateUserInfo/:id',updateUserInfo);
 
 
 

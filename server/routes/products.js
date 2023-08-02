@@ -23,8 +23,8 @@ productRouter.post('/createProduct',createProduct);
 productRouter.get('/readSingleProduct/:productId',readSingleProduct);
 productRouter.get('/readRelateProducts',readRelatedItemsByCategory);
 productRouter.get('/readProducts',readProducts);
-productRouter.delete('/deleteProduct/:id',checkJWT,deleteProduct);
-productRouter.patch('/updateProduct/:id',checkJWT,updateProduct);//todo: upload middleware to this route!
+productRouter.delete('/deleteProduct/:id',deleteProduct);
+productRouter.patch('/updateProduct/:id',updateProduct);//todo: upload middleware to this route!
 productRouter.get('/searchProduct',searchProduct);
 
 

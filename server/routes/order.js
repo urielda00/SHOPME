@@ -8,9 +8,9 @@ import { createOrder, readOrders } from "../controllers/order.js";
 import { createOrderValidation, ValidationResult } from "../middleware/express-validator.js";
 import { checkJWT } from "../middleware/jwt.js";
 
-//Routes:
-orderRouter.post('/createOrder/:id',createOrderValidation,ValidationResult,checkJWT, createOrder);
-orderRouter.get('/readOrders/:id',checkJWT,readOrders);
+//Routes:checkJWT
+orderRouter.post('/createOrder/:id',createOrderValidation,ValidationResult, createOrder);
+orderRouter.get('/readOrders/:id',readOrders);
 
 
 export default orderRouter;
