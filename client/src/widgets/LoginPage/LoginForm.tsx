@@ -43,13 +43,13 @@ const LoginForm = () => {
   .then(response => {
     if(response.data.admin){
       alert('logged Successfully');
-      window.location.replace('/');
+      window.location.replace('https://bejewelled-fenglisu-523224.netlify.app');
       window.sessionStorage.setItem('isLogged','true');
       dispatch(isAdmin());
     }else{
       alert('logged Successfully');
       window.sessionStorage.setItem('isLogged','true');
-      window.location.replace('/');    
+      window.location.replace('https://bejewelled-fenglisu-523224.netlify.app');    
       dispatch(logged())
     }   
   })

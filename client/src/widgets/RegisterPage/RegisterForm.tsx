@@ -54,7 +54,7 @@ const RegisterForm = () => {
       setFetchErrors(false);
       setSuccessFetch(true);
       setTimeout(() => {
-        window.location.replace('/login')
+        window.location.replace('https://bejewelled-fenglisu-523224.netlify.app/login')
       }, 2000);
       })
     .catch(error => {setFetchErrors(true)});
