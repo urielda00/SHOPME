@@ -27,7 +27,7 @@ import {containerLStyle,containerMStyle,containerSStyle} from '../../styles/Prod
       <div style={{display:'flex'}}>
          <Box sx={{":hover":{opacity:'0.8' }}}>
            <Link to={`/product/${item._id}?category=${item.category}`}>
-             <img alt='' src={`http://localhost:5000/product/readProducts/${item.image}`} 
+             <img alt='' src={`https://deployment-shopme.onrender.com/product/readProducts/${item.image}`} 
               style={{height:'100%',width:'250px',objectFit:'cover',borderRadius:'10px'}}/>
             </Link>
          </Box>
@@ -74,7 +74,7 @@ import {containerLStyle,containerMStyle,containerSStyle} from '../../styles/Prod
       <div style={{display:'flex',width:'70%'}}>
          <Box sx={{":hover":{opacity:'0.8' }}}>
            <Link to={`/product/${item._id}`}>
-             <img alt='' src={`http://localhost:5000/product/readProducts/${item.image}`} 
+             <img alt='' src={`https://deployment-shopme.onrender.com/product/readProducts/${item.image}`} 
               style={{height:'90%',width:'200px',objectFit:'cover',borderRadius:'10px'}}/>
             </Link>
          </Box>
@@ -118,7 +118,7 @@ import {containerLStyle,containerMStyle,containerSStyle} from '../../styles/Prod
     <div style={{display:'flex',width:'550px'}}>
          <Box sx={{":hover":{opacity:'0.8' }}}>
            <Link to={`/product/${item._id}`}>
-             <img alt='' src={`http://localhost:5000/product/readProducts/${item.image}`} 
+             <img alt='' src={`https://deployment-shopme.onrender.com/product/readProducts/${item.image}`} 
               style={{height:'140px',width:'150px',objectFit:'cover',borderRadius:'10px'}}/>
             </Link>
          </Box>

@@ -29,7 +29,7 @@ const Forget = () => {
   const {errors, isDirty, isValid, isSubmitSuccessful} = formState;
   const handleChangeEyePassword = () => {setPasswordEye(!passwordEye)};
   const onSubmit = async(datais : FormValues)=>{
-		 const url = 'http://localhost:5000/resetPass/';
+		 const url = 'https://deployment-shopme.onrender.com/resetPass/';
 		 await axios.post(url, {email:datais.email})
      .then(()=>{SetsentMail(true)})
      .catch((error=>{
@@ -75,7 +75,7 @@ const Forget = () => {
                      validate: {
                        emailAvailable : async (fieldValue)=>{
                          while(fieldValue.length>=3 && fieldValue.includes('@')){
-                           const res = await fetch(`http://localhost:5000/auth/checkIfExist/${fieldValue}`);
+                           const res = await fetch(`https://deployment-shopme.onrender.com/auth/checkIfExist/${fieldValue}`);
                            const data = await res.json();
                            return data.length !== 0 ||'Email Dont Exist'
                          }    

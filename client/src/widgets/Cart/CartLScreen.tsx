@@ -62,7 +62,7 @@ const CartLScreen = () => {
                       <div>
                          <img  
                           style={{objectFit: 'cover',borderRadius:'15px'}}
-                          src={`http://localhost:5000/product/readProducts/${product.image}`}
+                          src={`https://deployment-shopme.onrender.com/product/readProducts/${product.image}`}
                           width='90px' height='90px' alt=''/>
                        </div>
                        <div>

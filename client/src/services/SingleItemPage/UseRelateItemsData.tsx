@@ -3,7 +3,7 @@ import axios from "axios";
 
 
 const fetchItem = (itemCategory:any) => {
-return  axios.get(`http://localhost:5000/product/readRelateProducts?category=${itemCategory}`);
+return  axios.get(`https://deployment-shopme.onrender.com/product/readRelateProducts?category=${itemCategory}`);
 }
 
 export const UseRelateItemsData = (itemCategory:any) => {

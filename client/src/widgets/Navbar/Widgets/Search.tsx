@@ -24,7 +24,7 @@ const Search=()=>{
   //Send get req with the key as req.query.
   React.useEffect(() => {
     const fetchData = async () => {
-    const res = await axios.get(`http://localhost:5000/product/searchProduct?key=${query}`);
+    const res = await axios.get(`https://deployment-shopme.onrender.com/product/searchProduct?key=${query}`);
       setData(res.data);
     };
     if (query.length > 3) {fetchData()}
@@ -51,7 +51,7 @@ const Search=()=>{
           data?.map((product:any) => ( //later,take the pruducts here
            <ListItemButton key={product._id} onClick={handleClose} style={ListItemButtonStyle}>
              <ListItem   style={{display:'flex', justifyContent:'space-around'}}>
-               <img alt='' src={`http://localhost:5000/searchProduct/${product.image}`} style={imgStyle}/>
+               <img alt='' src={`https://deployment-shopme.onrender.com/searchProduct/${product.image}`} style={imgStyle}/>
                <ListItemText primary={product.shortDescription} secondary={`${product.price}$`} />
             </ListItem>
           </ListItemButton>
@@ -77,7 +77,7 @@ const Search=()=>{
           data?.map((product:any) => ( //later,take the pruducts here
            <ListItemButton key={product._id} onClick={handleClose} style={ListItemButtonStyle}>
              <ListItem   style={{display:'flex', justifyContent:'space-around'}}><ListItemText primary={product.shortDescription} secondary={`${product.price}$`} />
-               <img alt='' src={`http://localhost:5000/searchProduct/${product.image}`} style={imgStyle}/>
+               <img alt='' src={`https://deployment-shopme.onrender.com/searchProduct/${product.image}`} style={imgStyle}/>
              </ListItem>
           </ListItemButton>
           ))
@@ -102,7 +102,7 @@ const Search=()=>{
           data?.map((product:any) => ( //later,take the pruducts here
            <ListItemButton key={product._id} onClick={handleClose} style={ListItemButtonStyle}>
              <ListItem   style={{display:'flex', justifyContent:'space-around'}}><ListItemText primary={product.shortDescription} secondary={`${product.price}$`} />
-               <img alt='searchPhoto' src={`http://localhost:5000/searchProduct/${product.image}`} style={imgStyle}/>
+               <img alt='searchPhoto' src={`https://deployment-shopme.onrender.com/searchProduct/${product.image}`} style={imgStyle}/>
               </ListItem>
           </ListItemButton>
           ))
