@@ -20,7 +20,7 @@ const SingleItemPage = () => {
   return(
      <Box>
       {/* Large Screens: */}
-      <Box sx={{display:{xs:'none',sm:'none', md: 'flex'}}}>
+      <Box sx={{display:{xs:'none',sm:'none', md: 'block'}}}>
          <SingleItemContainer imgSrc={imgSrc} data={data} handleState={handleState}/>
          <RelateItems handleState={handleState}/>
       </Box>
