@@ -8,7 +8,7 @@ export const DeleteForm = () => {
   
   const handleSubmit = async(e:any)=>{
     e.preventDefault();
-    axios.post(`http://localhost:5000/product/deleteProduct`,{id})
+    axios.post(`https://deployment-shopme.onrender.com/product/deleteProduct`,{id})
     .then((res)=>{
       alert('success');
     })

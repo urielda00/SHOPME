@@ -46,7 +46,7 @@ export const validateID = {
   validate:{
     itemDontExist : async (fieldValue)=>{
       while(fieldValue.length>=8){
-        const res = await fetch(`http://localhost:5000/product/checkIfExist/${fieldValue}`);
+        const res = await fetch(`https://deployment-shopme.onrender.com/product/checkIfExist/${fieldValue}`);
         // `https://deployment-shopme.onrender.com/product/checkIfExist/${fieldValue}`
         const data = await res.json();
         return data.length === 0 ||'Id dont Exist'
