@@ -32,7 +32,8 @@ type SmallScreenProps = {
            <ShoppingCartOutlinedIcon fontSize='large' sx={{color:'black', stroke:"#ffffff",strokeWidth:1}}/>
          </IconButton>
        </Link>
-      <span style={{width:'20px', height:'20px', borderRadius:'50px', backgroundColor:'#E7CEA6', position:'absolute', textAlign:'center', top:'20px', right:'68px'}}>{totalQuantity}</span>
+      <span style={{width:'20px', height:'20px', borderRadius:'50px', backgroundColor:'#E7CEA6', position:'absolute', textAlign:'center', top:'20px', right:'68px',color:'black'}}>
+        {totalQuantity}</span>
        <OpenMenu/>
     
       </Box>

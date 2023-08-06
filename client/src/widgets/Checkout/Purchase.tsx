@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
+import {useState } from "react";
 import Cards from "react-credit-cards-2";
 import 'react-credit-cards-2/dist/es/styles-compiled.css';
 import { Grid,Box ,TextField} from "@mui/material";

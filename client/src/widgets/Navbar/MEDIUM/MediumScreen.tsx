@@ -35,12 +35,12 @@ type MediumScreenProps = {
            {
             user?
             <span style={{width:'20px', height:'20px', borderRadius:'50px', backgroundColor:'#E7CEA6',
-              position:'absolute', textAlign:'center', top:'20px', right:'77px'}}>
+              position:'absolute', textAlign:'center', top:'20px', right:'77px',color:'black'}}>
               {totalQuantity}
            </span>
             :
             <span style={{width:'20px', height:'20px', borderRadius:'50px', backgroundColor:'#E7CEA6',
-              position:'absolute', textAlign:'center', top:'20px', right:'110px'}}>
+              position:'absolute', textAlign:'center', top:'20px', right:'110px',color:'black'}}>
               {totalQuantity}
            </span>
            }

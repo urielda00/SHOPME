@@ -19,8 +19,17 @@ const SingleItemPage = () => {
 
   return(
      <Box>
-      <SingleItemContainer imgSrc={imgSrc} data={data} handleState={handleState}/>
-      <RelateItems handleState={handleState}/>
+      {/* Large Screens: */}
+      <Box sx={{display:{xs:'none',sm:'none', md: 'flex'}}}>
+         <SingleItemContainer imgSrc={imgSrc} data={data} handleState={handleState}/>
+         <RelateItems handleState={handleState}/>
+      </Box>
+
+      {/* Medium & Small Screens: */}
+      <Box sx={{display:{xs:'flex',sm:'flex', md: 'none'},height:'78vh',width:'100%'}}>
+        The style for medium & small screens not ready yet.
+      </Box>
+      
     </Box>  
      
  );

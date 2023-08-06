@@ -14,7 +14,10 @@ const ShoppingList =()=> {
     <Link to='/cart'><IconButton style={{color:'black',marginRight:'20px',marginLeft:'-10px'}}>
     <ShoppingCartOutlinedIcon/>   
     </IconButton>
-    <span style={{width:'18px', height:'18px', borderRadius:'50px', backgroundColor:'#E7CEA6', position:'absolute', textAlign:'center', top:'23px', right:'43px'}}>{totalQuantity}</span>
+    <span style={{width:'20px', height:'20px', borderRadius:'50px', backgroundColor:'#E7CEA6',
+       position:'absolute', textAlign:'center', top:'23px', right:'43px', color:'black'}}>
+          {totalQuantity}
+    </span>
     </Link>
     </>
   );
