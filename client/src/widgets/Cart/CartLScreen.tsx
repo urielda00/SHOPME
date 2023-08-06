@@ -3,6 +3,8 @@ import { incrementQuantity, decrementQuantity, removeItem, deleteAllCart } from 
 import { useDispatch, useSelector } from 'react-redux';
 import { Box, Button, IconButton, ListItemText ,TextField} from '@mui/material';
 import ErrorMessages from './ErrorMessages';
+import { useState } from 'react';
+import DialogIs from './DialogIs';
 
 // Icons import:
 import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
@@ -16,8 +18,11 @@ import { container,childContainer1,liStyle} from '../../styles/CartPage/CartLScr
 
 
 const CartLScreen = () => {
-  const {cart, totalQuantity,totalPrice, warningMessage, userId}= useSelector((state:any)=>state.allCart)
+  const {cart, totalQuantity,totalPrice, warningMessage, userId}= useSelector((state:any)=>state.allCart);
+  const {user}= useSelector((state:any)=>state.user);
+
   const dispatch= useDispatch();  
+  const [ dialogOpen ,setDialogOpen] = useState(false);
   return (
        <Box sx={container} >
          <Box  sx={childContainer1}>
@@ -125,18 +130,30 @@ const CartLScreen = () => {
              </h3>
            </div>
           <div>
-           <Link to={cart.length > 0 ? '/checkout' : '/cart'}>
-           <Button style={{textAlign:'center',width:'96%', height:'50px',marginTop:'10px'}}
-             sx={{color:'#fff',bgcolor:'#332D2D', ":hover": {color:'black',bgcolor: "#AF5",}}}>
-               Checkout
-           </Button>
-           </Link>
-           <Link to='/register'>
-           <Button style={{textAlign:'center',width:'96%', height:'50px',marginTop:'10px'}} 
-             sx={{ color:'#fff',bgcolor:'#332D2D',":hover": {color:'black',bgcolor: "#AF5"}}}>   
-             Register
-           </Button>
-           </Link>
+            <DialogIs open={dialogOpen}/>
+            {
+              cart.length < 1 ?
+              <Button onClick={()=>{setDialogOpen(true)}} style={{textAlign:'center',width:'96%', height:'50px',marginTop:'10px'}}
+                 sx={{color:'#fff',bgcolor:'#332D2D', ":hover": {color:'black',bgcolor: "#AF5",}}}>
+                  Checkout
+              </Button>:
+              <Link to='/checkout'>
+                <Button style={{textAlign:'center',width:'96%', height:'50px',marginTop:'10px'}}
+                  sx={{color:'#fff',bgcolor:'#332D2D', ":hover": {color:'black',bgcolor: "#AF5",}}}>
+                  Checkout
+                </Button>
+              </Link>
+            }
+            {
+              !user && 
+              <Link to='/register'>
+              <Button style={{textAlign:'center',width:'96%', height:'50px',marginTop:'10px'}} 
+               sx={{ color:'#fff',bgcolor:'#332D2D',":hover": {color:'black',bgcolor: "#AF5"}}}>   
+                Register
+              </Button>
+              </Link>
+            }
+           
            </div>
            </div>
           </Box>

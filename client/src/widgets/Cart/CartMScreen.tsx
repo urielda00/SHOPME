@@ -9,14 +9,19 @@ import RemoveIcon from '@mui/icons-material/Remove';
 import CloseIcon from '@mui/icons-material/Close';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 import ErrorMessages from './ErrorMessages';
+import DialogIs from './DialogIs';
+import { useState } from 'react';
 // const userName= window.sessionStorage.getItem('userNameHere');
 
 // Style import:
 import { containerStyle,listStyle,textFieldStyle } from '../../styles/CartPage/CartMScreen';
 
 const CartMScreen = () => {
-    const {cart, totalQuantity,totalPrice, warningMessage}= useSelector((state:any)=>state.allCart)
+    const {cart, totalQuantity,totalPrice, warningMessage}= useSelector((state:any)=>state.allCart);
+    const {user}= useSelector((state:any)=>state.user);
     const dispatch= useDispatch();
+    const [ dialogOpen ,setDialogOpen] = useState(false);
+
      return (
        <Box sx={containerStyle} >
         <Box sx={{display:'flex',alignItems:'end', justifyContent:'space-between'}}>
@@ -119,19 +124,33 @@ const CartMScreen = () => {
                   </TextField>
               </div>
               <div style={{marginTop:'5px'}}>
-               <Link to={cart.length > 0 ? '/checkout' : '/cart'}>
+              <DialogIs open={dialogOpen}/>
+              {
+                 cart.length < 1 ?
+                 <Button onClick={()=>{setDialogOpen(true)}} style={{textAlign:'center',width:'96%',
+                   height:'35px',marginTop:'10px'}} sx={{color:'#fff',bgcolor:'#332D2D',
+                   ":hover": {color:'black',bgcolor: "#AF5",}}}>
+                   Checkout
+                 </Button> :
+                 <Link to='/checkout'>
                  <Button style={{textAlign:'center',width:'96%',
                    height:'35px',marginTop:'10px'}} sx={{color:'#fff',bgcolor:'#332D2D',
                    ":hover": {color:'black',bgcolor: "#AF5",}}}>
                    Checkout
                  </Button>
                 </Link>
-                <Link to='/register'>
+              }
+              
+               
+                { 
+                 !user && 
+                  <Link to='/register'>
                  <Button style={{textAlign:'center',width:'96%', height:'35px',marginTop:'10px'}} 
                   sx={{ color:'#fff',bgcolor:'#332D2D',":hover": {color:'black',bgcolor: "#AF5"}}}>        
                    Register
                  </Button>
                  </Link>
+                }
               </div>
         </div>
       </Box>

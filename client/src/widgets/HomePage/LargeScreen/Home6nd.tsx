@@ -32,14 +32,14 @@ const Home6nd = () => {
         
          <Box style={smallImagesStyle}
              sx={{ ":hover":{ transform: 'scale(1.1)'}}}>
-              <Link to='/some'>
+              <Link to='/productsList?toCategory=headphons'>
               <img alt='' style={{width:'100%',height:'95%',borderRadius:'30px',objectFit:'cover'}} src={img1} /> 
               </Link>
              </Box>
        
          <Box style={smallImagesStyle}
              sx={{ ":hover":{ transform: 'scale(1.1)'}}}>
-              <Link to='/some'>
+              <Link to='/productsList?toCategory=phone&brand=Samsung'>
               <img alt='' style={{width:'100%',height:'95%',borderRadius:'30px',objectFit:'cover'}} src={img2}/> 
               </Link>
              </Box>
@@ -48,13 +48,13 @@ const Home6nd = () => {
        <Box sx={{ width:'100%',height:'40vh',display:'flex',padding:'10px',justifyContent:'space-between'}}>
         <Box style={smallImagesStyle}
              sx={{ ":hover":{ transform: 'scale(1.1)'}}}>
-              <Link to='/some'>
+              <Link to='/productsList?toCategory=watches'>
               <img alt='' style={{width:'100%',height:'95%',borderRadius:'30px',objectFit:'cover'}} src={img3}/> 
               </Link>
               </Box> 
          <Box style={smallImagesStyle}
              sx={{":hover":{ transform: 'scale(1.1)'}}}>
-              <Link to='/some'>
+              <Link to='/productsList?toCategory=phone&brand=Samsung'>
               <img alt='' style={{width:'100%',height:'95%',borderRadius:'30px',objectFit:'cover'}} src={img4}/>
                </Link>
              </Box>
@@ -66,7 +66,7 @@ const Home6nd = () => {
      {/* the right big box */}
      <Box style={bigImageStyle}
              sx={{ ":hover":{ transform: 'scale(1.07)'}}}>
-              <Link to='/some'>
+              <Link to='/productsList?toCategory=phone&brand=Apple'>
                 <img alt='' style={{width:'100%',height:'95%',borderRadius:'30px',objectFit:'cover'}} src={img5}/>
              </Link>
      </Box>

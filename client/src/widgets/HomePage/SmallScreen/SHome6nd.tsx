@@ -19,25 +19,25 @@ const SHome6nd = () => {
       </Box>    
 
       <Box>
-        <Link to='/some'>
+        <Link to='/productsList?toCategory=headphons'>
            <img alt='' style={{width:'100%',height:'100%',borderRadius:'30px',objectFit:'cover'}} src={img1} /> 
         </Link>
       </Box>
 
       <Box>
-         <Link to='/some'>
+         <Link to='/productsList?toCategory=phone&brand=Samsung'>
            <img alt='' style={{width:'100%',height:'100%',borderRadius:'30px',objectFit:'cover'}} src={img2}/> 
          </Link>
       </Box>
       
       <Box>
-         <Link to='/some'>
+         <Link to='/productsList?toCategory=watches'>
            <img alt='' style={{width:'100%',height:'100%',borderRadius:'30px',objectFit:'cover'}} src={img3}/> 
          </Link>
       </Box>
 
        <Box>
-         <Link to='/some'>
+         <Link to='/productsList?toCategory=phone&brand=Samsung'>
            <img alt='' style={{width:'100%',height:'100%',borderRadius:'30px',objectFit:'cover'}} src={img4}/>
          </Link>
        </Box> 
