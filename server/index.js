@@ -7,7 +7,6 @@ import helmet from 'helmet';
 import morgan from 'morgan';
 import cookieParser from 'cookie-parser';
 import fileupload from "express-fileupload";
-import path from 'path';
 
 // //Routers imports:
 import userAuthRouter from './routes/userAuth.js';
@@ -15,7 +14,6 @@ import productRouter from './routes/products.js';
 import orderRouter from './routes/order.js';
 import resetPassRouter from './routes/resetPass.js';
 import cartRouter from './routes/cart.js';
-
 
 //need to handle the 304 status and make another file that recive and save all the logs in the DB
 //need to add multer multi-image upload functionality.

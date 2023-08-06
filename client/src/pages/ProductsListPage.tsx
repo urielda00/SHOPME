@@ -6,9 +6,9 @@ import { UseInfiniteData } from "../services/ProuductList/UseInfiniteData";
 import { useSearchParams } from 'react-router-dom';
 
 // Internal imports:
-import Loading from '../widgets/ProductsList/Loading';
 import ProductsListDisplay from '../widgets/ProductsList/ProductsListDisplay';
 import TopCategories from '../widgets/ProductsList/TopCategories';
+import { Skeletons } from '../widgets/ProductsList/Skeletons';
 
 
 
@@ -49,14 +49,12 @@ const ProductsListPage = () => {
      return data.pages[updated] 
     };
 
-    //While loading the data:
-    if(isLoading){
-      return <Loading/>
-    };
-      
    return (
      <Box sx={{height:'100vh'}}>
        <TopCategories/>
+       {
+        isLoading && <Skeletons/>
+       } 
        {isSuccess && <ProductsListDisplay items={items} data={data} /> }
      </Box>
   )
