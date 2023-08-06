@@ -3,7 +3,6 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import UsersArchives from "../models/UsersArchives.js";
 import {UserErrorLogger, UserInfoLogger} from "../middleware/winston.js";
-import Cart from "../models/Cart.js";
 
  //Register:
  export const register = async (req,res)=>{

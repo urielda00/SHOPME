@@ -9,6 +9,7 @@ import {createProduct,
         searchProduct,
         readSingleProduct,
         readRelatedItemsByCategory,
+        checkIfExist
        }
  from '../controllers/products.js';
 
@@ -23,9 +24,11 @@ productRouter.post('/createProduct',createProduct);
 productRouter.get('/readSingleProduct/:productId',readSingleProduct);
 productRouter.get('/readRelateProducts',readRelatedItemsByCategory);
 productRouter.get('/readProducts',readProducts);
-productRouter.delete('/deleteProduct/:id',deleteProduct);
+productRouter.post('/deleteProduct',deleteProduct);
 productRouter.patch('/updateProduct/:id',updateProduct);//todo: upload middleware to this route!
 productRouter.get('/searchProduct',searchProduct);
+productRouter.get('/checkIfExist/:data',checkIfExist);
+
 
 
 export default productRouter;

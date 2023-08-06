@@ -161,7 +161,7 @@ export const createProduct=  async (req, res)=> {
   const updates= req.body;
   const options= {new: true};
   try {
-  
+   
     const updatedProduct = await Product.findOneAndUpdate(id, updates, options );
     ProductInfoLogger.log('info','product updated. status code: 201');
     res.status(201).json(updatedProduct);
@@ -176,8 +176,8 @@ export const createProduct=  async (req, res)=> {
 
 //Delete:
 export const deleteProduct = async (req, res) => { //only make the status unavailable!
-  const id = req.params.id;
-  
+  const id = req.body.id;
+  console.log('id',id);
   try {
     const deletedProduct = await Product.findByIdAndUpdate(id, {status:'unavailable'});
     ProductInfoLogger.log('info','product deleted. status code: 201');
@@ -215,7 +215,24 @@ export const searchProduct= async(req,res)=>{
   }
 };
 
+//Update item-  middle-form test (if exist):
+export const checkIfExist = async (req,res) => {
+  try {
+    const {data} = req.params;
+    const checkItem = await Product.findOne({_id:data})
 
+    if(!checkItem){
+      ProductInfoLogger.log('info','product exist. status code: 200');
+      res.status(200).send(['1'])
+    }else{{
+      ProductInfoLogger.log('info','product dont exist. status code: 200');
+      res.send([]);
+    }}
+  } catch (error) {
+    ProductInfoLogger.log('error', `${error.message}. status code: 500`);
+    res.status(500).json(error.message)
+  }
+  }
 
     // const filesnames = req.files.map((file) =>{
     //  return file.filename;// or file.originalname

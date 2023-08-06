@@ -17,7 +17,7 @@ const insideContainerStyle:React.CSSProperties = {
 const stepsP:CSSProperties = {
   position:'absolute',
   top:'-45px',
-  left:'-125px',
+  left:'-105px',
   fontSize:'15px',
   color:'#27374D'
 };
@@ -25,7 +25,7 @@ const stepsP:CSSProperties = {
 const stepIconButton:CSSProperties = {
   position:'absolute',
   top:'-48px',
-  left:'-200px',
+  left:'-125px',
   fontSize:'15px',
   color:'#27374D'
 };

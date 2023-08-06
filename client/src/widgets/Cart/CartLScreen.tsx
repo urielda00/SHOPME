@@ -133,7 +133,12 @@ const CartLScreen = () => {
             <DialogIs open={dialogOpen}/>
             {
               cart.length < 1 ?
-              <Button onClick={()=>{setDialogOpen(true)}} style={{textAlign:'center',width:'96%', height:'50px',marginTop:'10px'}}
+              <Button onClick={()=>{
+                setDialogOpen(true)
+                setTimeout(() => {
+                setDialogOpen(false)}, 1000)}}
+                  
+                   style={{textAlign:'center',width:'96%', height:'50px',marginTop:'10px'}}
                  sx={{color:'#fff',bgcolor:'#332D2D', ":hover": {color:'black',bgcolor: "#AF5",}}}>
                   Checkout
               </Button>:
