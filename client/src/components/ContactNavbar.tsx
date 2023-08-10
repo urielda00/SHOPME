@@ -1,13 +1,29 @@
-import React from "react";
-// import WhatsAppIcon from '@mui/icons-material/WhatsApp';
-// import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
+// This component for now is mean to be for use in the roll-up button. (the button navigate to this Id)
+
 import { Box} from "@mui/material";
+import React from "react";
 
-
- const ContactNavbar = () => {
+const ContactNavbar:React.FunctionComponent = () => {
   return (
      <Box id='some' sx={{display:'flex'}}></Box>
-    // <Box id='some' style={StyledNavBar} sx={{display:{xs:'none',sm:'flex', md: 'flex'}}}>
+   
+  );
+}
+
+export default ContactNavbar;
+
+
+
+
+
+
+
+
+// This is the demo , delete later.
+
+// import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+// import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
+ // <Box id='some' style={StyledNavBar} sx={{display:{xs:'none',sm:'flex', md: 'flex'}}}>
       
     //  <IconButton sx={{display:{xs:'none',sm:'flex', md: 'flex'}}}
     //     style={{borderRadius:'10px',fontSize:'1.3vw'}} size="large">
@@ -28,13 +44,6 @@ import { Box} from "@mui/material";
     //    </a>
     //  </IconButton>
     // </Box>
-  );
-}
-
-
-export default ContactNavbar;
-
-
 // const StyledNavBar:React.CSSProperties= {
 //   position: 'relative',
 //   opacity:0.9,

@@ -8,7 +8,6 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
 ){return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;});
   
 
-
  const ErrorMessages=({error}:any) =>{
 
   return (
@@ -22,5 +21,5 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
     </Stack>
 
   );
-}
+};
 export default ErrorMessages;

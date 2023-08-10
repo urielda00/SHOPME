@@ -50,7 +50,9 @@ export const DeleteForm = () => {
            </Box>
         </Container>
   )
-}
+};
+
+// Style:
 const containerStyle ={
   backgroundColor:'#fff',
   borderRadius:'10px',

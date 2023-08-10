@@ -1,4 +1,4 @@
-import { useParams , Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import {Avatar, Button, TextField,Grid,Box,Typography, Container,IconButton, InputAdornment } from '@mui/material';
@@ -16,7 +16,7 @@ type FormValues = {
 
  const Reset = () => {
   const form = useForm<FormValues>({mode:'onChange'});
-  const {register, control, handleSubmit, formState, watch,getValues, reset} = form;
+  const {register, handleSubmit, formState, watch, reset} = form;
   const {errors, isDirty, isValid, isSubmitSuccessful} = formState;
   const [passwordEyeVerify, setPasswordEyeVerify] = useState(false);
   const [passwordEye, setPasswordEye] = useState(false);
@@ -25,7 +25,7 @@ type FormValues = {
   const password = watch('password');
   const [validUrl, setValidUrl] = useState(false);
 	const param = useParams();
-  const url = `https://deployment-shopme.onrender.com/resetPass/reset/${param.id}/${param.token}`;
+  const url:string = `https://deployment-shopme.onrender.com/resetPass/reset/${param.id}/${param.token}`;
   const [openPassHelp, setOpenPassHelp] = useState(false);
 
   const onSubmit = async(datais : FormValues)=>{

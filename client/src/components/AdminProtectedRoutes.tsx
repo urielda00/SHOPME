@@ -1,10 +1,9 @@
-import {useSelector} from "react-redux"
-import {Navigate,useLocation} from "react-router-dom"
+import {Navigate,useLocation} from "react-router-dom";
+import { useAppSelector} from '../app/hooks';
 
-
-const AdminProtectedRoutes = ({children}:any) => {
-    const {isAdmin} = useSelector((state:any) => state.user);
-    const isLogged = window.sessionStorage.getItem('isLogged');
+const AdminProtectedRoutes = ({children}:{ children: JSX.Element }) => {
+    const {isAdmin} = useAppSelector((state) => state.user);
+    const isLogged:string|null = window.sessionStorage.getItem('isLogged');
     let location = useLocation();
 
     if(!isAdmin) {

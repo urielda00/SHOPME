@@ -1,39 +1,48 @@
 import { useInfiniteQuery } from "react-query";
 
-const LIMIT = 2; //The limit items per page
-const fetchItems = async (page:any,category:any,year:any=false,os:any=false,brand:any=false) => {
-  
+const LIMIT:number = 2; //The limit items per page
+
+
+const fetchItems = async (
+  page:string,
+  category:string,
+  year:number|boolean=false,
+  os:string|boolean=false,
+  brand:string|boolean=false
+  ) => {
   if(category && brand && os && year){
-    const response = 
-    await 
+    const response = await 
     fetch(`https://deployment-shopme.onrender.com/product/readProducts?per_page=${LIMIT}&page=${page}&category=${category}&year=${year}&os=${os}&brand=${brand}`);
-    return response.json()
-  }else if(category && brand && os){
+    return response.json();
+    }else if(category && brand && os){
     const response = 
     await 
     fetch(`https://deployment-shopme.onrender.com/product/readProducts?per_page=${LIMIT}&page=${page}&category=${category}&os=${os}&brand=${brand}`);
     return response.json()
-  }else if(category && brand){
+    }else if(category && brand){
     const response = 
     await 
     fetch(`https://deployment-shopme.onrender.com/product/readProducts?per_page=${LIMIT}&page=${page}&category=${category}&brand=${brand}`);
     return response.json()
-  }else if(category){
+    }else if(category){
     const response = 
     await 
     fetch(`https://deployment-shopme.onrender.com/product/readProducts?per_page=${LIMIT}&page=${page}&category=${category}`);
     return response.json()
-  }else{
-   const response = 
-   await fetch(`https://deployment-shopme.onrender.com/product/readProducts?per_page=${LIMIT}&page=${page}`)
-   return response.json()  
-  }
-  
+    }else{
+    const response = 
+    await fetch(`https://deployment-shopme.onrender.com/product/readProducts?per_page=${LIMIT}&page=${page}`)
+    return response.json();
+   }
 };
 
 
-
-export const UseInfiniteData = (category:any,year:any=false,os:any=false,brand:any=false) => {
+export const UseInfiniteData = (
+  category:any,
+  year:any=false,
+  os:any=false,
+  brand:any=false
+  ) => {
   return useInfiniteQuery(
    ['items',`category: ${category}`,`year: ${year}`,`os:${os}`,`brand:${brand}`], 
     ({pageParam = 1}) => fetchItems(pageParam, category, year, os, brand),
@@ -48,4 +57,4 @@ export const UseInfiniteData = (category:any,year:any=false,os:any=false,brand:a
       refetchOnWindowFocus:false, //Make the re-fetching on every time wwe back to browser- off.
     }
   )
-}
+};

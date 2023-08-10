@@ -52,7 +52,7 @@ const CreateForm = () => {
 
   // Useform Hook:
   const form = useForm<FormValues>({mode:'onChange'});
-  const {register, handleSubmit, formState, reset, watch} = form;
+  const {register, handleSubmit, formState, watch} = form;
   const {errors, isDirty, isValid} = formState;
 
   const isimage1 = watch('image1');
@@ -155,7 +155,7 @@ const CreateForm = () => {
                   </Grid>
                   )}
                 {
-                  step == 2 && (
+                  step === 2 && (
                     <Grid container spacing={2}>
                        <Grid item xs={12} sm={12}>
                          <TextField
@@ -196,7 +196,7 @@ const CreateForm = () => {
 
                     </Grid>
                    )} 
-                   {step == 3 && (
+                   {step === 3 && (
                      <Grid container spacing={2}>         
                         <Grid item xs={12} sm={12}>
                          <TextField
@@ -252,7 +252,7 @@ const CreateForm = () => {
                     )}
 
                     {
-                     step == 4 && (
+                     step === 4 && (
                       <Grid container spacing={2}>
                         
                         <Grid item xs={12} sm={12}>
@@ -281,7 +281,7 @@ const CreateForm = () => {
                       </Grid>
                      )} 
                     {
-                     step == 5 && (
+                     step === 5 && (
                       <Grid container spacing={2}>
                         the item saved (later need to add here component.)
                       </Grid>

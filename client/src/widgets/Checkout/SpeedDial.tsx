@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Box, Stepper, Step, StepButton, Button, Typography } from '@mui/material';
+import { Box, Stepper, Step, StepButton, Button } from '@mui/material';
 import { useSelector } from 'react-redux';
 // Local:
 import CartDisplay from './CartDisplay';

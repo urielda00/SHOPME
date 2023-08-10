@@ -1,8 +1,9 @@
 import { Box } from '@mui/material';
 import Forget from '../widgets/AllResetPass/Forget';
+import React from 'react';
 
 
- const ForgetPassPage = () => {
+ const ForgetPassPage:React.FunctionComponent = () => {
   return (
     <Box sx={backgroundStyle}>
         <Box sx={{display:{xs:'flex',sm:'flex', md: 'flex'}}}>
@@ -10,7 +11,7 @@ import Forget from '../widgets/AllResetPass/Forget';
         </Box>
     </Box>
   )
-}
+};
 export default ForgetPassPage;
 
 const backgroundStyle = {

@@ -1,4 +1,5 @@
 import {Box} from '@mui/material';
+import React from 'react';
 
 //Large screens:
 import Home1st from '../widgets/HomePage/LargeScreen/Home1st';
@@ -20,7 +21,8 @@ import SHome3nd from '../widgets/HomePage/SmallScreen/SHome3nd';
 import SHome4nd from '../widgets/HomePage/SmallScreen/SHome4nd';
 import SHome6nd from '../widgets/HomePage/SmallScreen/SHome6nd';
 
-const HomePage = () => {  
+
+const HomePage:React.FunctionComponent = () => {  
   return (
     <>
     {/* for big screens: */}
@@ -53,6 +55,6 @@ const HomePage = () => {
     </Box>
     </>
   )
-}
+};
 
 export default HomePage;

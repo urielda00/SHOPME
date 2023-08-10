@@ -22,12 +22,10 @@ const SITE_KEY = '6Le6bSMnAAAAAFsg4MZvHcr9FTA5r82NKIsvPjGm';
 const Forget = () => {
   const onCaptchaChange = () =>{ setCaptchaVerified(true) };
   const [sentMail, SetsentMail] = useState<boolean>(false);
-  const [passwordEye, setPasswordEye] = useState(false);
   const [captchaVerified, setCaptchaVerified] = useState(false);
   const form = useForm<FormValues>({mode:'onChange'});
   const {register, handleSubmit, formState, reset} = form;
   const {errors, isDirty, isValid, isSubmitSuccessful} = formState;
-  const handleChangeEyePassword = () => {setPasswordEye(!passwordEye)};
   const onSubmit = async(datais : FormValues)=>{
 		 const url = 'https://deployment-shopme.onrender.com/resetPass/';
 		 await axios.post(url, {email:datais.email})
@@ -38,7 +36,7 @@ const Forget = () => {
     };
 
   useEffect(()=>{
-    const captchaVerified = () =>{ setCaptchaVerified(true) };
+    setCaptchaVerified(true);
     if(isSubmitSuccessful){reset()}
     
   },[isSubmitSuccessful,reset]);

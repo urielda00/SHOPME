@@ -1,16 +1,16 @@
 import * as React from 'react';
-import { useSelector} from 'react-redux';
+import { useAppSelector } from '../app/hooks';
 import { Toolbar } from '@mui/material';
 import LargeScreen from '../widgets/Navbar/LARGE/LargeScreen';
 import MediumScreen from '../widgets/Navbar/MEDIUM/MediumScreen';
 import SmallScreen from '../widgets/Navbar/SMALL/SmallScreen';
-// const userName= window.sessionStorage.getItem('userNameHere'); //or use the redux for that?.
 
 //Types:
 interface Props {isActive: boolean};
 
- const NavBar=() =>{
-  const {totalQuantity}= useSelector((state:any)=>state.allCart);
+// The component
+ const NavBar:React.FunctionComponent = () => {
+  const {totalQuantity} = useAppSelector((state) => state.allCart);
   return (
    <>
      {/* for large screens: */}

@@ -18,7 +18,7 @@ import { container,childContainer1,liStyle} from '../../styles/CartPage/CartLScr
 
 
 const CartLScreen = () => {
-  const {cart, totalQuantity,totalPrice, warningMessage, userId}= useSelector((state:any)=>state.allCart);
+  const {cart, totalQuantity,totalPrice, warningMessage}= useSelector((state:any)=>state.allCart);
   const {user}= useSelector((state:any)=>state.user);
 
   const dispatch= useDispatch();  

@@ -3,7 +3,7 @@ import { Button } from "@mui/material";
 const renderButton = (step:any, nextStep:any, isValid:boolean) =>{
   if(step > 4 ){
     return undefined;
-  }else if(step == 4){
+  }else if(step === 4){
     return (
       <Button
       type="submit"

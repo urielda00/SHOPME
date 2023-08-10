@@ -114,7 +114,7 @@ import { Typography, FormControlLabel, Checkbox,Grid,TextField} from '@mui/mater
 }
 export default Delivery;
 
-const childContainer1={
-  width:'100%',
-  height:'380px',
-};
+// const childContainer1={
+//   width:'100%',
+//   height:'380px',
+// };

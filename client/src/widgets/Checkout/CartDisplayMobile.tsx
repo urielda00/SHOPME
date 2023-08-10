@@ -1,7 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { incrementQuantity, decrementQuantity, removeItem} from '../../features/cartSlice';
-import ErrorMessages from '../Cart/ErrorMessages';
-import { Box, Button, ListItemText,Grid} from '@mui/material';
+import { Box, Button} from '@mui/material';
 
 // Icons import:
 import AddIcon from '@mui/icons-material/Add';
@@ -9,7 +8,7 @@ import RemoveIcon from '@mui/icons-material/Remove';
 
 
  const CartDisplayMobile = () => {
-  const {cart, warningMessage} = useSelector((state:any)=>state.allCart)
+  const {cart} = useSelector((state:any)=>state.allCart)
   const dispatch= useDispatch();
 
   return (

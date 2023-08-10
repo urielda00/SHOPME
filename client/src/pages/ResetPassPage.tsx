@@ -1,16 +1,17 @@
 import { Box } from '@mui/material';
 import Reset from '../widgets/AllResetPass/Reset';
+import React from 'react';
 
-
- const ResetPassPage = () => {
+ const ResetPassPage:React.FunctionComponent = () => {
   return (
     <Box sx={backgroundStyle}>
-        <Box sx={{display:{xs:'flex',sm:'flex', md: 'flex'}}}>
+        <Box sx={{display:'flex'}}>
          <Reset/>
         </Box>
     </Box>
   )
-}
+};
+
 export default ResetPassPage;
 
 const backgroundStyle = {

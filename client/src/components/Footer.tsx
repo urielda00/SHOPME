@@ -1,5 +1,6 @@
 import {Typography, Box,Container} from '@mui/material';
-import { Link} from 'react-router-dom';
+import React from 'react';
+import {Link} from 'react-router-dom';
 
 function Copyright() {
   return (
@@ -12,10 +13,10 @@ function Copyright() {
       {'.'}
     </Box>
   );
-}
+};
 
-
-export default function Footer() {
+// The component:
+ const Footer:React.FunctionComponent=() =>{
   return (
       <Box
         sx={{
@@ -36,3 +37,4 @@ export default function Footer() {
       </Box>
   );
 }
+export default Footer;

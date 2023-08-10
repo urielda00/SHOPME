@@ -2,11 +2,11 @@ import { useQuery } from "react-query";
 import axios from "axios";
 
 
-const fetchItem = (itemId:any) => {
+const fetchItem = (itemId:string|undefined) => {
 return  axios.get(`https://deployment-shopme.onrender.com/product/readSingleProduct/${itemId}`);
 }
 
-export const UseSingleItemData = (itemId:any) => {
+export const UseSingleItemData = (itemId:string|undefined) => {
   return useQuery(['singleItemPage',itemId], ()=>fetchItem(itemId), 
   {
     refetchInterval: 1000 * 60 * 2,

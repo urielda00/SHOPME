@@ -2,11 +2,13 @@ import { useQuery } from "react-query";
 import axios from "axios";
 
 
-const fetchItem = (itemCategory:any) => {
-return  axios.get(`https://deployment-shopme.onrender.com/product/readRelateProducts?category=${itemCategory}`);
-}
+const fetchItem = (itemCategory:string|null) => {
+return  axios.get(
+  `https://deployment-shopme.onrender.com/product/readRelateProducts?category=${itemCategory}`
+  );
+};
 
-export const UseRelateItemsData = (itemCategory:any) => {
+export const UseRelateItemsData = (itemCategory:string|null) => {
   return useQuery(['singleItemPage',itemCategory], ()=> fetchItem(itemCategory), 
   {
     refetchInterval: 1000 * 60 * 2,

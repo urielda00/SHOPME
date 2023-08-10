@@ -1,11 +1,12 @@
 import { useParams } from "react-router-dom";
 import { UseSingleItemData } from "../services/SingleItemPage/UseSingleItemData";
 import { Box } from "@mui/material";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import SingleItemContainer from "../widgets/SingleItemPage/SingleItemContainer";
 import RelateItems from "../widgets/SingleItemPage/RelateItems";
 
-const SingleItemPage = () => {
+// The component:
+const SingleItemPage:React.FunctionComponent = () => {
   const {productId} = useParams();
   const {isLoading ,data} = UseSingleItemData(productId)
   const [imgSrc, setImgSrc] = useState<any>();
@@ -29,9 +30,7 @@ const SingleItemPage = () => {
       <Box sx={{display:{xs:'flex',sm:'flex', md: 'none'},height:'78vh',width:'100%'}}>
         The style for medium & small screens not ready yet.
       </Box>
-      
     </Box>  
-     
  );
 };
 

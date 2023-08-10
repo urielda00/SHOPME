@@ -1,4 +1,4 @@
-import {Avatar, TextField,Grid,Box,Typography,Container,IconButton, Button} from '@mui/material';
+import {Avatar, TextField,Grid,Box,Typography,Container,IconButton} from '@mui/material';
   
 // Local Imports:
 import SubmitFunc from './SubmitFunc';
@@ -53,8 +53,8 @@ const UpdateForm = () => {
 
   // Useform Hook:
   const form = useForm<FormValues>({mode:'onChange'});
-  const {register, handleSubmit, formState, reset, watch} = form;
-  const {errors, isDirty, isValid} = formState;
+  const {register, handleSubmit, formState, watch} = form;
+  const {errors, isValid} = formState;
 
   const isimage1 = watch('image1');
   const isimage2 = watch('image2');
@@ -168,7 +168,7 @@ const UpdateForm = () => {
                   </Grid>
                   )}
                 {
-                  step == 2 && (
+                  step === 2 && (
                     <Grid container spacing={2}>
                        <Grid item xs={12} sm={12}>
                          <TextField
@@ -209,7 +209,7 @@ const UpdateForm = () => {
 
                     </Grid>
                    )} 
-                   {step == 3 && (
+                   {step === 3 && (
                      <Grid container spacing={2}>         
                         <Grid item xs={12} sm={12}>
                          <TextField
@@ -265,7 +265,7 @@ const UpdateForm = () => {
                     )}
 
                     {
-                     step == 4 && (
+                     step === 4 && (
                       <Grid container spacing={2}>
                         
                         <Grid item xs={12} sm={12}>
@@ -294,7 +294,7 @@ const UpdateForm = () => {
                       </Grid>
                      )} 
                     {
-                     step == 5 && (
+                     step === 5 && (
                       <Grid container spacing={2}>
                         the item saved (later need to add here component.)
                       </Grid>

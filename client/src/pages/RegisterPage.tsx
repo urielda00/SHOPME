@@ -1,15 +1,16 @@
-import { Box } from "@mui/material"
+import { Box } from "@mui/material";
 import RegisterForm from "../widgets/RegisterPage/RegisterForm";
+import React from "react";
 
-const RegisterPage = () => {
+const RegisterPage:React.FunctionComponent = () => {
   return(
     <Box sx={backgroundStyle}>
-        <Box sx={{display:{xs:'flex',sm:'flex', md: 'flex'}}}>
+        <Box sx={{display:'flex'}}>
          <RegisterForm/>
         </Box>
     </Box>
   )
-}
+};
 export default RegisterPage;
 
 const backgroundStyle = {

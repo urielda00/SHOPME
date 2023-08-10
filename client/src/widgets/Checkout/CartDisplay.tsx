@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { incrementQuantity, decrementQuantity, removeItem} from '../../features/cartSlice';
+import { incrementQuantity, decrementQuantity} from '../../features/cartSlice';
 import ErrorMessages from '../Cart/ErrorMessages';
 import { Box, Button, ListItemText} from '@mui/material';
 

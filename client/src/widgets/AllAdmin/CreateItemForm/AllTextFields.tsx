@@ -1,11 +1,6 @@
 import { Grid,TextField } from "@mui/material";
-import { validateProductNameObj } from "./ValidateObjects";
 
  const AllTextFields = ({id,label,type,validationObj,register,fieldErrors}:any) => {
-  console.log('label:',label);
-  console.log('id:',id);
-  console.log('type:',type);
-  console.log('fieldErrors:',fieldErrors);
   return (
     <>
     <Grid item xs={12} sm={12}>
@@ -21,5 +16,5 @@ import { validateProductNameObj } from "./ValidateObjects";
     </Grid>
   </>
   )
-}
+};
 export default AllTextFields;

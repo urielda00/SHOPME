@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Button } from '@mui/material';
 
 
-const NomatchPage= ()=>{
+const NomatchPage:React.FunctionComponent = () => {
   return(
     <div style={Container}>
     <div style={InsideDiv}>
@@ -16,11 +16,12 @@ const NomatchPage= ()=>{
     </div>
     </div>
   )
-}
+};
 
 export default NomatchPage;
 
-//component's style here:
+//Style:
+
 const Container:React.CSSProperties={
   width: '100%',
   height: `83vh`,

@@ -1,6 +1,7 @@
+import React from 'react';
 import backImg from '../../assets/ThankPage/back1.jpg';
 
-const Styledcontainer= {
+const Styledcontainer:React.CSSProperties= {
   backgroundImage: `url(${backImg})`,
   backgroundRepeat: 'no-repeat',
   backgroundSize: 'cover',
@@ -14,7 +15,7 @@ const Styledcontainer= {
   justifyContent: 'center',
 };
 
- const styledImg={
+ const styledImg:React.CSSProperties={
   width: '20%',
   marginTop: '-50px',
   borderRadius: '50%',

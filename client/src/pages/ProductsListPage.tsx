@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Box } from '@mui/material';
 
 // Hooks imports:
@@ -13,7 +13,7 @@ import { Skeletons } from '../widgets/ProductsList/Skeletons';
 
 
 //The component:
-const ProductsListPage = () => {
+const ProductsListPage:React.FunctionComponent = () => {
   const [searchParams] = useSearchParams();
   //set the category state, then pass it to change the query unique key to refresh the query:
   const toCategory = searchParams.get('toCategory');

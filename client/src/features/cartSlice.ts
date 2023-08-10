@@ -1,7 +1,14 @@
 import { createSlice} from "@reduxjs/toolkit";
 
+interface InitialStateType { 
+  userId : null|string
+  totalQuantity : number
+  totalPrice : number
+  warningMessage : null|string
+  cart : any
+};
 
-const initialState = {
+const initialState:InitialStateType = {
   cart: [],
   userId:null, //orr add later the- isLogged of boolean type.
   totalQuantity: 0,
@@ -15,9 +22,9 @@ export const cartSlice= createSlice({
   name:'cart',
   initialState,
   reducers:{
-  addToCart: (state,action)=>{
+  addToCart: (state,action:any)=>{
     //check if the item already in the cart
-    const itemIndex = state.cart.findIndex((item)=>item._id === action.payload._id);
+    const itemIndex = state.cart.findIndex((item:any)=>item._id === action.payload._id);
     if(itemIndex >= 0){
       state.cart[itemIndex].itemQuantity++;
       state.totalPrice+=action.payload.price;
@@ -33,7 +40,7 @@ export const cartSlice= createSlice({
     
   }, 
   incrementQuantity: (state,action)=>{
-    const itemIndex = state.cart.findIndex((item)=>item._id === action.payload._id);
+    const itemIndex = state.cart.findIndex((item:any)=>item._id === action.payload._id);
     if(state.cart[itemIndex].quantity - state.cart[itemIndex].itemQuantity >0){
      state.cart[itemIndex].itemQuantity +=1; 
      state.totalPrice+=action.payload.price;
@@ -42,7 +49,7 @@ export const cartSlice= createSlice({
     }
   },
   decrementQuantity: (state, action)=>{
-    const itemIndex = state.cart.findIndex((item)=>item._id === action.payload._id);
+    const itemIndex = state.cart.findIndex((item:any)=>item._id === action.payload._id);
     const itemLocation= state.cart[itemIndex];
     if(itemLocation.itemQuantity>1){ 
       itemLocation.itemQuantity -=1;
@@ -55,7 +62,7 @@ export const cartSlice= createSlice({
      }
   },
   removeItem: (state,action)=>{
-    const itemIndex = state.cart.findIndex((item)=>item._id === action.payload._id);
+    const itemIndex = state.cart.findIndex((item:any)=>item._id === action.payload._id);
     const itemLocation= state.cart[itemIndex];
     const totalPriceToRemove = itemLocation.itemQuantity * itemLocation.price;
     state.totalPrice -= totalPriceToRemove;
@@ -75,6 +82,8 @@ export const {addToCart, incrementQuantity, decrementQuantity, removeItem, delet
 export default cartSlice.reducer;
 
 
+
+// Test- check this later:
 
 // pullCartOnLogin : (state, action)=>{
 //   // Check if there is cart:

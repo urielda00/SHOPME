@@ -1,4 +1,4 @@
-import {Dialog,DialogActions,DialogContent,DialogTitle, Box, Button} from '@mui/material';
+import {Dialog,DialogActions,DialogTitle, Button} from '@mui/material';
 import React from 'react';
 
  const DialogIs = ({open}:any) => {

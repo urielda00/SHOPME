@@ -2,7 +2,7 @@ import * as React from 'react';
 import { IconButton } from '@mui/material';
 import KeyboardDoubleArrowUpOutlinedIcon from '@mui/icons-material/KeyboardDoubleArrowUpOutlined';
 
- const ScrollToTop = () => {
+ const ScrollToTop:React.FunctionComponent = () => {
   const [button, setButton]= React.useState(false);
   React.useEffect(()=>{
     window.addEventListener('scroll',()=>{
@@ -12,7 +12,8 @@ import KeyboardDoubleArrowUpOutlinedIcon from '@mui/icons-material/KeyboardDoubl
         setButton(false);
       }
     })
-  },[])
+  },[]);
+
   return (
     <>
     {
@@ -25,9 +26,7 @@ import KeyboardDoubleArrowUpOutlinedIcon from '@mui/icons-material/KeyboardDoubl
       </IconButton>
      )
     }
-    
     </>
   )
-}
-
+};
 export default ScrollToTop;

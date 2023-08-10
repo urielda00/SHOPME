@@ -1,18 +1,17 @@
 import { Box } from '@mui/material';
 import CreateForm from '../widgets/AllAdmin/CreateItemForm/CreateForm';
+import React from 'react';
 
-
-const CreateItem = () => {
+const CreateItem:React.FunctionComponent = () => {
   return (
     <Box sx={backgroundStyle}>
-        <Box sx={{display:{xs:'flex',sm:'flex', md: 'flex'}}}>
+        <Box sx={{display:'flex'}}>
           <CreateForm/>
         </Box>
     </Box>  
   )
 };
 export default CreateItem;
-
 
 const backgroundStyle = {
   width:'100%',

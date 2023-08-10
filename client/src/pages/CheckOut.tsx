@@ -2,13 +2,13 @@ import React from 'react'
 import SpeedDialCheckout from '../widgets/Checkout/SpeedDial';
 import { Box } from '@mui/material';
 
- const CheckOut = () => {
+ const CheckOut:React.FunctionComponent = () => {
   return (
     <Box sx={backgroundStyle}>
       <SpeedDialCheckout/>
     </Box>
   )
-}
+};
 export default CheckOut;
 
 const backgroundStyle = {

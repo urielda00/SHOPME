@@ -27,5 +27,5 @@ const content = { headers: { "Content-Type": "multipart/form-data"}};
     }).catch((error:any)=>{
       return error;
     });
-}
+};
 export default SubmitFunc;

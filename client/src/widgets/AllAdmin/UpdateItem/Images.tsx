@@ -2,7 +2,6 @@ import { Grid,TextField,Button } from '@mui/material';
 import { toggleUpload } from './Functions';
 import AddIcon from '@mui/icons-material/Add';
 import CheckIcon from '@mui/icons-material/Check';
-import ErrorMessages from './ErrorMessages';
 const formats = ["image/jpeg", "image/png", "image/jpg"];
 
 

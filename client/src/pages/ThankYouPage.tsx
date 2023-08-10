@@ -1,8 +1,9 @@
 import { Box } from '@mui/material';
 import checkImg from '../assets/ThankPage/check1.png';
 import {styledImg,styledBtn,styledPopup,Styledcontainer} from '../styles/ThankYou/ThankYouStyle';
+import React from 'react';
 
- const ThankYouPage = () => {
+ const ThankYouPage:React.FunctionComponent = () => {
   return (
     <div style={Styledcontainer}>
       <Box sx={styledPopup}>
@@ -15,5 +16,5 @@ import {styledImg,styledBtn,styledPopup,Styledcontainer} from '../styles/ThankYo
        </Box>
     </div>
   )
-}
+};
 export default ThankYouPage;

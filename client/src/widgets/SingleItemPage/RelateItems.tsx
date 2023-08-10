@@ -30,7 +30,7 @@ const responsive = {
  const RelateItems = ({handleState}:any) => {
   const [searchParams] = useSearchParams();
   const category = searchParams.get('category');
-  const {isLoading ,data, error, isError} = UseRelateItemsData(category)
+  const {isLoading ,data} = UseRelateItemsData(category)
 
   if(isLoading){
     return <Loading/>

@@ -1,13 +1,15 @@
 import { Box } from "@mui/material";
 import UpdateForm from "../widgets/AllAdmin/UpdateItem/UpdateForm";
- const UpdateItem = () => {
+import React from "react";
+
+ const UpdateItem:React.FunctionComponent = () => {
   return (
     <Box sx={backgroundStyle}>
        <UpdateForm/>
     </Box>  
   )
-}
-export default UpdateItem
+};
+export default UpdateItem;
 
 const backgroundStyle = {
   width:'100%',

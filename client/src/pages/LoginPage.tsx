@@ -1,18 +1,18 @@
 import { Box } from '@mui/material';
 import LoginForm from '../widgets/LoginPage/LoginForm';
+import React from 'react';
 
- const LoginPage = () => {
+ const LoginPage:React.FunctionComponent = () => {
   return (
     <Box sx={backgroundStyle}>
-        <Box sx={{display:{xs:'flex',sm:'flex', md: 'flex'}}}>
+        <Box sx={{display:'flex'}}>
          <LoginForm/>
         </Box>
     </Box>
   )
-}
+};
 
 export default LoginPage;
-
 
 const backgroundStyle = {
   width:'100%',

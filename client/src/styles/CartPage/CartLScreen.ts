@@ -1,6 +1,5 @@
 import * as React from 'react';
 
-
 const container:React.CSSProperties={
   height:'70vh',
   width:'85%',

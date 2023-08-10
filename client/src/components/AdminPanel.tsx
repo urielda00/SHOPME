@@ -1,10 +1,13 @@
-import { useSelector } from "react-redux";
 import { Box,SpeedDial,SpeedDialIcon,SpeedDialAction } from "@mui/material";
+import { useAppSelector, useAppDispatch } from '../app/hooks';
+//   const dispatch = useAppDispatch() - inside of the funcional component
+
 
 import NoteAddIcon from '@mui/icons-material/NoteAdd';
 import AutorenewIcon from '@mui/icons-material/Autorenew';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { Link } from 'react-router-dom';
+import React from "react";
 
 const actions = [
   { icon: (<Link to={'/createItem'}><NoteAddIcon/></Link>), name: 'New Item'},
@@ -12,9 +15,8 @@ const actions = [
   { icon: (<Link to={'/deleteItem'}><DeleteOutlineIcon /></Link>), name: 'Delete Item'}
 ];
 
-
- const AdminPanel = ({children}:any) => {
-  const {isAdmin}= useSelector((state:any)=>state.user)
+ const AdminPanel = () => {
+  const {isAdmin} = useAppSelector((state) => state.user);
   const isLogged = window.sessionStorage.getItem('isLogged');
   return (
     <>
@@ -22,7 +24,7 @@ const actions = [
      isAdmin && isLogged === 'true'? <Box>
      <SpeedDial
        ariaLabel="SpeedDial basic example"
-       sx={{ position: 'fixed', bottom: 16, right: 16 ,zIndex:1}}
+       sx={speedDialStyle}
        icon={<SpeedDialIcon />}
      >
        {actions.map((action) => (
@@ -40,9 +42,10 @@ const actions = [
 }
 export default AdminPanel;
 
-
-
-
-
-
-
+// Style here: 
+const speedDialStyle: React.CSSProperties = { 
+  position: 'fixed',
+  bottom: 16,
+  right: 16 ,
+  zIndex:1
+};
