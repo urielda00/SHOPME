@@ -1,9 +1,10 @@
 import {Avatar, Button, TextField,Grid,Box,Typography, Container,InputAdornment,IconButton} 
 from '@mui/material';
 import { Link } from 'react-router-dom';
-// import ReCAPTCHA from 'react-google-recaptcha';
+import ReCAPTCHA from 'react-google-recaptcha';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+
 // Local Imports:
 import { logged, errorLogged ,isAdmin} from '../../features/userSlice';
 import { setUserCart } from '../../features/cartSlice';
@@ -43,11 +44,7 @@ const LoginForm = () => {
   axios.post('http://localhost:5000/auth/login',data)
   .then(response => {
     if(response.data.admin){
-      
-      
-      
-      // window.location.reload();
-      // window.location.replace('/');
+      // If its admin:
       window.sessionStorage.setItem('isLogged','true');
       window.sessionStorage.setItem('userName',response.data.userName);
       dispatch(isAdmin(response.data.user_id));
@@ -58,10 +55,12 @@ const LoginForm = () => {
       }, 1000);
     }else{
       window.sessionStorage.setItem('isLogged','true');
-      navigate('/');
-      // window.location.replace('/');    
       dispatch(logged(response.data.user_id));
       dispatch(setUserCart({cart:response.data.cart,totalItemsInCart:response.data.totalQuantity,totalPrice:response.data.totalPrice}));
+      navigate('/');
+      setTimeout(() => {
+        navigate(0);
+      }, 1000);
     }   
   })
   .catch(error => {
@@ -130,13 +129,13 @@ const LoginForm = () => {
                   helperText={errors.password?.message}/>       
               </Grid>
               
-              {/* <Grid  item xs={12} sm={12}>
+              <Grid  item xs={12} sm={12}>
                <ReCAPTCHA
                   id='recaptcha'
                   sitekey={SITE_KEY}
                   onChange={onCaptchaChange}
                  />
-                </Grid>  */}
+                </Grid> 
             </Grid>
 
             <Button
@@ -144,8 +143,7 @@ const LoginForm = () => {
               fullWidth
               variant="contained"
               id='submitBtn'
-              disabled={!isDirty || !isValid  }
-              // || !captchaVerified
+              disabled={!isDirty || !isValid || !captchaVerified } 
               sx={{ mt: 3, bgcolor:'success.main',":hover":{backgroundColor:'#5F8D4E'}}}
             >
               Sign In

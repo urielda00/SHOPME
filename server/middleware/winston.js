@@ -120,6 +120,30 @@ const ResetPassErrorLogger= createLogger({
   ]
  });
 
+//Carts logs:
+const CartInfoLogger= createLogger({
+  format: combine(customLog),
+  transports:
+   [ 
+    new transports.File({
+    filename: 'Info.log',
+    dirname: 'logs/Cart',
+    level: 'info',
+  })  
+ ]
+});
+
+
+const CartErrorLogger= createLogger({
+  format: combine(customLog),
+  transports:[
+    new transports.File({
+      filename: 'errors.log',
+      dirname: 'logs/Cart',
+      level: 'error',
+     })
+  ]
+ });
 
 
 
@@ -128,4 +152,5 @@ export {
    ProductErrorLogger, ProductInfoLogger,
    OrderInfoLogger, OrderErrorLogger,
    ResetPassErrorLogger, ResetPassInfoLogger,
+   CartErrorLogger,CartInfoLogger
   };

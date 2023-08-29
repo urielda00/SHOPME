@@ -50,7 +50,6 @@ const userSlice = createSlice({
       state.user = true;
       state.isAdmin = true;
       state.loginError = null;
-      // window.localStorage.clear();
     },
   }
 });
