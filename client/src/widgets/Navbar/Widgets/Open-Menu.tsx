@@ -6,7 +6,6 @@ import {Box,Button,
   ListItemButton,Stack } from '@mui/material';
   import {loggedOut} from '../../../features/userSlice';
   import { useAppSelector, useAppDispatch } from '../../../app/hooks';
-  import { deleteAllCart } from '../../../features/cartSlice';
 
 //Icons:
 import MenuIcon from '@mui/icons-material/Menu';
@@ -21,7 +20,6 @@ const OpenMenu =()=> {
   const {user} = useAppSelector((state:any) => state.user);
   const handleLogout = ()=>{
     dispatch(loggedOut());
-    dispatch(deleteAllCart())
   };
   const [state, setState] = React.useState({left:false});
     const toggleDrawer =

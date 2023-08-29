@@ -1,0 +1,14 @@
+import axios from "axios"
+
+
+export const incrementCartAPI = (item, userName) => {
+  axios.post("http://localhost:5000/cart/incrementQuantity",{
+    userName,
+    item
+  })
+  .then((res) => {
+    console.log('its ok cart incremented',res);
+  }).catch((error)=>{
+    console.log('error in increment cart:',error);
+  });
+};

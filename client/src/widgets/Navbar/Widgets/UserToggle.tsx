@@ -5,7 +5,6 @@ import {IconButton} from '@mui/material';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { loggedOut } from '../../../features/userSlice';
 import DisplayAvatar from './DisplayAvatar';
-import { deleteAllCart } from '../../../features/cartSlice';
 
 //Icons:
 import PermIdentityOutlinedIcon from '@mui/icons-material/PermIdentityOutlined';
@@ -24,7 +23,6 @@ export const UserToggle = () => {
     const handleLogOut = () => {
       window.sessionStorage.removeItem('logoutIndicator');
       dispatch(loggedOut());
-      dispatch(deleteAllCart())
     };
     const handleToggle = () => {setOpen((prevOpen) => !prevOpen);};
     const handleClose = (event: Event | React.SyntheticEvent) => {

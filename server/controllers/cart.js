@@ -35,7 +35,7 @@ export const addToCart = async(req,res) => {
 
     //If the user already have cart, update the cart: 
     }else{
-      await Cart.updateMany(
+      await Cart.updateMany(  // change to update one? 
         { userId }, // Find the cart belong to the user.
         {
           $push: { products: filteredItemObjToSave }, // Add a new product object to the products array
@@ -105,25 +105,93 @@ try {
 }};
 
 
-
+// INCREMENT AMOUNT:
 export const incrementQuantity = async (req,res) =>{
   try {
-    console.log('test');
+    const {item, userName} = req.body;
+    const user = await User.findOne({userName});
+    const userId = user._id;
+
+    await Cart.updateOne(
+      {
+        userId,
+        'products._id': item._id
+      },
+      {
+        $inc: {
+          "totalPrice": Number(item.price),
+          "products.$.itemQuantity": 1,
+        },
+      }
+    )
+    res.status(200).send('incremented successfully')
   } catch (error) {
     console.log('error',error.message);
     res.status(500).json(error.message);
   }
 };
 
-
-export const decrementQuantity = async (req,res) =>{
+//1: DECREMENT AMOUNT - case there is more then 1 in the quantity
+export const decrementQuantity1 = async (req,res) =>{
   try {
-    console.log('test');
+    const {item, userName} = req.body;
+    
+    const user = await User.findOne({userName});
+    const userId = user._id;
+    await Cart.updateOne(
+      {
+        userId,
+        'products._id': item._id
+      },
+      {
+        $inc: {
+          "totalPrice": Number(-item.price),
+          "products.$.itemQuantity": -1,
+        },
+      }
+    );
+    res.status(200).send('decremented1 successfully')
   } catch (error) {
     console.log('error',error.message);
     res.status(500).json(error.message);
   }
 };
+
+
+
+//2: DECREMENT AMOUNT: - case there is less then 1 in the quantity (meaning remove the item from cart):
+export const decrementQuantity2 = async (req,res) =>{
+  try {
+    const {item, userName} = req.body;
+    const user = await User.findOne({userName});
+    const userId = user._id;
+    await Cart.updateOne(
+      {
+        userId
+      },
+      {
+        $inc: {
+            "totalPrice": Number(-item.price),
+            "totalItemsInCart" : -1,
+          },
+        $pull: {
+          products: { _id: item._id}
+         }
+      }
+    );
+    const checkEmptyCart = await Cart.findOne({userId});
+    checkEmptyCart.totalItemsInCart == 0 && await Cart.deleteOne({userId})
+    res.status(200).send('decremented2 successfully')
+  } catch (error) {
+    console.log('error',error.message);
+    res.status(500).json(error.message);
+  }
+};
+
+
+
+
+
 
 
 

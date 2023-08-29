@@ -11,8 +11,6 @@ import {containerLStyle,containerMStyle,containerSStyle} from '../../styles/Prod
 
  const ItemInList = ({item}:any) => {
   const dispatch= useAppDispatch();
-  const {user} = useAppSelector((state) => state.user);
-
   //Only for production:
   const randomSold = (min:number, max:number)=>{
     return Math.floor(min + Math.random()*(max - min + 1));
