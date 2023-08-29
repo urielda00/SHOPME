@@ -1,4 +1,5 @@
 import { createSlice} from "@reduxjs/toolkit";
+import { resetCartAPI } from "../services/Cart/resetCart";
 import { addToCartAPI,updateInAddToCartAPI } from "../services/Cart/addToCart";
 const isLogged = window.sessionStorage.getItem('isLogged');
 const userName = window.sessionStorage.getItem('userName');
@@ -78,6 +79,8 @@ export const cartSlice= createSlice({
     state.cart = [];
     state.totalPrice = 0;
     state.totalQuantity = 0;
+    // Call to the api if the user is loggged:
+    isLogged === 'true' && resetCartAPI(userName)
   },
   setUserCart: (state,action)=>{
     state.cart = action.payload.cart;

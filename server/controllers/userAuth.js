@@ -78,7 +78,6 @@ export const login= async (req,res)=>{
   const isUserCart = checkUserCart.length > 0 ? checkUserCart[0].products : [];
   const isTotalQuantity = checkUserCart.length > 0 ? checkUserCart[0].totalItemsInCart : 0;
   const isTotalPrice = checkUserCart.length > 0 ? checkUserCart[0].totalPrice : 0;
-  console.log('isUserCart:',isUserCart);
    if(user){
     const isMatchPass=  bcrypt.compareSync(password, user.password);
     

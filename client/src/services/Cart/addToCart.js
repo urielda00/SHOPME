@@ -10,7 +10,7 @@ export const addToCartAPI = (itemData,userName) => {
     itemData,
   })
   .then((res) => {
-    console.log('its ok',res);
+    console.log('its ok, added to cart',res);
   }).catch((error)=>{
     console.log('error in addToCartAPI:',error);
   });
@@ -25,7 +25,7 @@ axios.post("http://localhost:5000/cart/updateInAddToCart",{
   totalPrice
 })
 .then((res) => {
-  console.log('its ok',res);
+  console.log('its ok cart updated',res);
 }).catch((error)=>{
   console.log('error in updateInAddToCartAPI:',error);
 });

@@ -4,6 +4,59 @@ import User from "../models/User.js";
 
 // להוסיף לוגר אחכ
 
+// ADD TO CART:
+export const addToCart = async(req,res) => {
+  try {
+    // Find the userId using the userName:
+    const {itemData,userName} = req.body;
+    const user = await User.findOne({userName});
+    const userId = user._id;
+    const filteredItemObjToSave = {
+     category: itemData.category,
+     itemQuantity : 1,
+     price: itemData.price,
+     productName : itemData.productName,
+     quantity: itemData.quantity,
+     _id: itemData._id,
+     image: itemData.image
+    }; 
+  
+    const findUserCart = await Cart.findOne({userId});
+    // If the user dont have cart create new cart:
+    if(!findUserCart){
+      const saveInCar= new Cart({
+        userId,
+        products:[filteredItemObjToSave],
+        totalPrice : itemData.price,
+        totalItemsInCart : 1,
+       });
+      await saveInCar.save();
+      res.status(200).send('created new user cart')
+
+    //If the user already have cart, update the cart: 
+    }else{
+      await Cart.updateMany(
+        { userId }, // Find the cart belong to the user.
+        {
+          $push: { products: filteredItemObjToSave }, // Add a new product object to the products array
+          $inc: {
+            "totalPrice": itemData.price,
+            "totalItemsInCart" : 1,
+          }
+        }
+      );
+      res.status(200).send('add new item into user cart')
+    }
+  
+  } catch (error) {
+    console.log('err in add to cart:',error.message);
+    res.status(500).json(error.message)
+  }
+  };
+
+
+
+// UPDATE ITEM IN CART:
 export const updateInAddToCar = async (req,res) => {
 try {
   // Find the user cart by his name => Id:
@@ -35,95 +88,17 @@ res.status(200).send('Item that already in the cart updated successfully');
 } catch (error) {
   console.log('error in the update item in cart:',error.message);
   res.status(500).json(error.message)
-}
-};
+}};
 
 
-
-export const addToCart = async(req,res) => {
-try {
-  // Find the userId using the userName:
-  const {itemData,userName} = req.body;
-  const user = await User.findOne({userName});
-  const userId = user._id;
-  const filteredItemObjToSave = {
-   category: itemData.category,
-   itemQuantity : 1,
-   price: itemData.price,
-   productName : itemData.productName,
-   quantity: itemData.quantity,
-   _id: itemData._id,
-   image: itemData.image
-  }; 
-
-
-  const findUserCart = await Cart.findOne({userId});
-  // If the user dont have cart create new cart:
-  if(!findUserCart){
-    const saveInCar= new Cart({
-      userId,
-      products:[filteredItemObjToSave],
-      totalPrice : itemData.price,
-      totalItemsInCart : 1,
-     });
-    await saveInCar.save();
-    res.status(200).send('created new user cart')
-  //If the user already have cart, update the cart: 
-  }else{
-   console.log('else');
-  //  here need to increase the total quantity
-  }
-
-  
-
-  console.log('itemData:',itemData);
-  console.log('userName:',userName);
-  
-  // const {userId, product} = req.body;
-  // //1. Check if the user already have cart in the DB:
-  // const isUserCart= await Cart.findOne({ userId });
-
-  // //2. If the user have cart - Check if the product is in the cart. else - create new cart:
-  // if(isUserCart){
-  //    const products = isUserCart.products;
-  //    const productIndex = products.findIndex((item)=>item.id === product.productId); 
-
-  //   // 3.Check if the item already exist:
-  //    if(productIndex >= 0){
-  //     //  The cart existing, and the product existing in the cart, so update the:
-  //     //  itemQuantity- inside of the specific object inside of the products array, totalPrice:
-
-  //     //  const newItemQuantity  = isUserCart.products[productIndex].itemQuantity + 1;
-  //     //  console.log('isItem',newItemQuantity);
-  //     //  const updateProduct = await Cart.find(
-  //     //   {$and:[{userId},{products:{$in:["test"]}}]},
-  //     //   // { $set: { "products.$[].itemQuantity": newItemQuantity }}    
-  //     //   );
-  //     //  console.log('updated',updateProduct);
-
-  //     // return res.json(updateProduct)
-  //     return res.send('the product  exist in the cart')
-  //    }else{
-  //     return res.send('the product dont exist in the cart')
-  //    }
-  // }else{
-  //   return res.send('the user dont have an  existing cart')
-  // }
-  // let existingProductInCart= await Cart.findOne({ userId });
-  // //2. If it exists then update its quantity and price else create a new product in the products array:
-  // if (existingProductInCart){
-    
-  // }
-} catch (error) {
-  console.log('err in add to cart:',error.message);
-  res.status(500).json(error.message)
-}
-};
-
-
+// RESET CART:
 export const resetCart = async (req,res) => {
 try {
-  console.log('test');
+  const {userName} = req.body;
+  const user = await User.findOne({userName});
+  const userId = user._id;
+  await Cart.deleteOne({userId})
+  res.status(200).send('cart reseted successfuly')
 }catch (error) {
   console.log('error',error.message);
   res.status(500).json(error.message);
