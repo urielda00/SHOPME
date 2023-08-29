@@ -74,7 +74,7 @@ const CartMScreen = () => {
                   <div style={{display:'flex',alignItems:'center',width:'150px'}}>
                          <img  
                           style={{objectFit: 'cover',borderRadius:'15px'}}
-                          src={`https://deployment-shopme.onrender.com/product/readProducts/${product.image}`}
+                          src={`http://localhost:5000/product/readProducts/${product.image}`}
                           width='55px' height='55px'
                            alt=''/>
                        <div >

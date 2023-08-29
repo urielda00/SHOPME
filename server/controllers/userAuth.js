@@ -3,9 +3,9 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import UsersArchives from "../models/UsersArchives.js";
 import {UserErrorLogger, UserInfoLogger} from "../middleware/winston.js";
+import Cart from "../models/Cart.js";
 
- //Register:
- export const register = async (req,res)=>{
+export const register = async (req,res)=>{
   try {
    const {firstName, lastName, userName, email, password ,verifyPass, phoneNumber, avatar}= req.body;
    const isUserMail = await User.findOne({email});
@@ -73,6 +73,12 @@ export const login= async (req,res)=>{
   const user = await User.findOne({userName}); 
   const isAdmin = await User.findOne({$and:[{userName},{admin:'true'}]});
 
+  // check if the user have cart:
+  const checkUserCart = await Cart.find({userId:user._id});
+  const isUserCart = checkUserCart.length > 0 ? checkUserCart[0].products : [];
+  const isTotalQuantity = checkUserCart.length > 0 ? checkUserCart[0].totalItemsInCart : 0;
+  const isTotalPrice = checkUserCart.length > 0 ? checkUserCart[0].totalPrice : 0;
+  console.log('isUserCart:',isUserCart);
    if(user){
     const isMatchPass=  bcrypt.compareSync(password, user.password);
     
@@ -84,12 +90,12 @@ export const login= async (req,res)=>{
     if(isAdmin){
       UserInfoLogger.log('info','Login succeed, with cart! status code: 200');
       res.cookie('session-token', token, { httpOnly:false ,maxAge:   30* 60 * 1 * 1000});
-      res.json({message:'Login succeed!',cart:['empty',user._id],admin:true}).status(200).send();
+      res.json({message:'Login succeed!',cart: isUserCart,admin:true ,user_id:user._id,userName,totalQuantity:isTotalQuantity, totalPrice:isTotalPrice}).status(200).send();
   
     }else{
     UserInfoLogger.log('info','Login succeed, with cart! status code: 200');
     res.cookie('session-token', token, { httpOnly:false ,maxAge:   60* 60 * 1 * 1000})
-    .json({message:'Login succeed!',cart:['empty',user._id],admin:false}).status(200); 
+    .json({message:'Login succeed!',cart: isUserCart ,admin:false ,user_id:user._id,userName, totalQuantity:isTotalQuantity, totalPrice:isTotalPrice}).status(200); 
     }
 
     }else{
@@ -101,8 +107,10 @@ export const login= async (req,res)=>{
      UserErrorLogger.log('error','Wrong UserName Or Pass! status code: 409');
       res.status(409).json({message:'Wrong UserName Or Pass!'})  
    }
+  
   } catch (error) {
    UserErrorLogger.log('error',`${error.message}. status code: 500`);
+   console.log('error.message:',error.message);
    res.status(500).json(error.message)
   }
  };
@@ -204,5 +212,3 @@ export const signOut= async(req,res)=>{
     res.status(500).json(error.message)
   }  
 };
-
-

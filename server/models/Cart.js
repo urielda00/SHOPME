@@ -13,7 +13,7 @@ const CartSchema= new mongoose.Schema({
       type: Number,
       required: true,
       },
-     totalQuantity:{ 
+     totalItemsInCart:{ 
       type: Number,
       required: true,
       },

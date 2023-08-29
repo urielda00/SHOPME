@@ -1,10 +1,11 @@
 import { createSlice} from "@reduxjs/toolkit";
 import type { PayloadAction } from '@reduxjs/toolkit'
 import { RootState } from "../app/store";
-
+import { deleteAllCart } from "./cartSlice";
 
 
 interface InitialStateType {
+  userId : string |undefined|boolean
   user : boolean |undefined
   loginError : any
   isAdmin : boolean |undefined
@@ -13,6 +14,7 @@ interface InitialStateType {
 
 
 const initialState:InitialStateType  = {
+  userId : false,
   user : false,
   loginError : null,
   isAdmin:false,
@@ -23,8 +25,9 @@ const userSlice = createSlice({
   name :'user',
   initialState,
   reducers:{
-    logged: (state)=>{
+    logged: (state,action)=>{
       state.user = true;
+      state.userId = action.payload;
       state.loginError = null;
       state.isAdmin = false;
       // window.localStorage.clear();  -to delete the local cart
@@ -33,15 +36,19 @@ const userSlice = createSlice({
       state.user = false;
       state.loginError = action.payload;
       state.isAdmin = false;
+      state.userId = false;
     },
     loggedOut : (state)=>{
+      state.userId = false;
       state.user = false;
       state.loginError = null;
       window.localStorage.clear();
+      window.sessionStorage.clear();
       window.location.replace('/login');
       state.isAdmin = false;
     },
-    isAdmin:(state)=>{
+    isAdmin:(state,action)=>{
+      state.userId = action.payload;
       state.user = true;
       state.isAdmin = true;
       state.loginError = null;

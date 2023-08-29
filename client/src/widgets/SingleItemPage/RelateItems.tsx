@@ -50,7 +50,7 @@ const responsive = {
                     <Link to={`/product/${item._id}?category=${item.category}`} style={{textDecoration:'none',color:'black'}} 
                     onClick={()=>{handleState(item.productImages[1])}}>
                     <img alt="" style={{width:'160px', height:'150px',objectFit:'cover',borderRadius:'10px'}} 
-                    src={`https://deployment-shopme.onrender.com/product/readProducts/${item.image}`}/>
+                    src={`http://localhost:5000/product/readProducts/${item.image}`}/>
                     </Link>
                     <p style={{marginTop:'10px'}}>{item.shortDescription}</p>
                     <p style={{marginTop:'20px',position:'absolute', bottom:'10px'}}>{item.price} $</p>

@@ -2,14 +2,17 @@ import { Box, Button, Rating } from "@mui/material";
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import InfoIcon from '@mui/icons-material/Info';
 import { Link } from "react-router-dom";
-import {  useDispatch } from 'react-redux';
 import { addToCart } from "../../features/cartSlice";
+import { useAppSelector, useAppDispatch } from "../../app/hooks";
+
+
 // Style import:
 import {containerLStyle,containerMStyle,containerSStyle} from '../../styles/ProductsListPage/ItemInList';
 
  const ItemInList = ({item}:any) => {
-  const dispatch= useDispatch();
-  
+  const dispatch= useAppDispatch();
+  const {user} = useAppSelector((state) => state.user);
+
   //Only for production:
   const randomSold = (min:number, max:number)=>{
     return Math.floor(min + Math.random()*(max - min + 1));
@@ -27,7 +30,7 @@ import {containerLStyle,containerMStyle,containerSStyle} from '../../styles/Prod
       <div style={{display:'flex'}}>
          <Box sx={{":hover":{opacity:'0.8' }}}>
            <Link to={`/product/${item._id}?category=${item.category}`}>
-             <img alt='' src={`https://deployment-shopme.onrender.com/product/readProducts/${item.image}`} 
+             <img alt='' src={`http://localhost:5000/product/readProducts/${item.image}`} 
               style={{height:'100%',width:'250px',objectFit:'cover',borderRadius:'10px'}}/>
             </Link>
          </Box>
@@ -52,7 +55,13 @@ import {containerLStyle,containerMStyle,containerSStyle} from '../../styles/Prod
        <div style={{display:'flex', flexDirection:'column',width:'20%',
         height:'80%', alignItems:'center',justifyContent:'space-evenly',marginTop:'10px' }}>
          <Button 
-           onClick={()=>{dispatch(addToCart(item)); console.log(item)}}  
+          //  onClick={()=>{ 
+          //   user ? 
+          //   AddToCartAPI('a'): 
+          //   dispatch(addToCart(item))}
+          // } 
+          // הפעולה תתבצע תמיד מול הפעולות של רידוקס, ושם יוחלט אם לקרוא לapi או לא.
+          onClick={()=>{dispatch(addToCart(item))}}
            variant='contained' 
            sx={{backgroundColor:'#47A992',width:'180px',marginLeft:'-20px',height:'40px',":hover": {backgroundColor:'#5D9C59'}}}>Add To Cart<AddShoppingCartIcon sx={{marginLeft:'10px'}}/>
          </Button>
@@ -74,7 +83,7 @@ import {containerLStyle,containerMStyle,containerSStyle} from '../../styles/Prod
       <div style={{display:'flex',width:'70%'}}>
          <Box sx={{":hover":{opacity:'0.8' }}}>
            <Link to={`/product/${item._id}`}>
-             <img alt='' src={`https://deployment-shopme.onrender.com/product/readProducts/${item.image}`} 
+             <img alt='' src={`http://localhost:5000/product/readProducts/${item.image}`} 
               style={{height:'90%',width:'200px',objectFit:'cover',borderRadius:'10px'}}/>
             </Link>
          </Box>
@@ -118,7 +127,7 @@ import {containerLStyle,containerMStyle,containerSStyle} from '../../styles/Prod
     <div style={{display:'flex',width:'550px'}}>
          <Box sx={{":hover":{opacity:'0.8' }}}>
            <Link to={`/product/${item._id}`}>
-             <img alt='' src={`https://deployment-shopme.onrender.com/product/readProducts/${item.image}`} 
+             <img alt='' src={`http://localhost:5000/product/readProducts/${item.image}`} 
               style={{height:'140px',width:'150px',objectFit:'cover',borderRadius:'10px'}}/>
             </Link>
          </Box>

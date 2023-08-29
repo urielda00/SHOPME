@@ -2,9 +2,11 @@
 import React from 'react';
 import {MenuItem ,MenuList ,Popper ,Paper,Grow ,ClickAwayListener ,Divider } from '@mui/material';
 import {IconButton} from '@mui/material';  
-import { useSelector ,useDispatch} from 'react-redux';
+import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { loggedOut } from '../../../features/userSlice';
 import DisplayAvatar from './DisplayAvatar';
+import { deleteAllCart } from '../../../features/cartSlice';
+
 //Icons:
 import PermIdentityOutlinedIcon from '@mui/icons-material/PermIdentityOutlined';
 import { Link } from 'react-router-dom';
@@ -14,15 +16,16 @@ import { Link } from 'react-router-dom';
 
 
 export const UserToggle = () => {
-    const {user} = useSelector((state:any) => state.user);
+    const {user} = useAppSelector((state:any) => state.user);
     const isLogged = window.sessionStorage.getItem('isLogged');
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
     const [open, setOpen] = React.useState(false);
     const anchorRef = React.useRef<HTMLButtonElement>(null);
     const handleLogOut = () => {
       window.sessionStorage.removeItem('logoutIndicator');
       dispatch(loggedOut());
-    }
+      dispatch(deleteAllCart())
+    };
     const handleToggle = () => {setOpen((prevOpen) => !prevOpen);};
     const handleClose = (event: Event | React.SyntheticEvent) => {
       if (

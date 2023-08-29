@@ -1,7 +1,9 @@
 import { createSlice} from "@reduxjs/toolkit";
+import { addToCartAPI,updateInAddToCartAPI } from "../services/Cart/addToCart";
+const isLogged = window.sessionStorage.getItem('isLogged');
+const userName = window.sessionStorage.getItem('userName');
 
 interface InitialStateType { 
-  userId : null|string
   totalQuantity : number
   totalPrice : number
   warningMessage : null|string
@@ -10,7 +12,6 @@ interface InitialStateType {
 
 const initialState:InitialStateType = {
   cart: [],
-  userId:null, //orr add later the- isLogged of boolean type.
   totalQuantity: 0,
   totalPrice:0,
   warningMessage: null//make this array- and it will be looped in the map- make this as a different component!- widget one. and change the name to- login warning messages.
@@ -23,21 +24,24 @@ export const cartSlice= createSlice({
   initialState,
   reducers:{
   addToCart: (state,action:any)=>{
-    //check if the item already in the cart
+    //Check if the item already in the cart. if so - update the local. if user connected: update also API:
     const itemIndex = state.cart.findIndex((item:any)=>item._id === action.payload._id);
     if(itemIndex >= 0){
       state.cart[itemIndex].itemQuantity++;
       state.totalPrice+=action.payload.price;
+      // Call to the api if the user is loggged:
+      isLogged === 'true' && updateInAddToCartAPI(action.payload._id,userName,action.payload.price)
+
     }else{
-    //if not the item exist- push it to the cart.
-    // const userNameIs= window.sessionStorage.getItem('userNameHere');
-    const tempProduct= {...action.payload,itemQuantity:1}
-    // state.userName = userNameIs
+    // Add item to cart. if user connected: update also API:
+    const tempProduct = {...action.payload,itemQuantity:1}
     state.cart.push(tempProduct);
     state.totalQuantity++;
     state.totalPrice+=action.payload.price;
+    // Call to the api if the user is loggged:
+    isLogged === 'true' && addToCartAPI(action.payload,userName)
+
     }
-    
   }, 
   incrementQuantity: (state,action)=>{
     const itemIndex = state.cart.findIndex((item:any)=>item._id === action.payload._id);
@@ -74,11 +78,18 @@ export const cartSlice= createSlice({
     state.cart = [];
     state.totalPrice = 0;
     state.totalQuantity = 0;
+  },
+  setUserCart: (state,action)=>{
+    state.cart = action.payload.cart;
+    state.totalQuantity = action.payload.totalItemsInCart;
+    state.totalPrice = action.payload.totalPrice;
+    // state.totalPrice = 0;
+    // state.totalQuantity = 0;
   }
   },
 })
 
-export const {addToCart, incrementQuantity, decrementQuantity, removeItem, deleteAllCart}= cartSlice.actions;
+export const {addToCart, incrementQuantity, decrementQuantity, removeItem, deleteAllCart ,setUserCart}= cartSlice.actions;
 export default cartSlice.reducer;
 
 

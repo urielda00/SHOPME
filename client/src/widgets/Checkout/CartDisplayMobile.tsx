@@ -22,7 +22,7 @@ import RemoveIcon from '@mui/icons-material/Remove';
                     <div style={{display:'flex',alignItems:'start',width:'100%',marginBottom:'12px', marginTop:'10px'}}>
                          <img  
                            style={{objectFit: 'cover',borderRadius:'15px',marginBottom:'12px', marginTop:'10px'}}
-                           src={`https://deployment-shopme.onrender.com/product/readProducts/${product.image}`}
+                           src={`http://localhost:5000/product/readProducts/${product.image}`}
                            width='100px' height='100px'
                             alt=''/>
                             <div>

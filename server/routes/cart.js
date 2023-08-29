@@ -2,10 +2,11 @@ import express from "express";
 const cartRouter = express.Router();
 
 //Controlers:
-import { addToCart, resetCart, incrementQuantity, decrementQuantity, removeItem, testAdd} from "../controllers/cart.js";
+import { addToCart, resetCart, incrementQuantity, decrementQuantity, removeItem, testAdd,updateInAddToCar} from "../controllers/cart.js";
 
 
 //Routes:
+cartRouter.post('/updateInAddToCart',updateInAddToCar);
 cartRouter.post('/addToCart', addToCart);
 cartRouter.post('/resetCart', resetCart);
 cartRouter.post('incrementQuantity',incrementQuantity);

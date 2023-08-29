@@ -49,12 +49,12 @@ const RegisterForm = () => {
   
   const onSubmit = (data : FormValues)=>{
     // later, import to here the function from services that handle the axios:
-    axios.post('https://deployment-shopme.onrender.com/auth/register',data)
+    axios.post('http://localhost:5000/auth/register',data)
     .then(response => {
       setFetchErrors(false);
       setSuccessFetch(true);
       setTimeout(() => {
-        window.location.replace('https://bejewelled-fenglisu-523224.netlify.app/login')
+        window.location.replace('http://localhost:3000/login')
       }, 2000);
       })
     .catch(error => {setFetchErrors(true)});
@@ -142,7 +142,7 @@ const RegisterForm = () => {
                      validate: {
                        emailAvailable : async (fieldValue)=>{
                          while(fieldValue.length>=3 && fieldValue.includes('@')){
-                           const res = await fetch(`https://deployment-shopme.onrender.com/auth/checkIfExist/${fieldValue}`);
+                           const res = await fetch(`http://localhost:5000/auth/checkIfExist/${fieldValue}`);
                            const data = await res.json();
                            return data.length === 0 ||'Email Already Exist'
                          }    
@@ -164,7 +164,7 @@ const RegisterForm = () => {
                     validate: {
                       userAvailable : async (fieldValue)=>{
                         while(fieldValue.length>=4){
-                         const res = await fetch(`https://deployment-shopme.onrender.com/auth/checkIfExist/${fieldValue}`);
+                         const res = await fetch(`http://localhost:5000/auth/checkIfExist/${fieldValue}`);
                          const data = await res.json(); 
                          return data.length === 0 ||'User Name Already Exist'
                         } 
