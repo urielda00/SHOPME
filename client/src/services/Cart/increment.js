@@ -6,9 +6,7 @@ export const incrementCartAPI = (item, userName) => {
     userName,
     item
   })
-  .then((res) => {
-    console.log('its ok cart incremented',res);
-  }).catch((error)=>{
+  .catch((error)=>{
     console.log('error in increment cart:',error);
   });
 };

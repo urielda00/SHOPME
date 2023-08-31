@@ -9,9 +9,7 @@ export const addToCartAPI = (itemData,userName) => {
     userName,
     itemData,
   })
-  .then((res) => {
-    console.log('its ok, added to cart',res);
-  }).catch((error)=>{
+  .catch((error)=>{
     console.log('error in addToCartAPI:',error);
   });
 };
@@ -24,9 +22,7 @@ axios.post("https://deployment-shopme.onrender.com/cart/updateInAddToCart",{
   itemId,
   totalPrice
 })
-.then((res) => {
-  console.log('its ok cart updated',res);
-}).catch((error)=>{
+.catch((error)=>{
   console.log('error in updateInAddToCartAPI:',error);
 });
 };

@@ -6,9 +6,7 @@ export const removeItemAPI = (item, userName) => {
     userName,
     item
   })
-  .then((res) => {
-    console.log('its ok item removed from cart',res);
-  }).catch((error)=>{
+  .catch((error)=>{
     console.log('error in remove item from cart:',error);
   });
 };

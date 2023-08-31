@@ -6,9 +6,7 @@ export const decrementCartAPI1 = (item, userName) => {
     userName,
     item,
   })
-  .then((res) => {
-    console.log('its ok cart decremented',res);
-  }).catch((error)=>{
+  .catch((error)=>{
     console.log('error in decrement cart:',error);
   });
 };
@@ -20,9 +18,7 @@ export const decrementCartAPI2 = (item, userName) => {
     userName,
     item, 
   })
-  .then((res) => {
-    console.log('its ok cart decremented2',res);
-  }).catch((error)=>{
+  .catch((error)=>{
     console.log('error in decrement2 cart:',error);
   });
 };
