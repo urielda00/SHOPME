@@ -1,0 +1,33 @@
+טכנולוגיות כלולות- לשימוש מאוחר ביצירת קובץ ה 
+readme.
+
+-client:
+react
+typescript
+html+css+js (כמובן)
+axios
+mui
+react-cookie
+styled-components
+mdb-react-ui-kit
+redux
+redux-persist
+
+
+-server:
+NodeJs
+nodemon
+express
+cors 
+mongoose 
+axios 
+bcrypt 
+morgan 
+helmet
+mongodb
+multer
+moment
+jsonwebtoken
+winston
+express-validator
+
