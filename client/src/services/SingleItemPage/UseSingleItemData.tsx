@@ -3,7 +3,7 @@ import axios from "axios";
 
 
 const fetchItem = (itemId:string|undefined) => {
-return  axios.get(`http://localhost:5000/product/readSingleProduct/${itemId}`);
+return  axios.get(`https://deployment-shopme.onrender.com/product/readSingleProduct/${itemId}`);
 }
 
 export const UseSingleItemData = (itemId:string|undefined) => {

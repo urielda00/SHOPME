@@ -12,26 +12,26 @@ const fetchItems = async (
   ) => {
   if(category && brand && os && year){
     const response = await 
-    fetch(`http://localhost:5000/product/readProducts?per_page=${LIMIT}&page=${page}&category=${category}&year=${year}&os=${os}&brand=${brand}`);
+    fetch(`https://deployment-shopme.onrender.com/product/readProducts?per_page=${LIMIT}&page=${page}&category=${category}&year=${year}&os=${os}&brand=${brand}`);
     return response.json();
     }else if(category && brand && os){
     const response = 
     await 
-    fetch(`http://localhost:5000/product/readProducts?per_page=${LIMIT}&page=${page}&category=${category}&os=${os}&brand=${brand}`);
+    fetch(`https://deployment-shopme.onrender.com/product/readProducts?per_page=${LIMIT}&page=${page}&category=${category}&os=${os}&brand=${brand}`);
     return response.json()
     }else if(category && brand){
     const response = 
     await 
-    fetch(`http://localhost:5000/product/readProducts?per_page=${LIMIT}&page=${page}&category=${category}&brand=${brand}`);
+    fetch(`https://deployment-shopme.onrender.com/product/readProducts?per_page=${LIMIT}&page=${page}&category=${category}&brand=${brand}`);
     return response.json()
     }else if(category){
     const response = 
     await 
-    fetch(`http://localhost:5000/product/readProducts?per_page=${LIMIT}&page=${page}&category=${category}`);
+    fetch(`https://deployment-shopme.onrender.com/product/readProducts?per_page=${LIMIT}&page=${page}&category=${category}`);
     return response.json()
     }else{
     const response = 
-    await fetch(`http://localhost:5000/product/readProducts?per_page=${LIMIT}&page=${page}`)
+    await fetch(`https://deployment-shopme.onrender.com/product/readProducts?per_page=${LIMIT}&page=${page}`)
     return response.json();
    }
 };

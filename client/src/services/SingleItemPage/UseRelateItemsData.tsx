@@ -4,7 +4,7 @@ import axios from "axios";
 
 const fetchItem = (itemCategory:string|null) => {
 return  axios.get(
-  `http://localhost:5000/product/readRelateProducts?category=${itemCategory}`
+  `https://deployment-shopme.onrender.com/product/readRelateProducts?category=${itemCategory}`
   );
 };
 

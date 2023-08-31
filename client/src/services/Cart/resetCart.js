@@ -2,7 +2,7 @@ import axios from "axios"
 
 
 export const resetCartAPI = (userName) => {
-  axios.post("http://localhost:5000/cart/resetCart",{
+  axios.post("https://deployment-shopme.onrender.com/cart/resetCart",{
     userName,
   })
   .then((res) => {

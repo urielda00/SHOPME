@@ -109,6 +109,12 @@ export const cartSlice= createSlice({
     // Call to the api if the user is loggged:
     isLogged === 'true' && resetCartAPI(userName)
   },
+  resetOnLogOut: (state)=>{
+    state.cart = [];
+    state.totalPrice = 0;
+    state.totalQuantity = 0;
+    state.warningMessage= false;
+  },
   setUserCart: (state,action)=>{
     state.cart = action.payload.cart;
     state.totalQuantity = action.payload.totalItemsInCart;
@@ -117,5 +123,5 @@ export const cartSlice= createSlice({
   },
 })
 
-export const {addToCart, incrementQuantity, decrementQuantity, removeItem, deleteAllCart ,setUserCart}= cartSlice.actions;
+export const {addToCart, incrementQuantity, decrementQuantity, removeItem, deleteAllCart ,setUserCart,resetOnLogOut}= cartSlice.actions;
 export default cartSlice.reducer;

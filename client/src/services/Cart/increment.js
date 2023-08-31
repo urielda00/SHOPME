@@ -2,7 +2,7 @@ import axios from "axios"
 
 
 export const incrementCartAPI = (item, userName) => {
-  axios.post("http://localhost:5000/cart/incrementQuantity",{
+  axios.post("https://deployment-shopme.onrender.com/cart/incrementQuantity",{
     userName,
     item
   })

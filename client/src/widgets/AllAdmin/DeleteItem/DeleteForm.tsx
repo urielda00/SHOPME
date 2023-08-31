@@ -8,7 +8,7 @@ export const DeleteForm = () => {
   
   const handleSubmit = async(e:any)=>{
     e.preventDefault();
-    axios.post(`http://localhost:5000/product/deleteProduct`,{id})
+    axios.post(`https://deployment-shopme.onrender.com/product/deleteProduct`,{id})
     .then((res)=>{
       alert('success');
     })
@@ -32,19 +32,20 @@ export const DeleteForm = () => {
                     
                     <Grid item xs={12} sm={12}>
                       <TextField
-                         required
+                        required
                         fullWidth
                         id='productID'
                         label="product ID"
                         type='text'
+                        autoComplete='none'
                         onChange={(e:any) => {setId(e.target.value)}}/>
                     </Grid>
                     <Grid item xs={12} sm={12}>
                       <Button
-                        sx={{backgroundColor:'#EA1179',color:'black'}}
+                        sx={{backgroundColor:'#EA1179',color:'black',fontSize:'16px'}}
                         fullWidth
                         type='submit'
-                       >Send</Button>
+                       >Delete</Button>
                     </Grid>
                 </Grid>
            </Box>

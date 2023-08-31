@@ -2,7 +2,7 @@ import axios from "axios"
 
 
 export const removeItemAPI = (item, userName) => {
-  axios.post("http://localhost:5000/cart/removeItem",{
+  axios.post("https://deployment-shopme.onrender.com/cart/removeItem",{
     userName,
     item
   })

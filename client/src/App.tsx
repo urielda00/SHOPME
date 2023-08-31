@@ -2,6 +2,7 @@
 import './style.css';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import { ReactQueryDevtools } from 'react-query/devtools'
+import { useState,useEffect } from 'react'; //Delete this, and the pop-up later.
 
 //Reuseable components imports:
 import NavBar from './components/NavBar';
@@ -33,9 +34,44 @@ import AdminProtectedRoutes from './components/AdminProtectedRoutes';
 
 const App = () => {
   const { pathname } = useLocation();
-  
+  const [showPopup, setShowPopup] = useState(false);
+  useEffect(() => {
+     const timer = setTimeout(() => {
+       setShowPopup(true);
+     }, 3000); // 3 seconds
+ 
+     return () => clearTimeout(timer);
+   }, []);
+   
+    // Handle closing the popup
+ const closePopup = () => {
+  setShowPopup(false);
+};
+useEffect(() => {
+  if (showPopup) {
+    document.body.style.overflow = 'hidden'; // Prevent scrolling
+  } else {
+    document.body.style.overflow = 'auto'; // Enable scrolling
+  }
+}, [showPopup]);
+
+
   return (
      <>
+       {
+         showPopup && (
+        <div className="popup-overlay">
+          <div className="popup">
+            <h2>Attention!</h2>
+            <h3>This site use the render.com deployment free plan for the server side</h3>
+            <h3>Meaning that the first connect to the server will take between 1-2 minutes, and then the website will work as usual</h3>
+            <div>
+             <button onClick={closePopup}>Close</button> 
+            </div>
+            
+          </div>
+        </div>
+      )}
        <ContactNavbar/>
        <NavBar/>
        <AdminPanel/>

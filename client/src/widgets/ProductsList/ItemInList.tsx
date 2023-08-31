@@ -28,7 +28,7 @@ import {containerLStyle,containerMStyle,containerSStyle} from '../../styles/Prod
       <div style={{display:'flex'}}>
          <Box sx={{":hover":{opacity:'0.8' }}}>
            <Link to={`/product/${item._id}?category=${item.category}`}>
-             <img alt='' src={`http://localhost:5000/product/readProducts/${item.image}`} 
+             <img alt='' src={`https://deployment-shopme.onrender.com/product/readProducts/${item.image}`} 
               style={{height:'100%',width:'250px',objectFit:'cover',borderRadius:'10px'}}/>
             </Link>
          </Box>
@@ -81,7 +81,7 @@ import {containerLStyle,containerMStyle,containerSStyle} from '../../styles/Prod
       <div style={{display:'flex',width:'70%'}}>
          <Box sx={{":hover":{opacity:'0.8' }}}>
            <Link to={`/product/${item._id}`}>
-             <img alt='' src={`http://localhost:5000/product/readProducts/${item.image}`} 
+             <img alt='' src={`https://deployment-shopme.onrender.com/product/readProducts/${item.image}`} 
               style={{height:'90%',width:'200px',objectFit:'cover',borderRadius:'10px'}}/>
             </Link>
          </Box>
@@ -125,7 +125,7 @@ import {containerLStyle,containerMStyle,containerSStyle} from '../../styles/Prod
     <div style={{display:'flex',width:'550px'}}>
          <Box sx={{":hover":{opacity:'0.8' }}}>
            <Link to={`/product/${item._id}`}>
-             <img alt='' src={`http://localhost:5000/product/readProducts/${item.image}`} 
+             <img alt='' src={`https://deployment-shopme.onrender.com/product/readProducts/${item.image}`} 
               style={{height:'140px',width:'150px',objectFit:'cover',borderRadius:'10px'}}/>
             </Link>
          </Box>
@@ -175,7 +175,7 @@ import {containerLStyle,containerMStyle,containerSStyle} from '../../styles/Prod
 export default ItemInList;
 
   // useEffect(() => {
-  //   axios.post('http://localhost:5000/cart/addToCart',{product: cart,userId,totalPrice,totalQuantity})
+  //   axios.post('https://deployment-shopme.onrender.com/cart/addToCart',{product: cart,userId,totalPrice,totalQuantity})
   // }, [cart])
 
 
@@ -184,7 +184,7 @@ export default ItemInList;
   //     const isItem =  dispatch(addToCart(item));
   //   // setTimeout(
   //   //   ()=>{
-  //   //    axios.post('http://localhost:5000/cart/addToCart',{product: item})
+  //   //    axios.post('https://deployment-shopme.onrender.com/cart/addToCart',{product: item})
   //   //   },2000)
   //   //    if(!warningMessage){
   //   //  }else{
@@ -195,7 +195,7 @@ export default ItemInList;
   //   //   // if the item exist on the cart:
 
   //   //   const finalProduct= {...item,itemQuantity:1}
-  //   //   axios.post('http://localhost:5000/cart/addToCart',{product: finalProduct,userId, totalQuantity})
+  //   //   axios.post('https://deployment-shopme.onrender.com/cart/addToCart',{product: finalProduct,userId, totalQuantity})
   //   //   .then(res => {
   //   //     dispatch(addToCart(item))
   //   //   })

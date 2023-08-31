@@ -12,6 +12,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import IconButton from '@mui/material/IconButton';
 import { Link } from 'react-router-dom';
+import { resetOnLogOut } from '../../../features/cartSlice';
 
 type Anchor = 'left';
 
@@ -20,6 +21,7 @@ const OpenMenu =()=> {
   const {user} = useAppSelector((state:any) => state.user);
   const handleLogout = ()=>{
     dispatch(loggedOut());
+    dispatch(resetOnLogOut())
   };
   const [state, setState] = React.useState({left:false});
     const toggleDrawer =

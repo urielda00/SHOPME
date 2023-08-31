@@ -37,11 +37,11 @@ const userSlice = createSlice({
       state.userId = false;
     },
     loggedOut : (state)=>{
+      window.localStorage.clear();
+      window.sessionStorage.clear();
       state.userId = false;
       state.user = false;
       state.loginError = null;
-      window.localStorage.clear();
-      window.sessionStorage.clear();
       window.location.replace('/login');
       state.isAdmin = false;
     },

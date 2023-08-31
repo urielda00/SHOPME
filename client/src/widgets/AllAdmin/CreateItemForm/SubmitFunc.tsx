@@ -1,7 +1,7 @@
 import axios from "axios";
 import { FormValues } from "./CreateForm";
 
-const url = "http://localhost:5000/product/createProduct";
+const url = "https://deployment-shopme.onrender.com/product/createProduct";
 const content = { headers: { "Content-Type": "multipart/form-data"}};
 
  const SubmitFunc = (image1:any,image2:any,image3:any,image4:any,data:FormValues) => {

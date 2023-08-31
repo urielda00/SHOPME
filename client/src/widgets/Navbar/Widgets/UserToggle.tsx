@@ -9,6 +9,7 @@ import DisplayAvatar from './DisplayAvatar';
 //Icons:
 import PermIdentityOutlinedIcon from '@mui/icons-material/PermIdentityOutlined';
 import { Link } from 'react-router-dom';
+import { resetOnLogOut } from '../../../features/cartSlice';
 // import Avatar from '@mui/material/Avatar/Avatar';
 // import MenuIcon from '@mui/icons-material/Menu'; //for small screens.
 
@@ -23,6 +24,7 @@ export const UserToggle = () => {
     const handleLogOut = () => {
       window.sessionStorage.removeItem('logoutIndicator');
       dispatch(loggedOut());
+      dispatch(resetOnLogOut())
     };
     const handleToggle = () => {setOpen((prevOpen) => !prevOpen);};
     const handleClose = (event: Event | React.SyntheticEvent) => {

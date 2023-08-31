@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
         <Box sx={childContainer1}>
           <h1>We Recived Your Order!</h1>
           <h3>Order Confirmation Has Sent To Your Email.</h3>
-           ...(Style will be added in the future )
+           ...(Style and Logic will be added in the future )
            <Link to='/' style={{color:'black'}}>Return To Home Page</Link>
         </Box>
     </Box>
