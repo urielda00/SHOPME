@@ -9,7 +9,7 @@ import { createOrderValidation, ValidationResult } from "../middleware/express-v
 import { checkJWT } from "../middleware/jwt.js";
 
 //Routes:checkJWT
-orderRouter.post('/createOrder/:id',createOrderValidation,ValidationResult, createOrder);
+orderRouter.post('/createOrder', createOrder);  //,createOrderValidation,ValidationResult
 orderRouter.get('/readOrders/:id',readOrders);
 
 

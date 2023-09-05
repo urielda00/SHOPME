@@ -41,7 +41,7 @@ const LoginForm = () => {
   
   const onSubmit = (data : FormValues)=>{
   // need to add that: {withCredentials:true}
-  axios.post('https://deployment-shopme.onrender.com/auth/login',data)
+  axios.post('http://localhost:5000/auth/login',data)
   .then(response => {
     if(response.data.admin){
       // If its admin:

@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const OrderSchema= new mongoose.Schema({
 
     address: {
-      type: String, 
+      type: [String], 
       required: true,
     },
     date: {
@@ -15,7 +15,7 @@ const OrderSchema= new mongoose.Schema({
       required: true,
     },
     productsId: {
-      type: [Object], 
+      type: [String], 
       required: true,
     },
     totalPrice: {

@@ -9,112 +9,120 @@ import Invoice from "../models/Invoice.js";
 import Product from "../models/Products.js";
 import User from "../models/User.js";
 
-
 //Logger:
 import {OrderErrorLogger, OrderInfoLogger} from '../middleware/winston.js';
 
 
-//Create
+// CREATE ORDER
 export const createOrder = async(req,res)=>{
   try{
-  const id = req.params.id;
-  const {address, productsId} = req.body; //productsId should be an array of objects!!
+  const {address,products,userName} = req.body; 
+  const user = await User.findOne({userName});
   const dateis = currentDate.format('MMMM Do YYYY, h:mm:ss a');
-  // const date = new Date(dateis);
   const date= dateis;
-  let totalPriceT=0;
+  let orderTotalPrice=0; // last name was totlPriceT - for future changes.
+  let productsId = [];
+  
+  // save the order id when its create:
+  let laterOrderId = '';
+  
+  // Loop over the items in the cart:
+  for await (const product of products) {
+    
+    // 1) reduce the quantity of the product in the DB:
+    await Product.findByIdAndUpdate(product._id,{$inc: {"quantity": -Number(product.itemQuantity),
+    }},{new: true}); 
 
-
-  for await (const productId of productsId) {
-
-    const product = await Product.findById(productId.id); 
-    const reqQuantity =  Number(productId.quantity);
-    let calc = product.quantity-reqQuantity;
-    let priceTest = product.price;
-    let totalPriceIs = priceTest * reqQuantity;
-    totalPriceT=totalPriceT+totalPriceIs;
-    if(calc < 0){
-     OrderErrorLogger.log('error','Out of stock! status code: 409');
-     return res.status(400).json({message:'Out of stock!'}); 
-    }else{
-    let result= calc; 
-    await Product.findByIdAndUpdate(productId.id,{quantity:result})
-    }
+    // 2)Update the totalPrice of the order:
+    let isPriceCalc =  product.price * Number(product.itemQuantity)
+    orderTotalPrice += isPriceCalc;
+    productsId.push(product._id)
   };//the end of the forEach loop
 
 
-  //Create new order:
+  // Create new order:
   const saveOrder= new Order({
-    address,
+    address:[address.AddressLine],
     date,
-    userId: id,
+    userId: user._id,
     productsId,
-    totalPrice:totalPriceT
+    totalPrice:orderTotalPrice
   });
   await saveOrder.save();
  
-  
 
-   
-  
   //Update Address
-  const searchAddressByUserId= await Address.findOne({userId:id}); 
-  const findAddress= await Address.findOne({userId:id, addresses:{$in:[address]}});
-  if(searchAddressByUserId && !findAddress){ //if there is user and no matched  address:
-
-    const updateAddress = await Address.findOneAndUpdate({userId:id},
-      {$push:{
-        addresses: address
-      }, userId: id
+  const findUserAddress= await Address.findOne({userId:user._id}); 
+  // If user have address, check if the adress is updated, if no- update. else- create new user adress
+  if(findUserAddress){
+    const isAddressUpdated = await Address.findOne({
+      "addressList": {
+        $in: [address.AddressLine]
+      }
     });
-
-  }else if(!searchAddressByUserId){
+    // If the address is no updated, so update the adress list array:
+    if(!isAddressUpdated){
+      const updateAddress= await Address.findOneAndUpdate(
+        {userId: user._id},
+        {
+          $push: {
+            "addressList": address.AddressLine     
+          }
+        }
+        ,{new: true}
+     );}
+    
+  }else{ //If the user dont have cart:
     const createNewAddress= new Address({
-      userId: id,
-      addresses: [address]
+    userId: user._id,
+    fullAddressInfo: [address],
+    addressList:[address.AddressLine]
     });
     await createNewAddress.save();
-  }  
+  };
+  
 
   //Update Invoices:
-  const searchInvoiceByUserId= await Invoice.findOne({userId:id}); 
-  const order= await Order.findOne({date, userId:id});
-  const orderId= order.id;
+  const searchInvoiceByUserId= await Invoice.findOne({userId:user._id}); 
+  const order= await Order.findOne({date, userId:user._id});
+  const orderId= order._id;
+  laterOrderId = orderId;
+  // if the user have invoice, update the orders array:
   if(searchInvoiceByUserId){
-    let someObj= {date, orderId, totalPriceT};
-       await Invoice.findOneAndUpdate({userId:id},
+    let someObj= {date, orderId, orderTotalPrice};
+       await Invoice.findOneAndUpdate({userId:user._id},
       {
         $push:{
           orders:someObj
         },
-        date,
-        userId:id,
-        totalPrice:totalPriceT
+        userId:user._id,
+        totalPrice:orderTotalPrice
       })
   }else{
-    let someObj1= { date, orderId};
+    let someObj1= { date, orderId, orderTotalPrice};
     const createNewInvoice= new Invoice({
       orders: [someObj1],
       date,
-      userId:id,
-      totalPrice:totalPriceT
+      userId:user._id,
+      totalPrice:orderTotalPrice
     });
-    
     await createNewInvoice.save();
   }
 
-  //Update User
-  const invoiceId= await Invoice.findOne({userId:id, date});
-  const invoiceUserId= invoiceId.userId;
-  await User.findByIdAndUpdate(id, {
-    $push:{
-      invoices:invoiceUserId
+  //Update User:
+  // 1) update the order's string array in the user collection:
+  await User.findOneAndUpdate(
+    {_id: user._id},
+    {
+      $push: {
+        "orders": laterOrderId   
+      }
     }
-  });
+    ,{new: true}
+ );
   OrderInfoLogger.log('info','order has been successfully placed! status code: 201');
   res.status(201)
   .json({message:"Your order has been successfully placed"}); //add later end()? d
-
   } catch (error) {
     OrderErrorLogger.log('error',`${error.message}. status code: 500`);
     res.status(500).json(error.message);
@@ -124,10 +132,7 @@ export const createOrder = async(req,res)=>{
 
 
 
-
-
-
-//Read Orders Relative To A Specific User.
+//READ USER ORDERS
 export const readOrders = async(req,res)=>{
   try {
   const id= req.params.id;
@@ -141,4 +146,3 @@ export const readOrders = async(req,res)=>{
     res.status(500).json(error.message);
   } 
 };
-

@@ -6,16 +6,9 @@ const InvoiceSchema= new mongoose.Schema({
       type: [Object], 
       required: true,
     },
-    date: {
-      type: String,
-    },
     userId: {
       type: String, 
     },
-    totalPrice: {
-      type: Number,
-      required: true,
-      }
 } ,
 { timestamps: true });
 

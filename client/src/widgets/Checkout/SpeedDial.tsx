@@ -1,15 +1,24 @@
 import * as React from 'react';
 import { Box, Stepper, Step, StepButton, Button } from '@mui/material';
-import { useSelector } from 'react-redux';
+
+
 // Local:
+import { useAppDispatch,useAppSelector } from '../../app/hooks';
+import { placeOrder} from '../../features/orderSlice';
 import CartDisplay from './CartDisplay';
 import Delivery from './Delivery';
 import Purchase from './Purchase';
 import OrderCompleted from './OrderCompleted';
 const steps = ['Cart', 'Delivery', 'Payment '];
 
-export default function SpeedDialCheckout() {
+const userName = window.sessionStorage.getItem('userName');
 
+
+
+export default function SpeedDialCheckout() {
+  const dispatch = useAppDispatch();
+  const { totalPrice,cart } = useAppSelector((state) => state.allCart);
+  const { isAddress } = useAppSelector((state) => state.address);
   // Component states:
   const [activeStep, setActiveStep] = React.useState(0);
   const [completed, setCompleted] = React.useState<{ [k: number]: boolean }>({});
@@ -33,9 +42,14 @@ export default function SpeedDialCheckout() {
     setCompleted(newCompleted);
     handleNext();
   };
-
-  const { totalPrice } = useSelector((state: any) => state.allCart)
-
+  const handleCompleteWithAction = () => {
+    const newCompleted = completed;
+    newCompleted[activeStep] = true;
+    setCompleted(newCompleted);
+    dispatch(placeOrder({isAddress,cart,userName}))
+    handleNext();
+  };
+  
 
   return (
     <Box sx={containerStyle}>
@@ -79,11 +93,11 @@ export default function SpeedDialCheckout() {
                       Back
                     </Button>
                     <Box sx={{ flex: '1 1 auto' }} />
-                    <Button onClick={handleComplete} sx={{ color: "inherit" }}>
+                    
                       {completedSteps() === steps.length - 1
-                        ? 'Finish'
-                        : 'Next'}
-                    </Button>
+                        ? <Button onClick={handleCompleteWithAction} sx={{ color: "inherit" }}>Finish</Button>
+                        : <Button onClick={handleComplete} sx={{ color: "inherit" }}>Next</Button>}
+                    
                   </Box>
                 </Box>
               )

@@ -25,7 +25,7 @@ type FormValues = {
   const password = watch('password');
   const [validUrl, setValidUrl] = useState(false);
 	const param = useParams();
-  const url:string = `https://deployment-shopme.onrender.com/resetPass/reset/${param.id}/${param.token}`;
+  const url:string = `http://localhost:5000/resetPass/reset/${param.id}/${param.token}`;
   const [openPassHelp, setOpenPassHelp] = useState(false);
 
   const onSubmit = async(datais : FormValues)=>{

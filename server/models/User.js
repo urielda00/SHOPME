@@ -34,7 +34,7 @@ const UserSchema= new mongoose.Schema({
       type: Number, //todo: add the phone number validator.
       required: true
     },
-    invoices:{
+    orders:{
       type:[String], //here we going to have the invoices _id's. and later to show all the invoices by map 
       required: false,
     },

@@ -5,7 +5,7 @@ import axios from "axios"
 // Add item to the cart:
 export const addToCartAPI = (itemData,userName) => {
 
-  axios.post("https://deployment-shopme.onrender.com/cart/addToCart",{
+  axios.post("http://localhost:5000/cart/addToCart",{
     userName,
     itemData,
   })
@@ -17,7 +17,7 @@ export const addToCartAPI = (itemData,userName) => {
 // Update item that already in the cart:
 export const updateInAddToCartAPI = (itemId,userName,totalPrice) => {
 
-axios.post("https://deployment-shopme.onrender.com/cart/updateInAddToCart",{
+axios.post("http://localhost:5000/cart/updateInAddToCart",{
   userName,
   itemId,
   totalPrice

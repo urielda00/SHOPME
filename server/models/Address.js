@@ -6,9 +6,12 @@ const AddressSchema= new mongoose.Schema({
       type: String, 
       required: true,
     },
-    addresses: {
-      type: [String] //todo: add optional autofill for the  addresses represented here.
-    } 
+    fullAddressInfo: {
+      type: [Object] //todo: add optional autofill for the  addresses represented here.
+    },
+    addressList:{
+      type: [String]
+    }
 } ,
 { timestamps: true });
 
