@@ -1,11 +1,17 @@
 import axios from "axios";
 import { FormValues } from "./CreateForm";
 
-const url = "http://localhost:5000/product/createProduct";
-const content = { headers: { "Content-Type": "multipart/form-data"}};
+const url = "https://deployment-shopme.onrender.com/product/createProduct";
+const content = { headers: { "Content-Type": "multipart/form-data" } };
 
- const SubmitFunc = (image1:any,image2:any,image3:any,image4:any,data:FormValues) => {
-  let formData:any = new FormData(); 
+const SubmitFunc = (
+  image1: any,
+  image2: any,
+  image3: any,
+  image4: any,
+  data: FormValues
+) => {
+  let formData: any = new FormData();
   formData.append("productName", data.productName);
   formData.append("shortDescription", data.shortDescription);
   formData.append("longDescription", data.longDescription);
@@ -21,10 +27,12 @@ const content = { headers: { "Content-Type": "multipart/form-data"}};
   formData.append("screenshot3", image3);
   formData.append("screenshot4", image4);
 
-    axios.post(url, formData, content)
-    .then((res:any) => {
+  axios
+    .post(url, formData, content)
+    .then((res: any) => {
       return res;
-    }).catch((error:any)=>{
+    })
+    .catch((error: any) => {
       return error;
     });
 };

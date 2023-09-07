@@ -5,6 +5,7 @@ import { Box, Stepper, Step, StepButton, Button } from '@mui/material';
 // Local:
 import { useAppDispatch,useAppSelector } from '../../app/hooks';
 import { placeOrder} from '../../features/orderSlice';
+import { deleteAllCart } from '../../features/cartSlice';
 import CartDisplay from './CartDisplay';
 import Delivery from './Delivery';
 import Purchase from './Purchase';
@@ -46,7 +47,8 @@ export default function SpeedDialCheckout() {
     const newCompleted = completed;
     newCompleted[activeStep] = true;
     setCompleted(newCompleted);
-    dispatch(placeOrder({isAddress,cart,userName}))
+    dispatch(placeOrder({isAddress,cart,userName}));
+    dispatch(deleteAllCart());
     handleNext();
   };
   
