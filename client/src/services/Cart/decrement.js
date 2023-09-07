@@ -16,7 +16,7 @@ export const decrementCartAPI1 = (item, userName) => {
 
 export const decrementCartAPI2 = (item, userName) => {
   axios
-    .post("https://deployment-shopme.onrender.com//cart/decrementQuantity2", {
+    .post("https://deployment-shopme.onrender.com/cart/decrementQuantity2", {
       userName,
       item,
     })
