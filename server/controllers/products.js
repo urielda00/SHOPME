@@ -60,7 +60,6 @@ export const createProduct=  async (req, res)=> {
 
   } catch (error) {
     ProductErrorLogger.log('error',`${error.message} status code: 500`);
-    console.log('error',error);
     res.status(500).json(error.message)
   }
  };
@@ -177,7 +176,6 @@ export const createProduct=  async (req, res)=> {
 //Delete:
 export const deleteProduct = async (req, res) => { //only make the status unavailable!
   const id = req.body.id;
-  console.log('id',id);
   try {
     const deletedProduct = await Product.findByIdAndUpdate(id, {status:'unavailable'});
     ProductInfoLogger.log('info','product deleted. status code: 201');

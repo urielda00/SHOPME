@@ -109,7 +109,6 @@ export const login= async (req,res)=>{
   
   } catch (error) {
    UserErrorLogger.log('error',`${error.message}. status code: 500`);
-   console.log('error.message:',error.message);
    res.status(500).json(error.message)
   }
  };
