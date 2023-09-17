@@ -1,3 +1,5 @@
+// The worst time complexity in this controller: O(n)
+
 import Product from "../models/Products.js";
 import { ProductErrorLogger, ProductInfoLogger } from "../middleware/winston.js";
 import path from 'path';

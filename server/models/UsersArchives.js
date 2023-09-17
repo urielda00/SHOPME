@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 
+// Here the 'deleted' users will arive, for futures company's polls.
 const UsersArchivesSchema= new mongoose.Schema({
     _id: String,
     firstName: {

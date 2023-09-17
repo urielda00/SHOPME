@@ -35,7 +35,7 @@ const UserSchema= new mongoose.Schema({
       required: true
     },
     orders:{
-      type:[String], //here we going to have the invoices _id's. and later to show all the invoices by map 
+      type:[String],
       required: false,
     },
     avatar: String,

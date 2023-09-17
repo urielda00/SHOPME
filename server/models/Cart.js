@@ -5,11 +5,8 @@ const CartSchema= new mongoose.Schema({
      type: String,
      unique: true 
     },
-    products: {
-      type: [Object], //productId,and quantity. later- add if- the item exist- so increase the quantity.
-    },
-    totalPrice:{ //every change of the amount will affect this field.
-      //go to the product schema and check the price. then- loop over products obj and sum the prices
+    products: [Object], 
+    totalPrice:{ 
       type: Number,
       required: true,
       },

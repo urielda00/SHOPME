@@ -15,9 +15,6 @@ import orderRouter from './routes/order.js';
 import resetPassRouter from './routes/resetPass.js';
 import cartRouter from './routes/cart.js';
 
-//need to handle the 304 status and make another file that recive and save all the logs in the DB
-//need to add multer multi-image upload functionality.
-
 //Configuration:
 const port= process.env.PORT||5000;
 const app= express();
@@ -38,11 +35,6 @@ app.use('/searchProduct',express.static('uploads'));
 app.use(cookieParser());
 app.disable('etag');
 
-//Server production assets:
-// if(process.env.NODE_ENV === 'production'){
-//   app.use(express.static(path.join('client/build')));
-//   app.get('*',(req,res)=>res.sendFile(path.resolve(__dirname,'client','build','index.html')))
-// }
 
 //Routers:
 app.use('/auth', userAuthRouter);
@@ -50,11 +42,6 @@ app.use('/product', productRouter);
 app.use('/order', orderRouter);
 app.use('/resetPass', resetPassRouter);
 app.use('/cart',cartRouter);
-
-app.post('/testcookie',(req,res)=>{
-  const sessionToken = req.cookies.testCookie
-  console.log('session cookies:',sessionToken);
-})
 
 //Connect to the DB and then listen at the port:
 mongoose.connect(process.env.DB_URL,{

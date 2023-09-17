@@ -1,6 +1,9 @@
+// Winston- logger, for future tracking and storing the logs in the db. 
+
 import winston from 'winston';
 const { transports, format, createLogger } = winston;
 const { combine, printf } = format;
+
 
 //Date for for the format:
 import moment from 'moment/moment.js';
@@ -93,8 +96,6 @@ const OrderErrorLogger= createLogger({
 
 
 
-
-
 //ResetPass logs:
 const ResetPassInfoLogger= createLogger({
   format: combine(customLog),
@@ -120,6 +121,7 @@ const ResetPassErrorLogger= createLogger({
   ]
  });
 
+ 
 //Carts logs:
 const CartInfoLogger= createLogger({
   format: combine(customLog),

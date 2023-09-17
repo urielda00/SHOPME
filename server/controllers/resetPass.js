@@ -1,3 +1,5 @@
+// The worst time complexity in this controller: O(1)
+
 import User from '../models/User.js';
 import { sendMail } from '../middleware/sendMail.js';
 import  crypto from "crypto";

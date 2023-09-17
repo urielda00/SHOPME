@@ -6,7 +6,8 @@ import {check, validationResult} from 'express-validator';
 
 export const ValidationResult= (req,res,next)=>{
   const result= validationResult(req);
-  if(!result.isEmpty()){//if there is some error. so:
+  if(!result.isEmpty()){
+    //if there is some error. so:
     const resultarr=[];
     const error =result.array();
     for(let i=0;i<error.length;i++){
@@ -18,7 +19,7 @@ export const ValidationResult= (req,res,next)=>{
 };
 
 
-
+// REGISTER
  export const registerValidation= [
   check('firstName').trim().notEmpty().withMessage('Please enter first name').isLength({min:2, max:15}).withMessage('Please enter the name between 2 to 15 characters'),
   
@@ -35,13 +36,14 @@ export const ValidationResult= (req,res,next)=>{
   check('phoneNumber').isMobilePhone().withMessage('Phone number not valid').notEmpty().withMessage('Please enter the phone number')
 ];
 
-
+// LOGIN
 export const loginValidation=[
 check('userName').trim().notEmpty().withMessage('Please enter user name'),
 check('password').trim().notEmpty().withMessage('Please enter password')
 ];
 
 
+// UPDATE PASS
 export const updateUserPassValidation= [
 check('insertPrePassword').trim().notEmpty().withMessage('Please enter your existing password'),  
 
@@ -51,11 +53,13 @@ check('verifyPass').trim().notEmpty().withMessage('Please repeat the new passwor
 ];
 
 
+// DELETE USER
 export const deleteUserValidation = [
   check('password').trim().notEmpty().withMessage('Please enter your existing password')
 ];
 
 
+// CREATE PRODUCT
 export const createProductValidation = [
   check('shortDescription').trim().notEmpty().withMessage('please enter short description').
   isLength({min:4, max:50}).withMessage('Please enter short description between 4 to 50 characters'),
@@ -73,6 +77,8 @@ export const createProductValidation = [
   // Multer middleware take care of the image validation- size, ext, mimetype, and more.
 ];
 
+
+// CREATE ORDER:
 export const createOrderValidation= [
   check('address').trim().notEmpty().withMessage('Please enter your address'),
   

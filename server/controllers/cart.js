@@ -1,10 +1,12 @@
+// The worst time complexity in this controller: O(1)
+
 import Cart from "../models/Cart.js";
 import User from "../models/User.js";
 import { CartErrorLogger, CartInfoLogger } from "../middleware/winston.js";
 
 
 
-// ADD TO CART:
+// ADD ITEM TO CART:
 export const addToCart = async(req,res) => {
   try {
     // Find the userId using the userName:

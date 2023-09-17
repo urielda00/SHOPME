@@ -41,11 +41,8 @@ userAuthRouter.delete('/deleteUser/:id',deleteUserValidation,ValidationResult, d
 
 
 
-
 //later add express-validation to this path:
 userAuthRouter.patch('/updateUserInfo/:id',updateUserInfo);
-
-
 
 
 

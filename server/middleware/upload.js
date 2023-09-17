@@ -1,6 +1,6 @@
+// Upload images with multer- not avialable with react hook form- here for future use. 
 import multer from 'multer';
 import path from 'path';
-
 
 
 const upload = multer({

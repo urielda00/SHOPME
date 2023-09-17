@@ -1,7 +1,6 @@
 import mongoose from "mongoose";
 
 const ResetTokenSchema = new mongoose.Schema({
-
   userId: {
 		type: String,
 		required: true,

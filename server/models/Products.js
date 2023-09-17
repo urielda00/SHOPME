@@ -8,10 +8,8 @@ const ProductSchema= new mongoose.Schema({
       type: Number, 
       required: true,
     },
-    quantity: Number, //later- redux actions will decrease || increase this number.
-
+    quantity: Number,
     productImages: [String],
-    // about:[String],
     status: String,
     company: String,
     releaseYear:Number,
