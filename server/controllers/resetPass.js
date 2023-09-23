@@ -27,7 +27,7 @@ export const sendLink = async (req, res) => {
     
       }).save();
 		  };
-     const url = `${process.env.BASE_URL_CLIENT}resetPass/${user._id}/${token.token}`;
+     const url = `https://bejewelled-fenglisu-523224.netlify.app/resetPass/${user._id}/${token.token}`;
 		 await sendMail(user.email, "Password Reset", url);
      ResetPassInfoLogger.log('info','Reset link sent. status code: 200');
      res.end();
