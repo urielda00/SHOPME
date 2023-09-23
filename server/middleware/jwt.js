@@ -9,7 +9,7 @@ export const checkJWT= async(req,res,next)=>{
    const token= req.cookies.session_token;
    if(!token){
       console.log('bad authorization! (JWT-delete this message later)');
-   return res.redirect('http://localhost:3000/login');
+   return res.redirect('https://bejewelled-fenglisu-523224.netlify.app/login');
    }try {
     const data = jwt.verify(token, process.env.JWT_ACCESS_KEY);
     console.log(process.env.JWT_ACCESS_KEY);

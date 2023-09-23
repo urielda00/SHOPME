@@ -200,15 +200,3 @@ export const deleteUser = async(req, res) => {
     res.status(500).json(error.message)
   }
 }; 
-
-
-
-//Sign- out: //later just make in the client deleting of this cookie.
-export const signOut= async(req,res)=>{
-  try {
-    res.clearCookie('session-token');
-    res.json('cookie has deleted successfully');  
-  } catch (error) {
-    res.status(500).json(error.message)
-  }  
-};

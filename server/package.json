@@ -37,5 +37,10 @@
     "stripe": "^12.17.0",
     "winston": "^3.8.2",
     "winston-mongodb": "^5.1.1"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "jest": "^29.7.0",
+    "supertest": "^6.3.3"
   }
 }

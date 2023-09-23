@@ -26,7 +26,8 @@ export default function SignInSide() {
             component="form" 
             id='contactForm'     
             sx={{ mt: 1 }}>
-              <input type="hidden" name="_next" value="http://localhost:3000/thankYou"></input>
+              <input type="hidden" name="_next" 
+              value="https://bejewelled-fenglisu-523224.netlify.app/thankYou"></input>
               <input type="hidden" name="_subject" value="New Contacter From Shopme"></input>
               <input type="hidden" name="_template" value="table"/>
               <Grid container spacing={2}>

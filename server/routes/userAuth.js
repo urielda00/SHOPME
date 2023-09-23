@@ -7,7 +7,6 @@ import { login,
          updateUserInfo,
          updateUserPass,
          deleteUser,
-         signOut,
          checkIfExist
        } 
 from "../controllers/userAuth.js"; 
@@ -22,17 +21,16 @@ import { loginValidation,
          deleteUserValidation
       }
 from "../middleware/express-validator.js";
-import { checkJWT } from "../middleware/jwt.js";
 
 
 
 
 //Routes:
+userAuthRouter.get('/checkIfExist/:data',checkIfExist); 
+
 userAuthRouter.post('/register',registerValidation,ValidationResult,register);
-
-userAuthRouter.get('/checkIfExist/:data',checkIfExist); //לבדוק אם יש צורך להוסיף חיטוי קלט?
-
 userAuthRouter.post('/login',loginValidation,ValidationResult, login);
+
 
 userAuthRouter.patch('/updateUserPass/:id',
 updateUserPassValidation,ValidationResult,updateUserPass);
@@ -40,13 +38,8 @@ updateUserPassValidation,ValidationResult,updateUserPass);
 userAuthRouter.delete('/deleteUser/:id',deleteUserValidation,ValidationResult, deleteUser);
 
 
-
-//later add express-validation to this path:
+//optional route- the basic logic is implemented, but no user interface. (later nta validation)
 userAuthRouter.patch('/updateUserInfo/:id',updateUserInfo);
 
-
-
-//later- delete this route, and make the logout from the client side.
-userAuthRouter.post('/signout',signOut);
 
 export default userAuthRouter;

@@ -15,7 +15,7 @@ export const addToCartAPI = (itemData, userName) => {
 // Update item that already in the cart:
 export const updateInAddToCartAPI = (itemId, userName, totalPrice) => {
   axios
-    .post("http://localhost:5000/cart/updateInAddToCart", {
+    .post("https://deployment-shopme.onrender.com/cart/updateInAddToCart", {
       userName,
       itemId,
       totalPrice,
