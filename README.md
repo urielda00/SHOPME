@@ -1,7 +1,8 @@
 <h1 align="center"> 
   <img width="25" height="25" src="./utils/react_icon.png">
-     SHOPME MERN E-COMMERCE <font size="3"><sub fontsize="10">©Uriel Dahan- 2023</sub></font>
+     SHOPME MERN E-COMMERCE 
 </h1>
+<h6 align="center"> ©Uriel Dahan- 2023</h6>
 <h4 align="center">
 MongoDB, Expressjs, React/Redux, Nodejs ,MUI, TypeScript 
 </h4>
