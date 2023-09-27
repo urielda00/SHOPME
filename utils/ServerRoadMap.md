@@ -13,3 +13,5 @@ This Readme file describe the project's server folder structure:
 - middleware - all the middleware that are in use on the various routes.
 - logs - 3 folders, that gather information records about every request.
 - controllrs - include the whole server side logic for the different routes.
+
+# still undone.
