@@ -19,11 +19,11 @@ import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import DialogIs from "../RegisterPage/Dialog";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import ErrorMessages from "./ErrorMessages";
+import baseRenderUrl from "../../assets/baseUrl";
 type FormValues = {
   password: string;
   verifyPass: string;
 };
-
 const Reset = () => {
   const form = useForm<FormValues>({ mode: "onChange" });
   const { register, handleSubmit, formState, watch, reset } = form;
@@ -39,7 +39,7 @@ const Reset = () => {
   const password = watch("password");
   const [validUrl, setValidUrl] = useState(false);
   const param = useParams();
-  const url: string = `https://deployment-shopme.onrender.com/resetPass/reset/${param.id}/${param.token}`;
+  const url: string = `${baseRenderUrl}/resetPass/reset/${param.id}/${param.token}`;
   const [openPassHelp, setOpenPassHelp] = useState(false);
 
   const onSubmit = async (datais: FormValues) => {

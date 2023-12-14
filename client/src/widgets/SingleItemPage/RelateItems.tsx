@@ -4,7 +4,7 @@ import "react-multi-carousel/lib/styles.css";
 import { UseRelateItemsData } from "../../services/SingleItemPage/UseRelateItemsData";
 import { Link, useSearchParams } from "react-router-dom";
 import Loading from "../ProductsList/Loading";
-
+import baseRenderUrl from "../../assets/baseUrl";
 const responsive = {
   superLargeDesktop: {
     // the naming can be any, depends on you.
@@ -78,7 +78,7 @@ const RelateItems = ({ handleState }: any) => {
                       objectFit: "cover",
                       borderRadius: "10px",
                     }}
-                    src={`https://deployment-shopme.onrender.com/product/readProducts/${item.image}`}
+                    src={`${baseRenderUrl}/product/readProducts/${item.image}`}
                   />
                 </Link>
                 <p style={{ marginTop: "10px" }}>{item.shortDescription}</p>

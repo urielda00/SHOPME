@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { incrementQuantity, decrementQuantity } from "../../features/cartSlice";
 import ErrorMessages from "../Cart/ErrorMessages";
 import { Box, Button, ListItemText } from "@mui/material";
-
+import baseRenderUrl from "../../assets/baseUrl";
 // Icons import:
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
@@ -38,7 +38,7 @@ const CartDisplay = () => {
                       <div>
                         <img
                           style={{ objectFit: "cover", borderRadius: "15px" }}
-                          src={`https://deployment-shopme.onrender.com/product/readProducts/${product.image}`}
+                          src={`${baseRenderUrl}/product/readProducts/${product.image}`}
                           width="90px"
                           height="90px"
                           alt=""

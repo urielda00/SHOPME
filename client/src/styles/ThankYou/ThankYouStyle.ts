@@ -1,7 +1,7 @@
 import React from 'react';
 import backImg from '../../assets/ThankPage/back1.jpg';
 
-const Styledcontainer:React.CSSProperties= {
+const StyledContainer:React.CSSProperties= {
   backgroundImage: `url(${backImg})`,
   backgroundRepeat: 'no-repeat',
   backgroundSize: 'cover',
@@ -59,4 +59,4 @@ const styledPopup= {
   }
 };
 
-export {styledImg,styledBtn,styledPopup,Styledcontainer}
+export {styledImg,styledBtn,styledPopup,StyledContainer}

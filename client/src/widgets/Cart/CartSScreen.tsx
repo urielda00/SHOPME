@@ -15,7 +15,7 @@ import ErrorMessages from "./ErrorMessages";
 import DialogIs from "./DialogIs";
 import { useState } from "react";
 // const userName= window.sessionStorage.getItem('userNameHere');
-
+import baseRenderUrl from "../../assets/baseUrl";
 // Style import:
 import { liStyle, containerStyle } from "../../styles/CartPage/CartSScreen";
 
@@ -118,7 +118,7 @@ const CartSScreen = () => {
                       marginBottom: "12px",
                       marginTop: "10px",
                     }}
-                    src={`https://deployment-shopme.onrender.com/product/readProducts/${product.image}`}
+                    src={`${baseRenderUrl}/product/readProducts/${product.image}`}
                     width="100px"
                     height="100px"
                     alt=""

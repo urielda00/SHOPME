@@ -1,11 +1,12 @@
-import axios from "axios";
+import axios from 'axios';
+import baseRenderUrl from '../../assets/baseUrl';
 
 export const resetCartAPI = (userName) => {
-  axios
-    .post("https://deployment-shopme.onrender.com/cart/resetCart", {
-      userName,
-    })
-    .catch((error) => {
-      console.log("error in reset cart:", error);
-    });
+	axios
+		.post(`${baseRenderUrl}/cart/resetCart`, {
+			userName,
+		})
+		.catch((error) => {
+			console.log('error in reset cart:', error);
+		});
 };

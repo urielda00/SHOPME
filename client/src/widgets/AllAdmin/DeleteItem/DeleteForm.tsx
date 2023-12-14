@@ -10,6 +10,7 @@ import {
 import axios from "axios";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useState } from "react";
+import baseRenderUrl from "../../../assets/baseUrl";
 
 export const DeleteForm = () => {
   const [id, setId] = useState("");
@@ -17,7 +18,7 @@ export const DeleteForm = () => {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     axios
-      .post(`https://deployment-shopme.onrender.com/product/deleteProduct`, {
+      .post(`${baseRenderUrl}/product/deleteProduct`, {
         id,
       })
       .then((res) => {

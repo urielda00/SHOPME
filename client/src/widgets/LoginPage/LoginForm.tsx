@@ -13,7 +13,7 @@ import { Link } from "react-router-dom";
 import ReCAPTCHA from "react-google-recaptcha";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-
+import baseRenderUrl from "../../assets/baseUrl";
 // Local Imports:
 import { logged, errorLogged, isAdmin } from "../../features/userSlice";
 import { setUserCart } from "../../features/cartSlice";
@@ -53,7 +53,7 @@ const LoginForm = () => {
   const onSubmit = (data: FormValues) => {
     // need to add that: {withCredentials:true}
     axios
-      .post("https://deployment-shopme.onrender.com/auth/login", data)
+      .post(`${baseRenderUrl}/auth/login`, data)
       .then((response) => {
         if (response.data.admin) {
           // If its admin:

@@ -13,11 +13,10 @@ import SecurityIcon from "@mui/icons-material/Security";
 import ReCAPTCHA from "react-google-recaptcha";
 import KeyboardReturnIcon from "@mui/icons-material/KeyboardReturn";
 import axios from "axios";
-
 // ReactHook:
 import { useForm } from "react-hook-form";
 import React, { useState, useEffect } from "react";
-
+import baseRenderUrl from "../../assets/baseUrl";
 type FormValues = {
   email: string;
 };
@@ -35,7 +34,7 @@ const Forget = () => {
   const { register, handleSubmit, formState, reset } = form;
   const { errors, isDirty, isValid, isSubmitSuccessful } = formState;
   const onSubmit = async (datais: FormValues) => {
-    const url = "https://deployment-shopme.onrender.com/resetPass/";
+    const url = `${baseRenderUrl}/resetPass/`;
     await axios
       .post(url, { email: datais.email })
       .then(() => {
@@ -102,7 +101,7 @@ const Forget = () => {
                         fieldValue.includes("@")
                       ) {
                         const res = await fetch(
-                          `https://deployment-shopme.onrender.com/auth/checkIfExist/${fieldValue}`
+                          `${baseRenderUrl}/auth/checkIfExist/${fieldValue}`
                         );
                         const data = await res.json();
                         return data.length !== 0 || "Email Dont Exist";

@@ -16,7 +16,7 @@ import {
 import ErrorMessages from "./ErrorMessages";
 import { useState } from "react";
 import DialogIs from "./DialogIs";
-
+import baseRenderUrl from "../../assets/baseUrl";
 // Icons import:
 import KeyboardReturnIcon from "@mui/icons-material/KeyboardReturn";
 import AddIcon from "@mui/icons-material/Add";
@@ -114,7 +114,7 @@ const CartLScreen = () => {
                         <div>
                           <img
                             style={{ objectFit: "cover", borderRadius: "15px" }}
-                            src={`https://deployment-shopme.onrender.com/product/readProducts/${product.image}`}
+                            src={`${baseRenderUrl}/product/readProducts/${product.image}`}
                             width="90px"
                             height="90px"
                             alt=""

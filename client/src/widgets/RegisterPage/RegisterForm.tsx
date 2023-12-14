@@ -17,7 +17,7 @@ import ErrorMessages from "./ErrorMessages";
 import axios from "axios";
 import DialogIs from "./Dialog";
 import SuccessMessage from "./SuccessMessage";
-
+import baseRenderUrl from "../../assets/baseUrl";
 // ReactHook:
 import { useForm } from "react-hook-form";
 import React, { useState, useEffect } from "react";
@@ -63,7 +63,7 @@ const RegisterForm = () => {
   const onSubmit = (data: FormValues) => {
     // later, import to here the function from services that handle the axios:
     axios
-      .post("https://deployment-shopme.onrender.com/auth/register", data)
+      .post(`${baseRenderUrl}/auth/register`, data)
       .then((response) => {
         setFetchErrors(false);
         setSuccessFetch(true);
@@ -161,7 +161,7 @@ const RegisterForm = () => {
                         fieldValue.includes("@")
                       ) {
                         const res = await fetch(
-                          `https://deployment-shopme.onrender.com/auth/checkIfExist/${fieldValue}`
+                          `${baseRenderUrl}/auth/checkIfExist/${fieldValue}`
                         );
                         const data = await res.json();
                         return data.length === 0 || "Email Already Exist";
@@ -184,7 +184,7 @@ const RegisterForm = () => {
                     userAvailable: async (fieldValue) => {
                       while (fieldValue.length >= 4) {
                         const res = await fetch(
-                          `https://deployment-shopme.onrender.com/auth/checkIfExist/${fieldValue}`
+                          `${baseRenderUrl}/auth/checkIfExist/${fieldValue}`
                         );
                         const data = await res.json();
                         return data.length === 0 || "User Name Already Exist";

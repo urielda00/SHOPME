@@ -1,5 +1,6 @@
 import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import { InputAdornment } from "@mui/material";
+import baseRenderUrl from "../../../assets/baseUrl";
 
 const formats = ["image/jpeg", "image/png", "image/jpg"];
 
@@ -47,7 +48,7 @@ export const validateID = {
     itemDontExist: async (fieldValue) => {
       while (fieldValue.length >= 8) {
         const res = await fetch(
-          `https://deployment-shopme.onrender.com/product/checkIfExist/${fieldValue}`
+          `${baseRenderUrl}/product/checkIfExist/${fieldValue}`
         );
         // `https://deployment-shopme.onrender.com/product/checkIfExist/${fieldValue}`
         const data = await res.json();

@@ -1,27 +1,27 @@
 import * as React from 'react';
 
-
-const containerStyle:React.CSSProperties={
-  height:'90vh',
-  width:'90%',
-  backgroundColor:'#fff',
-  borderRadius:'20px',
-  padding:'20px',
-  marginTop:'30px',
-  display:'flex',
-  flexDirection:'column',
-  overflow:'hidden',
-  minWidth:'380px'
+const containerStyle: React.CSSProperties = {
+	width: '90%',
+	height: '90vh',
+	padding: '20px',
+	display: 'flex',
+	marginTop: '30px',
+	minWidth: '380px',
+	overflow: 'hidden',
+	borderRadius: '20px',
+	flexDirection: 'column',
+	backgroundColor: '#fff',
 };
 
-const liStyle:React.CSSProperties={
-  listStyle:'none',
-  display:'flex',
-  justifyContent:'space-between',
-  alignItems:'center',
-  width:'100%',
-  marginTop:'4px',
-  height:'120px',
-  boxShadow:'0 1px 2px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) '
+const liStyle: React.CSSProperties = {
+	width: '100%',
+	display: 'flex',
+	height: '120px',
+	marginTop: '4px',
+	listStyle: 'none',
+	alignItems: 'center',
+	justifyContent: 'space-between',
+	boxShadow: '0 1px 2px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) ',
 };
-export {liStyle,containerStyle};
+
+export { liStyle, containerStyle };

@@ -1,8 +1,6 @@
-import React from "react";
+import React from 'react';
 
- const UserPage:React.FunctionComponent = () => {
-  return (
-    <div>UserPage</div>
-  )
+const UserPage: React.FunctionComponent = () => {
+	return <div>UserPage</div>;
 };
 export default UserPage;

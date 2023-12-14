@@ -4,7 +4,7 @@ import InfoIcon from "@mui/icons-material/Info";
 import { Link } from "react-router-dom";
 import { addToCart } from "../../features/cartSlice";
 import { useAppSelector, useAppDispatch } from "../../app/hooks";
-
+import baseRenderUrl from "../../assets/baseUrl";
 // Style import:
 import {
   containerLStyle,
@@ -32,7 +32,7 @@ const ItemInList = ({ item }: any) => {
             <Link to={`/product/${item._id}?category=${item.category}`}>
               <img
                 alt=""
-                src={`https://deployment-shopme.onrender.com/product/readProducts/${item.image}`}
+                src={`${baseRenderUrl}/product/readProducts/${item.image}`}
                 style={{
                   height: "100%",
                   width: "250px",
@@ -152,7 +152,7 @@ const ItemInList = ({ item }: any) => {
             <Link to={`/product/${item._id}`}>
               <img
                 alt=""
-                src={`https://deployment-shopme.onrender.com/product/readProducts/${item.image}`}
+                src={`${baseRenderUrl}/product/readProducts/${item.image}`}
                 style={{
                   height: "90%",
                   width: "200px",
@@ -265,7 +265,7 @@ const ItemInList = ({ item }: any) => {
             <Link to={`/product/${item._id}`}>
               <img
                 alt=""
-                src={`https://deployment-shopme.onrender.com/product/readProducts/${item.image}`}
+                src={`${baseRenderUrl}/product/readProducts/${item.image}`}
                 style={{
                   height: "140px",
                   width: "150px",
@@ -384,14 +384,14 @@ const ItemInList = ({ item }: any) => {
 export default ItemInList;
 
 // useEffect(() => {
-//   axios.post('https://deployment-shopme.onrender.com/cart/addToCart',{product: cart,userId,totalPrice,totalQuantity})
+//   axios.post('${baseRenderUrl}/cart/addToCart',{product: cart,userId,totalPrice,totalQuantity})
 // }, [cart])
 
 // const handleAddToCart  = async(item:any)=>{
 //     const isItem =  dispatch(addToCart(item));
 //   // setTimeout(
 //   //   ()=>{
-//   //    axios.post('https://deployment-shopme.onrender.com/cart/addToCart',{product: item})
+//   //    axios.post('${baseRenderUrl}/cart/addToCart',{product: item})
 //   //   },2000)
 //   //    if(!warningMessage){
 //   //  }else{
@@ -402,7 +402,7 @@ export default ItemInList;
 //   //   // if the item exist on the cart:
 
 //   //   const finalProduct= {...item,itemQuantity:1}
-//   //   axios.post('https://deployment-shopme.onrender.com/cart/addToCart',{product: finalProduct,userId, totalQuantity})
+//   //   axios.post('${baseRenderUrl}/cart/addToCart',{product: finalProduct,userId, totalQuantity})
 //   //   .then(res => {
 //   //     dispatch(addToCart(item))
 //   //   })

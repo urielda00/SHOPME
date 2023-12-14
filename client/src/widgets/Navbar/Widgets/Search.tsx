@@ -12,7 +12,7 @@ import {
 import * as React from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-
+import baseRenderUrl from "../../../assets/baseUrl";
 //need to add input validation and senitation!
 const Search = () => {
   const [query, setQuery] = React.useState("");
@@ -34,7 +34,7 @@ const Search = () => {
   React.useEffect(() => {
     const fetchData = async () => {
       const res = await axios.get(
-        `https://deployment-shopme.onrender.com/product/searchProduct?key=${query}`
+        `${baseRenderUrl}/product/searchProduct?key=${query}`
       );
       setData(res.data);
     };
@@ -90,7 +90,7 @@ const Search = () => {
                     >
                       <img
                         alt=""
-                        src={`https://deployment-shopme.onrender.com/searchProduct/${product.image}`}
+                        src={`${baseRenderUrl}/searchProduct/${product.image}`}
                         style={imgStyle}
                       />
                       <ListItemText
@@ -153,7 +153,7 @@ const Search = () => {
                       />
                       <img
                         alt=""
-                        src={`https://deployment-shopme.onrender.com/searchProduct/${product.image}`}
+                        src={`${baseRenderUrl}/searchProduct/${product.image}`}
                         style={imgStyle}
                       />
                     </ListItem>
@@ -212,7 +212,7 @@ const Search = () => {
                       />
                       <img
                         alt="searchPhoto"
-                        src={`https://deployment-shopme.onrender.com/searchProduct/${product.image}`}
+                        src={`${baseRenderUrl}/searchProduct/${product.image}`}
                         style={imgStyle}
                       />
                     </ListItem>

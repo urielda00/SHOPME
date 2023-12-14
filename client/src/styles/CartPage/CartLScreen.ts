@@ -1,29 +1,29 @@
 import * as React from 'react';
 
-const container:React.CSSProperties={
-  height:'70vh',
-  width:'85%',
-  backgroundColor:'#fff',
-  borderRadius:'20px', 
-  display:'flex',
-  justifyContent:'space-between',
-  padding:'40px',
-  minWidth:'900px',
-  overflow:'hidden'
+const container: React.CSSProperties = {
+	width: '85%',
+	height: '70vh',
+	display: 'flex',
+	padding: '40px',
+	minWidth: '900px',
+	overflow: 'hidden',
+	borderRadius: '20px',
+	backgroundColor: '#fff',
+	justifyContent: 'space-between',
 };
 
-const childContainer1:React.CSSProperties={
-  display:'flex',
-  justifyContent:'space-between',
-  width:'65%',
-  overflowY:'scroll',
-  overflowX:'hidden'
+const childContainer1: React.CSSProperties = {
+	width: '65%',
+	display: 'flex',
+	overflowY: 'scroll',
+	overflowX: 'hidden',
+	justifyContent: 'space-between',
 };
 
-const liStyle:React.CSSProperties={
-  listStyle:'none',
-  display:'flex',
-  justifyContent:'space-between'
+const liStyle: React.CSSProperties = {
+	display: 'flex',
+	listStyle: 'none',
+	justifyContent: 'space-between',
 };
 
-export {liStyle,childContainer1,container};
+export { liStyle, childContainer1, container };

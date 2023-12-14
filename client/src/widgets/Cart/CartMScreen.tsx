@@ -16,6 +16,7 @@ import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined
 import ErrorMessages from "./ErrorMessages";
 import DialogIs from "./DialogIs";
 import { useState } from "react";
+import baseRenderUrl from "../../assets/baseUrl";
 // const userName= window.sessionStorage.getItem('userNameHere');
 
 // Style import:
@@ -119,7 +120,7 @@ const CartMScreen = () => {
                 >
                   <img
                     style={{ objectFit: "cover", borderRadius: "15px" }}
-                    src={`https://deployment-shopme.onrender.com/product/readProducts/${product.image}`}
+                    src={`${baseRenderUrl}/product/readProducts/${product.image}`}
                     width="55px"
                     height="55px"
                     alt=""

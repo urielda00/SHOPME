@@ -1,40 +1,34 @@
-import { configureStore } from "@reduxjs/toolkit";
-import cartReducer from '../features/cartSlice';
-import storage from 'redux-persist/lib/storage'
-import {persistReducer} from 'redux-persist';
-import { combineReducers } from "@reduxjs/toolkit";
+import { persistReducer } from 'redux-persist';
 import userReducer from '../features/userSlice';
-import addressReducer from '../features/addressSlice';
+import cartReducer from '../features/cartSlice';
+import storage from 'redux-persist/lib/storage';
+import { configureStore } from '@reduxjs/toolkit';
 import orderReducer from '../features/orderSlice';
-// 
+import { combineReducers } from '@reduxjs/toolkit';
+import addressReducer from '../features/addressSlice';
+
 const persistConfig = {
-  key : 'root',
-  version : 1 ,
-  storage
+	key: 'root',
+	version: 1,
+	storage,
 };
 
 const reducer = combineReducers({
-  allCart : cartReducer,
-  user : userReducer,
-  address : addressReducer,
-  order : orderReducer,
+	allCart: cartReducer,
+	user: userReducer,
+	address: addressReducer,
+	order: orderReducer,
 });
 
-const persistedReducer = persistReducer(persistConfig,reducer);
+const persistedReducer = persistReducer(persistConfig, reducer);
 
 export const store = configureStore({
-  reducer: persistedReducer,
-  middleware: getDefaultMiddleware =>
-  getDefaultMiddleware({
-    serializableCheck: false,
-  })});
+	reducer: persistedReducer,
+	middleware: (getDefaultMiddleware) =>
+		getDefaultMiddleware({
+			serializableCheck: false,
+		}),
+});
 
-
-// export const store = configureStore({
-//   reducer: {
-//   allCart: cartReducer
-//   },
-// });
-
-export type RootState = ReturnType<typeof store.getState>
-export type AppDispatch = typeof store.dispatch
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
