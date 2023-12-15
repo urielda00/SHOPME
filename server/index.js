@@ -21,7 +21,7 @@ const app = express();
 dotenv.config();
 const corsOptions = {
 	credentials: true,
-	origin: ['http://localhost:3000', 'https://shopme-new.onrender.com'],
+	origin: ['http://localhost:3000', 'https://bejewelled-fenglisu-523224.netlify.app'],
 };
 
 //Middlewares:
