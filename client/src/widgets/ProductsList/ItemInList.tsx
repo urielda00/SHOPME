@@ -32,7 +32,6 @@ const ItemInList = ({ item }: any) => {
             <Link to={`/product/${item._id}?category=${item.category}`}>
               <img
                 alt=""
-                crossOrigin="anonymous"
                 src={`${baseRenderUrl}/product/readProducts/${item.image}`}
                 style={{
                   height: "100%",
