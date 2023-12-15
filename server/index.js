@@ -19,10 +19,7 @@ import resetPassRouter from './routes/resetPass.js';
 const port = process.env.PORT || 5000;
 const app = express();
 dotenv.config();
-const corsOptions = {
-	credentials: true,
-	origin: ['http://localhost:3000', 'https://bejewelled-fenglisu-523224.netlify.app'],
-};
+
 
 //Middlewares:
 app.use(helmet());
@@ -31,7 +28,7 @@ app.use(fileupload());
 app.use(express.json());
 app.use(cookieParser());
 app.use(morgan('common'));
-app.use(cors(corsOptions));
+app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/searchProduct', express.static('uploads'));
 app.use('/product/readProducts', express.static('uploads'));
