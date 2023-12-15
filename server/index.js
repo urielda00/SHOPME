@@ -32,7 +32,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/searchProduct', express.static('uploads'));
 app.use('/product/readProducts', express.static('uploads'));
 app.use(express.urlencoded({ limit: '30mb', extended: false }));
-app.use(helmet.crossOriginResourcePolicy({ policy: 'cross-origin' })); //for XXS protection.
+app.use(helmet({crossOriginResourcePolicy: false,}))
 
 //Routers:
 app.use('/cart', cartRouter);
