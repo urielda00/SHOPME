@@ -1,16 +1,15 @@
-import express from "express";
+import express from 'express';
 const orderRouter = express.Router();
 
-//Controlers:
-import { createOrder, readOrders } from "../controllers/order.js";
+//Controllers:
+import * as controllers from '../controllers/order.js';
 
 //Middlewares:
-import { createOrderValidation, ValidationResult } from "../middleware/express-validator.js";
-import { checkJWT } from "../middleware/jwt.js";
+import { createOrderValidation, ValidationResult } from '../middleware/express-validator.js';
+import { checkJWT } from '../middleware/jwt.js';
 
 //Routes:checkJWT
-orderRouter.post('/createOrder', createOrder);  //,createOrderValidation,ValidationResult
-orderRouter.get('/readOrders/:id',readOrders);
-
+orderRouter.post('/createOrder', controllers.createOrder); //,createOrderValidation,ValidationResult
+orderRouter.get('/readOrders/:id', controllers.readOrders);
 
 export default orderRouter;

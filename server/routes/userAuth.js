@@ -1,45 +1,23 @@
-import express from "express";
+import express from 'express';
 const userAuthRouter = express.Router();
 
 //Controllers:
-import { login,
-         register,
-         updateUserInfo,
-         updateUserPass,
-         deleteUser,
-         checkIfExist
-       } 
-from "../controllers/userAuth.js"; 
-
-
+import * as controllers from '../controllers/userAuth.js';
 
 //Middlewares:
-import { loginValidation,
-         registerValidation,
-         ValidationResult,
-         updateUserPassValidation,
-         deleteUserValidation
-      }
-from "../middleware/express-validator.js";
-
-
-
+import * as validation from '../middleware/express-validator.js';
 
 //Routes:
-userAuthRouter.get('/checkIfExist/:data',checkIfExist); 
+userAuthRouter.get('/checkIfExist/:data', controllers.checkIfExist);
 
-userAuthRouter.post('/register',registerValidation,ValidationResult,register);
-userAuthRouter.post('/login',loginValidation,ValidationResult, login);
+userAuthRouter.patch('/updateUserInfo/:id', controllers.updateUserInfo);
 
+userAuthRouter.post('/register', validation.registerValidation, validation.ValidationResult, controllers.register);
 
-userAuthRouter.patch('/updateUserPass/:id',
-updateUserPassValidation,ValidationResult,updateUserPass);
+userAuthRouter.post('/login', validation.loginValidation, validation.ValidationResult, controllers.login);
 
-userAuthRouter.delete('/deleteUser/:id',deleteUserValidation,ValidationResult, deleteUser);
+userAuthRouter.patch('/updateUserPass/:id', validation.updateUserPassValidation, validation.ValidationResult, controllers.updateUserPass);
 
-
-//optional route- the basic logic is implemented, but no user interface. (later nta validation)
-userAuthRouter.patch('/updateUserInfo/:id',updateUserInfo);
-
+userAuthRouter.delete('/deleteUser/:id', validation.deleteUserValidation, validation.ValidationResult, controllers.deleteUser);
 
 export default userAuthRouter;

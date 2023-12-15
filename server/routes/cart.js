@@ -1,20 +1,17 @@
-import express from "express";
+import express from 'express';
 const cartRouter = express.Router();
 
 //Controllers:
-import { addToCart, resetCart, incrementQuantity,
-   decrementQuantity1, decrementQuantity2,
-    removeItem,updateInAddToCar} from "../controllers/cart.js";
-
+import * as controllers from '../Controllers/cart.js';
 
 //Routes:
-cartRouter.post('/updateInAddToCart',updateInAddToCar);
-cartRouter.post('/addToCart', addToCart);
-cartRouter.post('/resetCart', resetCart);
-cartRouter.post('/incrementQuantity',incrementQuantity);
-cartRouter.post('/decrementQuantity1',decrementQuantity1);
-cartRouter.post('/decrementQuantity2',decrementQuantity2);
-cartRouter.post('/removeItem',removeItem);
 
+cartRouter.post('/addToCart', controllers.addToCart);
+cartRouter.post('/resetCart', controllers.resetCart);
+cartRouter.post('/removeItem', controllers.removeItem);
+cartRouter.post('/updateInAddToCart', controllers.updateInAddToCar);
+cartRouter.post('/incrementQuantity', controllers.incrementQuantity);
+cartRouter.post('/decrementQuantity1', controllers.decrementQuantity1);
+cartRouter.post('/decrementQuantity2', controllers.decrementQuantity2);
 
 export default cartRouter;
