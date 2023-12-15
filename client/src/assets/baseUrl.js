@@ -1,2 +1,2 @@
-const baseRenderUrl = 'https://deployment-shopme.onrender.com';
+const baseRenderUrl = 'https://shopme-new.onrender.com';
 export default baseRenderUrl;
