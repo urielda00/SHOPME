@@ -76,12 +76,13 @@ export const login = async (req, res) => {
 		const user = await User.findOne({ userName });
 		const isAdmin = await User.findOne({ $and: [{ userName }, { admin: 'true' }] });
 
-		// check if the user have cart:
-		const checkUserCart = await Cart.find({ userId: user._id });
-		const isUserCart = checkUserCart.length > 0 ? checkUserCart[0].products : [];
-		const isTotalQuantity = checkUserCart.length > 0 ? checkUserCart[0].totalItemsInCart : 0;
-		const isTotalPrice = checkUserCart.length > 0 ? checkUserCart[0].totalPrice : 0;
 		if (user) {
+			// check if the user have cart:
+			const checkUserCart = await Cart.find({ userId: user._id });
+			const isUserCart = checkUserCart.length > 0 ? checkUserCart[0].products : [];
+			const isTotalQuantity = checkUserCart.length > 0 ? checkUserCart[0].totalItemsInCart : 0;
+			const isTotalPrice = checkUserCart.length > 0 ? checkUserCart[0].totalPrice : 0;
+s
 			const isMatchPass = bcrypt.compareSync(password, user.password);
 
 			if (isMatchPass) {
