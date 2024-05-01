@@ -2,10 +2,15 @@
   <img width="25" height="25" src="./utils/react_icon.png">
      SHOPME MERN E-COMMERCE 
 </h1>
-<h1 align="center"> 
-  <!-- <img width="25" height="25" src="./utils/react_icon.png"> -->
-     2024 New Front Code. Check It [Here](https://github.com/urielda00/2024-SHOPME-FRONT/)
+
+    
+<h2 align="center"> New Front Code Is Published. Check In:</h2>
+<h1 align="center" color="black">
+
+[Here](https://github.com/urielda00/2024-SHOPME-FRONT/)
 </h1>
+
+
 <h6 align="center"> ©Uriel Dahan- 2023</h6>
 <h4 align="center">
 MongoDB, Expressjs, React/Redux, Nodejs ,MUI, TypeScript 
