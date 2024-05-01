@@ -1,4 +1,4 @@
-// The worst time complexity in this controller: O(n)
+// Controller WTC:  O(n)
 
 import path from 'path';
 import { fileURLToPath } from 'url';

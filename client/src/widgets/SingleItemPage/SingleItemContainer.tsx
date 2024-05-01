@@ -3,7 +3,6 @@ import { Rating } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../features/cartSlice";
 import { Link } from "react-router-dom";
-import baseRenderUrl from "../../assets/baseUrl";
 const SingleItemContainer = ({ imgSrc, data, handleState }: any) => {
   const dispatch = useDispatch();
   return (
@@ -44,7 +43,7 @@ const SingleItemContainer = ({ imgSrc, data, handleState }: any) => {
                 <Box sx={{ ":hover": { opacity: "0.7" } }} key={index}>
                   <img
                     alt=""
-                    src={`${baseRenderUrl}/product/readProducts/${img}`}
+                    src={`${process.env.BASE_BACK_URL}/product/readProducts/${img}`}
                     style={{
                       width: "50px",
                       height: "70px",
@@ -66,8 +65,8 @@ const SingleItemContainer = ({ imgSrc, data, handleState }: any) => {
               alt=""
               src={
                 imgSrc
-                  ? `${baseRenderUrl}/product/readProducts/${imgSrc}`
-                  : `${baseRenderUrl}/product/readProducts/${data?.productImages[1]}`
+                  ? `${process.env.BASE_BACK_URL}/product/readProducts/${imgSrc}`
+                  : `${process.env.BASE_BACK_URL}/product/readProducts/${data?.productImages[1]}`
               }
               style={{
                 width: "400px",

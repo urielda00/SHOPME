@@ -7,7 +7,7 @@ const ThankYouPage: React.FunctionComponent = () => {
 	return (
 		<div style={StyledContainer}>
 			<Box sx={styledPopup}>
-				<img src={checkImg} style={styledImg} alt='info-recived!'></img>
+				<img src={checkImg} style={styledImg} alt='info-received!'></img>
 				<h2>Thank you!</h2>
 				<p>Your details sent successfully</p>
 				<form action='/'>

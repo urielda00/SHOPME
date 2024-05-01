@@ -45,7 +45,7 @@ const CartMScreen = () => {
       >
         {/* error messages:*/}
         {warningMessage && <ErrorMessages />}
-        <div>
+        <Box>
           <h1 style={{ color: "black", fontFamily: '"Tilt Prism", cursive' }}>
             SHOPPING CART
           </h1>
@@ -83,7 +83,7 @@ const CartMScreen = () => {
               </IconButton>
             </Link>
           )}
-        </div>
+        </Box>
         {cart.length === 0 ? (
           <div style={{ display: "none" }}></div>
         ) : (

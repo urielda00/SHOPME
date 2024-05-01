@@ -1,4 +1,4 @@
-// The worst time complexity in this controller: O(1)
+// Controller WTC:  O(1)
 
 import Cart from '../models/Cart.js';
 import User from '../models/User.js';
@@ -12,7 +12,7 @@ export const addToCart = async (req, res) => {
 		const { itemData, userName } = req.body;
 		const user = await User.findOne({ userName });
 
-		// The object to save inside of the cart at first:
+		// Object structure to save inside the cart at first:
 		const filteredItemObjToSave = {
 			itemQuantity: 1,
 			_id: itemData._id,

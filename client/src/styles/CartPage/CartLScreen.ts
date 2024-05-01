@@ -10,6 +10,7 @@ const container: React.CSSProperties = {
 	borderRadius: '20px',
 	backgroundColor: '#fff',
 	justifyContent: 'space-between',
+	flexDirection: 'row'
 };
 
 const childContainer1: React.CSSProperties = {

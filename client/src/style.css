@@ -7,6 +7,13 @@
 	box-sizing: border-box;
 }
 
+:root {
+	--itemInListParagraphColor: #526d82;
+	--itemInListButtonBackground: #47a992;
+	--itemInListMoreInfoButton: #30a2ff;
+	--itemInListButtonHoverBackground: #5d9c59;
+}
+
 html {
 	scroll-behavior: smooth;
 }

@@ -1,4 +1,4 @@
-// The worst time complexity in this controller: O(1)
+// Controller WTC:  O(1)
 
 import crypto from 'crypto';
 import bcrypt from 'bcrypt';
