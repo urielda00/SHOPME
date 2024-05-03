@@ -1,4 +1,5 @@
 //External imports
+import ReactGA from 'react-ga4';
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { ReactQueryDevtools } from 'react-query/devtools';
@@ -9,14 +10,22 @@ import Router from './Router';
 import Footer from './components/Footer';
 import NavBar from './components/NavBar';
 import AdminPanel from './components/AdminPanel';
+import useAnalytics from './assets/useAnalytics';
 import ScrollToTop from './components/ScrollToTop';
 import PopUpOnStart from './widgets/PopUp/PopUpOnStart';
 import ContactNavbar from './components/ContactNavbar';
 
+// ReactGA.initialize('G-ZKD4GEZV1E');
+
 const App = () => {
+	useAnalytics();
 	const { pathname } = useLocation();
 	const [showPopup, setShowPopup] = useState(false);
-
+  
+	// Google Analysts: 
+	// useEffect(()=>{
+	// 	ReactGA.pageview(window.location.pathname);
+	// },[])
 	// Handle open & close the pop up:
 	useEffect(() => {
 		const timer = setTimeout(() => {

@@ -17,7 +17,15 @@ const insideContainerStyle:React.CSSProperties = {
 const stepsP:CSSProperties = {
   position:'absolute',
   top:'-45px',
-  left:'-105px',
+  left:'-1px',
+  fontSize:'15px',
+  color:'#27374D'
+};
+
+const stepsP1:CSSProperties = {
+  position:'absolute',
+  top:'-45px',
+  left:'-200px',
   fontSize:'15px',
   color:'#27374D'
 };
@@ -25,9 +33,10 @@ const stepsP:CSSProperties = {
 const stepIconButton:CSSProperties = {
   position:'absolute',
   top:'-48px',
-  left:'-125px',
+  left:'-1px',
   fontSize:'15px',
   color:'#27374D'
 };
 
-export {containerStyle,insideContainerStyle,stepsP,stepIconButton};
+
+export {containerStyle,insideContainerStyle,stepsP,stepIconButton,stepsP1};

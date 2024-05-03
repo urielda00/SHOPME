@@ -7,7 +7,7 @@ import Images from './Images';
 
 import {
   containerStyle,insideContainerStyle,
-  stepsP,stepIconButton} from '../../../styles/CreateItemForm/CreateItemForm';
+  stepsP1,stepIconButton} from '../../../styles/CreateItemForm/CreateItemForm';
 
 import {  
   validateShortObj, validateProductNameObj,
@@ -96,7 +96,7 @@ const CreateForm = () => {
              <Typography sx={{mb:2,position:'relative'}} component="h1" variant="h5">
                 {
                   step <= 3 && 
-                  <p style={stepsP}>Step {step} of 4 </p>          
+                  <p style={stepsP1}>Step {step} of 4 </p>          
                 }
                 { 
                 step < 4 && step > 1 ? 
