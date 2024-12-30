@@ -10,7 +10,7 @@ import { UserErrorLogger, UserInfoLogger } from '../middleware/winston.js';
 export const register = async (req, res) => {
 	try {
 		const { firstName, lastName, userName, email, password, verifyPass, phoneNumber, avatar } = req.body;
-
+    
 		const isUserMail = await User.findOne({ email });
 		const isUserName = await User.findOne({ userName });
 

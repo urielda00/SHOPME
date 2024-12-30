@@ -7,7 +7,7 @@ const fetchItem = (itemCategory: string | null) => {
 };
 
 export const UseRelateItemsData = (itemCategory: string | null) => {
-	return useQuery(['singleItemPage', itemCategory], () => fetchItem(itemCategory), {
+	let query = useQuery(['singleItemPage', itemCategory], () => fetchItem(itemCategory), {
 		refetchInterval: 1000 * 60 * 2,
 		refetchIntervalInBackground: true,
 		refetchOnWindowFocus: false,
@@ -16,4 +16,5 @@ export const UseRelateItemsData = (itemCategory: string | null) => {
 			return data.data;
 		},
 	});
+	return query;
 };
