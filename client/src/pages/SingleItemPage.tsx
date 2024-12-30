@@ -22,7 +22,7 @@ const SingleItemPage: React.FunctionComponent = () => {
 	if (isLoading) {
 		return <h1>Loading...</h1>;
 	}
-
+  
 	return (
 		<Box>
 			{/* Large Screens: */}
