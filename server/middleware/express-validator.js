@@ -105,7 +105,7 @@ export const createProductValidation = [
 		.notEmpty()
 		.withMessage('Please enter the product name')
 		.isLength({ min: 2, max: 20 })
-		.withMessage('Please enter namebetween 2 to 20 characters'),
+		.withMessage('Please enter name between 2 to 20 characters'),
 	// Multer middleware take care of the image validation- size, ext, mimetype, and more.
 ];
 
