@@ -44,10 +44,7 @@ app.use('/cart', cartRouter);
 
 //Connect to the DB and then listen at the port:
 mongoose
-	.connect(process.env.DB_URL, {
-		useNewUrlParser: true,
-		useUnifiedTopology: true,
-	})
+	.connect(process.env.DB_URL)
 	.then(() => {
 		console.log('connected to db!');
 		app.listen(port, () => console.log(`App is listening at port: ${port}!`));
