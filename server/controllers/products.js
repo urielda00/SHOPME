@@ -1,5 +1,3 @@
-// Controller WTC:  O(n)
-
 import path from 'path';
 import { fileURLToPath } from 'url';
 import Product from '../models/Products.js';
@@ -14,47 +12,25 @@ export const createProduct = async (req, res) => {
 		const imagesNames = [];
 		const { productName, shortDescription, longDescription, quantity, releaseYear, brand, category, company, os, price } = req.body;
 
-		// Handle the images upload:
-		const file = req.files.screenshot;
-		const file2 = req.files.screenshot2;
-		const file3 = req.files.screenshot3;
-		const file4 = req.files.screenshot4;
+		const files = ['screenshot', 'screenshot2', 'screenshot3', 'screenshot4'];
+		const timestamp = Date.now();
 
-		const filename = Date.now() + '_' + file.name;
-		const filename2 = Date.now() + '_' + file2.name;
-		const filename3 = Date.now() + '_' + file3.name;
-		const filename4 = Date.now() + '_' + file4.name;
+		// Handle the images upload safely:
+		for (let i = 0; i < files.length; i++) {
+			const file = req.files?.[files[i]];
+			if (!file) continue;
 
-		imagesNames.push(filename, filename2, filename3, filename4);
+			const filename = `${timestamp}_${file.name}`;
+			imagesNames.push(filename);
+			const uploadPath = path.join(__dirname, 'uploads', filename);
 
-		let uploadPath = __dirname + '/uploads/' + filename;
-		let uploadPath2 = __dirname + '/uploads/' + filename2;
-		let uploadPath3 = __dirname + '/uploads/' + filename3;
-		let uploadPath4 = __dirname + '/uploads/' + filename4;
-
-		file.mv(uploadPath, (err) => {
-			if (err) {
-				return res.send(err);
-			}
-		});
-
-		file2.mv(uploadPath2, (err) => {
-			if (err) {
-				return res.send(err);
-			}
-		});
-
-		file3.mv(uploadPath3, (err) => {
-			if (err) {
-				return res.send(err);
-			}
-		});
-
-		file4.mv(uploadPath4, (err) => {
-			if (err) {
-				return res.send(err);
-			}
-		});
+			await new Promise((resolve, reject) => {
+				file.mv(uploadPath, (err) => {
+					if (err) return reject(err);
+					resolve();
+				});
+			});
+		}
 
 		const saveProduct = new Product({
 			os,
@@ -68,7 +44,7 @@ export const createProduct = async (req, res) => {
 			longDescription,
 			shortDescription,
 			status: 'available',
-			image: imagesNames[0],
+			image: imagesNames[0] || '',
 			productImages: imagesNames,
 		});
 
@@ -81,6 +57,7 @@ export const createProduct = async (req, res) => {
 		res.status(500).json(error.message);
 	}
 };
+
 
 //Read many:
 export const readProducts = async (req, res) => {

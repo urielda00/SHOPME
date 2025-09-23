@@ -1,5 +1,3 @@
-// Controller WTC:  O(1)
-
 import Cart from '../models/Cart.js';
 import User from '../models/User.js';
 import { CartErrorLogger, CartInfoLogger } from '../middleware/winston.js';
@@ -8,9 +6,10 @@ import { CartErrorLogger, CartInfoLogger } from '../middleware/winston.js';
 export const addToCart = async (req, res) => {
 	try {
 		// Find the userId using the userName:
-		const userId = user._id;
 		const { itemData, userName } = req.body;
 		const user = await User.findOne({ userName });
+		if (!user) return res.status(404).send('User not found');
+		const userId = user._id;
 
 		// Object structure to save inside the cart at first:
 		const filteredItemObjToSave = {
@@ -63,9 +62,11 @@ export const addToCart = async (req, res) => {
 export const updateInAddToCar = async (req, res) => {
 	try {
 		// Find the user cart by his name => Id:
-		const userId = user._id;
-		const user = await User.findOne({ userName });
+
 		const { userName, itemId, totalPrice } = req.body;
+		const user = await User.findOne({ userName });
+		if (!user) return res.status(404).send('User not found');
+		const userId = user._id;
 
 		//find the item inside the user cart and update the quantity:
 		await Cart.updateMany(
@@ -100,9 +101,10 @@ export const updateInAddToCar = async (req, res) => {
 // RESET CART:
 export const resetCart = async (req, res) => {
 	try {
-		const userId = user._id;
 		const { userName } = req.body;
 		const user = await User.findOne({ userName });
+		if (!user) return res.status(404).send('User not found');
+		const userId = user._id;
 
 		await Cart.deleteOne({ userId });
 
@@ -117,9 +119,10 @@ export const resetCart = async (req, res) => {
 // INCREMENT AMOUNT:
 export const incrementQuantity = async (req, res) => {
 	try {
-		const userId = user._id;
 		const { item, userName } = req.body;
 		const user = await User.findOne({ userName });
+		if (!user) return res.status(404).send('User not found');
+		const userId = user._id;
 
 		await Cart.updateOne(
 			{
@@ -145,9 +148,10 @@ export const incrementQuantity = async (req, res) => {
 //1: DECREMENT AMOUNT - case there is more then 1 in the quantity
 export const decrementQuantity1 = async (req, res) => {
 	try {
-		const userId = user._id;
 		const { item, userName } = req.body;
 		const user = await User.findOne({ userName });
+		if (!user) return res.status(404).send('User not found');
+		const userId = user._id;
 
 		await Cart.updateOne(
 			{
@@ -172,9 +176,10 @@ export const decrementQuantity1 = async (req, res) => {
 //2: DECREMENT AMOUNT: - case there is less then 1 in the quantity (meaning remove the item from cart):
 export const decrementQuantity2 = async (req, res) => {
 	try {
-		const userId = user._id;
 		const { item, userName } = req.body;
 		const user = await User.findOne({ userName });
+		if (!user) return res.status(404).send('User not found');
+		const userId = user._id;
 
 		await Cart.updateOne(
 			{
@@ -204,9 +209,10 @@ export const decrementQuantity2 = async (req, res) => {
 // REMOVE ITEM:
 export const removeItem = async (req, res) => {
 	try {
-		const userId = user._id;
 		const { item, userName } = req.body;
 		const user = await User.findOne({ userName });
+		if (!user) return res.status(404).send('User not found');
+		const userId = user._id;
 
 		await Cart.updateOne(
 			{

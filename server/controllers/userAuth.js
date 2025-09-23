@@ -1,5 +1,3 @@
-// Controller WTC:  O(1)
-
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import User from '../models/User.js';
@@ -166,8 +164,8 @@ export const updateUserPass = async (req, res) => {
 			if (password === verifyPass) {
 				const hashedPassword = await bcrypt.hash(password, salt); //hash the new pass
 				await User.findByIdAndUpdate(id, { password: hashedPassword }, options); //send the hashed to: DB.
-				UserInfoLogger.log('info', 'User passsword updated successfully! status code: 201');
-				res.status(200).send('User passsword updated successfully!');
+				UserInfoLogger.log('info', 'User password updated successfully! status code: 201');
+				res.status(200).send('User password updated successfully!');
 			} else {
 				UserErrorLogger.log('error', 'The passwords must match! status code: 409');
 				res.status(409).json('The passwords must match!!');
